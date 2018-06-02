@@ -1,0 +1,299 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_1vs54cas" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <%--<link rel='stylesheet' type='text/css' href='css/menu_brwn_styles.css'/>--%>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="keywords" content="fleet management, fleet , fleet management, fleet vehicle management, fleet servcices" />
+    <meta name="description" content="Total Fleet Management is a fully outsourced fleet solution. We make sure that operating your 	fleet never becomes a hassle and wont eat into your company's resources." />
+    <title>Fleet Management System</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!--[if IE 6]><link rel="stylesheet" type="text/css" media="screen" href="css/ie6-fixes.css" /><![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/main_stylesheet.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="style1-theme"
+        href="css/style1_stylesheet.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="style2-theme"
+        href="css/style2_stylesheet.css" />
+
+    <script type='text/javascript' src='js/menu.js'></script>
+
+    <script type="text/javascript" language="javascript" src="js/styleswitch.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        javascript: window.history.forward(1);
+        window.onunload = function () { null };
+        window.onerror = function (e) { return true; }
+    </script>
+
+    <%--    <script language="javascript" type="text/javascript" src="js/jquery-1.6.4.min.js"></script>--%>
+
+    <%--<link rel="stylesheet" type="text/css" href="css/main_stylesheet.css" media="all"/>--%>
+
+
+    <style type="text/css">
+        .style1 {
+            color: rgb(255, 255, 204);
+        }
+
+        .style2 {
+            color: rgb(102, 102, 153);
+        }
+
+        .style3 {
+            color: rgb(255, 0, 0);
+        }
+    </style>
+    <link href="css/New/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/New/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div id="printheader">
+                <img src="fc-print-logo.gif" alt="title logo" />
+            </div>
+            <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true">
+            </asp:ToolkitScriptManager>
+            <div id="outerwrapper">
+                <div id="utilities" align="right">
+                    <div class="search-fc">
+                    </div>
+                    <%--<div class="themes_sel">
+                    <span>Themes :</span> <span>
+                        <img class="themeImg" onclick="javascript:chooseStyle('none', 60)"
+                            alt="brown" src="images/brown.jpg" /></span> <span>
+                                <img class="themeImg" alt="green" onclick="javascript:chooseStyle('style1-theme', 60)"  checked="checked"
+                                    src="images/green.jpg" /></span> <span>
+                                        <img class="themeImg" alt="ppl" onclick="javascript:chooseStyle('style2-theme', 60)"
+                                            src="images/blu.jpg" /></span>
+                </div>--%>
+                    <ul>
+                        <b>
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton></b>
+                    </ul>
+                    <ul>
+                        <li><b nowrap="nowrap">
+                            <%=Username%></b></li>
+                    </ul>
+                </div>
+                <div id="sitecontainer">
+                    <div id="innerwrapper">
+                        <div id="navigation">
+                            <a href="#" id="fleetcarelogo">
+                                <img src="images/gvk-emri-squarelogo-1397830244999.png" alt="Fleet management, novated car leasing and fuel cards specialist"
+                                    width="150" height="100" title="Fleetcare fleet management, novated car leasing and fuel cards specialist" /><!---->
+                            </a>
+                            <ul id="topnav">
+                                <li><span class="hdr1">Fleet Management System </span></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <!-- /navigation -->
+                        <div id="contentcontainer">
+                            .
+                        <div id="sub-navigation" class="main_menu_side hidden-print main_menu">
+                            <%=GvkFMSAPP.PL.QuickMenu.GetMenuFromDataset((System.Data.DataSet)Session["PermissionsDS"]) %>
+                            <%--<ul class="qmmc" id="qm0">
+                                <li><a href="javascript:void(0)" class="qmparent">StatutoryCompliance</a>
+                                <ul>
+                                    <li><a href="VehicleInsurance.aspx">VehicleInsurance</a></li>
+                                    <li><a href="VehicleInsuranceClaims.aspx">VehicleInsuranceClaims</a></li>
+                                    <li>z                     <a href="RoadTax.aspx">RoadTax</a></li><li><a href="StatutoryCompliance/PollutionUnderControl.aspx">
+                                                PollutionUnderControl</a></li><li><a href="StatutoryCompliance/FitnessRenewal.aspx">
+                                                    FitnessRenewal</a></li></ul>
+                                </li>
+                                <li><a href="javascript:void(0)" class="qmparent">PriorMaintenanceStage</a><ul>
+                                    <li><a href="Prior-MaintenanceStage/BaseVehicleDetails.aspx">BaseVehicleDetailsAdd</a></li><li>
+                                        <a href="Prior-MaintenanceStage/FabricatedVehicleDetails.aspx">FabricatedVehicleDetailsAdd</a></li><li>
+                                            <a href="Prior-MaintenanceStage/FabricatedVehicleDetails.aspx">FabricatedVehicleDetailsModify</a></li><li>
+                                                <a href="Prior-MaintenanceStage/FabricatedVehicleDetails.aspx">FabricatedVehicleDetailsView</a></li><li>
+                                                    <a href="Prior-MaintenanceStage/PreDeliveryInspection.aspx">PreDeliveryInspectionAdd</a></li><li>
+                                                        <a href="Prior-MaintenanceStage/PreDeliveryInspection.aspx">PreDeliveryInspectionModify</a></li><li>
+                                                            <a href="Prior-MaintenanceStage/PreDeliveryInspection.aspx">PreDeliveryInspection View</a></li><li>
+                                                                <a href="Prior-MaintenanceStage/VehicleRegistration.aspx">VehicleRegistrationAdd</a></li><li>
+                                                                    <a href="Prior-MaintenanceStage/VehicleRegistration.aspx">VehicleRegistrationModify</a></li><li>
+                                                                        <a href="Prior-MaintenanceStage/VehicleRegistration.aspx">VehicleRegistrationView</a></li><li>
+                                                                            <a href="Prior-MaintenanceStage/HandOvertoOperations.aspx">HandOvertoOperationsAdd</a></li><li>
+                                                                                <a href="Prior-MaintenanceStage/TemporaryVehicleDetails.aspx">TemporaryVehicleDetailsAdd</a></li><li>
+                                                                                    <a href="Prior-MaintenanceStage/DistrictVehicleMapping.aspx">DistrictVehicleMappingAdd</a></li></ul>
+                                </li>
+                                <li><a href="Inventory.aspx" class="qmparent">Inventory</a><ul>
+                                    <li><a href="Tyres">Tyres</a></li><li><a href="Battery.aspx">Battery</a></li></ul>
+                                </li>
+                            </ul>--%>
+                            <%--   <ul id="qm0" class="qmmc">
+                                <li><a class="qmparent" href="javascript:void(0)">Fleet Masters</a>
+                                    <ul>
+                                        <li><a href="FleetManufacturers.aspx">Fleet Manufacturers </a></li>
+                                        <li><a href="Fabricator.aspx">Fabricator </a></li>
+                                        <li><a href="VehicleTypes.aspx">Vehicle Types </a></li>
+                                        <li><a href="MedicalEquipments.aspx">Medical Equipments</a></li>
+                                        <li><a href="MapEquipments.aspx">Map Equipments</a></li>
+                                        <li><a href="SparePartsMaster.aspx">Spare Parts details</a></li>
+                                        <li><a href="TyresDetails.aspx">Tyres Details</a></li>
+                                        <li><a href="BatteryDetails.aspx">Battery Details</a></li>
+                                        <li><a href="AgencyDetails.aspx">Agency details</a></li>
+                                        <li><a href="MaintenanceTypes.aspx">Maintenance Typess</a></li>
+                                        <li><a href="MaintenanceWorksMaster.aspx">Maintenance Works Master</a></li>
+                                        <li><a href="ServiceConfigurations.aspx">Service Configurations</a></li>
+                                        <li><a href="Electricals.aspx">Electricals</a></li>
+                                        <li><a href="AddLubricants.aspx">Add Lubricants</a></li>
+                                        <li><a href="InsuranceAgencies.aspx">Insurance Agencies</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Prior-Maintenance Stage</a>
+                                    <ul>
+                                        <li><a href="VehicleDetails.aspx">Add New Vehicle Details</a></li>
+                                        <li><a href="BaseVehicleDetails.aspx">Base Vehicle Details Entry </a></li>
+                                        <li><a href="BaseVehicleDetails.aspx">Base Vehicle Details Approval </a></li>
+                                    <li><a href="FabricatedVehicleDetails.aspx">Fabricated vehicle Details</a></li>
+                                        <li><a href="PreDeliveryInspection.aspx">Pre-Delivery Inspection</a></li>
+                                        <li><a href="VehicleRegistration.aspx">Vehicle - Registration</a></li>
+                                        <li><a href="HandOvertoOperations.aspx">Handover to Operations</a></li>
+                                        <li><a href="TemporaryVehicleDetails.aspx">Temporary Vehicle details </a></li>
+                                        <li><a href="DistrictVehicleMapping.aspx">District Vehicle Mapping </a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Statutory Compliance</a>
+                                    <ul>
+                                        <li><a href="VehicleInsurance.aspx">Vehicle Insurance</a></li>
+                                        <li><a href="VehicleInsuranceClaims.aspx">Insurance Claims</a></li>
+                                        <li><a href="RoadTax.aspx">Road Tax</a></li>
+                                        <li><a href="PollutionUnderControl.aspx">Pollution Under Control (PUC)</a></li>
+                                        <li><a href="FitnessRenewal.aspx">Fitness Renewal</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Maintenance & Repairs</a>
+                                    <ul>
+                                        <li><a href="javascript:void(0)">Maintenance Cost Request</a></li>
+                                        <li><a href="javascript:void(0)">Maintenance Cost Approval</a></li>
+                                        <li><a href="javascript:void(0)">Schedule Service Request</a></li>
+                                        <li><a href="javascript:void(0)">Schedule Service Approval</a></li>
+                                        <li><a href="javascript:void(0)">Fitness Renewal</a></li>
+                                        <li><a class="qmparent" href="javascript:void(0)">Maintenance Details Capture</a>
+                                            <ul>
+                                                <li><a href="javascript:void(0)">Spare Parts</a></li>
+                                                <li><a href="javascript:void(0)">Electrical Labor</a></li>
+                                                <li><a href="javascript:void(0)">Labor Charges</a></li>
+                                                <li><a href="javascript:void(0)">Lubricants</a></li>
+                                                <li><a href="javascript:void(0)">Battery Details</a></li>
+                                                <li><a href="javascript:void(0)">Tyres Details</a></li>
+                                                <li><a href="javascript:void(0)">Scheduled Maintenance</a></li>
+                                                <li><a href="javascript:void(0)">Free Servicing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0)">Maintenance Details Approve</a></li>
+                                        <li><a href="javascript:void(0)">Vendor Payment Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Fleet Inventory</a>
+                                    <ul>
+                                        <li><a class="qmparent" href="javascript:void(0)">Tyre Management</a>
+                                            <ul>
+                                                <li><a href="TyreRequisition.aspx">New Tyre Request</a></li>
+                                                <li><a href="IssueTyreRequestCheck.aspx">Issue Tyre Check</a></li>
+                                                <li><a href="TyreIssue1.aspx">Issue Tyre</a></li>
+                                                <li><a href="TyreReceipt1.aspx">Tyre Receipt</a></li>
+                                                <li><a href="TyreIssueReceiptDiscrepancy.aspx">Tyre Issue-Receipt-Discrepancy</a></li>
+                                                <li><a href="TyreMaintenanceRequest.aspx">Tyre Maintenance Request</a></li>
+                                                <li><a href="TyreVerificationApproval1.aspx">Tyre Maintenance Approval</a></li>
+                                                <li><a href="ScrapTyreSalesRequest.aspx">Scrap Tyre Sale Request</a></li>
+                                                <li><a href="ScrapTyreSaleApproval1.aspx">Scrap Tyre Sale Approval</a></li>
+                                                <li><a href="ScrapTyreSaleDetails1.aspx">Scrap Tyre Sale Details</a></li>
+                                                <li><a href="javascript:void(0)">Tyre Retreading Request</a></li>
+                                                <li><a href="javascript:void(0)">Tyre retreading Approval</a></li>
+                                                <li><a href="javascript:void(0)">Tyre retreading Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="qmparent" href="javascript:void(0)">Battery Management</a>
+                                            <ul>
+                                                <li><a href="NewBatteryRequisition1.aspx">New Battery Request</a></li>
+                                                <li><a href="BatteryIssue1.aspx">Battery Issue</a></li>
+                                                <li><a href="BatteryReceipt1.aspx">Battery Receipt</a></li>
+                                                <li><a href="BatteryIssueReceiptDiscrepancy.aspx">Battery Issue-Receipt-Discrepancy</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="qmparent" href="javascript:void(0)">Spare Part Management</a>
+                                            <ul>
+                                                <li><a href="SparePartsRequisiton.aspx">New Spare Part Requisition</a></li>
+                                                <li><a href="SparePartIssue.aspx">Spare Part Issue</a></li>
+                                                <li><a href="SparePartReceipt.aspx">Spare Part Receipt</a></li>
+                                                <li><a href="SparePartReceiptDiscrepancy.aspx">Spare Part Issue-Receipt-Discrepancy</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="qmparent" href="javascript:void(0)">Tools & Others</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Fuel Management</a>
+                                    <ul>
+                                        <li><a href="PetroCardIssue.aspx">Petro card issue</a></li>
+                                        <li><a href="PetroCardMapping.aspx">Petro card mapping to vehicle</a></li>
+                                        <li><a href="FuelEntry.aspx">Fuel entry</a></li>
+                                        <li><a href="FuelDetailsVerification.aspx">Fuel details verification</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Accident & de-commission</a>
+                                    <ul>
+                                        <li><a href="VehicleAccidentDetails.aspx">Vehicle Accident Details</a></li>
+                                        <li><a href="VehicleAccidentDetails.aspx">Vehicle Accident Investigation Details</a></li>
+                                        <li><a href="VehicleDecommissionProposal.aspx">Vehicle De-commission Proposal</a></li>
+                                        <li><a href="VehicleDecommissionApproval.aspx">Vehicle De-commission Approval</a></li>
+                                        <li><a href="HandOverToOwner.aspx">Handover of Temporary Vehicle</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Bulk data upload</a>
+                                    <ul>
+                                        <li><a href="VehicleInsuranceBulkUpload.aspx">Add vehicle insurance</a></li>
+                                        <li><a href="javascript:void(0)">Add Equipment Insurance</a></li>
+                                        <li><a href="RoadTaxBulkUpload.aspx">Add Road tax Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="qmparent" href="javascript:void(0)">Global Sites</a>
+                                    <ul>
+                                        <li><a href="asia.html">Asia</a></li>
+                                        <li><a href="javascript:void(0)">South America</a></li>
+                                        <li><a href="javascript:void(0)">Australia</a></li>
+                                        <li><a href="javascript:void(0)">North America</a></li>
+                                        <li><a href="javascript:void(0)">Europe</a></li>
+                                        <li><a href="javascript:void(0)">Africa</a></li>
+                                    </ul>
+                                </li>
+                            </ul>--%>
+
+                            <script type="text/javascript">                                qm_create(0, true, 250, 250, false, false, false, false, false);</script>
+
+                        </div>
+                            <!-- /sub-navigation -->
+                            <div id="copycontainer">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                            <div class="clearfloats">
+                            </div>
+                            <!-- /copycontainer -->
+                        </div>
+                        <!-- /contentcontainer -->
+                    </div>
+                </div>
+
+                <div id="footer" style="display: none">
+                    <table align="right">
+                        <tr>
+                            <td>
+                                <span class="style1">Powered By</span><span class="style2"> <b>GVK EMRI </b></span>
+                                <%--<b><span class="style3">Mahindra</span></b>--%>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+

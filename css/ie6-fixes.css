@@ -1,0 +1,15 @@
+
+@charset "utf-8";
+/* CSS Document */
+
+#navigation ul li span.logins a { line-height:0px;}
+a.pageoption { height:45px; position:relative;}
+#copy-right a.pageoption span {/*top:-20%; display:block; margin-top:25px; position:absolute;*/
+ padding-left:5px;padding-right:0px; width:auto;padding-top:14px;}
+ .callback { padding-left:5px; width:155px;}
+.service-availability ul a:link,
+.service-availability ul a:active,
+.service-availability ul a:visited {color:#fff;}
+a:link.compareall,
+a:active.compareall,
+a:visited.compareall {color:#fff;}

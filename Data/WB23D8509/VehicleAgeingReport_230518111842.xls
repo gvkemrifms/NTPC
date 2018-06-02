@@ -1,0 +1,13 @@
+<div id="ContentPlaceHolder1_Panel2" style="margin-left: 2px; margin-top: 30px">
+	
+            <div>
+		<table cellspacing="0" rules="all" id="ContentPlaceHolder1_Grdtyre" style="border-color:Brown;border-width:1px;border-style:Inset;border-collapse:collapse;">
+			<tr>
+				<th scope="col">District</th><th scope="col">TotVehicles</th><th scope="col">&lt;50000</th><th scope="col">50001 - 100000</th><th scope="col">100001 - 150000</th><th scope="col">&lt;150001 - 200000</th><th scope="col">200001 - 250000</th><th scope="col">250001 - 300000</th><th scope="col">300001 - 350000</th><th scope="col">350001 - 400000</th><th scope="col">400001 - 450000</th><th scope="col">450000 - 500000</th><th scope="col">&gt;500000</th>
+			</tr><tr>
+				<td>Howrah</td><td>25</td><td>25</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+			</tr>
+		</table>
+	</div>
+        
+</div>

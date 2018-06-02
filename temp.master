@@ -1,0 +1,542 @@
+﻿<%@ Master AutoEventWireup="true" Inherits="temp, App_Web_1vs54cas" Language="C#" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="js/js/chosen.jquery.min.js"></script>
+    <link href="css/chosen.min.css" rel="stylesheet" />
+    <script src="Scripts/select2.full.min.js"></script>
+    <link href="css/select2.min.css" rel="stylesheet" />
+    <link href="css/TextBoxCssStyles.css" rel="stylesheet" />
+    <script src="js/Validation.js"></script>
+    <link href="css/CalenderStyles.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>:::GVK EMRI:::</title>
+
+    <link href="css/New/bootstrap.min.css" rel="stylesheet" />
+    <%--    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <%--<link href="css/New/font-awesome.min.css" rel="stylesheet" />--%>
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet" />
+
+        <asp:ContentPlaceHolder ID="head" runat="server">
+          
+        </asp:ContentPlaceHolder>
+  
+</head>
+<body class="nav-md">
+    <div class="container body" >
+        <div class="main_container" >
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="default.aspx" class="site_title"><i class="fa fa-ambulance"></i><span>Fleet Management..!</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <%--<div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>John Doe</h2>
+                        </div>
+                    </div>--%>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>FMS</h3>
+                            <ul class="nav side-menu">
+                                <li><a href="#"><i class="fa fa-home"></i>Statutory Compliance<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleInsurance.aspx">Vehicle Insurance</a>
+                                        </li>
+                                        <li><a href="VehicleInsuranceClaims.aspx">Vehicle Insurance Claims</a>
+                                        </li>
+                                        <li><a href="RoadTax.aspx">Road Tax</a>
+                                        </li>
+                                        <li><a href="PollutionUnderControl.aspx">Pollution Under Control</a>
+                                        </li>
+                                        <li><a href="FitnessRenewal.aspx">Fitness Renewal</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-edit"></i>Prior Maintenance Stage<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleDetails.aspx">Vehicle Details</a>
+                                        </li>
+                                        <li><a href="BaseVehicleDetails.aspx">Base Vehicle Details</a>
+                                        </li>
+                                        <li><a href="FabricatedVehicleDetails.aspx">Fabricated Vehicle Details</a>
+                                        </li>
+                                        <li><a href="PreDeliveryInspection.aspx">Pre Delivery Inspection</a>
+                                        </li>
+                                        <li><a href="VehicleRegistration.aspx">Vehicle Registration</a>
+                                        </li>
+                                        <li><a href="HandOvertoOperations.aspx">HandOver to Operations</a>
+                                        </li>
+                                        <li><a href="#">Temporary Vehicle Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-wheelchair"></i>Accident Decommission <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleAccidentDetails.aspx">Vehicle Accident Details</a>
+                                        </li>
+                                        <li><a href="VehicleAccidentInvestigationDetails.aspx">Vehicle Accident Investigation Details</a>
+                                        </li>
+                                        <li><a href="VehicleDecommissionProposal.aspx">Vehicle Decommission Proposal</a>
+                                        </li>
+                                        <li><a href="VehicleDecommissionApproval.aspx">Vehicle Decommission Approval</a>
+                                        </li>
+                                        <li><a href="HandOverToOwner.aspx">Hand Over To Owner</a>
+                                        </li>
+                                        <li><a href="AttachDocuments.aspx">Attach Documents</a>
+                                        </li>
+                                        <li><a href="HRDisciplinaryActions.aspx">HR Disciplinary Actions</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-table"></i>Fleet Master <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="FleetManufacturers.aspx">Fleet Manufacturers</a>
+                                        </li>
+                                        <li><a href="Fabricator.aspx">Fabricator</a>
+                                        </li>
+                                        <li><a href="VehicleTypes.aspx">Vehicle Types</a>
+                                        </li>
+                                        <li><a href="SparePartsMaster.aspx">SpareParts Master</a>
+                                        </li>
+                                        <li><a href="TyresDetails.aspx">Tyres Details</a>
+                                        </li>
+                                        <li><a href="BatteryDetails.aspx">Battery Details</a>
+                                        </li>
+                                        <li><a href="AgencyDetails.aspx">Agency Details</a>
+                                        </li>
+                                        <li><a href="InsuranceAgencies.aspx">Insurance Agencies</a>
+                                        </li>
+                                        <li><a href="Equipment.aspx">Medical Equipment</a>
+                                        </li>
+                                        <li><a>Maintenance Works<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="MaintenanceWorksServiceGroup.aspx">Service Group</a>
+                                                </li>
+                                                <li><a href="MaintenanceWorksMaster.aspx">Master</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="KMPLMaster.aspx">KMPL Master</a>
+                                        </li>
+                                        <li><a href="ServiceStation.aspx">Service Station Mapping</a>
+                                        </li>
+                                        <li><a href="ScheduleServiceMaster.aspx">Schedule Service Master</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-bar-chart-o"></i>Inventory <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a>Tyres<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="TyreRequisition.aspx">Tyre Requisition</a>
+                                                </li>
+                                                <li><a href="TyreIssue.aspx">Tyre Issue</a>
+                                                </li>
+                                                <li><a href="TyreReceipt.aspx">Tyre Receipt</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Battery<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="NewBatteryRequisition.aspx">New Battery Requisition</a>
+                                                </li>
+                                                <li><a href="BatteryIssue.aspx">Battery Issue</a>
+                                                </li>
+                                                <li><a href="BatteryReceipt.aspx">Battery Receipt</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li><a>SpareParts<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="SparePartsRequisiton.aspx">SpareParts Requisiton</a>
+                                                </li>
+                                                <li><a href="SparePartIssue.aspx">SpareParts Issue</a>
+                                                </li>
+                                                <li><a href="SparePartsReceipt.aspx">SparePart Receipt</a>
+                                                </li>
+                                                <li>
+                                                    <a href="SparePartDiscrepancy.aspx">SparePart Discrepancy</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-tint"></i>Fuel Management<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="PetroCardIssue.aspx">PetroCard Issue</a>
+                                        </li>
+                                        <li><a href="PetroCardMapping.aspx">PetroCard Mapping</a>
+                                        </li>
+                                        <li><a href="FuelEntry.aspx">Fuel Entry</a>
+                                        </li>
+                                        <li><a href="FuelDetailsVerification.aspx">Fuel Details Verification</a>
+                                        </li>
+                                        <li><a href="TripDetails.aspx">Trip Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-home"></i>Admin<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="DistrictVehicleMapping.aspx">District Vehicle Mapping</a>
+                                        </li>
+                                        <li><a href="DistrictUserMapping.aspx">District User Mapping</a>
+                                        </li>
+                                        <li><a href="VehicleDecommission.aspx">Vehicle Decommission</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <%--<li><a><i class="fa fa-home"></i>Maintenance & Repairs<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="index.html">VendorPaymentEntry</a>
+                                        </li>
+                                        <li><a>Vehicle Maintenance<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="level2.html">Cost Request</a>
+                                                </li>
+                                                <li><a href="#level2_1">Details</a>
+                                                </li>
+                                                <li><a href="#level2_2">Details Approval</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#level2_2">Cost Approval</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Vehicle Schedule Service<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="level2.html">Request</a>
+                                                </li>
+                                                <li><a href="#level2_2">Approval</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>--%>
+
+                                <%--<li><a><i class="fa fa-desktop"></i>Bulk Upload<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="general_elements.html">Road Tax Bulk Upload</a>
+                                        </li>
+                                        <li><a href="media_gallery.html">Vehicle Insurance Bulk Upload</a>
+                                        </li>
+                                    </ul>
+                                </li>--%>
+                                <li><a><i class="fa fa-pie-chart "></i>Report<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <li><a>Vehicles<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="CardTypeReport.aspx">Card Type Report</a>
+                                                </li>
+                                                <li><a href="DetailsReport.aspx">Details Reports</a>
+                                                </li>
+                                                <li><a href="MedicalEquipmentDetailsReport.aspx">Medical Equipment Details Report</a>
+                                                </li>
+                                                <li><a href="EnquiryScreenReportnew.aspx">Enquiry Screen Report</a>
+                                                </li>
+                                                <li><a href="Ageing_Reportnew.aspx">Vehicle Ageing Report</a>
+                                                </li>
+                                                <li><a href="HIstoryReport.aspx">History Report</a>
+                                                </li>
+                                                <li><a href="RegistratonMonthwiseReport.aspx">Registration MonthWise Report</a>
+                                                </li>
+                                                <li><a href="SparePartwiseReport.aspx">Spare Partwise Report</a>
+                                                </li>
+                                                <li><a href="ZonewiseReport.aspx">Zonewise Report</a>
+                                                </li>
+                                                <li><a href="EquipmentDetailsRepornew.aspx">Equipment Details Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Inventory Reports<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="BatteryDetailsReportnew.aspx">Battery Details Report</a>
+                                                </li>
+                                                <li><a href="TyreDetailsReport.aspx">Tyre Details Report</a>
+                                                </li>
+                                                <li><a href="TyreAndBatteryReport.aspx">Tyre Battery Report</a>
+                                                </li>
+                                                <li><a href="TyreAndBatteryDistrictWise.aspx">Tyre And Battery Districtwise Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Fuel Management Reports<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="FuelEntryDetailsReport.aspx">Fuel Entry Details Report</a>
+                                                </li>
+                                                <li><a href="FuelReport.aspx">Fuel Report</a>
+                                                </li>
+                                                <li><a href="FuelVarienceReport.aspx">Fuel Variance Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Vehicle Accident<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="AnalysisHourwiseReport.aspx">Analysis Hourwise Report</a>
+                                                </li>
+                                                <li><a href="AnalysisReport.aspx">Analysis Report</a>
+                                                </li>
+                                                <li><a href="AccidentReport.aspx">Accident Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Maintenance<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="CostingAnalysisReport.aspx">Costing Analysis Report</a>
+                                                </li>
+                                                <li><a href="MaintenanceDetailsReport.aspx">Details Report</a>
+                                                </li>
+                                                <li><a href="ScheduleMaintenanceStatusReport.aspx">Schedule Maintenance Status Report</a>
+                                                </li>
+                                                <li><a href="BillProcessingManagementReport.aspx">Bill Processing Management Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Vendor<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="DistrictwiseLedgerReport.aspx">Districtwise Ledger Report</a>
+                                                </li>
+                                                <li><a href="BillsOutstandingSummaryReport.aspx">Bills Outstanding Summary Report</a>
+                                                </li>
+                                                <li><a href="InvoiceSubmissionToFinanceReport.aspx">Invoice Submission To Finance Report</a>
+                                                </li>
+                                                <li><a href="InvoiceTrackingReport.aspx">Invoice Tracking Report</a>
+                                                </li>
+                                                <li><a href="OutstandingSummaryReport.aspx">Outstanding Summary Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>Summary Details<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="DetailedReport.aspx">Detailed Report</a>
+                                                </li>
+                                                <li><a href="DetailedWithVehicleModelReport.aspx">Detailed With Vehicle Model Report</a>
+                                                </li>
+                                                <li><a href="DetailedWithVendorReport.aspx">Detailed With Vendor Report</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a>VAS Reports<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="VehicleSummaryRegionwise.aspx"><a href="VehicleSummaryRegionwise.html">Vehicle Summary Regionwise</a>
+                                                </li>
+                                                <li><a href="VehicleSummaryDistrictwise.aspx">Vehicle Summary Districtwise</a>
+                                                </li>
+                                                <li><a href="VehicleSummaryAll.aspx">Vehicle Summary All</a>
+                                                </li>
+                                                <li><a href="OnroadReport.aspx">Vehicle Summary Inactive Report</a>
+                                                </li>
+<li><a href="CumulativeReport.aspx">OffRoad Onroad Report</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-desktop"></i>History<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleHistory.aspx">Vehicle History</a>
+                                        </li>
+                                        <li><a href="PresentVehicleDetails.aspx">Present Vehicle Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-desktop"></i>VAS<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleOffroad.aspx">Off Road Vehicle</a>
+                                        </li>
+                                        <li><a href="VehicleMaintenanceDetailsNew.aspx">Off Road Vehicle Maintenance</a>
+                                        </li>
+                                        <li><a href="VehicleAllocation.aspx">Vehicle Allocation</a>
+                                        </li>
+                                        <li><a href="VehicleSwapping.aspx">Vehicle Swapping</a>
+                                        </li>
+                                        <li><a href="VehicleSwappingDistrictWise.aspx">Vehicle Swapping District Wise</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-desktop"></i>Physical Bill Details<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="VehicleMaintenanceEdit.aspx">Vehicle Maintainance Cost</a>
+                                        </li>
+                                        <li><a href="VehiclemaintenanceNonoffroad.aspx">Vehicle Maintenance Nonoffroad</a>
+                                        </li>
+                                        <li><a href="NonOffRoadPhysicalBills.aspx">Non Off Road Physical Bills</a>
+                                        </li>
+                                        <li><a href="OffroadPhysicalBills.aspx">Off Road Physical Bills</a>
+                                        </li>
+                                        <li><a href="NonOffroadApprovalPage.aspx">Bills Approvals</a>
+                                        </li>
+                                        <li><a href="VasOffroadCOO.aspx">Prior Maintenance Approval By COO</a>
+                                        </li>
+                                        <li><a href="VasOffroadFleetManager.aspx">Prior Maintenance Approval By Fleet Manager</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <%--<div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>--%>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/DefaultAuthorImage.jpg" alt=""><%=Username%>
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="javascript:;">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+
+                                    <li><a href="logout.aspx"><i class="fa fa-sign-out pull-right"></i>Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <div class="right_col" role="main" style="min-height: 1161px;">
+                <form id="form1" runat="server">
+                    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true">
+                    </asp:ToolkitScriptManager>
+                    <div class="content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </form>
+            </div>
+            <!-- footer content -->
+            <%-- <footer>
+                <div class="pull-right">
+                    Powered by GVK EMRI
+                </div>
+                <div class="clearfix"></div>
+            </footer>--%>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- Bootstrap -->
+    <%--<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>--%>
+    <script src="js/js/bootstrap.min.js"></script>
+
+    <!-- Load and execute javascript code used only in this page -->
+
+
+    <!-- FastClick -->
+    <%--<script src="../vendors/fastclick/lib/fastclick.js"></script>--%>
+    <script src="js/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <%--<scrkipt src="../vendors/nprogress/nprogress.js"></scrkipt>--%>
+    <script src="js/js/nprogress.js"></script>
+    <!-- Chart.js -->
+    <%--<script src="../vendors/Chart.js/dist/Chart.min.js"></script>--%>
+    <script src="js/js/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <%--<script src="../vendors/bernii/gauge.js/dist/gauge.min.js"></script>--%>
+    <script src="js/js/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <%--<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>--%>
+    <script src="js/js/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <%--<script src="../vendors/iCheck/icheck.min.js"></script>--%>
+    <script src="js/js/icheck.min.js"></script>
+    <!-- Skycons -->
+    <%--<script src="../vendors/skycons/skycons.js"></script>--%>
+    <script src="js/js/skycons.js"></script>
+    <!-- Flot -->
+    <%--  <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>--%>
+    <%-- <script src="js/js/jquery.flot.js"></script>
+    <script src="js/js/jquery.flot.pie.js"></script>
+    <script src="js/js/jquery.flot.time.js"></script>
+    <script src="js/js/jquery.flot.resize.js"></script>
+    <script src="js/js/jquery.flot.stack.js"></script>--%>
+    <!-- Flot plugins -->
+    <script src="js/js/flot/jquery.flot.orderBars.js"></script>
+    <script src="js/js/flot/date.js"></script>
+    <script src="js/js/flot/jquery.flot.spline.js"></script>
+    <script src="js/js/flot/curvedLines.js"></script>
+    <!-- jVectorMap -->
+    <script src="js/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/js/moment/moment.min.js"></script>
+    <script src="js/js/datepicker/daterangepicker.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="js/js/custom.js"></script>
+
+</body>
+</html>
