@@ -4,7 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
+    $(function() {
+        $('#<%=TxtAccidentDateTime.ClientID%>,#<%=TxtInsuranceStartDate.ClientID%>,#<%=TxtInsuranceEndDate.ClientID%>,#<%=TxtSpotSurveyorDate.ClientID%>,#<%=TxtFinalSurveyorDate.ClientID%>,#<%=TxtReinspectionSurveyorDate.ClientID%>,#<%=TxtClaimFormSubmissionDate.ClientID%>,#<%=TxtBillSubmissionDate.ClientID%>,#<%=TxtPaymentRecievedDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     function vehicleCostAddition(obj) {
         if (!parseFloat(obj.value)) {
             alert('The value should be a valid decimal value and cannot be zero');
@@ -65,16 +71,12 @@
     <td>
         <asp:TextBox ID="TxtAccidentDateTime" CssClass="search_3" runat="server"></asp:TextBox>
     </td>
-    <td>
-        <asp:ImageButton ID="imgPODate" Style="float: left" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="TxtAccidentDateTime_CalendarExtender" runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPODate" CssClass="cal_Theme1" TargetControlID="TxtAccidentDateTime">
-        </cc1:CalendarExtender>
-    </td>
     <td></td>
     <td></td>
+    <td></td>
+
     <td>
-        <asp:Label ID="LblAgency" runat="server" Text="Agency" style="margin-left: 40px"></asp:Label>
+        <asp:Label ID="LblAgency" runat="server" Text="Agency" style="margin-left: 80px; "></asp:Label>
     </td>
     <td>
         <asp:TextBox ID="TxtAgency" CssClass="search_3" runat="server"></asp:TextBox>
@@ -97,12 +99,6 @@
     <td>
         <asp:TextBox ID="TxtInsuranceStartDate" CssClass="search_3" runat="server"></asp:TextBox>
     </td>
-    <td>
-        <asp:ImageButton ID="imgPODate1" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="TxtInsuranceStartDate_CalendarExtender" runat="server"
-                              Format="MM/dd/yyyy" PopupButtonID="imgPODate1" CssClass="cal_Theme1" TargetControlID="TxtInsuranceStartDate">
-        </cc1:CalendarExtender>
-    </td>
 </tr>
 <tr>
     <td>
@@ -120,12 +116,6 @@
     <td>
         <asp:TextBox ID="TxtInsuranceEndDate" CssClass="search_3" runat="server"></asp:TextBox>
     </td>
-    <td>
-        <asp:ImageButton ID="imgPODate2" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="TxtInsuranceEndDate_CalendarExtender" runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPODate2" CssClass="cal_Theme1" TargetControlID="TxtInsuranceEndDate">
-        </cc1:CalendarExtender>
-    </td>
 </tr>
 <tr>
     <td>
@@ -133,12 +123,6 @@
     </td>
     <td>
         <asp:TextBox ID="TxtSpotSurveyorDate" CssClass="search_3" runat="server"></asp:TextBox>
-    </td>
-    <td>
-        <asp:ImageButton ID="imgPODate11" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="LblSpotSurveyorDate_CalendarExtender" runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPODate11" CssClass="cal_Theme1" TargetControlID="TxtSpotSurveyorDate">
-        </cc1:CalendarExtender>
     </td>
     <td></td>
     <td></td>
@@ -168,24 +152,13 @@
         <asp:TextBox ID="TxtFinalSurveyorDate" CssClass="search_3" runat="server"></asp:TextBox>
     </td>
     <td>
-        <asp:ImageButton ID="imgPODate10" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="TxtFinalSurveyorDate_CalendarExtender" runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPODate10" CssClass="cal_Theme1" TargetControlID="TxtFinalSurveyorDate">
-        </cc1:CalendarExtender>
-    </td>
-    <td>
+    <td></td>
     <td></td>
     <td>
-        <asp:Label runat="server" Text="Re-inspection Surveillance Date" style="margin-left: 40px"></asp:Label>
+        <asp:Label runat="server" Text="Re-inspection Surveillance Date" style="margin-left: 30px" ></asp:Label>
     </td>
     <td>
         <asp:TextBox ID="TxtReinspectionSurveyorDate" CssClass="search_3" runat="server"></asp:TextBox>
-    </td>
-    <td>
-        <asp:ImageButton ID="imgPODate6" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender runat="server"
-                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="imgPODate6" TargetControlID="TxtReinspectionSurveyorDate">
-        </cc1:CalendarExtender>
     </td>
 </tr>
 
@@ -195,12 +168,6 @@
     </td>
     <td>
         <asp:TextBox ID="TxtClaimFormSubmissionDate" CssClass="search_3" runat="server"></asp:TextBox>
-    </td>
-    <td>
-        <asp:ImageButton ID="imgPODate7" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender runat="server"
-                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="imgPODate7" TargetControlID="TxtClaimFormSubmissionDate">
-        </cc1:CalendarExtender>
     </td>
 </tr>
 <tr>
@@ -227,12 +194,6 @@
     </td>
     <td>
         <asp:TextBox ID="TxtBillSubmissionDate" CssClass="search_3" runat="server"></asp:TextBox>
-    </td>
-    <td>
-        <asp:ImageButton ID="imgPODate8" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender runat="server"
-                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="imgPODate8" TargetControlID="TxtBillSubmissionDate">
-        </cc1:CalendarExtender>
     </td>
 </tr>
 <tr>
@@ -267,12 +228,6 @@
     </td>
     <td>
         <asp:TextBox ID="TxtPaymentRecievedDate" CssClass="search_3" runat="server"></asp:TextBox>
-    </td>
-    <td>
-        <asp:ImageButton ID="imgPODate9" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender ID="TxtPaymentRecievedDate_CalendarExtender" runat="server"
-                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="imgPODate9" TargetControlID="TxtPaymentRecievedDate">
-        </cc1:CalendarExtender>
     </td>
 </tr>
 <tr>

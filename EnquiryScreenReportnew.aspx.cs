@@ -26,7 +26,7 @@ public partial class EnquiryScreenReportnew : Page
         }
     }
 
-    protected void btClick_ShowReport(object sender, EventArgs e)
+    protected void btClick_Report(object sender, EventArgs e)
     {
         Loaddata();
     }

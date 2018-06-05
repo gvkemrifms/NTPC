@@ -1707,7 +1707,7 @@ False.</param>
       <summary>Gets or sets whether to display legend field buttons on a PivotChart.</summary>
       <returns>true if legend field buttons on a PivotChart should be displayed; otherwise, false.</returns>
     </member>
-    <member name="P:Microsoft.Office.Interop.Excel._Chart.ShowReportFilterFieldButtons">
+    <member name="P:Microsoft.Office.Interop.Excel._Chart.ReportFilterFieldButtons">
       <summary>Gets or sets whether to display the report filter field buttons on a PivotChart.</summary>
       <returns>true if the report filter field buttons on a PivotChart should be displayed; otherwise, false.</returns>
     </member>
@@ -6346,7 +6346,7 @@ False.</param>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowDataLabelsOverMaximum"></member>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowDraftModeButton"></member>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowLegendFieldButtons"></member>
-    <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowReportFilterFieldButtons"></member>
+    <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ReportFilterFieldButtons"></member>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowValueFieldButtons"></member>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.ShowWindow"></member>
     <member name="P:Microsoft.Office.Interop.Excel.ChartClass.SideWall"></member>

@@ -2,6 +2,13 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
+            $(function() {
+                $('#<%=txtHandoverDate.ClientID%>,#<%=txtInspectionDate.ClientID%>').datepicker({
+                    dateFormat: 'mm/dd/yy',
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
         function validation() {
             var handOverto = document.getElementById('<%= txtHandOverto.ClientID %>');
             var handoverDate = document.getElementById('<%= txtHandoverDate.ClientID %>');
@@ -157,11 +164,6 @@
                         <td align="left" style="width: 288px">
                             <asp:TextBox ID="txtHandoverDate" CssClass="search_3" runat="server" Width="145px" onkeypress="return false" oncut="return false;" onpaste="return false;">
                             </asp:TextBox>
-                            <asp:ImageButton ID="imgBtnCalendarHandoverDate" runat="server" Style="vertical-align: top"
-                                             alt="" src="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" TargetControlID="txtHandoverDate"
-                                                  PopupButtonID="imgBtnCalendarHandoverDate" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                         <td rowspan="4">
                             <asp:CheckBoxList runat="server" Visible="False">
@@ -199,11 +201,6 @@
                         <td align="left" style="width: 288px">
                             <asp:TextBox ID="txtInspectionDate" CssClass="search_3" runat="server" Width="145px" onkeypress="return false" oncut="return false;" onpaste="return false;">
                             </asp:TextBox>
-                            <asp:ImageButton ID="imBtnInspectionDate" runat="server" Style="vertical-align: top"
-                                             alt="" src="images/Calendar.gif"/>
-                            <cc1:CalendarExtender runat="server" TargetControlID="txtInspectionDate"
-                                                  PopupButtonID="imBtnInspectionDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>

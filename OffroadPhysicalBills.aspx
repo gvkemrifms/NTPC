@@ -44,7 +44,7 @@
                 var now = new Date();
 
                 if (fldDistrict.selectedIndex === 0) {
-                    alert("Please Select District");
+                    alert("Please Select State");
                     return false;
                 }
                 if (fldVehicleno === '--Select--') {
@@ -80,7 +80,7 @@
         <table align="center">
             <tr>
                 <td>
-                    District<span style="color: red">*</span>
+                    State<span style="color: red">*</span>
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlDistricts" Width="150px" runat="server" CssClass="search_3" OnSelectedIndexChanged="ddlDistricts_SelectedIndexChanged"

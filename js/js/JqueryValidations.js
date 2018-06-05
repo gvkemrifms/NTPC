@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('#<%= btnShowReport.ClientID %>').click(function () {
+    $('#<%= btnReport.ClientID %>').click(function () {
         var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
         if (ddlDistrict === '--select--') {
             alert("Please select District");

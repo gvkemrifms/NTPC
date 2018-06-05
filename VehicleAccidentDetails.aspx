@@ -4,6 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
+    $(function() {
+        $('#<%=txtExpiryDate.ClientID%>,#<%=txtAccidentDateTime.ClientID%>,#<%=txtInitiatedTime.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     function validation(obj, id) {
 
         var now = new Date();
@@ -226,10 +233,6 @@
     </td>
     <td>
         <asp:TextBox ID="txtExpiryDate" CssClass="search_3" runat="server" MaxLength="20" Width="130px" onkeypress="return false;"></asp:TextBox>
-        <cc1:CalendarExtender ID="txtExpiryDate_CalendarExtender" runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgBtnHandOverDate" TargetControlID="txtExpiryDate">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgBtnHandOverDate"  runat="server" ImageUrl="images/Calendar.gif"/>
     </td>
     
 </tr>
@@ -329,10 +332,6 @@
         <asp:TextBox ID="txtAccidentDateTime" CssClass="search_3" runat="server" MaxLength="20" Width="130px"
                      onkeypress="return false;">
         </asp:TextBox>
-        <asp:ImageButton ID="imgPODate" runat="server" ImageUrl="images/Calendar.gif"/>
-        <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPODate" CssClass="cal_Theme1" TargetControlID="txtAccidentDateTime">
-        </cc1:CalendarExtender>
         <asp:DropDownList ID="ddlistHour" CssClass="search_3" runat="server" Width="50px">
             <asp:ListItem Selected="True" Text="--hh--" Value="--hh--"></asp:ListItem>
         </asp:DropDownList>
@@ -374,10 +373,6 @@
     </td>
     <td>
         <asp:TextBox ID="txtInitiatedTime" CssClass="search_3" runat="server" MaxLength="20" Width="130px" onkeypress="return false;"></asp:TextBox>
-        <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy"
-                              PopupButtonID="imgPOInitiatedTime" TargetControlID="txtInitiatedTime">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgPOInitiatedTime" runat="server" ImageUrl="images/Calendar.gif"/>
         <asp:DropDownList ID="ddlistInitiatedHr" CssClass="search_3" runat="server" Width="50px">
         </asp:DropDownList>
         <asp:DropDownList ID="ddlistInitiatedTimeMin" CssClass="search_3" runat="server" Width="50px">

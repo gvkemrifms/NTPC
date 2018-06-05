@@ -10,7 +10,7 @@
         var vehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
         var district = document.getElementById('<%= ddlDistrict.ClientID %>');
         if (district && district.selectedIndex === 0) {
-            alert("Please select District");
+            alert("Please select State");
             district.focus();
             return false;
         }
@@ -56,7 +56,7 @@
 
     <tr>
     <td>
-        District
+        State
     </td>
     <td>
 

@@ -5,7 +5,7 @@
     <table align="center">
         <tr>
             <td>
-                <asp:Button runat="server" Text="ExportExcel" ID="btntoExcel" OnClick="btntoExcel_Click" CssClass="form-submit-button"></asp:Button>
+                <asp:Button runat="server" Text="Excel" ID="btntoExcel" OnClick="btntoExcel_Click" CssClass="form-submit-button"></asp:Button>
             </td>
         </tr>
     </table>

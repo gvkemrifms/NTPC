@@ -79,7 +79,7 @@ public partial class RoadTax : Page
     {
         _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _roadtax.RTValidityPeriod = ddlRoadTaxValidityPeriod.SelectedItem.Value;
-        _roadtax.RTValidityEndDate = DateTime.ParseExact(txtRoadTaxValidityEndDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _roadtax.RTValidityEndDate = DateTime.Parse(txtRoadTaxValidityEndDate.Text);
         if (!chkbxTaxExempted.Checked)
         {
             _roadtax.VehicleRTACircle = txtVehicleRTACircle.Text;

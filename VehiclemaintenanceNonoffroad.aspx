@@ -93,7 +93,7 @@
                     </tr>
                     <tr>
                         <td>
-                            District
+                            State
                         </td>
                         <td >
                             <asp:TextBox runat="server" ID="txtDistrict" Width="150px" Enabled="False"/>

@@ -1,9 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="AccidentReport.aspx.cs" Inherits="AccidentReport" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-        $(function() {
+        
+        $(function () {          
+            $('#<%=txtfrmDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear:true
+            });
+            $('#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
             $('#<%= ddldistrict.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
@@ -22,7 +31,7 @@
             $('#<%= ddldistrict.ClientID %>').chosen();
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
-                return alert("Please select District");
+                return alert("Please select State");
             }
             $('#<%= ddlvehicle.ClientID %>').chosen();
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
@@ -66,7 +75,7 @@
 
             <td >
 
-                Select District <span style="color: Red;">*</span>
+                State <span style="color: Red;">*</span>
 
             </td>
             <td>
@@ -78,7 +87,7 @@
         </tr>
         <tr>
             <td >
-                Select Vehicle <span style="color: Red; display: inline-block; width: 10px;">*</span>
+                Vehicle <span style="color: Red; display: inline-block; width: 10px;">*</span>
             </td>
 
             <td>
@@ -93,9 +102,9 @@
             <td>
                 <asp:TextBox ID="txtfrmDate" placeholder="From Date" class="search_3" runat="server" onkeypress="return false" oncut="return false;" onpaste="return false;"></asp:TextBox>
             </td>
-            <td>
+           <%-- <td>
                 <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-            </td>
+            </td>--%>
         </tr>
         <tr>
             <td>
@@ -104,18 +113,18 @@
             <td>
                 <asp:TextBox ID="txttodate" placeholder="To Date" class="search_3" runat="server" onkeypress="return false" oncut="return false;" onpaste="return false;"></asp:TextBox>
             </td>
-            <td>
+            <%--<td>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-            </td>
+            </td>--%>
         </tr>
 
         <tr>
             <td>
-                <asp:Button runat="server" class="form-submit-button" Text="ShowReport" OnClick="btnsubmit_Click" ClientIDMode="static" EnableViewState="True" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" class="form-submit-button" Text="Report" OnClick="btnsubmit_Click" ClientIDMode="static" EnableViewState="True" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" class="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" class="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
             </td>
             <td>
                 <asp:HiddenField runat="server"/>

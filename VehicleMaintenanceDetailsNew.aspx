@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script language="javascript" type="text/javascript">
+    
 
     function validation() {
 
@@ -104,6 +105,11 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
+            $('#<%=txtUptime.ClientID%>,#<%=txtMaintenanceDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -128,21 +134,22 @@
 </legend>
 <table align="center">
     <tr>
-        <td style="width: 80px" class="rowseparator"></td>
+        <td style="width: 150px" class="rowseparator"></td>
     </tr>
     <tr>
         <td>
-            District<span style="color: red">*</span>
+            State<span style="color: red">*</span>
         </td>
         <td></td>
+        
         <td>
-
-            <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+            <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
             </asp:DropDownList>
         </td>
-        <td style="width: 5px"></td>
-        <td>
-            Vehicle No<span style="color: red">*</span>
+        <td></td>
+        <td >
+            <td> Vehicle No<span style="color: red">*</span></td>
+           
         </td>
         <td></td>
         <td>
@@ -165,16 +172,11 @@
         </td>
         <td></td>
         <td>
-            Maintenance Date
+           <td> Maintenance Date</td>
         </td>
         <td></td>
         <td nowrap="nowrap">
-            <asp:TextBox ID="txtMaintenanceDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
-            <asp:ImageButton ID="imgBtnCalendarMaintenanceDate" runat="server" Style="vertical-align: top"
-                             alt="" src="images/Calendar.gif"/>
-            <cc1:CalendarExtender runat="server" TargetControlID="txtMaintenanceDate"
-                                  PopupButtonID="imgBtnCalendarMaintenanceDate" Format="dd/MM/yyyy">
-            </cc1:CalendarExtender>
+          <asp:TextBox ID="txtMaintenanceDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
         </td>
         <td></td>
     </tr>
@@ -191,7 +193,7 @@
         </td>
         <td></td>
         <td>
-            Down Time
+            <td>Down Time</td>
         </td>
         <td></td>
         <td>
@@ -213,16 +215,11 @@
         </td>
         <td></td>
         <td>
-            Up Time
+            <td>Up Time</td>
         </td>
         <td></td>
         <td nowrap="nowrap">
             <asp:TextBox ID="txtUptime" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
-            <cc1:CalendarExtender runat="server" Enabled="True"
-                                  TargetControlID="txtUptime" PopupButtonID="ImageButtonUptime" Format="dd/MM/yyyy">
-            </cc1:CalendarExtender>
-            <asp:ImageButton ID="ImageButtonUptime" runat="server" Style="vertical-align: top"
-                             alt="" src="images/Calendar.gif"/>
         </td>
         <td></td>
         <td nowrap="nowrap">
@@ -244,13 +241,10 @@
         <td class="columnseparator"></td>
         <td>
             <asp:Label runat="server" ID="lblBreakdownID"/>
-        </td>
-        <td class="columnseparator"></td>
+        </td> 
+        <td></td>
         <td>
-            Approved Cost
-        </td>
-        <td>
-            <asp:Label runat="server" ID="lblApprovedCost"/>
+            Approved Cost <asp:Label runat="server" ID="lblApprovedCost" style="color:green"/>   
         </td>
     </tr>
 </table>

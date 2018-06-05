@@ -94,7 +94,7 @@
                     <asp:Button ID="btnShowPopup" runat="server" Style="display: none"/>
                     <ajaxToolkit:ModalPopupExtender ID="gv_ModalPopupExtenderTyreIssue" BehaviorID="mdlPopup"
                                                     runat="server" TargetControlID="btnShowPopup" PopupControlID="pnlPopup" BackgroundCssClass="modalBackground"/>
-                    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPanel" Style="padding: 10px;">
+                    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPanel" Style="padding: 10px;margin-top: 250px;position:absolute">
                         <asp:UpdatePanel ID="updPnlReqDetail" runat="server">
                             <ContentTemplate>
                                 <fieldset style="padding: 10px">

@@ -1,9 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="FuelReport.aspx.cs" Inherits="FuelReport" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
+        $(function() {
+            $('#<%=txtfromdate.ClientID%>').datepicker({
+                dateFormat: 'yy/mm/dd',
+                changeMonth: true,
+                changeYear: true
+            });
+            $('#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'yy/mm/dd',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
         function Validations() {
             var txtFirstDate = $('#<%= txtfromdate.ClientID %>').val();
             var txtToDate = $('#<%= txttodate.ClientID %>').val();
@@ -46,8 +57,6 @@
                             <asp:TextBox ID="txtfromdate" style="width: 170px;" runat="server" placeholder="" MaxLength="20"
                                          class="search_3">
                             </asp:TextBox>
-                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfromdate" Enabled="true" CssClass="cal_Theme1">
-                            </cc1:CalendarExtender>
                             <style type="text/css">
                                 .test .ajax__calendar_body {
                                     background-color: gainsboro;
@@ -80,8 +89,6 @@
                         <asp:TextBox ID="txttodate" style="width: 170px;" CssClass="search_3" runat="server" placeholder="" MaxLength="20"
                                      class="form-control">
                         </asp:TextBox>
-                        <cc1:CalendarExtender runat="server" Format="yyyy-MM-dd" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1">
-                        </cc1:CalendarExtender>
                     </div>
                 </div>
             </div>
@@ -91,7 +98,7 @@
             <div class="row" style="margin-top: 30px">
                 <div class="col-sm-12" style="">
                     <asp:Button runat="server" class="btn btn-primary"
-                                Text="Show" Style="border-radius: 3px; height: 33px; width: 55px;" OnClick="btnShow_Click" CssClass="form-submit-button">
+                                Text="Show" Style="border-radius: 3px; height: 33px; width: 55px;" OnClick="btnShow_Click" CssClass="form-submit-button" OnClientClick="if(!Validations()) return false;">
                     </asp:Button>
                 </div>
             </div>

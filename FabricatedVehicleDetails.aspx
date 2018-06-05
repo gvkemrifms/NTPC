@@ -129,6 +129,11 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
+        $('#<%=txtInvoiceDate.ClientID%>,#<%=txtVehicleHandoverDate.ClientID%>,#<%=txtFabricationCompDate.ClientID%>,#<%=txtInspectionDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear:true
+        });
         $('#<%= ddlTRNo.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -208,11 +213,6 @@
                         <asp:TextBox ID="txtInvoiceDate" runat="server" CssClass="search_3" Width="145px" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imgBtnCalendarInvoiceDate"
-                                         runat="server" Style="vertical-align: top" alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender runat="server" TargetControlID="txtInvoiceDate"
-                                              PopupButtonID="imgBtnCalendarInvoiceDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>
@@ -237,11 +237,6 @@
                         <asp:TextBox ID="txtVehicleHandoverDate" runat="server" CssClass="search_3" Width="145px" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imgbtHandover"
-                                         runat="server" Style="vertical-align: top" alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender runat="server" CssClass="cal_Theme1" TargetControlID="txtVehicleHandoverDate"
-                                              PopupButtonID="imgbtHandover" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>
@@ -254,12 +249,6 @@
                         <asp:TextBox ID="txtFabricationCompDate" runat="server" CssClass="search_3" Width="145px" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imgbtFabricationDate"
-                                         runat="server" Style="vertical-align: top" alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender runat="server" CssClass="cal_Theme1" TargetControlID="txtFabricationCompDate"
-                                              PopupButtonID="imgbtFabricationDate" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
-                    </td>
                     <td></td>
                 </tr>
                 <tr>
@@ -281,11 +270,6 @@
                         <asp:TextBox ID="txtInspectionDate" runat="server" CssClass="search_3" Width="145px" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imgbtInspectionDate"
-                                         runat="server" Style="vertical-align: top" alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender ID="calExtInspectionDate" runat="server" CssClass="cal_Theme1" TargetControlID="txtInspectionDate"
-                                              PopupButtonID="imgbtInspectionDate" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>

@@ -1,13 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="SparePartwiseReport.aspx.cs" Inherits="SparePartwiseReport" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
+            $('#<%=txtfrmDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+            $('#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
             $('#<%= ddldistrict.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
@@ -25,7 +32,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--')
-                return alert("Please select District");
+                return alert("Please select State");
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
             if (ddlVehicle === '--select--')
                 return alert("Please select Vehicle");
@@ -58,7 +65,7 @@
         <tr>
 
             <td>
-                Select District <asp:Label ID="lbldistrict" runat="server" Text="" style="color: red">*</asp:Label>
+                 State <asp:Label ID="lbldistrict" runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -67,7 +74,7 @@
         </tr>
         <tr>
             <td>
-                Select Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
+                 Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -87,13 +94,7 @@
                 From Date <asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtfrmDate" CssClass="search_3" runat="server"></asp:TextBox>
-            </td>
-            <td>
-
-                <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-
-
+                <asp:TextBox ID="txtfrmDate" CssClass="search_3" onkeypress="return false;" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -103,23 +104,17 @@
             </td>
 
             <td>
-                <asp:TextBox ID="txttodate" CssClass="search_3" runat="server"></asp:TextBox>
-            </td>
-            <td>
-
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-
-
+                <asp:TextBox ID="txttodate" CssClass="search_3" onkeypress="return false;" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
 
             <td>
-                <asp:Button runat="server" CssClass="form-submit-button" Text="ShowReport" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" CssClass="form-submit-button" Text="Report" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
             </td>
 
 

@@ -23,9 +23,6 @@
                                 <asp:TextBox ID="txtTripDate" runat="server"
                                              onKeyPress="javascript: return false;" CssClass="search_3" onPaste="javascript: return false;">
                                 </asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                      TargetControlID="txtTripDate" PopupButtonID="ImageButton1">
-                                </cc1:CalendarExtender><asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>
                             </td>
                             <td style="width: 127px">
                                 Vehicle<span style="color: red">*</span>
@@ -190,6 +187,13 @@
                 </fieldset>
             </div>
             <script type="text/javascript" language="javascript">
+                $(function() {
+                    $('#<%=txtTripDate.ClientID%>').datepicker({
+                        dateFormat: 'mm/dd/yy',
+                        changeMonth: true,
+                        changeYear: true
+                    });
+                });
                 function validationFuelEntry() {
 
 

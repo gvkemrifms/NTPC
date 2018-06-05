@@ -1,12 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="DistrictwiseLedgerReport.aspx.cs" Inherits="DistrictwiseLedgerReport" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
+            $('#<%=txtfrmDate.ClientID%>,#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear:true
+            });
             $('#<%= ddldistrict.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
@@ -24,7 +27,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--')
-                return alert("Please select District");
+                return alert("Please select State");
             var ddlVendor = $('#<%= ddlvendor.ClientID %> option:selected').text().toLowerCase();
             if (ddlVendor === '--select--')
                 return alert("Please select Vendor");
@@ -49,7 +52,7 @@
     <table align="center">
         <tr>
             <td>
-                <asp:Label style="color: brown; font-size: 20px;" runat="server" Text="DistrictwiseLedger&nbsp;Report"></asp:Label>
+                <asp:Label style="color: brown; font-size: 20px;" runat="server" Text="State Wise Ledger&nbsp;Report"></asp:Label>
             </td>
         </tr>
     </table>
@@ -58,7 +61,7 @@
         <tr>
 
             <td>
-                Select District <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
+                State <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -67,7 +70,7 @@
         </tr>
         <tr>
             <td>
-                Select Vendor <asp:Label runat="server" Text="Select&nbsp;Vendor" style="color: red">*</asp:Label>
+                Vendor <asp:Label runat="server" Text="Select&nbsp;Vendor" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -79,11 +82,7 @@
                 From Date <asp:Label runat="server" Text="FromDate" style="color: red">*</asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtfrmDate" runat="server" CssClass="search_3" width="150px"></asp:TextBox>
-            </td>
-            <td>
-
-                <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
+                <asp:TextBox ID="txtfrmDate" runat="server" CssClass="search_3" width="150px" onkeypress="return false;"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -92,20 +91,16 @@
             </td>
 
             <td>
-                <asp:TextBox ID="txttodate" runat="server" CssClass="search_3" Width="150px"></asp:TextBox>
-            </td>
-            <td>
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-
+                <asp:TextBox ID="txttodate" runat="server" CssClass="search_3" Width="150px" onkeypress="return false;"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" CssClass="form-reset-button"></asp:Button>
+                <asp:Button runat="server" Text="Excel" CssClass="form-reset-button"></asp:Button>
             </td>
         </tr>
     </table>

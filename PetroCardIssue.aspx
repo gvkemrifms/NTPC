@@ -3,7 +3,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-
+        $(function() {
+            $('#<%=txtValidityEndDate.ClientID%>,#<%=txtIssuedDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
         function isMandatory() {
 
             switch (document.getElementById("<%= txtPetroCardNumber.ClientID %>").value) {
@@ -157,14 +163,8 @@
                         <asp:TextBox ID="txtValidityEndDate" runat="server" CssClass="search_3" oncut="return false;" onpaste="return false;"
                                      oncopy="return false;" onkeypress="return false">
                         </asp:TextBox>
-                        <cc1:CalendarExtender runat="server" TargetControlID="txtValidityEndDate"
-                                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="imgBtnCalendarInvoiceDate">
-                        </cc1:CalendarExtender>
                     </td>
-                    <td >
-                        <asp:ImageButton ID="imgBtnCalendarInvoiceDate" runat="server" alt="" src="images/Calendar.gif"
-                                         Style="vertical-align: top"/>
-                    </td>
+
                 </tr>
                 <tr>
                     <td >
@@ -186,13 +186,6 @@
                         <asp:TextBox ID="txtIssuedDate" CssClass="search_3" runat="server" MaxLength="15" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;" oncopy="return false;">
                         </asp:TextBox>
-                        <cc1:CalendarExtender runat="server" TargetControlID="txtIssuedDate"
-                                              Format="MM/dd/yyyy" CssClass="cal_Theme1" PopupButtonID="ImageButton1">
-                        </cc1:CalendarExtender>
-                    </td>
-                    <td >
-                        <asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif"
-                                         Style="vertical-align: top"/>
                     </td>
                 </tr>
                 <tr>

@@ -4,6 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
+        $(function() {
+            $('#<%=txtDecommDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
         function validation() {
 
             var district = document.getElementById('<%= ddlDistrict.ClientID %>');
@@ -99,12 +106,7 @@
                             Decommission Date<span style="color: Red">*</span>
                         </td>
                         <td >
-                            <asp:TextBox ID="txtDecommDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false"></asp:TextBox>
-                            <asp:ImageButton ID="imgbtnDecommDate" runat="server" Style="vertical-align: top"
-                                             alt="" src="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" TargetControlID="txtDecommDate"
-                                                  PopupButtonID="imgbtnDecommDate" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
+                            <asp:TextBox ID="txtDecommDate" CssClass="search_3" runat="server" Width="150px" onkeypress="return false"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

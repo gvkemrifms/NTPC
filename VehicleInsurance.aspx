@@ -28,7 +28,7 @@
         var policyValidityPeriod = document.getElementById('<%= ddlPolicyValidityPeriod.ClientID %>');
         var now = new Date();
 
-        if (!RequiredValidation(district, "District Cannot be Blank"))
+        if (!RequiredValidation(district, "State Cannot be Blank"))
             return false;
 
 
@@ -174,7 +174,7 @@
         <tr>
             <td colspan="2"></td>
             <td align="left" style="width: 244px">
-                District<span style="color: Red">*</span>
+                State<span style="color: Red">*</span>
             </td>
             <td align="left">
                 <asp:TextBox ID="txtDistrict" CssClass="search_3" runat="server" BackColor="DarkGray" ReadOnly="True"

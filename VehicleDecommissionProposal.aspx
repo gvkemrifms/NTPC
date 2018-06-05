@@ -4,6 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
+    $(function() {
+        $('#<%=txtDateOfRegistration.ClientID%>,#<%=txtDateOfPurchase.ClientID%>,#<%=txtDateOfLaunching.ClientID%>,#<%=txtSurveyDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     function validation(obj, id) {
         var now = new Date();
         var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");
@@ -227,10 +234,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateOfRegistration" CssClass="search_3" runat="server" Width="200" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateOfRegistration" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender ID="CalendarExtender2" CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDateOfRegistration"
-                                                  TargetControlID="txtDateOfRegistration" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -243,10 +246,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateOfPurchase" CssClass="search_3" runat="server" Width="200" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateOfPurchase" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender runat="server" CssClass="cal_Theme1" PopupButtonID="imgBtnDateOfPurchase"
-                                                  TargetControlID="txtDateOfPurchase" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -259,10 +258,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateOfLaunching" CssClass="search_3" runat="server" Width="200" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateOfLaunching" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDateOfLaunching"
-                                                  TargetControlID="txtDateOfLaunching" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -275,10 +270,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtSurveyDate" CssClass="search_3" runat="server" Width="200" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnSurveyDate" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender ID="CalendarExtender5" CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnSurveyDate"
-                                                  TargetControlID="txtSurveyDate" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>

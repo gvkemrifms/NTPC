@@ -6,7 +6,13 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
-
+                $(function() {
+                    $('#<%=txtBatteryExpiryDate.ClientID%>').datepicker({
+                        dateFormat: 'mm/dd/yy',
+                        changeMonth: true,
+                        changeYear: true
+                    });
+                });
                 function validationBatteryDetails() {
                     switch (document.getElementById("<%= txtBatteryItemCode.ClientID %>").value) {
                     case '':
@@ -127,13 +133,6 @@
                                                     <td></td>
                                                     <td>
                                                         <asp:TextBox ID="txtBatteryExpiryDate" placeholder="MM/dd/yyyy" runat="server" onkeypress="return false" MaxLength="20" oncut="return false;" CssClass="search_3" onpaste="return false;" oncopy="return false;"></asp:TextBox>
-                                                        <ajaxToolKit:CalendarExtender runat="server" TargetControlID="txtBatteryExpiryDate"
-                                                                                      Format="MM/dd/yyyy" PopupButtonID="imgBtnCalendarInvoiceDate">
-                                                        </ajaxToolKit:CalendarExtender>
-                                                    </td>
-                                                    <td style="width: 51px">
-                                                        <asp:ImageButton ID="imgBtnCalendarInvoiceDate" runat="server" CssClass="cal_Theme1" alt="" src="images/Calendar.gif"
-                                                                         Style="vertical-align: top"/>
                                                     </td>
                                                 </tr>
                                                 <tr>

@@ -5,6 +5,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script src="../JavaValidations/RequiredFieldValidations.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
+    $(function() {
+        $('#<%=txtRegistrationDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear:true
+        });
+    });
+
     function validation() {
         var sittingCapacity = document.getElementById('<%= txtSittingCapacity.ClientID %>');
         var prNo = document.getElementById('<%= txtPRNo.ClientID %>');
@@ -122,13 +130,13 @@
                         T/R No.<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <cc1:ComboBox ID="ddlTRNo" runat="server" AutoCompleteMode="Append"
+                        <cc1:ComboBox ID="ddlTRNo" runat="server" AutoCompleteMode="Append" 
                                       AutoPostBack="True" OnSelectedIndexChanged="ddlTRNo_SelectedIndexChanged"
                                       Width="145px" DropDownStyle="DropDownList">
                             <asp:ListItem Value="-1">--Select--</asp:ListItem>
                             <asp:ListItem Value="0">Dummy</asp:ListItem>
                         </cc1:ComboBox>
-                        <asp:TextBox ID="txtTrNo" runat="server" ReadOnly="True" Visible="False"
+                        <asp:TextBox ID="txtTrNo" runat="server" CssClass="search_3" ReadOnly="True" Visible="False"
                                      Width="145px">
                         </asp:TextBox>
                     </td>
@@ -140,7 +148,7 @@
                         Engine No
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtEngineNo" runat="server" BackColor="DarkGray"
+                        <asp:TextBox ID="txtEngineNo" runat="server" CssClass="search_3" BackColor="DarkGray"
                                      ReadOnly="True" Width="145px">
                         </asp:TextBox>
                     </td>
@@ -152,7 +160,7 @@
                         Chassis No
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtChassisNo" runat="server" BackColor="DarkGray"
+                        <asp:TextBox ID="txtChassisNo" runat="server" CssClass="search_3" BackColor="DarkGray"
                                      ReadOnly="True" Width="145px">
                         </asp:TextBox>
                     </td>
@@ -164,7 +172,7 @@
                         Seating Capacity<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtSittingCapacity" runat="server" MaxLength="2"
+                        <asp:TextBox ID="txtSittingCapacity" runat="server" CssClass="search_3" MaxLength="2"
                                      onkeypress="_return isDecimalNumberOnly(event);" Width="145px">
                         </asp:TextBox>
                     </td>
@@ -176,7 +184,7 @@
                         P/R No<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtPRNo" runat="server" MaxLength="10"
+                        <asp:TextBox ID="txtPRNo" runat="server" CssClass="search_3" MaxLength="10"
                                      onkeypress="_return alphanumeric_only(event);" Width="145px">
                         </asp:TextBox>
                     </td>
@@ -188,15 +196,9 @@
                         Registration Date<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtRegistrationDate" runat="server" oncut="_return false;"
+                        <asp:TextBox ID="txtRegistrationDate" CssClass="search_3" runat="server" oncut="_return false;"
                                      onkeypress="_return false" Width="145px">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imbtnRegistrationDate" runat="server" alt=""
-                                         src="images/Calendar.gif" Style="vertical-align: top"/>
-                        <cc1:CalendarExtender ID="calExtRegistrationDate" runat="server"
-                                              Format="MM/dd/yyyy" PopupButtonID="imbtnRegistrationDate"
-                                              TargetControlID="txtRegistrationDate">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>
@@ -206,7 +208,7 @@
                         RTA Circle<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtRTACircle" runat="server" MaxLength="20"
+                        <asp:TextBox ID="txtRTACircle" runat="server" CssClass="search_3" MaxLength="20"
                                      onkeypress="_return alpha_only_withspace(event);" Width="145px">
                         </asp:TextBox>
                     </td>
@@ -231,7 +233,7 @@
                         Registration Expenses<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtRegisExpenses" runat="server" MaxLength="9"
+                        <asp:TextBox ID="txtRegisExpenses" runat="server" CssClass="search_3" MaxLength="9"
                                      onkeypress="_return isDecimalNumberKey(event);" Width="145px">
                         </asp:TextBox>
                     </td>

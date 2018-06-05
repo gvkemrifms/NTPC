@@ -223,9 +223,12 @@ public class Helper
                 combo.DataTextField = textFieldValue;
                 combo.DataValueField = valueField;
                 combo.DataBind();
-                combo.Items.Insert(0, new ListItem("--Select--", "0"));
-                combo.Items[0].Value = "0";
-                combo.SelectedIndex = 0;
+                if (filter == null)
+                {
+                    combo.Items.Insert(0, new ListItem("--Select--", "0"));
+                    combo.Items[0].Value = "0";
+                    combo.SelectedIndex = 0;
+                }
             }
         }
         else if (dropdownId1 == null && combo == null)

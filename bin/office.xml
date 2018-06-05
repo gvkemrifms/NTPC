@@ -4928,7 +4928,7 @@
     <member name="P:Microsoft.Office.Core.IMsoChart.ShowDataLabelsOverMaximum"></member>
     <member name="P:Microsoft.Office.Core.IMsoChart.ShowDraftModeButton"></member>
     <member name="P:Microsoft.Office.Core.IMsoChart.ShowLegendFieldButtons"></member>
-    <member name="P:Microsoft.Office.Core.IMsoChart.ShowReportFilterFieldButtons"></member>
+    <member name="P:Microsoft.Office.Core.IMsoChart.ReportFilterFieldButtons"></member>
     <member name="P:Microsoft.Office.Core.IMsoChart.ShowValueFieldButtons"></member>
     <member name="P:Microsoft.Office.Core.IMsoChart.SideWall"></member>
     <member name="P:Microsoft.Office.Core.IMsoChart.SubType"></member>

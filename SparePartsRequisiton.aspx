@@ -119,7 +119,7 @@
         <table style="margin-top: 50px">
 
         <tr>
-            <td align="left">
+            <td align="center">
                 <asp:Label runat="server" Text="Requisitions Pending For Issue"></asp:Label>
             </td>
         </tr>
@@ -128,9 +128,9 @@
         </tr>
         <tr>
             <td align="center">
-                <asp:GridView ID="grvPendingforApproval" runat="server" AutoGenerateColumns="False"
+                <asp:GridView ID="grvPendingforApproval" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center"
                               EmptyDataText="Details are not available" DataKeyNames="FleetInventoryReqID"
-                              CellPadding="3" CellSpacing="2" GridLines="Both" CssClass="gridviewdsd" OnRowCommand="grvPendingforApproval_RowCommand">
+                              CellPadding="3" CssClass="gridview" OnRowCommand="grvPendingforApproval_RowCommand" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                     <Columns>
                         <asp:BoundField HeaderText="Row_ID" DataField="Row_ID"/>
                         <asp:BoundField HeaderText="Total Spare Parts Quantity" DataField="RequestedQty"/>
@@ -143,13 +143,19 @@
                                                 CssClass="button2" OnClick="btnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>"
                                                 CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
                             </ItemTemplate>
+                            <ControlStyle Width="50px" />
+                            <HeaderStyle Width="60px" />
                         </asp:TemplateField>
                     </Columns>
-                    <RowStyle CssClass="rowStyleGrid"/>
-                    <FooterStyle CssClass="footerStylegrid"/>
-                    <PagerStyle CssClass="pagerStylegrid"/>
-                    <SelectedRowStyle CssClass="selectedRowStyle"/>
-                    <HeaderStyle CssClass="headerStyle"/>
+                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
+                    <FooterStyle CssClass="footerStylegrid" BackColor="White" ForeColor="#000066"/>
+                    <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+                    <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+                    <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#00547E" />
                 </asp:GridView>
             </td>
         </tr>
@@ -162,23 +168,27 @@
                     <table>
                         <tr>
                             <td>
-                                <legend style="margin-top: 40px">Requisition History </legend>
+                                <legend style="margin-top: 40px" align="center">Requisition History </legend>
                             </td>
                         </tr>
-                        <br/>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="grvRequisitionHistory" runat="server" AutoGenerateColumns="True"
-                                              PageSize="5" GridLines="Both" CssClass="gridviewStyle" CellPadding="3" CellSpacing="2"
-                                              Width="95%" OnPageIndexChanging="grvRequisitionHistory_PageIndexChanging" AllowPaging="True" EmptyDataText="No History Found">
-                                    <RowStyle CssClass="rowStyleGrid"/>
-                                    <FooterStyle CssClass="footerStylegrid"/>
-                                    <PagerStyle CssClass="pagerStylegrid"/>
-                                    <SelectedRowStyle CssClass="selectedRowStyle"/>
-                                    <HeaderStyle CssClass="headerStyle"/>
-                                </asp:GridView>
-                            </td>
-                        </tr>
+                        <caption>
+                            <br/>
+                            <tr>
+                                <td>
+                                    <asp:GridView ID="grvRequisitionHistory" HorizontalAlign="Center" runat="server" AllowPaging="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" EmptyDataText="No History Found" OnPageIndexChanging="grvRequisitionHistory_PageIndexChanging" PageSize="5" Width="95%">
+                                        <RowStyle CssClass="rowStyleGrid" ForeColor="#000066" />
+                                        <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
+                                        <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
+                                        <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
+                                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                    </asp:GridView>
+                                </td>
+                            </tr>
+                        </caption>
                     </table>
                     <asp:Button ID="hideHistory" runat="server" CssClass="form-submit-button" Text="Hide History" Visible="false" OnClick="hideHistory_Click"/>
                 </asp:Panel>
@@ -199,7 +209,7 @@
                     <table style="border: 1px; margin-left: 700px; margin-top: 290px;">
                         <tr>
                             <td>
-                                <legend>Request Details</legend>
+                                <legend align="center">Request Details</legend>
                             </td>
                         </tr>
                         <br/>
@@ -225,7 +235,7 @@
 
                         <tr>
                             <td colspan="3">
-                                <asp:GridView ID="grvBatteryRequestDetails" runat="server" align="left" AutoGenerateColumns="true"
+                                <asp:GridView ID="grvBatteryRequestDetails" HorizontalAlign="Center" runat="server" align="left" AutoGenerateColumns="true"
                                               CellPadding="3" CellSpacing="2" CssClass="gridviewStyle" GridLines="None" Width="400px">
                                     <RowStyle CssClass="rowStyleGrid"/>
                                     <FooterStyle CssClass="footerStylegrid"/>

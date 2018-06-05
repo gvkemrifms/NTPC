@@ -35,7 +35,7 @@
                     var currentDate = new Date();
                     if (fldDistrict)
                         if (fldDistrict.selectedIndex === 0) {
-                            alert("Please Select District");
+                            alert("Please Select State");
                             fldDistrict.focus();
                             return false;
                         }
@@ -81,7 +81,7 @@
 
                 <tr>
                     <td>
-                        District<span style="color: red">*</span>
+                        State<span style="color: red">*</span>
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlDistricts" Height="16px" Width="150px" runat="server" OnSelectedIndexChanged="ddlDistricts_SelectedIndexChanged"

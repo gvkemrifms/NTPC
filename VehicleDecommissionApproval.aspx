@@ -1,9 +1,14 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleDecommissionApproval.aspx.cs" Inherits="VehicleDecommissionApproval" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
+    $(function() {
+        $('#<%=txtDateOfRegistration.ClientID%>,#<%=txtOffRoadDate.ClientID%>,#<%=txtDateOfLaunching.ClientID%>,#<%=txtDateofPurchase.ClientID%>,#<%=txtSurveyDate.ClientID%>,#<%=txtDecommisionDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     function validation(obj, id) {
         var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");
         var txtApproveRejectedRemarks = obj.id.replace(id, "txtApproveRejectedRemarks");
@@ -84,10 +89,7 @@
                                 <tr>
                                     <td nowrap="nowrap">
                                         <asp:TextBox ID="txtOffRoadDate" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" PopupButtonID="imgOffRoadDate"
-                                                              TargetControlID="txtOffRoadDate">
-                                        </cc1:CalendarExtender>
-                                        <asp:ImageButton ID="imgOffRoadDate" runat="server" ImageUrl="images/Calendar.gif"/>
+                                        
                                     </td>
                                     <td>
                                         <asp:DropDownList CssClass="search_3" runat="server" Visible="false">
@@ -113,10 +115,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateOfRegistration" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateOfRegistration" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDateOfRegistration"
-                                                  TargetControlID="txtDateOfRegistration" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -129,10 +127,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateOfLaunching" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateOfLaunching" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDateOfLaunching"
-                                                  TargetControlID="txtDateOfLaunching" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -145,10 +139,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDateofPurchase" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDateofPurchase" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDateofPurchase"
-                                                  TargetControlID="txtDateofPurchase" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -161,10 +151,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtSurveyDate" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnSurveyDate" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnSurveyDate"
-                                                  TargetControlID="txtSurveyDate" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
@@ -219,10 +205,6 @@
                         <td class="columnseparator"></td>
                         <td>
                             <asp:TextBox ID="txtDecommisionDate" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                            <asp:ImageButton ID="imgBtnDecommisionDate" runat="server" ImageUrl="images/Calendar.gif"/>
-                            <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" PopupButtonID="imgBtnDecommisionDate"
-                                                  TargetControlID="txtDecommisionDate" Format="MM/dd/yyyy">
-                            </cc1:CalendarExtender>
                         </td>
                     </tr>
                     <tr>

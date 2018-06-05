@@ -141,6 +141,11 @@
 
     <script type="text/javascript">
         function pageLoad() {
+                $('#<%=txtUptimeDate.ClientID%>').datepicker({
+                    dateFormat: 'mm/dd/yy',
+                    changeMonth: true,
+                    changeYear: true
+                });
             $('#<%= ddlVehicleNumber.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,

@@ -9,10 +9,10 @@ public partial class CumulativeReport : Page
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
-            ShowReport();
+            Report();
     }
 
-    protected void ShowReport()
+    protected void Report()
     {
         try
         {

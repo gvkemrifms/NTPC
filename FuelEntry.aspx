@@ -4,7 +4,12 @@
     <asp:UpdatePanel runat="server">
 <ContentTemplate>
 <script type="text/javascript">
-   function pageLoad() {
+    function pageLoad() {
+            $('#<%=txtFuelEntryDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
         $('#<%= ddlVehicleNumber.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -53,9 +58,6 @@
             <td>
                 <asp:TextBox ID="txtFuelEntryDate" runat="server" CssClass="search_3" MaxLength="15" oncut="return false;" onkeypress="return false" onpaste="return false;">
         </asp:TextBox>
-                <cc1:CalendarExtender ID="entDate" runat="server" CssClass="cal_Theme1" Format="MM/dd/yyyy" PopupButtonID="ImageButton1" TargetControlID="txtFuelEntryDate">
-                </cc1:CalendarExtender>
-                <asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" style="float: right; vertical-align: top;" />
             </td>
             <td style="float: right; padding: 10px">Bill Number<span style="color: Red">*</span> </td>
             <td>

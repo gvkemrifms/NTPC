@@ -4,86 +4,93 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script language="javascript" type="text/javascript">
-    function validation() {
-        var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
-        var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
-        var odometer = document.getElementById('<%= txtOdometer.ClientID %>');
-        var pdiBy = document.getElementById('<%= txtPDIBy.ClientID %>');
-        var pdiDate = document.getElementById('<%= txtPDIDate.ClientID %>');
-        var vehicleFabInspDate = document.getElementById('<%= vehicleFabInspDate.ClientID %>');
-        var now = new Date();
-        var id = document.getElementById('<%= ddlTRNo.ClientID %>');
-        var inputs = id.getElementsByTagName('input');
-        var i;
-        for (i = 0; i < inputs.length; i++) {
-            switch (inputs[i].type) {
-            case 'text':
-                if (inputs[i].value !== "" && inputs[i].value != null && inputs[i].value === "--Select--") {
-                    alert('Select the Vehicle');
-                    return false;
+        $(function() {
+            $('#<%=txtReceivedDate.ClientID%>,#<%=txtPDIDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear:true
+            });
+        });
+        function validation() {
+            var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
+            var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
+            var odometer = document.getElementById('<%= txtOdometer.ClientID %>');
+            var pdiBy = document.getElementById('<%= txtPDIBy.ClientID %>');
+            var pdiDate = document.getElementById('<%= txtPDIDate.ClientID %>');
+            var vehicleFabInspDate = document.getElementById('<%= vehicleFabInspDate.ClientID %>');
+            var now = new Date();
+            var id = document.getElementById('<%= ddlTRNo.ClientID %>');
+            var inputs = id.getElementsByTagName('input');
+            var i;
+            for (i = 0; i < inputs.length; i++) {
+                switch (inputs[i].type) {
+                case 'text':
+                    if (inputs[i].value !== "" && inputs[i].value != null && inputs[i].value === "--Select--") {
+                        alert('Select the Vehicle');
+                        return false;
+                    }
+                    break;
                 }
-                break;
             }
+
+            switch (vehicleReceived.selectedIndex) {
+            case 0:
+                alert("Please select Vehicle Received From");
+                window.VehicleReceivedFrom.focus();
+                return false;
+            }
+            if (!RequiredValidation(receivedDate, "Received Date Cannot be Blank"))
+                return false;
+
+            if (!isValidDate(receivedDate.value)) {
+                alert("Enter Valid Date");
+                receivedDate.focus();
+                return false;
+            }
+
+            if (Date.parse(receivedDate.value) > Date.parse(now)) {
+                alert("Received Date should not be greater than Current Date");
+                receivedDate.focus();
+                return false;
+            }
+
+            if (Date.parse(receivedDate.value) < Date.parse(vehicleFabInspDate.value)) {
+                alert("Received Date should be greater than Fabrication Inspection Date.(Fabrication Inspection Date-" +
+                    vehicleFabInspDate.value +
+                    ")");
+                receivedDate.focus();
+                return false;
+            }
+
+            if (!RequiredValidation(odometer, "Odometer Cannot be Blank"))
+                return false;
+
+            if (!RequiredValidation(pdiBy, "PDIBy Cannot be Blank"))
+                return false;
+
+            if (!RequiredValidation(pdiDate, "PDIDate Cannot be Blank"))
+                return false;
+
+            if (!isValidDate(pdiDate.value)) {
+                alert("Enter Valid Date");
+                pdiDate.focus();
+                return false;
+            }
+
+            if (Date.parse(pdiDate.value) > Date.parse(now)) {
+                alert("PDI Date should not be greater than Current Date");
+                pdiDate.focus();
+                return false;
+            }
+
+            if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
+                alert(" PDI Date should be greater than Received Date");
+                receivedDate.focus();
+                return false;
+            }
+            return true;
         }
-
-        switch (vehicleReceived.selectedIndex) {
-        case 0:
-            alert("Please select Vehicle Received From");
-            window.VehicleReceivedFrom.focus();
-            return false;
-        }
-        if (!RequiredValidation(receivedDate, "Received Date Cannot be Blank"))
-            return false;
-
-        if (!isValidDate(receivedDate.value)) {
-            alert("Enter Valid Date");
-            receivedDate.focus();
-            return false;
-        }
-
-        if (Date.parse(receivedDate.value) > Date.parse(now)) {
-            alert("Received Date should not be greater than Current Date");
-            receivedDate.focus();
-            return false;
-        }
-
-        if (Date.parse(receivedDate.value) < Date.parse(vehicleFabInspDate.value)) {
-            alert("Received Date should be greater than Fabrication Inspection Date.(Fabrication Inspection Date-" +
-                vehicleFabInspDate.value +
-                ")");
-            receivedDate.focus();
-            return false;
-        }
-
-        if (!RequiredValidation(odometer, "Odometer Cannot be Blank"))
-            return false;
-
-        if (!RequiredValidation(pdiBy, "PDIBy Cannot be Blank"))
-            return false;
-
-        if (!RequiredValidation(pdiDate, "PDIDate Cannot be Blank"))
-            return false;
-
-        if (!isValidDate(pdiDate.value)) {
-            alert("Enter Valid Date");
-            pdiDate.focus();
-            return false;
-        }
-
-        if (Date.parse(pdiDate.value) > Date.parse(now)) {
-            alert("PDI Date should not be greater than Current Date");
-            pdiDate.focus();
-            return false;
-        }
-
-        if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
-            alert(" PDI Date should be greater than Received Date");
-            receivedDate.focus();
-            return false;
-        }
-        return true;
-    }
-</script>
+    </script>
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
@@ -145,11 +152,6 @@
                     <td align="left" style="width: 400px">
                         <asp:TextBox ID="txtReceivedDate" CssClass="search_3" runat="server" Width="145px" onkeypress="return false" oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imgBtnCalendarReceivedDate" runat="server" Style="vertical-align: top"
-                                         alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" TargetControlID="txtReceivedDate"
-                                              PopupButtonID="imgBtnCalendarReceivedDate" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>
@@ -183,11 +185,6 @@
                     <td align="left" style="width: 400px">
                         <asp:TextBox ID="txtPDIDate" CssClass="search_3" runat="server" Width="145px" onkeypress="return false" oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <asp:ImageButton ID="imbtnPDIDate" runat="server" Style="vertical-align: top"
-                                         alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender CssClass="cal_Theme1" runat="server" TargetControlID="txtPDIDate"
-                                              PopupButtonID="imbtnPDIDate" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                     <td></td>
                 </tr>

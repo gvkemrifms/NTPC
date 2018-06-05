@@ -75,7 +75,7 @@ public partial class PollutionUnderControl : Page
         if (ViewState["PollutionUnderControlID"] != null) _puc.PollutionUnderControlID = int.Parse(ViewState["PollutionUnderControlID"].ToString());
         _puc.PUCValidityStartDate = DateTime.ParseExact(txtPollutionValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _puc.PUCValidityPeriod = ddlPollutionValidityPeriod.SelectedItem.Value;
-        _puc.PUCValidityEndDate = DateTime.ParseExact(txtPollutionValidityEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _puc.PUCValidityEndDate = DateTime.Parse(txtPollutionValidityEndDate.Text);
         _puc.PUCReceiptNo = txtPollutionReceiptNo.Text;
         _puc.PUCFee = float.Parse(txtPollutionFee.Text);
         switch (btSave.Text)

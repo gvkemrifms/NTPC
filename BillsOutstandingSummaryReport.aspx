@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="BillsOutstandingSummaryReport.aspx.cs" Inherits="BillsOutstandingSummaryReport" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-        $(function() {
+        $(function () {
+            $('#<%=txtfrmDate.ClientID%>,#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear:true
+            });          
             $('#<%= ddldistrict.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
@@ -22,7 +26,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
-                return alert("Please select District");
+                return alert("Please select State");
 
             }
             var ddlVendor = $('#<%= ddlvendor.ClientID %> option:selected').text().toLowerCase();
@@ -67,7 +71,7 @@
         <tr>
 
             <td>
-                Select District <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
+                State <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -76,7 +80,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" Text="Select&nbsp;Vendor"></asp:Label>
+                <asp:Label runat="server" Text="Vendor"></asp:Label>
             </td>
 
             <td>
@@ -85,16 +89,10 @@
         </tr>
         <tr>
             <td>
-                <asp:Label runat="server" Text="FromDate"></asp:Label>
+                <asp:Label runat="server" Text="From  Date"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtfrmDate" runat="server" CssClass="search_3"></asp:TextBox>
-            </td>
-            <td>
-
-                <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-
-
             </td>
         </tr>
         <tr>
@@ -105,18 +103,14 @@
             <td>
                 <asp:TextBox ID="txttodate" runat="server" CssClass="search_3"></asp:TextBox>
             </td>
-            <td>
-
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-            </td>
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;" CssClass="form-submit-button"></asp:Button>
+                <asp:Button runat="server" Text="Report" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;" CssClass="form-submit-button"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
+                <asp:Button runat="server" Text="Excel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
             </td>
         </tr>
     </table>

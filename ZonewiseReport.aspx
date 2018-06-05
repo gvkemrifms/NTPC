@@ -27,16 +27,16 @@
     <table align="center">
         <tr>
             <td>
-                <asp:Label Style="color: brown; font-size: 20px;" runat="server" Text="ZoneWise&nbsp;Report"></asp:Label>
+                <asp:Label Style="color: brown; font-size: 20px;" runat="server" Text="Zone Wise&nbsp;Report"></asp:Label>
             </td>
         </tr>
     </table>
-
-    <table align="center"">
+    <br/>
+    <table align="center">
         <tr>
 
             <td>
-                <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District"></asp:Label>
+                <asp:Label ID="lbldistrict" runat="server" Text="State"></asp:Label>
             </td>
 
             <td>
@@ -46,7 +46,7 @@
 </tr>
         <tr>
             <td>
-                <asp:Label runat="server" Text="Select&nbsp;Month"></asp:Label>
+                <asp:Label runat="server" Text="Month"></asp:Label>
             </td>
             <td>
                 <asp:DropDownList ID="ddlmonth" runat="server" Style="width: 100px" AutoPostBack="true">
@@ -71,7 +71,7 @@
            
 <tr>
     <td>
-        <asp:Label runat="server" Text="Select&nbsp;Year"></asp:Label>
+        <asp:Label runat="server" Text="Year"></asp:Label>
     </td>
 
     <td>
@@ -100,11 +100,11 @@
 </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
             </td>
         </tr>   
 

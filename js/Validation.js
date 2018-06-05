@@ -5,7 +5,6 @@
         alert(" Only " + long + " chars");
     }
 }
-
 function numeric(event) {
     var charCode = (event.which) ? event.which : event.keyCode;
     if (charCode === 190 || charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -236,7 +235,7 @@ function alphanumeric_withspace_only(e) {
     return (keycode >= 48 && keycode <= 57) ||
         (keycode >= 65 && keycode <= 90) ||
         (keycode >= 97 && keycode <= 122) ||
-        (keycode == 32);
+        (keycode === 32);
 }
 
 
@@ -297,7 +296,14 @@ function ConfirmReject(btnId, remarkId) {
             btnReject.click();
     }
 }
-
+function DateStyles(btnId) {
+    var val = "#<%=" + btnId + ".ClientID%>";
+    $("#" + val).datepicker({
+        dateFormat: 'mm/dd/yy',
+        changeMonth: true,
+        changeYear: true
+    });
+}
 function EnableRemarks() {
     document.getElementById("<%= gvVerification.ClientID %>");
     return true;

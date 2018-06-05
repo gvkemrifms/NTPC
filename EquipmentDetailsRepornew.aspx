@@ -16,7 +16,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
-                return alert("Please select District");
+                return alert("Please select State");
             }
             return true;
         }
@@ -34,7 +34,7 @@
         <tr>
 
             <td>
-                <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District"></asp:Label>
+                <asp:Label ID="lbldistrict" runat="server" Text="State"></asp:Label>
             </td>
 
             <td>
@@ -44,9 +44,9 @@
     </table>
     <br/>
     <div align="center">
-        <asp:Button runat="server" Text="ShowReport" OnClick="btnsubmit_Click" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
+        <asp:Button runat="server" Text="Report" OnClick="btnsubmit_Click" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
 
-        <asp:Button runat="server" Text="ExportExcel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
+        <asp:Button runat="server" Text="Excel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
     </div>
 
 

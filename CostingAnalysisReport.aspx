@@ -21,7 +21,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--')
-                return alert("Please select District");
+                return alert("Please select State");
 
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
             if (ddlVehicle === '--select--')
@@ -41,7 +41,7 @@
         <tr>
 
             <td>
-                Select District <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
+                State <asp:Label ID="lbldistrict" runat="server" Text="Select&nbsp;District" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <td>
-                Select Vehicle <asp:Label runat="server" Text="Select&nbsp;Vehicle" style="color: red">*</asp:Label>
+                 Vehicle <asp:Label runat="server" Text="Select&nbsp;Vehicle" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -59,11 +59,11 @@
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" OnClick="btnsubmit_Click" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" OnClick="btnsubmit_Click" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
+                <asp:Button runat="server" Text="Excel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
             </td>
         </tr>
     </table>

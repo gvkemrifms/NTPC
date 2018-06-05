@@ -4,6 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
+        $(function() {
+            $('#<%=txtIssDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
         function isMandatory(evt) {
             var id = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
             var inputs = id.getElementsByTagName('input');
@@ -162,8 +169,6 @@
                                         <asp:TextBox ID="txtIssDate" CssClass="search_3" runat="server" oncut="return false;" onpaste="return false;"
                                                      oncopy="return false;" onkeypress="return false" MaxLength="15">
                                         </asp:TextBox>
-                                        <cc1:CalendarExtender runat="server" TargetControlID="txtIssDate" Format="MM/dd/yyyy" PopupButtonID="ImageButton1">
-                                        </cc1:CalendarExtender><asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>
                                     </td>
                                     <td wrap="nowrap" style="width: 51px">
 

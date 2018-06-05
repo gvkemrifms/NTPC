@@ -26,7 +26,7 @@
         <tr>
 
             <td>
-                Select District<asp:Label ID="lbldistrict" runat="server" Text="" style="color: red"></asp:Label>
+                 State<asp:Label ID="lbldistrict" runat="server" Text="" style="color: red"></asp:Label>
             </td>
 
             <td>
@@ -36,11 +36,11 @@
         <tr>
 
             <td>
-                <asp:Button runat="server" CssClass="form-submit-button" Text="ShowReport" OnClick="btnsubmit_Click"></asp:Button>
+                <asp:Button runat="server" CssClass="form-submit-button" Text="Report" OnClick="btnsubmit_Click"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" CssClass="form-reset-button" Text="ExportExcel" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" CssClass="form-reset-button" Text="Excel" OnClick="btntoExcel_Click"></asp:Button>
             </td>
         </tr>
     </table>

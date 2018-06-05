@@ -1,8 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleOffroad.aspx.cs" Inherits="VehicleOffroad" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript" language="javascript">
     function pageLoad() {
+        $(function() {
+            $('#<%=txtOfftimeDate.ClientID%>,#<%=txtExpDateOfRec.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -158,9 +164,8 @@
     }
 </script>
 <fieldset style="padding: 10px">
-<legend align="center" style="color: brown">Vehicle OffRoad</legend>
+<legend align="center" style="color: brown">Vehicle Off Road</legend>
 <table align="center">
-
 <tr>
     <td>
         State<span style="color: Red">*</span>
@@ -381,28 +386,23 @@
 </tr>
 <tr>
     <td>
-        OffTime <span style="color: Red">*</span>
+        Off Time <span style="color: Red">*</span>
     </td>
     <td nowrap="nowrap" colspan="6">
         <table style="width: 100%">
             <tr>
                 <td nowrap="nowrap" style="width: 20%">
-                    <asp:TextBox ID="txtOfftimeDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false"></asp:TextBox>
-                    <asp:ImageButton ID="imgBtnUptimeDate" runat="server" Style="vertical-align: top;"
-                                     alt="" src="images/Calendar.gif"/>
-                    <cc1:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="txtOfftimeDate"
-                                          PopupButtonID="imgBtnUptimeDate" Format="MM/dd/yyyy">
-                    </cc1:CalendarExtender>
+                    <asp:TextBox ID="txtOfftimeDate" CssClass="search_3" runat="server" Width="150px" onkeypress="return false"></asp:TextBox>
                 </td>
                 <td class="columnseparator"></td>
                 <td class="columnseparator"></td>
                 <td >
-                    <asp:DropDownList ID="ddlOFFHour" CssClass="search_3" runat="server" Width="55px">
+                    <asp:DropDownList ID="ddlOFFHour" CssClass="search_3" runat="server" Width="55px" style="margin-left: 10px">
                         <asp:ListItem Value="-1">--hh--</asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlOFFMin" CssClass="search_3" runat="server" Width="60px">
+                    <asp:DropDownList ID="ddlOFFMin" CssClass="search_3" runat="server" Width="60px" style="margin-left: 10px">
                         <asp:ListItem Value="-1">--mm--</asp:ListItem>
                     </asp:DropDownList>
                 </td>
@@ -421,12 +421,7 @@
         <table style="width: 100%">
             <tr>
                 <td nowrap="nowrap" style="width: 20%">
-                    <asp:TextBox ID="txtExpDateOfRec" CssClass="search_3" runat="server" Width="120px" onkeypress="return false"></asp:TextBox>
-                    <asp:ImageButton ID="imgbtnExpDateOfRec" runat="server" Style="margin-left: 10px; vertical-align: top;"
-                                     alt="" src="images/Calendar.gif"/>
-                    <cc1:CalendarExtender ID="calExtndrExpDateOfRec" runat="server" TargetControlID="txtExpDateOfRec"
-                                          PopupButtonID="imgbtnExpDateOfRec" Format="MM/dd/yyyy">
-                    </cc1:CalendarExtender>
+                    <asp:TextBox ID="txtExpDateOfRec" CssClass="search_3" runat="server" Width="150px" onkeypress="return false"></asp:TextBox>
                 </td>
                 <td style="width: 80%">
                     <asp:DropDownList ID="ddlExpDateOfRecHr" CssClass="search_3" runat="server" Width="55px">

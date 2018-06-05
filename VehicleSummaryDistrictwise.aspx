@@ -26,7 +26,7 @@
 
         <tr style="margin-top: 70px">
             <td>
-                <asp:Label ID="lbldistrict" runat="server" Text="Select District"></asp:Label>
+                <asp:Label ID="lbldistrict" runat="server" Text="State"></asp:Label>
 
             </td>
             <td>
@@ -35,12 +35,12 @@
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" ID="btnsubmit" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
+                <asp:Button runat="server" Text="Report" ID="btnsubmit" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
             </td>
 
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" ID="btntoExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" ID="btntoExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
 
             </td>
         </tr>

@@ -1,10 +1,14 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="BaseVehicleDetails.aspx.cs" Inherits="BaseVehicleDetails" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
+        $('#<%=txtInvoiceDate.ClientID%>,#<%=txtPurchaseDate.ClientID%>,#<%=txtManufacturingDate.ClientID%>,#<%=txtInsuranceFeesPaidDate.ClientID%>,#<%=txtValiSDate.ClientID%>,#<%=txtInspectionDate.ClientID%>,#<%=txtTRDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear:true
+        });
         $('#<%= ddlEngineNo.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -1008,12 +1012,6 @@
                 <asp:TextBox ID="txtInvoiceDate" runat="server" oncut="return false;"  onpaste="return false;"
                              Width="100px" onkeypress="return false" CssClass="search_3" TabIndex="4" style="margin-left:-80px">
                 </asp:TextBox>
-                <cc1:CalendarExtender ID="calExtInvoiceDate" runat="server" Enabled="True" CssClass="cal_Theme1" PopupButtonID="imgBtnCalendarInvoiceDate"
-                                      TargetControlID="txtInvoiceDate" Format="MM/dd/yyyy">
-                </cc1:CalendarExtender>
-            </td>
-            <td style="width: 51px">
-                <asp:ImageButton ID="imgBtnCalendarInvoiceDate"  runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top;margin-left: 0px"/>
             </td>
             
         </tr>
@@ -1249,11 +1247,6 @@
         <asp:TextBox ID="txtPurchaseDate" runat="server" Width="100px" onkeypress="return false"
                      oncut="return false;" onpaste="return false;" CssClass="search_3" TabIndex="17">
         </asp:TextBox>
-        <cc1:CalendarExtender runat="server" Enabled="True" PopupButtonID="imgbtPurchaseDate"
-                              TargetControlID="txtPurchaseDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgbtPurchaseDate" runat="server" alt="" src="images/Calendar.gif"
-                         Style="vertical-align: top" TabIndex="18"/>
     </td>
     <td>
         &nbsp;
@@ -1324,11 +1317,6 @@
         <asp:TextBox ID="txtManufacturingDate" runat="server" Width="100px" onkeypress="return false"
                      oncut="return false;" onpaste="return false;" CssClass="search_3" TabIndex="22">
         </asp:TextBox>
-        <cc1:CalendarExtender runat="server" Enabled="True" PopupButtonID="imgbtManufacturingDate"
-                              TargetControlID="txtManufacturingDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgbtManufacturingDate" runat="server" alt="" src="images/Calendar.gif"
-                         Style="vertical-align: top" TabIndex="23"/>
     </td>
     <td>
         &nbsp;
@@ -1477,12 +1465,6 @@
         <asp:TextBox ID="txtInsuranceFeesPaidDate" runat="server" Width="100px"
                      TabIndex="31" CssClass="search_3" onkeypress="return false">
         </asp:TextBox>
-        <cc1:CalendarExtender runat="server"
-                              Enabled="True" PopupButtonID="imgbtInsuranceFeesPaidDate" CssClass="cal_Theme1" Format="MM/dd/yyyy"
-                              TargetControlID="txtInsuranceFeesPaidDate">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgbtInsuranceFeesPaidDate" runat="server" alt="" src="images/Calendar.gif"
-                         Style="float: right; margin-bottom: -35px; position: relative; vertical-align: top;" TabIndex="32"/>
     </td>
     <td>
         &nbsp;
@@ -1518,11 +1500,6 @@
                      onkeypress="return false;" CssClass="search_3" oncut="return false;" onpaste="return false;"
                      TabIndex="34">
         </asp:TextBox>
-        <cc1:CalendarExtender runat="server" Enabled="True" PopupButtonID="imgbtValiSdate"
-                              TargetControlID="txtValiSDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-        </cc1:CalendarExtender>
-        <asp:ImageButton ID="imgbtValiSdate" runat="server" alt="" src="images/Calendar.gif"
-                         Style=" float: right; margin-bottom: -35px; position: relative; vertical-align: top;" TabIndex="32"/>
     </td>
     <td>
         &nbsp;
@@ -1595,11 +1572,6 @@
             <asp:TextBox ID="txtInspectionDate" runat="server" Width="105px" onkeypress="return false;"
                          oncut="return false;" CssClass="search_3" onpaste="return false;" TabIndex="38">
             </asp:TextBox>
-            <cc1:CalendarExtender runat="server" Enabled="True" PopupButtonID="imgbtInspectionDt"
-                                  TargetControlID="txtInspectionDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-            </cc1:CalendarExtender>
-            <asp:ImageButton ID="imgbtInspectionDt" runat="server" alt="" src="images/Calendar.gif"
-                             Style="vertical-align: top" TabIndex="39"/>
         </td>
         <td>
             &nbsp;
@@ -1660,11 +1632,6 @@
                 <asp:TextBox ID="txtTRDate" runat="server" oncut="return false;" onpaste="return false;"
                              Width="100px" CssClass="search_3" onkeypress="return false;" TabIndex="42">
                 </asp:TextBox>
-                <cc1:CalendarExtender runat="server" Enabled="True" PopupButtonID="ImgbtTRDate"
-                                      TargetControlID="txtTRDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-                </cc1:CalendarExtender>
-                <asp:ImageButton ID="ImgbtTRDate" runat="server" alt="" src="images/Calendar.gif"
-                                 Style="vertical-align: top" TabIndex="43"/>
             </td>
             <td>
                 &nbsp;

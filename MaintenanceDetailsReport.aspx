@@ -8,6 +8,16 @@
     <script type="text/javascript">
 
         function pageLoad() {
+            $('#<%=txtfrmDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear:true
+            });
+            $('#<%=txttodate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
             $('#<%= ddldistrict.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
@@ -25,7 +35,7 @@
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
-                return alert("Please select District");
+                return alert("Please select State");
             }
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
             if (ddlVehicle === '--select--') {
@@ -65,7 +75,7 @@
         <tr>
 
             <td>
-                Select&nbsp;District <asp:Label ID="lbldistrict" runat="server" Text="" style="color: red">*</asp:Label>
+                State <asp:Label ID="lbldistrict" runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -74,7 +84,7 @@
         </tr>
         <tr>
             <td>
-                Select&nbsp;Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
+                Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -87,13 +97,7 @@
                 From Date<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtfrmDate" CssClass="search_3" runat="server"></asp:TextBox>
-            </td>
-            <td>
-
-                <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-
-
+                <asp:TextBox ID="txtfrmDate" CssClass="search_3" runat="server" onkeypress="return false;" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -102,20 +106,17 @@
             </td>
 
             <td>
-                <asp:TextBox ID="txttodate" CssClass="search_3" runat="server"></asp:TextBox>
-            </td>
-            <td>
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
+                <asp:TextBox ID="txttodate" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
             </td>
         </tr>
 
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
             </td>
         </tr>
     </table>

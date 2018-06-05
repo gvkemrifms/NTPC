@@ -18,6 +18,20 @@
                 placeholder: "Select an option"
             });
         }
+
+        function Validations() {
+            $('#<%= ddldistrict.ClientID %>').chosen();
+            var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
+            if (ddlDistrict === '--select--') {
+                return alert("Please select State");
+            }
+            $('#<%= ddlvehicle.ClientID %>').chosen();
+            var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
+            if (ddlVehicle === '--select--') {
+                return alert("Please select Vehicle");
+            }
+            return true;
+        }
     </script>
 
     <table align="center">
@@ -32,7 +46,7 @@
         <tr>
 
             <td>
-                Select District <asp:Label ID="lbldistrict" runat="server" Text="Select District" style="color: red">*</asp:Label>
+                State <asp:Label ID="lbldistrict" runat="server" Text="Select District" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -41,7 +55,7 @@
         </tr>
         <tr>
             <td>
-                Select Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
+               Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -52,11 +66,11 @@
 
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if(!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" Text="ExportExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
+                <asp:Button runat="server" Text="Excel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
             </td>
 
 

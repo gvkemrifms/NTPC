@@ -55,11 +55,11 @@
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="ShowReport" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
-                <asp:Button runat="server" CssClass="form-reset-button" Text="ExportExcel"></asp:Button>
+                <asp:Button runat="server" CssClass="form-reset-button" Text="Excel"></asp:Button>
             </td>
         </tr>
 
