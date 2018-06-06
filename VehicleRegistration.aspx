@@ -5,13 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script src="../JavaValidations/RequiredFieldValidations.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
-    $(function() {
-        $('#<%=txtRegistrationDate.ClientID%>').datepicker({
-            dateFormat: 'mm/dd/yy',
-            changeMonth: true,
-            changeYear:true
-        });
-    });
+ 
 
     function validation() {
         var sittingCapacity = document.getElementById('<%= txtSittingCapacity.ClientID %>');
@@ -94,6 +88,11 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
+        $('#<%=txtRegistrationDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear:true
+        });
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -217,7 +216,7 @@
                 <tr>
                     <td style="width: 287px"></td>
                     <td align="left" style="width: 300px">
-                        District<span style="color: Red">*</span>
+                        State<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
                         <asp:DropDownList ID="ddlDistrict" runat="server" Width="145px">

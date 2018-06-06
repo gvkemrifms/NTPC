@@ -102,9 +102,6 @@
             <td>
                 <asp:TextBox ID="txtfrmDate" placeholder="From Date" class="search_3" runat="server" onkeypress="return false" oncut="return false;" onpaste="return false;"></asp:TextBox>
             </td>
-           <%-- <td>
-                <cc1:CalendarExtender runat="server" Format="MM/dd/yyyy" TargetControlID="txtfrmDate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-            </td>--%>
         </tr>
         <tr>
             <td>
@@ -113,9 +110,6 @@
             <td>
                 <asp:TextBox ID="txttodate" placeholder="To Date" class="search_3" runat="server" onkeypress="return false" oncut="return false;" onpaste="return false;"></asp:TextBox>
             </td>
-            <%--<td>
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="txttodate" Enabled="true" CssClass="cal_Theme1"></cc1:CalendarExtender>
-            </td>--%>
         </tr>
 
         <tr>

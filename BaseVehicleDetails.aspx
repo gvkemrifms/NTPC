@@ -9,7 +9,7 @@
             changeMonth: true,
             changeYear:true
         });
-        $('#<%= ddlEngineNo.ClientID %>').select2({
+        $('#<%= ddlTRDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
             minimumResultsForSearch: 2,

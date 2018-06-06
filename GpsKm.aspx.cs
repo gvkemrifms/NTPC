@@ -11,9 +11,14 @@ public partial class GpsKm : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             bindVehicles();

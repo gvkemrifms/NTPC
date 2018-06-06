@@ -20,6 +20,8 @@ public partial class VehicleOffroad : Page
     private DataTable _dtBreakdown = new DataTable();
     public IInventory ObjInventory = new FMSInventory();
 
+    public string UserId { get; private set; }
+
     protected void Page_PreInit(object sender, EventArgs e)
     {
         if (Session["Role_Id"] == null)
@@ -35,10 +37,14 @@ public partial class VehicleOffroad : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         txtAllEstimatedCost.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
         txtEMEId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
         txtPilotId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
-        if (Session["User_Name"] == null) Response.Redirect("Error.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             divAggre.Visible = false;
@@ -331,9 +337,8 @@ public partial class VehicleOffroad : Page
     {
         try
         {
-            var ds = _fmsobj.GetDistricts_new();
-            if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "district_name", "district_id", ddlDistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
         }
         catch (Exception ex)
         {

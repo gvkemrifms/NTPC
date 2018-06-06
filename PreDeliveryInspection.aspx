@@ -3,14 +3,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript" type="text/javascript">
-        $(function() {
-            $('#<%=txtReceivedDate.ClientID%>,#<%=txtPDIDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear:true
-            });
-        });
+    <script type="text/javascript">
+
         function validation() {
             var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
             var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
@@ -84,7 +78,7 @@
             }
 
             if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
-                alert(" PDI Date should be greater than Received Date");
+                alert("PDI Date should be greater than Received Date");
                 receivedDate.focus();
                 return false;
             }
@@ -94,7 +88,15 @@
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
-
+<script type="text/javascript">
+    function pageLoad() {
+        $('#<%=txtReceivedDate.ClientID%>,#<%=txtPDIDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear:true
+        });
+    }
+</script>
 <table class="table table-striped table-bordered table-hover">
 <tr>
     <legend align="center" style="color: brown">Pre Delivary Inspection</legend>

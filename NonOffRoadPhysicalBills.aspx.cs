@@ -7,13 +7,18 @@ public partial class NonOffRoadPhysicalBills : Page
 {
     private readonly Helper _helper = new Helper();
     DataSet _dsVehicle;
-    DataSet _dsDistricts, _dsBillNo;
+    private DataSet _dsDistricts, _dsBillNo;
     readonly GvkFMSAPP.BLL.BaseVehicleDetails _fmsobj = new GvkFMSAPP.BLL.BaseVehicleDetails();
     readonly GvkFMSAPP.BLL.VAS_BLL.VASGeneral _obj = new GvkFMSAPP.BLL.VAS_BLL.VASGeneral();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             ddlVehicleno.Enabled = false;
@@ -27,10 +32,12 @@ public partial class NonOffRoadPhysicalBills : Page
     {
         try
         {
-            _dsDistricts = new DataSet();
-            _dsDistricts = _fmsobj.GetDistrict();
-            _helper.FillDropDownHelperMethodWithDataSet(_dsDistricts, "ds_lname", "ds_dsid", ddlDistricts);
-            ViewState["dsDistricts"] = _dsDistricts;
+            DataSet dsStates = new DataSet();
+            var query ="SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='"+UserId+"' order by d.district_name";
+            DataTable dt=_helper.ExecuteSelectStmt(query);
+            dsStates.Tables.Add(dt);
+            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
+            ViewState["dsDistricts"] = dt;
         }
         catch (Exception ex)
         {

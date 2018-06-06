@@ -67,6 +67,11 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
+                    $('#<%=txtRoadTaxValidityStartDate.ClientID%>').datepicker({
+                        dateFormat: 'mm/dd/yy',
+                        changeMonth: true,
+                        changeYear:true
+                    });
                     $('#<%= ddlVehicleNumber.ClientID %>').select2({
                         disable_search_threshold: 5,
                         search_contains: true,
@@ -112,13 +117,7 @@
                                                      oncut="return false;" onpaste="return false;">
                                         </asp:TextBox>
                                     </td>
-                                    <td >
-                                        <asp:ImageButton ID="imgBtnRoadTaxValidityStartDate" runat="server" Style="vertical-align: top"
-                                                         alt="" src="images/Calendar.gif"/>
-                                        <cc1:CalendarExtender runat="server" TargetControlID="txtRoadTaxValidityStartDate"
-                                                              PopupButtonID="imgBtnRoadTaxValidityStartDate" Format="MM/dd/yyyy">
-                                        </cc1:CalendarExtender>
-                                    </td>
+                             
                                 </tr>
                                 <tr>
 

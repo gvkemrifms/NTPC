@@ -2,13 +2,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-            $(function() {
-                $('#<%=txtHandoverDate.ClientID%>,#<%=txtInspectionDate.ClientID%>').datepicker({
-                    dateFormat: 'mm/dd/yy',
-                    changeMonth: true,
-                    changeYear: true
-                });
-            });
+         
         function validation() {
             var handOverto = document.getElementById('<%= txtHandOverto.ClientID %>');
             var handoverDate = document.getElementById('<%= txtHandoverDate.ClientID %>');
@@ -108,6 +102,15 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <script type="text/javascript">
+                function pageLoad() {
+                    $('#<%=txtHandoverDate.ClientID%>,#<%=txtInspectionDate.ClientID%>').datepicker({
+                        dateFormat: 'mm/dd/yy',
+                        changeMonth: true,
+                        changeYear: true
+                    });
+                }
+            </script>
             <asp:Panel ID="pnlHandOverToOperation" runat="server">
                 <legend align="center" style="color: brown">Hand Over To Operations</legend>
                 <table style="width: 100%">

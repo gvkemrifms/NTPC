@@ -10,9 +10,14 @@ public partial class AgencyDetails : Page
     private readonly Helper _helper = new Helper();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
+    public string UserId { get;  set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             grvAgencyDetails.Columns[0].Visible = false;
@@ -43,7 +48,7 @@ public partial class AgencyDetails : Page
 
     private void FillDistricts()
     {
-        string query = ConfigurationManager.AppSettings["Query"];
+        string query = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
         try
         {
             _helper.FillDropDownHelperMethod(query, "district_name", "district_id", ddlDistrict);

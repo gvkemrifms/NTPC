@@ -5,9 +5,14 @@ public partial class OutstandingSummaryReport : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             BindDistrictdropdown();
@@ -19,8 +24,8 @@ public partial class OutstandingSummaryReport : Page
     {
         try
         {
-            var sqlQuery = "select ds_dsid,ds_lname from M_FMS_Districts";
-            _helper.FillDropDownHelperMethod(sqlQuery, "ds_lname", "ds_dsid", ddldistrict);
+            var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
+            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddldistrict);
         }
         catch (Exception ex)
         {

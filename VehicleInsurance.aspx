@@ -128,6 +128,12 @@
 <ContentTemplate>
 <script>
     function pageLoad() {
+            $('#<%=txtFeesPaidDate.ClientID%>,#<%=txtPolicyStartDate.ClientID%>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+ 
         $('#<%= ddlVehicleNo.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -272,13 +278,7 @@
                 <asp:TextBox ID="txtFeesPaidDate" class="text1" runat="server" Width="145px" onkeypress="return false"
                              oncut="return false;" onpaste="return false;">
                 </asp:TextBox>
-                <cc1:CalendarExtender ID="calextFeesPaidDate" runat="server" Format="MM/dd/yyyy"
-                                      PopupButtonID="imgBtnFeesPaidDate" TargetControlID="txtFeesPaidDate">
-                </cc1:CalendarExtender>
-            </td>
-            <td>
-                <asp:ImageButton ID="imgBtnFeesPaidDate" runat="server" alt="" src="images/Calendar.gif"
-                                 Style="vertical-align: top"/>
+
             </td>
         </tr>
         <tr>
@@ -290,14 +290,8 @@
                 <asp:TextBox ID="txtPolicyStartDate" class="text1" runat="server" AutoPostBack="true" OnTextChanged="txtPolicyStartDate_TextChanged"
                              Width="145px" onkeypress="return false" oncut="return false;" onpaste="return false;">
                 </asp:TextBox>
-                <cc1:CalendarExtender ID="calextPolicyStartDate" runat="server" Format="MM/dd/yyyy"
-                                      PopupButtonID="imgBtnPolicyStartDate" TargetControlID="txtPolicyStartDate">
-                </cc1:CalendarExtender>
             </td>
-            <td>
-                <asp:ImageButton ID="imgBtnPolicyStartDate" runat="server" alt="" src="images/Calendar.gif"
-                                 Style="vertical-align: top"/>
-            </td>
+
         </tr>
         <tr>
             <td colspan="2"></td>

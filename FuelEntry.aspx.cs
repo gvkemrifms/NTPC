@@ -53,7 +53,7 @@ public partial class FuelEntry : Page
         }
     }
 
-    private void FillDistricts()
+    private void FillVehiclesWithCardsMapped()
     {
         var districtId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
@@ -151,7 +151,7 @@ public partial class FuelEntry : Page
 
         if (ddlVehicleNumber.SelectedIndex > 0)
         {
-            FillDistricts();
+            FillVehiclesWithCardsMapped();
 
             FillDistrictLocation();
             FillServiceStnVeh();
@@ -695,7 +695,7 @@ public partial class FuelEntry : Page
                     ddlCardSwiped.ClearSelection();
                     ddlCardSwiped.Items.FindByValue(ds.Tables[0].Rows[0]["CardSwipedStatus"].ToString()).Selected = true;
                     ddlCardSwiped.Enabled = false;
-                    FillDistricts();
+                    FillVehiclesWithCardsMapped();
                     maxOdo.Value = "0";
                     txtFuelEntryDate.Text = ds.Tables[0].Rows[0]["EntryDate"].ToString();
                     txtBillNumber.Text = ds.Tables[0].Rows[0]["BillNumber"].ToString();

@@ -15,9 +15,14 @@ public partial class PetroCardIssue : Page
     private readonly IFuelManagement _objFuelMan = new FuelManagement();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             if (Session["UserdistrictId"] != null) _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
@@ -51,8 +56,8 @@ public partial class PetroCardIssue : Page
     {
         try
         {
-            var ds = _objFuelMan.IFillDistricts();
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "ds_lname", "ds_dsid", ddlFeuserDistrict);
+            var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
+            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlFeuserDistrict);
         }
         catch (Exception ex)
         {

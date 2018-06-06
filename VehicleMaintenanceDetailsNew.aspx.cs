@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Web.UI;
@@ -22,6 +23,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
     private bool _isedit;
 
     public bool Checkboxcount { get; private set; }
+    public string UserId { get; private set; }
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -38,6 +40,10 @@ public partial class VehicleMaintenanceDetailsNew : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             btnSave.Attributes.Add("onclick", "return validation()");
@@ -90,9 +96,8 @@ public partial class VehicleMaintenanceDetailsNew : Page
     {
         try
         {
-            var ds = _fmsobj.GetDistricts_new();
-            if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "district_name", "district_id", ddlDistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
         }
         catch (Exception ex)
         {

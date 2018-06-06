@@ -10,11 +10,14 @@ using GvkFMSAPP.BLL.VAS_BLL;
 using GvkFMSAPP.DLL;
 using MySql.Data.MySqlClient;
 
+
 public partial class VehicleAllocation : Page
 {
     private readonly GvkFMSAPP.BLL.BaseVehicleDetails _fmsobj = new GvkFMSAPP.BLL.BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vehallobj = new VASGeneral();
+
+    public string UserId { get; private set; }
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -30,7 +33,10 @@ public partial class VehicleAllocation : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             btnSubmit.Attributes.Add("onclick", "return validation()");
@@ -46,8 +52,8 @@ public partial class VehicleAllocation : Page
     {
         try
         {
-            var ds = _fmsobj.GetDistricts_new();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "district_name", "district_id", ddlDistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id",ddlDistrict);
         }
         catch (Exception ex)
         {

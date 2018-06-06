@@ -6,11 +6,16 @@ public partial class CardTypeReport : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get;  set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+            if (Session["User_Id"] == null)
+                Response.Redirect("Login.aspx");
+            else
+                UserId = (string)Session["User_Id"];
             ddlstation.Enabled = false;
             BindDistrictdropdown();
         }
@@ -18,7 +23,7 @@ public partial class CardTypeReport : Page
 
     private void BindDistrictdropdown()
     {
-        var sqlQuery = ConfigurationManager.AppSettings["Query"];
+        var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
         _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
     }
 

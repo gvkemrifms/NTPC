@@ -4,12 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <link href="css/FitnessRenewal.css" rel="stylesheet"/>
 <script type="text/javascript">
-    $('#<%= ddlVehicleNumber.ClientID %>').select2({
-        disable_search_threshold: 5,
-        search_contains: true,
-        minimumResultsForSearch: 20,
-        placeholder: "Select an option"
-    });
+
 
     function validation() {
         var fitnessValidityStartDate = document.getElementById('<%= txtFitnessValidityStartDate.ClientID %>');
@@ -76,6 +71,15 @@
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
+<script type="text/javascript">
+    function pageLoad() {
+        $('#<%=txtFitnessValidityStartDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    }
+</script>
 <legend align="center" style="color: brown">Fitness Renewal</legend>
 <br/>
 <table>
@@ -117,14 +121,7 @@
                                      Width="145px" OnTextChanged="txtFitnessValidityStartDate_TextChanged1" CssClass="search_3" onkeypress="return false;"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                        <cc1:CalendarExtender ID="calextFitnessValidityStartDate" runat="server" TargetControlID="txtFitnessValidityStartDate"
-                                              PopupButtonID="imgBtnFitnessValidityStartDate" CssClass="cal_Theme1" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
-                    </td>
-                    <td align="left">
-                        <asp:ImageButton ID="imgBtnFitnessValidityStartDate" runat="server" Style="vertical-align: top"
-                                         alt="" src="images/Calendar.gif"/>
-                    </td>
+                    </td>                
                 </tr>
                 <tr>
                     <td align="center"></td>

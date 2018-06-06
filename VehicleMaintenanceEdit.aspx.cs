@@ -21,9 +21,14 @@ public partial class VehicleMaintenanceEdit : Page
 
     private bool _isedit;
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             btnSave.Attributes.Add("onclick", "return validation()");
@@ -55,7 +60,8 @@ public partial class VehicleMaintenanceEdit : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(_fmsobj.GetDistrict(), "ds_lname", "ds_dsid", ddlDistrict);
+            var query ="SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" +UserId + "' order by d.district_name";
+            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistrict);
         }
         catch (Exception ex)
         {

@@ -11,11 +11,16 @@ public partial class Fabricator : Page
     private readonly Helper _helper = new Helper();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
+    public string UserId { get;  set; }
+
     #region Page Load
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Error.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             grvFabricatorDetails.Columns[0].Visible = false;
@@ -79,7 +84,7 @@ public partial class Fabricator : Page
 
     private void FillDistricts()
     {
-        string query = ConfigurationManager.AppSettings["Query"];
+        string query = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
             try
             {
                 _helper.FillDropDownHelperMethod(query, "DISTRICT_NAME", "DISTRICT_ID", ddlFabricatorDistrict);

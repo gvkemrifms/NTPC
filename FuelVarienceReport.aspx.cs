@@ -6,14 +6,20 @@ public partial class FuelVarienceReport : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get;  set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
+            BindDistrictdropdown();
             ddlvehicle.Enabled = false;
             ddlbunk.Enabled = false;
-            BindDistrictdropdown();
+
         }
     }
 
@@ -21,9 +27,7 @@ public partial class FuelVarienceReport : Page
     {
         try
         {
-            //[P_GetServiceStns]
             ddlbunk.Enabled = true;
-            //  _helper.FillDropDownHelperMethodWithSp("P_GetServiceStns", "ServiceStnName", "District_Id", ddldistrict, ddlbunk,null,null,"@District");
             var newQuery = "select distinct ServiceStation_Name as ServiceStnName,District_Id  from M_FMS_ServiceStationNames where District_id = (select ds_dsid from M_FMS_Districts where ds_lname = '" + ddldistrict.SelectedItem.Text + "') order by ServiceStation_Name";
             _helper.FillDropDownHelperMethod(newQuery, "ServiceStnName", "District_Id", ddlbunk);
         }
@@ -37,7 +41,7 @@ public partial class FuelVarienceReport : Page
     {
         try
         {
-            var sqlQuery = ConfigurationManager.AppSettings["Query"];
+            var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)

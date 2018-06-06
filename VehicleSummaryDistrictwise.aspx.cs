@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.UI;
 
 public partial class VehicleSummaryDistrictwise : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack) BindDistrictdropdown();
     }
 
@@ -15,8 +21,8 @@ public partial class VehicleSummaryDistrictwise : Page
     {
         try
         {
-            var sqlQuery = "SELECT district_id ds_dsid,district_name ds_lname from [m_district]  where state_id = 30 order by district_name";
-            _helper.FillDropDownHelperMethod(sqlQuery, "ds_lname", "ds_dsid", ddldistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)
         {

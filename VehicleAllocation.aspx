@@ -141,7 +141,7 @@
 
     <script type="text/javascript">
         function pageLoad() {
-                $('#<%=txtUptimeDate.ClientID%>').datepicker({
+                $('#<%=txtUptimeDate.ClientID%>,#<%=txtDownTime.ClientID%>,#<%=txtExpDateOfRec.ClientID%>').datepicker({
                     dateFormat: 'mm/dd/yy',
                     changeMonth: true,
                     changeYear: true
@@ -167,11 +167,11 @@
         </tr>
         <tr>
             <td>
-                District<span style="color: Red">*</span>
+                State<span style="color: Red">*</span>
             </td>
             <td class="columnseparator"></td>
             <td colspan="5">
-                <asp:DropDownList ID="ddlDistrict" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"
+                <asp:DropDownList ID="ddlDistrict" width="150px" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"
                                   AutoPostBack="True">
                     <asp:ListItem Value="-1">--Select--</asp:ListItem>
                 </asp:DropDownList>
@@ -200,7 +200,7 @@
             </td>
             <td class="columnseparator"></td>
             <td>
-                <asp:TextBox ID="txtReasonforDown" CssClass="search_3" runat="server" TextMode="MultiLine" onkeypress="return false;"></asp:TextBox>
+                <asp:TextBox ID="txtReasonforDown" CssClass="search_3" runat="server" TextMode="MultiLine"></asp:TextBox>
             </td>
             <td class="columnseparator"></td>
             <td>
@@ -271,11 +271,6 @@
 
                             <asp:TextBox ID="txtUptimeDate" CssClass="search_3" runat="server" Width="150px" onkeypress="return false;"></asp:TextBox>
 
-                            <cc1:CalendarExtender runat="server" CssClass="cal_Theme1" TargetControlID="txtUptimeDate"
-                                                  PopupButtonID="imgBtnUptimeDate" Format="dd/MM/yyyy">
-                            </cc1:CalendarExtender>
-                            <asp:ImageButton ID="imgBtnUptimeDate" runat="server" Style="vertical-align: top;"
-                                             alt="" src="images/Calendar.gif"/>
                         </td>
                         <td style="width: 80%">
                             <asp:DropDownList ID="ddlUPHour" CssClass="search_3" style="margin-left: 50px" runat="server" Width="55px">

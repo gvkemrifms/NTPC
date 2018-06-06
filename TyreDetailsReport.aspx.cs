@@ -6,9 +6,14 @@ public partial class TyreDetailsReport : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             BindDistrictdropdown();
@@ -20,7 +25,7 @@ public partial class TyreDetailsReport : Page
     {
         try
         {
-            var sqlQuery = ConfigurationManager.AppSettings["Query"];
+            var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)

@@ -51,7 +51,7 @@ public partial class NewBatteryRequisition : Page
     {
         try
         {
-            _fmsg.UserDistrictId = global::System.Convert.ToInt32(Session["UserdistrictId"].ToString());
+            _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             DataSet ds = _fmsg.GetVehicleNumber();
             if (ds != null)
             {

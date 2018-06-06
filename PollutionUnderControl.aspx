@@ -3,7 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="css/PollutionUnderControl.css" rel="stylesheet"/>
 
-<script language="javascript" type="text/javascript">
+<script  type="text/javascript">
+    $(function() {
+        $('#<%=txtPollutionValidityStartDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     function validation() {
         var pollutionValidityStartDate = document.getElementById('<%= txtPollutionValidityStartDate.ClientID %>');
         var pollutionValidityPeriod = document.getElementById('<%= ddlPollutionValidityPeriod.ClientID %>');
@@ -96,13 +103,6 @@
                                      Width="145px" OnTextChanged="txtPollutionValidityStartDate_TextChanged1" onkeypress="return false"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                    </td>
-                    <td align="left">
-                        <asp:ImageButton ID="imgBtnPollutionValidityStartDate" runat="server" Style="vertical-align: top"
-                                         alt="" src="images/Calendar.gif"/>
-                        <cc1:CalendarExtender ID="calextPollutionValidityStartDate" CssClass="cal_Theme1" runat="server" TargetControlID="txtPollutionValidityStartDate"
-                                              PopupButtonID="imgBtnPollutionValidityStartDate" Format="MM/dd/yyyy">
-                        </cc1:CalendarExtender>
                     </td>
                 </tr>
                 <tr>

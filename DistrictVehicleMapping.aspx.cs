@@ -4,7 +4,6 @@ using System.Data;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.VAS_BLL;
 
 public partial class DistrictVehicleMapping : Page
@@ -14,9 +13,14 @@ public partial class DistrictVehicleMapping : Page
     private readonly VASGeneral _vehallobj = new VASGeneral();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "text", "abc()", true);
@@ -24,9 +28,10 @@ public partial class DistrictVehicleMapping : Page
             if (_distvehmapp != null)
                 try
                 {
+                    var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
                     _helper.FillDropDownHelperMethodWithDataSet(_distvehmapp.GetVehicleTypes(), "vehicle_type_name", "vehicle_type_id", ddlVehType); //Fill VehicleTypes
                     _helper.FillDropDownHelperMethodWithDataSet(_distvehmapp.GetVehicles(), "VehicleNumber", "VehicleID", ddlVehicleNumber); //GetVehicleNumber
-                    _helper.FillDropDownHelperMethodWithDataSet(_distvehmapp.GetDistrict(), "district_name", "district_id", ddlDistrict); //GetDistricts
+                    _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict); //GetDistricts
                 }
                 catch (Exception ex)
                 {

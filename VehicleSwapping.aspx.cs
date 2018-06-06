@@ -11,9 +11,14 @@ public partial class VehicleSwapping : Page
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vasbll = new VASGeneral();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (IsPostBack) return;
         btnSubmit.Attributes.Add("onclick", "return validation()");
         GetDistrict();
@@ -26,9 +31,8 @@ public partial class VehicleSwapping : Page
     {
         try
         {
-            var ds = _fmsobj.GetDistricts_new();
-            if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "district_name", "district_id", ddlDistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
         }
         catch (Exception ex)
         {

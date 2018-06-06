@@ -4,11 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
     function validationAgencyDetails() {
-        $('#<%= ddlDistrict.ClientID %>').chosen();
-        var ddldistrict = $('#<%= ddlDistrict.ClientID %> option:selected').text().toLowerCase();
-        if (ddldistrict === '--select--') {
-            return alert("Please Select District");
-        }
+        
 
         if (document.getElementById('<%= txtAgencyName.ClientID %>').value === "") {
             alert("Please Enter Agency Name");
@@ -65,7 +61,7 @@
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
 <script type="text/javascript">
-    function pageLoad() {
+    function pageLoad() {      
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,

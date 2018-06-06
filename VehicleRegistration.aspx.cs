@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Web.UI;
@@ -15,9 +16,14 @@ public partial class VehicleRegistration : Page
     private readonly GvkFMSAPP.BLL.VehicleRegistration _vehreg = new GvkFMSAPP.BLL.VehicleRegistration();
     private int _ret;
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             var dsPerms = (DataSet) Session["PermissionsDS"];
@@ -76,8 +82,8 @@ public partial class VehicleRegistration : Page
     {
         try
         {
-            var ds = _getDistrict.GetDistricts_new(); //FMS.BLL.VehicleRegistration.GetDistrcts();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "district_name", "district_id", ddlDistrict);
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
         }
         catch (Exception ex)
         {

@@ -60,7 +60,7 @@
     </td>
     <td>
 
-        <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+        <asp:DropDownList ID="ddlDistrict" runat="server" width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
             <asp:ListItem Value="-1">--Select--</asp:ListItem>
         </asp:DropDownList>
     </td>
@@ -70,7 +70,7 @@
         </td>
 
         <td>
-            <asp:DropDownList ID="ddlVehicleNumber" runat="server" Width="135px" AutoPostBack="True"
+            <asp:DropDownList ID="ddlVehicleNumber" runat="server" Width="150px" AutoPostBack="True"
                               OnSelectedIndexChanged="ddlVehicleNumber_SelectedIndexChanged">
                 <asp:ListItem Value="-1">--Select--</asp:ListItem>
             </asp:DropDownList>

@@ -5,11 +5,16 @@ public partial class BatteryDetailsReportnew : Page
 {
     private readonly Helper _helper = new Helper();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
-            if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
             BindDistrictdropdown();
             Withoutdist();
         }
@@ -19,7 +24,7 @@ public partial class BatteryDetailsReportnew : Page
     {
         try
         {
-            var sqlQuery = "select ds_dsid,ds_lname from M_FMS_Districts";
+            var sqlQuery = "select d.ds_dsid,d.ds_lname from M_FMS_Districts d join m_users u on d.ds_dsid=u.stateId where u.UserId ='"+ UserId+"'";
             _helper.FillDropDownHelperMethod(sqlQuery, "ds_lname", "ds_dsid", ddldistrict);
         }
         catch (Exception ex)
