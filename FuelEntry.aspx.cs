@@ -53,7 +53,7 @@ public partial class FuelEntry : Page
         }
     }
 
-    private void FillVehiclesWithCardsMapped()
+    private DataSet FillVehiclesWithCardsMapped()
     {
         var districtId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
@@ -69,8 +69,10 @@ public partial class FuelEntry : Page
             }
 
         var itemToRemove = ddlDistrict.Items.FindByValue(ddlVehicleNumber.SelectedValue);
+        ddlDistrict.ClearSelection();
         if (itemToRemove != null) ddlDistrict.Items.Remove(itemToRemove);
         ddlDistrict.Enabled = true;
+        return ds;
     }
 
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -207,7 +209,7 @@ public partial class FuelEntry : Page
         }
     }
 
-    private void FillCardNumber(int vehicleId)
+    private DataSet FillCardNumber(int vehicleId)
     {
         var ds = ObjFuelEntry.IFillCardNumber(vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
@@ -227,6 +229,8 @@ public partial class FuelEntry : Page
                 ddlPaymode.Enabled = true;
                 break;
         }
+
+        return ds;
     }
 
     protected void ddlPetroCardNumber_SelectedIndexChanged(object sender, EventArgs e)
@@ -695,7 +699,7 @@ public partial class FuelEntry : Page
                     ddlCardSwiped.ClearSelection();
                     ddlCardSwiped.Items.FindByValue(ds.Tables[0].Rows[0]["CardSwipedStatus"].ToString()).Selected = true;
                     ddlCardSwiped.Enabled = false;
-                    FillVehiclesWithCardsMapped();
+                    FillVehiclesWithCardsMapped();                    
                     maxOdo.Value = "0";
                     txtFuelEntryDate.Text = ds.Tables[0].Rows[0]["EntryDate"].ToString();
                     txtBillNumber.Text = ds.Tables[0].Rows[0]["BillNumber"].ToString();
@@ -711,50 +715,50 @@ public partial class FuelEntry : Page
                     txtPilotID.Text = ds.Tables[0].Rows[0]["Pilot"].ToString();
                     txtPilotName.Text = ds.Tables[0].Rows[0]["PilotName"].ToString();
                     txtRemarks.Text = ds.Tables[0].Rows[0]["RemarksFuel"].ToString();
-                    if (ds.Tables[0].Rows[0]["PetroCardNumber"].ToString() != string.Empty)
-                    {
-                        switch (Convert.ToInt32(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString()))
-                        {
-                            case 0:
-                            {
-                                var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["VehicleID"].ToString());
-                                ddlPetroCardNumber.ClearSelection();
-                                FillCardNumber(vid);
-                                ddlPetroCardNumber.Items.FindByValue(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString()).Selected = true;
-                                var pid = Convert.ToInt32(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString());
-                                ddlAgency.ClearSelection();
-                                FillFuelAgency(pid);
-                                ddlAgency.Items.FindByValue(ds.Tables[0].Rows[0]["AgencyID"].ToString()).Selected = true;
-                                break;
-                            }
-                            default:
-                            {
-                                var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString());
-                                ddlPetroCardNumber.ClearSelection();
-                                FillCardNumber(vid);
-                                ddlPetroCardNumber.Items.FindByValue(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString()).Selected = true;
-                                var pid = Convert.ToInt32(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString());
-                                ddlAgency.ClearSelection();
-                                FillFuelAgency(pid);
-                                ddlAgency.Items.FindByValue(ds.Tables[0].Rows[0]["AgencyID"].ToString()).Selected = true;
-                                ddlDistrict.ClearSelection();
-                                ddlDistrict.Items.FindByValue(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString()).Selected = true;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        FillFuelAgency(0);
-                        var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["VehicleID"].ToString());
-                        ObjFuelEntry.IFillCardNumber(vid);
-                        ObjFuelEntry.IFillAgencyWoDistrictID();
-                    }
+                        //if (ds.Tables[0].Rows[0]["PetroCardNumber"].ToString() != string.Empty)
+                        //{
+                        //    switch (Convert.ToInt32(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString()))
+                        //    {
+                        //        case 0:
+                        //            {
+                        //                var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["VehicleID"].ToString());
+                        //                ddlPetroCardNumber.ClearSelection();
+                        //                DataSet dsPetro=FillCardNumber(vid);
+                        //                ddlPetroCardNumber.Items.FindByValue(dsPetro.Tables[0].Rows[0]["PetroCardNum"].ToString()).Selected = true;
+                        //                var pid = Convert.ToInt32(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString());
+                        //                ddlAgency.ClearSelection();
+                        //                FillFuelAgency(pid);
+                        //                ddlAgency.Items.FindByValue(ds.Tables[0].Rows[0]["AgencyID"].ToString()).Selected = true;
+                        //                break;
+                        //            }
+                        //        default:
+                        //            {
+                        //                var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString());
+                        //                ddlPetroCardNumber.ClearSelection();
+                        //                FillCardNumber(vid);
+                        //                ddlPetroCardNumber.Items.FindByValue(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString()).Selected = true;
+                        //                var pid = Convert.ToInt32(ds.Tables[0].Rows[0]["PetroCardNumber"].ToString());
+                        //                ddlAgency.ClearSelection();
+                        //                FillFuelAgency(pid);
+                        //                ddlAgency.Items.FindByValue(ds.Tables[0].Rows[0]["AgencyID"].ToString()).Selected = true;
+                        //                ddlDistrict.ClearSelection();
+                        //                ddlDistrict.Items.FindByValue(ds.Tables[0].Rows[0]["BorrowedVehicleID"].ToString()).Selected = true;
+                        //                break;
+                        //            }
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    FillFuelAgency(0);
+                        //    var vid = Convert.ToInt32(ds.Tables[0].Rows[0]["VehicleID"].ToString());
+                        //    ObjFuelEntry.IFillCardNumber(vid);
+                        //    ObjFuelEntry.IFillAgencyWoDistrictID();
+                        //}
 
-                    ddlVehicleNumber.Enabled = false;
-                    ddlAgency.Enabled = false;
+                        ddlVehicleNumber.Enabled = false;
+                    ddlAgency.Enabled = true;
                     ddlPaymode.Enabled = false;
-                    ddlPetroCardNumber.Enabled = false;
+                    ddlPetroCardNumber.Enabled = true;
                     ddlDistrict.Enabled = false;
                     break;
                 }

@@ -108,7 +108,7 @@
             </td>
         </tr>
         <tr>
-            <td>Agency <span id="spAgency" runat="server" style="color: Red">*</span></td>
+            <td>Agency <span id="spAgency" runat="server" style="color: Red"></span></td>
             <td>
                 <asp:DropDownList ID="ddlAgency" runat="server" AutoCompleteMode="Append" CssClass="search_3">
                     <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>

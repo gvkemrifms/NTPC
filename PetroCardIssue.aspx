@@ -3,13 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-        $(function() {
-            $('#<%=txtValidityEndDate.ClientID%>,#<%=txtIssuedDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true
-            });
-        });
+  
         function isMandatory() {
 
             switch (document.getElementById("<%= txtPetroCardNumber.ClientID %>").value) {
@@ -110,7 +104,15 @@
     </script>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-
+            <script type="text/javascript">
+                function pageLoad() {
+                    $('#<%=txtValidityEndDate.ClientID%>,#<%=txtIssuedDate.ClientID%>').datepicker({
+                        dateFormat: 'mm/dd/yy',
+                        changeMonth: true,
+                        changeYear: true
+                    });
+                }
+            </script>
             <legend align="center" style="color: brown">Petro Card Issue</legend>
             <br/>
             <table align="center">

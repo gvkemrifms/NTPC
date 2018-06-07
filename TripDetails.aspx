@@ -4,6 +4,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            function pageLoad()
+            {
+            $('#<%=txtTripDate.ClientID%>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+            });
+            }
             <div class="center">
                 <fieldset style="padding: 10px">
                     <legend align="center" style="color: brown">Trip Details Entry</legend>
