@@ -74,7 +74,7 @@
 
                     <tr>
                         <td>
-                            District
+                            State
                         </td>
                         <td class="columnseparator"></td>
                         <td>

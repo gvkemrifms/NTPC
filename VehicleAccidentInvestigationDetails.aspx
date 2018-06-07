@@ -4,13 +4,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-    $(function() {
-        $('#<%=TxtAccidentDateTime.ClientID%>,#<%=TxtInsuranceStartDate.ClientID%>,#<%=TxtInsuranceEndDate.ClientID%>,#<%=TxtSpotSurveyorDate.ClientID%>,#<%=TxtFinalSurveyorDate.ClientID%>,#<%=TxtReinspectionSurveyorDate.ClientID%>,#<%=TxtClaimFormSubmissionDate.ClientID%>,#<%=TxtBillSubmissionDate.ClientID%>,#<%=TxtPaymentRecievedDate.ClientID%>').datepicker({
-            dateFormat: 'mm/dd/yy',
-            changeMonth: true,
-            changeYear: true
-        });
-    });
+    function pageLoad() {
+        $(
+                '#<%=TxtAccidentDateTime.ClientID%>,#<%=TxtInsuranceStartDate.ClientID%>,#<%=TxtInsuranceEndDate.ClientID%>,#<%=TxtSpotSurveyorDate.ClientID%>,#<%=TxtFinalSurveyorDate.ClientID%>,#<%=TxtReinspectionSurveyorDate.ClientID%>,#<%=TxtClaimFormSubmissionDate.ClientID%>,#<%=TxtBillSubmissionDate.ClientID%>,#<%=TxtPaymentRecievedDate.ClientID%>')
+            .datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+    }
+
     function vehicleCostAddition(obj) {
         if (!parseFloat(obj.value)) {
             alert('The value should be a valid decimal value and cannot be zero');

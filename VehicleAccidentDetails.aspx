@@ -4,13 +4,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-    $(function() {
+    function pageLoad() {
         $('#<%=txtExpiryDate.ClientID%>,#<%=txtAccidentDateTime.ClientID%>,#<%=txtInitiatedTime.ClientID%>').datepicker({
             dateFormat: 'mm/dd/yy',
             changeMonth: true,
             changeYear: true
         });
-    });
+    };
     function validation(obj, id) {
 
         var now = new Date();

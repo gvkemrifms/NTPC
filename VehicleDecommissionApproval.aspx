@@ -2,13 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-    $(function() {
+   function pageLoad() {
         $('#<%=txtDateOfRegistration.ClientID%>,#<%=txtOffRoadDate.ClientID%>,#<%=txtDateOfLaunching.ClientID%>,#<%=txtDateofPurchase.ClientID%>,#<%=txtSurveyDate.ClientID%>,#<%=txtDecommisionDate.ClientID%>').datepicker({
             dateFormat: 'mm/dd/yy',
             changeMonth: true,
             changeYear: true
         });
-    });
+    };
     function validation(obj, id) {
         var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");
         var txtApproveRejectedRemarks = obj.id.replace(id, "txtApproveRejectedRemarks");

@@ -1,16 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleDecommissionProposal.aspx.cs" Inherits="VehicleDecommissionProposal" %>
 <%@ Import Namespace="System.ComponentModel" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-    $(function() {
+   function pageLoad(){
         $('#<%=txtDateOfRegistration.ClientID%>,#<%=txtDateOfPurchase.ClientID%>,#<%=txtDateOfLaunching.ClientID%>,#<%=txtSurveyDate.ClientID%>').datepicker({
             dateFormat: 'mm/dd/yy',
             changeMonth: true,
             changeYear: true
         });
-    });
+    };
     function validation(obj, id) {
         var now = new Date();
         var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");

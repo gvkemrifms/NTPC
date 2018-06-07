@@ -167,7 +167,7 @@ public partial class VehicleOffroad : Page
             _vehallobj.ContactNumber = txtContactNumber.Text;
             _vehallobj.Comments = txtComment.Text;
             _vehallobj.District = ddlDistrict.SelectedItem.Text;
-            _vehallobj.OffRoadDate = Convert.ToDateTime(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedItem.Text + ":" + ddlOFFMin.SelectedItem.Text);
+            _vehallobj.OffRoadDate = DateTime.ParseExact(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedValue + ":" + ddlOFFMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
             _vehallobj.OffRoadVehicleNo = ddlVehicleNumber.SelectedItem.Text;
             _vehallobj.ReasonForOffRoad = ddlreasons.SelectedItem.Text;
             _vehallobj.RequestedBy = txtReqBy.Text;
@@ -175,7 +175,8 @@ public partial class VehicleOffroad : Page
             _vehallobj.PilotID = txtPilotId.Text;
             _vehallobj.PilotName = txtPilotName.Text;
             _vehallobj.Odometer = txtOdo.Text;
-            _vehallobj.ExpDateOfRecovery = Convert.ToDateTime(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedItem.Text + ":" + ddlExpDateOfRecMin.SelectedItem.Text);
+            _vehallobj.ExpDateOfRecovery=DateTime.ParseExact(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedValue + ":" + ddlExpDateOfRecMin.SelectedValue,"MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            //_vehallobj.ExpDateOfRecovery = Convert.ToDateTime(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedItem.Text + ":" + ddlExpDateOfRecMin.SelectedItem.Text);
             _vehallobj.SegmentId = 0;
             _vehallobj.totEstimated = txtAllEstimatedCost.Text;
             if (ddlreasons.SelectedItem != null && ddlreasons.SelectedIndex == 4)
@@ -217,7 +218,7 @@ public partial class VehicleOffroad : Page
                 _vehallobj.SegmentIds = segmentids;
                 _vehallobj.MandalIds = mandalids;
                 _vehallobj.SegmentNames = segmentnames;
-                MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, Convert.ToDateTime(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedItem.Text + ":" + ddlOFFMin.SelectedItem.Text).ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
                 var insres = _vehallobj.InsertOffRoadVehicleDetail();
                 switch (insres)
                 {
@@ -247,7 +248,7 @@ public partial class VehicleOffroad : Page
                     _vehallobj.MandalIds = mandalids;
                     _vehallobj.SegmentNames = segmentnames;
                     _vehallobj.OtherVehicleNumber = ddlothervehicle.SelectedItem.Text;
-                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, Convert.ToDateTime(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedItem.Text + ":" + ddlOFFMin.SelectedItem.Text).ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
                     var insres = _vehallobj.InsertOtherOffRoadVehicleDetail();
                     Session["offId"] = insres;
                     switch (insres)
@@ -270,7 +271,7 @@ public partial class VehicleOffroad : Page
                     _vehallobj.SegmentIds = segmentids;
                     _vehallobj.MandalIds = mandalids;
                     _vehallobj.SegmentNames = segmentnames;
-                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, Convert.ToDateTime(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedItem.Text + ":" + ddlOFFMin.SelectedItem.Text).ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
                     var insres = _vehallobj.InsertOffRoadVehicleDetail();
                     Session["offId"] = insres;
                     switch (insres)

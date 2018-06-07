@@ -15,13 +15,13 @@
             });
         }
 
-        function Validations() {
+        <%--function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select State");
             }
             return true;
-        }
+        }--%>
     </script>
 
     <table align="center">

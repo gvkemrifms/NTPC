@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -83,7 +84,7 @@ public partial class TripDetails : Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        var tripDate = Convert.ToDateTime(txtTripDate.Text);
+        var tripDate = DateTime.ParseExact(txtTripDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         var vehicle = Convert.ToInt32(ddlAmbulanceID.SelectedValue);
         var trip = Convert.ToInt32(ddlTripType.SelectedValue);
         var destination = Convert.ToString(txtDestinationLocation.Text);

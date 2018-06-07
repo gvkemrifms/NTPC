@@ -4,13 +4,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-        $(function() {
+        function pageLoad() {
             $('#<%=txtDecommDate.ClientID%>').datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear: true
             });
-        });
+        }
+
         function validation() {
 
             var district = document.getElementById('<%= ddlDistrict.ClientID %>');

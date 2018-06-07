@@ -11,9 +11,14 @@ public partial class VehicleSwappingDistrictWise : Page
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vasbll = new VASGeneral();
 
+    public string UserId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
+        if (Session["User_Id"] == null)
+            Response.Redirect("Login.aspx");
+        else
+            UserId = (string)Session["User_Id"];
         if (!IsPostBack)
         {
             btnSubmit.Attributes.Add("onclick", "return validation()");
@@ -31,10 +36,16 @@ public partial class VehicleSwappingDistrictWise : Page
     {
         try
         {
-            var dsDistrict = _fmsobj.GetDistrict();
-            if (dsDistrict == null) throw new ArgumentNullException(nameof(dsDistrict));
-            _helper.FillDropDownHelperMethodWithDataSet(dsDistrict, "ds_lname", "ds_dsid", ddlSourceDistrict);
-            ViewState["Districts"] = dsDistrict;
+            //var dsDistrict = _fmsobj.GetDistrict();
+            //if (dsDistrict == null) throw new ArgumentNullException(nameof(dsDistrict));
+            DataSet dsStates = new DataSet();
+            var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
+            DataTable dt = _helper.ExecuteSelectStmt(query);
+            dsStates.Tables.Add(dt);
+            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlSourceDistrict);
+            ViewState["Districts"] = dsStates;
+            //_helper.FillDropDownHelperMethodWithDataSet(dsDistrict, "ds_lname", "ds_dsid", ddlSourceDistrict);
+            //ViewState["Districts"] = dsDistrict;
         }
         catch (Exception ex)
         {

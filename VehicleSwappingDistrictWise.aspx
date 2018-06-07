@@ -82,7 +82,7 @@
                     </tr>
                     <tr>
                         <td>
-                            District
+                            State
                         </td>
                         <td class="columnseparator"></td>
                         <td>
@@ -93,7 +93,7 @@
                         </td>
                         <td class="columnseparator"></td>
                         <td>
-                            Districts
+                            States
                         </td>
                         <td class="columnseparator"></td>
                         <td>

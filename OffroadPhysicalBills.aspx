@@ -7,11 +7,13 @@
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <script type="text/javascript">
-            function dateselect(ev) {
-                var calendarBehavior1 = window.$find("cc1");
-                var d = calendarBehavior1._selectedDate;
-                var now = new Date();
-                calendarBehavior1.get_element().value = d.format("MM/dd/yyyy");
+            
+            function pageLoad() {
+                $('#<%=txtReceiptDate.ClientID%>').datepicker({
+                    dateFormat: 'mm/dd/yy',
+                    changeMonth: true,
+                    changeYear:true
+                });
             }
 
             function validation2() {
@@ -104,9 +106,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="txtReceiptDate" CssClass="search_3" Width="150px" onkeypress="false;"/>
-                    <cc1:CalendarExtender runat="server" TargetControlID="txtReceiptDate" Format="MM/dd/yyyy"
-                                          OnClientDateSelectionChanged="dateselect">
-                    </cc1:CalendarExtender>
+                 
                 </td>
             </tr>
             <tr>

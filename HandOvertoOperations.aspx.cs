@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using GvkFMSAPP.PL;
 
@@ -42,10 +43,10 @@ public partial class HandOvertoOperations : Page
     {
         _handovertooperation.VehicleID = int.Parse(ddlVehicleNo.SelectedItem.Value);
         _handovertooperation.HandoverTo = txtHandOverto.Text;
-        _handovertooperation.HandoverDate = DateTime.Parse(txtHandoverDate.Text);
+        _handovertooperation.HandoverDate = DateTime.ParseExact(txtHandoverDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _handovertooperation.HandoverBy = txtHandOverBy.Text;
         _handovertooperation.QualityInspectionNo = txtQualityInspectionNo.Text;
-        _handovertooperation.HTOInspectionDate = DateTime.Parse(txtInspectionDate.Text);
+        _handovertooperation.HTOInspectionDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _handovertooperation.HTOInspectionBy = txtInspectedBy.Text;
         _handovertooperation.Remarks = txtRemarks.Text;
         var ret = _handovertooperation.InsHandoverToOperations();

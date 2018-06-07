@@ -124,7 +124,9 @@ public partial class VehicleAllocation : Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         btnSubmit.Enabled = false;
-        if (Convert.ToDecimal(ViewState["OdoReading"].ToString()) <= Convert.ToDecimal(txtOdo.Text) && Convert.ToDateTime(txtDownTime.Text) < Convert.ToDateTime(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue))
+        DateTime upHour=DateTime.ParseExact(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+        DateTime downHr = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        if (Convert.ToDecimal(ViewState["OdoReading"].ToString()) <= Convert.ToDecimal(txtOdo.Text) && (downHr < upHour))
         {
             _vehallobj.District = ddlDistrict.SelectedItem.Text;
             _vehallobj.OffRoadVehicleNo = ddlVehicleNumber.SelectedItem.Text;
@@ -132,6 +134,7 @@ public partial class VehicleAllocation : Page
             _vehallobj.OffRoadDate = Convert.ToDateTime(txtDownTime.Text);
             _vehallobj.Odometer = txtOdo.Text;
             _vehallobj.RequestedBy = txtReqBy.Text;
+            
             _vehallobj.UpTime = Convert.ToDateTime(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue);
             _vehallobj.BaseLocation = "0";
             _vehallobj.NewSegFlag = "";

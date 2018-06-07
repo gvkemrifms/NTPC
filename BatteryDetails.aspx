@@ -6,13 +6,13 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
-                $(function() {
+                function pageLoad() {
                     $('#<%=txtBatteryExpiryDate.ClientID%>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
                     });
-                });
+                };
                 function validationBatteryDetails() {
                     switch (document.getElementById("<%= txtBatteryItemCode.ClientID %>").value) {
                     case '':

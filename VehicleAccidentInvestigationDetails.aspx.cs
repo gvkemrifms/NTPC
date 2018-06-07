@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -120,25 +121,25 @@ public partial class VehicleAccidentInvestigationDetails : Page
         try
         {
             _vehicleAccidentDetail.VehicleNumber = ddlistVehicleNumber.SelectedIndex != 0 ? Convert.ToString(ddlistVehicleNumber.SelectedItem.Text) : txtVehNum.Text;
-            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtAccidentDateTime.Text);
+            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtAccidentDateTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.AccidentDescription = TxtAccidentTitle.Text;
             _vehicleAccidentDetail.SpotSurveyor = TxtSpotSurveyor.Text;
-            _vehicleAccidentDetail.SpotSurDate = TxtSpotSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtSpotSurveyorDate.Text);
+            _vehicleAccidentDetail.SpotSurDate = TxtSpotSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtSpotSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.FinalSurveyor = TxtFinalSurveyor.Text;
-            _vehicleAccidentDetail.FinalSurDate = TxtFinalSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtFinalSurveyorDate.Text);
+            _vehicleAccidentDetail.FinalSurDate = TxtFinalSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtFinalSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.ReInsSurveyor = TxtReinspectionSurveyor.Text;
-            _vehicleAccidentDetail.ReInsSurDate = TxtReinspectionSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtReinspectionSurveyorDate.Text);
+            _vehicleAccidentDetail.ReInsSurDate = TxtReinspectionSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtReinspectionSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.PolicyNo = TxtPolicyNumber.Text;
             _vehicleAccidentDetail.Agency = TxtAgency.Text;
-            _vehicleAccidentDetail.InsStDate = TxtInsuranceStartDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtInsuranceStartDate.Text);
-            _vehicleAccidentDetail.InsEndDate = TxtInsuranceEndDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtInsuranceEndDate.Text);
-            _vehicleAccidentDetail.ClaimDate = TxtClaimFormSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtClaimFormSubmissionDate.Text);
+            _vehicleAccidentDetail.InsStDate = TxtInsuranceStartDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.InsEndDate = TxtInsuranceEndDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.ClaimDate = TxtClaimFormSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtClaimFormSubmissionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.CostRepairs = TxtTotalCostofRepairs.Text == string.Empty ? (float?) null : float.Parse(TxtTotalCostofRepairs.Text);
             _vehicleAccidentDetail.AssValue = TxtSurveyorAssessmentValue.Text == string.Empty ? (float?) null : float.Parse(TxtSurveyorAssessmentValue.Text);
-            _vehicleAccidentDetail.BillDate = TxtBillSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtBillSubmissionDate.Text);
+            _vehicleAccidentDetail.BillDate = TxtBillSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtBillSubmissionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.PayStatus = Convert.ToString(ddlistPaymentStatus.SelectedItem.Value);
             _vehicleAccidentDetail.Remarks = txtRemarks.Text;
-            _vehicleAccidentDetail.PayDate = TxtPaymentRecievedDate.Text == string.Empty ? (DateTime?) null : DateTime.Parse(TxtPaymentRecievedDate.Text);
+            _vehicleAccidentDetail.PayDate = TxtPaymentRecievedDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtPaymentRecievedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.Cheque = TxtChequeNo.Text;
             _vehicleAccidentDetail.AmtRecieved = TxtAmountRecievedFromInsurance.Text == string.Empty ? (float?) null : float.Parse(TxtAmountRecievedFromInsurance.Text);
             _vehicleAccidentDetail.Cost = TxtCostToCompany.Text == string.Empty ? (float?) null : float.Parse(TxtCostToCompany.Text);
