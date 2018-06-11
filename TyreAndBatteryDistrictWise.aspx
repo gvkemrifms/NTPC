@@ -46,8 +46,8 @@
     </table>
     <br/>
     <div align="center">
-        <asp:Panel ID="Panel2" runat="server" Style="margin-left: 2px;">
-            <asp:GridView ID="GrdtyreBattery"  BorderColor="#CCCCCC" BorderWidth="1px" runat="server" BackColor="White" BorderStyle="None" CellPadding="3">
+        <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Center">
+            <asp:GridView ID="GrdtyreBattery"  BorderColor="#CCCCCC" BorderWidth="1px" HorizontalAlign="Center" EmptyDataText="No Records Found" runat="server" BackColor="White" BorderStyle="None" CellPadding="3">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />

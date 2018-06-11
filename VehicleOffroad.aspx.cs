@@ -64,7 +64,7 @@ public partial class VehicleOffroad : Page
         {
             var dset = _fmsgeneral.GetMaintenanceType();
             if (dset == null) return;
-            _helper.FillDropDownHelperMethodWithDataSet(dset, "Maint_Type_ID", "Maint_Desc", ddlreasons);
+            _helper.FillDropDownHelperMethodWithDataSet(dset, "Maint_Desc", "Maint_Type_ID", ddlreasons);
             ddlreasons.Items.Insert(12, new ListItem("RESOURCE SHORTAGE", "13"));
             ddlreasons.Items.Insert(13, new ListItem("NO FUEL", "14"));
         }

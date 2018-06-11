@@ -225,7 +225,7 @@
                 </asp:TextBox>
             </td>
             <td>
-                Previous ODO<span style="color: Red">*</span>
+                Previous ODO<span style="color: Red"></span>
             </td>
             <td class="columnseparator"></td>
             <td>

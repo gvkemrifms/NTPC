@@ -62,7 +62,7 @@
     <table align="center">
         <tr>
             <td>
-                <asp:Label style="color: brown; font-size: 20px;" runat="server" Text="BillsOutstandingSummary&nbsp;Report"></asp:Label>
+                <asp:Label style="color: brown; font-size: 20px;" runat="server" Text="Bills Outstanding Summary&nbsp;Report"></asp:Label>
             </td>
         </tr>
     </table>

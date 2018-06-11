@@ -55,7 +55,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>
@@ -67,8 +67,8 @@
     </table>
     <br/>
     <div align="center">
-        <asp:Panel ID="Panel2" runat="server" Style="margin-left: 2px;">
-            <asp:GridView ID="Grddetails" runat="server" BorderWidth="1px" BorderColor="#CCCCCC" BackColor="White" BorderStyle="None" CellPadding="3">
+        <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Center">
+            <asp:GridView ID="Grddetails" runat="server" HorizontalAlign="Center" EmptyDataText="No Records Found" BorderWidth="1px" BorderColor="#CCCCCC" BackColor="White" BorderStyle="None" CellPadding="3">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />

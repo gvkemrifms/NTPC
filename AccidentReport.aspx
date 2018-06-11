@@ -127,7 +127,7 @@
 
     </table>
     <asp:Panel ID="Panel2" runat="server" Style="margin-left: 2px; margin-top: 20px" HorizontalAlign="Center">
-        <asp:GridView ID="Grddetails" runat="server" EmptyDataText="No Rows Selected" ShowHeaderWhenEmpty="True" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
+        <asp:GridView ID="Grddetails" runat="server" EmptyDataText="No Rows Found" ShowHeaderWhenEmpty="True" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
             <FooterStyle BackColor="White" ForeColor="#000066" />
             <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />

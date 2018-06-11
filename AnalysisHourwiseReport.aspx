@@ -116,7 +116,7 @@
     </table>
     <br/>
     <br/>
-            <asp:GridView ID="Grddetails" HorizontalAlign="Center" runat="server" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
+            <asp:GridView ID="Grddetails" HorizontalAlign="Center" EmptyDataText="No Records Found" runat="server" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
