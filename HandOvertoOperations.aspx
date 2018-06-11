@@ -2,7 +2,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-         
+
         function validation() {
             var handOverto = document.getElementById('<%= txtHandOverto.ClientID %>');
             var handoverDate = document.getElementById('<%= txtHandoverDate.ClientID %>');
@@ -104,7 +104,7 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%=txtHandoverDate.ClientID%>,#<%=txtInspectionDate.ClientID%>').datepicker({
+                    $('#<%= txtHandoverDate.ClientID %>,#<%= txtInspectionDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true

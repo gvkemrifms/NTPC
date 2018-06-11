@@ -97,7 +97,7 @@ public partial class VehicleDecommissionApproval : Page
             _vehicleProposalBol.vi_LocationId = Convert.ToInt32(ViewState["vi_LocationId"]);
             _vehicleProposalBol.VehicleDecommisionProposalID = Convert.ToInt32(ViewState["VehicleProposalId"]);
             _vehicleProposalBol.VehicleID = Convert.ToInt32(ViewState["VehicleId"]);
-            _vehicleProposalBol.OffRoadDateTime = DateTime.ParseExact(txtOffRoadDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleProposalBol.OffRoadDateTime = DateTime.ParseExact(txtOffRoadDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.TotalKmCovered = ViewState["TotalDistanceTravelled"].ToString();
             _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);

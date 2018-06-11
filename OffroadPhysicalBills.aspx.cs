@@ -7,10 +7,10 @@ using GvkFMSAPP.BLL.VAS_BLL;
 
 public partial class OffroadPhysicalBills : Page
 {
+    private readonly Helper _helper = new Helper();
+    private readonly VASGeneral _obj = new VASGeneral();
     private DataSet _dsBillNo = new DataSet();
     private DataSet _dsVehNo = new DataSet();
-    private readonly VASGeneral _obj = new VASGeneral();
-    private readonly Helper _helper = new Helper();
 
     public string UserId { get; private set; }
 
@@ -34,9 +34,9 @@ public partial class OffroadPhysicalBills : Page
     {
         try
         {
-            DataSet dsStates = new DataSet();
+            var dsStates = new DataSet();
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
-            DataTable dt = _helper.ExecuteSelectStmt(query);
+            var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
             _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
             ViewState["dsDistricts"] = dsStates;
@@ -136,7 +136,9 @@ public partial class OffroadPhysicalBills : Page
         _obj.VenName = HiddenField1.Value;
         _obj.BillDetailsID = ddlBillNo.SelectedValue;
         if (_obj.ReceiptDate < _obj.OffRoadDate)
+        {
             Show("Receipt date cannot be less than down time");
+        }
         else
         {
             var x = _obj.InsertOffroadPhysicalBills();
@@ -227,7 +229,9 @@ public partial class OffroadPhysicalBills : Page
         _obj.CityId = Convert.ToInt32(lblBreakdwn.Text);
         var datedown = DateTime.Parse(txtDownTime.Text);
         if (_obj.ReceiptDate < datedown)
+        {
             Show("Receipt date cannot be less than down time");
+        }
         else
         {
             var i = _obj.UpdateOffroadPhysicalBills();

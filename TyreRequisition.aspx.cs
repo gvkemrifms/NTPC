@@ -7,9 +7,9 @@ using GvkFMSAPP.PL;
 
 public partial class TyreRequisition : Page
 {
-    public IInventory ObjInventory = new FMSInventory();
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
+    public IInventory ObjInventory = new FMSInventory();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -240,7 +240,6 @@ public partial class TyreRequisition : Page
         grvRequisitionHistory.DataSource = ds.Tables[0];
         grvRequisitionHistory.DataBind();
     }
-
 
     protected void btnTyreReqHistory_Click(object sender, EventArgs e)
     {

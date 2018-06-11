@@ -1,18 +1,17 @@
 ﻿<%@ Page AutoEventWireup="true" CodeFile="BatteryDetails.aspx.cs" Inherits="BatteryDetails" Language="C#" MasterPageFile="~/temp.master" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolKit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%=txtBatteryExpiryDate.ClientID%>').datepicker({
+                    $('#<%= txtBatteryExpiryDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
                     });
                 };
+
                 function validationBatteryDetails() {
                     switch (document.getElementById("<%= txtBatteryItemCode.ClientID %>").value) {
                     case '':
@@ -74,7 +73,7 @@
                 <tr>
                     <td style="height: 200px">
                         <fieldset style="padding: 10px;">
-                            <legend align="center" style="color:brown">Battery Details</legend>
+                            <legend align="center" style="color: brown">Battery Details</legend>
                             <asp:Panel runat="server">
                                 <table id="table2" align="center">
                                     <tr>
@@ -171,59 +170,60 @@
                         <td>
                             <fieldset style="padding: 10px;">
                                 <asp:GridView ID="grvBatteryDetails" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" OnPageIndexChanging="grvBatteryDetails_PageIndexChanging" OnRowEditing="grvBatteryDetails_RowEditing" PageSize="5">
-                                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066" />
+                                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
                                     <Columns>
                                         <asp:TemplateField HeaderText="Id">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblbatId" runat="server" Text='<%#Eval("Battery_Id") %>' />
+                                                <asp:Label ID="lblbatId" runat="server" Text='<%#Eval("Battery_Id") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="BatteryItemCode">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatteryItemCode" runat="server" Text='<%#Eval("Battery_Item_Code") %>' />
+                                                <asp:Label ID="lblBatteryItemCode" runat="server" Text='<%#Eval("Battery_Item_Code") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Make">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatteryMake" runat="server" Text='<%#Eval("Make") %>' />
+                                                <asp:Label ID="lblBatteryMake" runat="server" Text='<%#Eval("Make") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Model">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatteryModel" runat="server" Text='<%#Eval("Model") %>' />
+                                                <asp:Label ID="lblBatteryModel" runat="server" Text='<%#Eval("Model") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Capacity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatteryCapacity" runat="server" Text='<%#Eval("CapaCity") %>' />
+                                                <asp:Label ID="lblBatteryCapacity" runat="server" Text='<%#Eval("CapaCity") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Creation Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Creation_Date", "{0:d}") %>' />
+                                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Creation_Date", "{0:d}") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ExpiryDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblExpiryDate" runat="server" Text='<%#Eval("BatteryExpiryDate", "{0:d}") %>' />
+                                                <asp:Label ID="lblExpiryDate" runat="server" Text='<%#Eval("BatteryExpiryDate", "{0:d}") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Edit">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandName="Edit" Text="Edit" />
+                                                <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandName="Edit" Text="Edit"/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
-                                    <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
-                                    <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
-                                    <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                    <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066"/>
+                                    <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left"/>
+                                    <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White"/>
+                                    <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White"/>
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                 </asp:GridView>
-                            </fieldset> </td>
+                            </fieldset>
+                        </td>
                     </tr>
                 </caption>
             </table>

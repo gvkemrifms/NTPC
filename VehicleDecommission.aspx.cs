@@ -29,9 +29,7 @@ public partial class VehicleDecommission : Page
     {
         try
         {
-            var query =
-                "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" +
-                UserId + "' order by d.district_name";
+            var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
             _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistrict);
         }
         catch (Exception ex)
@@ -124,8 +122,7 @@ public partial class VehicleDecommission : Page
                 txtVehicleNumber.Visible = true;
                 ddlDistrict.Visible = false;
                 txtDistrict.Visible = true;
-                var dv = new DataView(((DataSet) ViewState["DecommVehDet"]).Tables[0],
-                    "VehicleDecommId ='" + e.CommandArgument + "'", "VehicleDecommId", DataViewRowState.CurrentRows);
+                var dv = new DataView(((DataSet) ViewState["DecommVehDet"]).Tables[0], "VehicleDecommId ='" + e.CommandArgument + "'", "VehicleDecommId", DataViewRowState.CurrentRows);
                 ViewState["VehDecommId"] = e.CommandArgument;
                 txtDistrict.Text = dv[0]["District"].ToString();
                 txtVehicleNumber.Text = dv[0]["VehicleNumber"].ToString();

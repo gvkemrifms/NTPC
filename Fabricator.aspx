@@ -1,7 +1,6 @@
 ﻿<%@ Page AutoEventWireup="true" CodeFile="Fabricator.aspx.cs" Inherits="Fabricator" Language="C#" MasterPageFile="~/temp.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validationFabricator() {
         switch (document.getElementById("<%= txtFabricatorName.ClientID %>").value) {
         case '':
@@ -148,18 +147,18 @@
                                 <tr>
                                     <td class="rowseparator"></td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td class="rowseparator"></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 140px" align="left">
-                                        State<span style="color:red">*</span>
+                                        State<span style="color: red">*</span>
                                     </td>
                                     <td class="columnseparator"></td>
                                     <td style="height: 23px">
                                         <asp:DropDownList ID="ddlFabricatorDistrict" runat="server" Width="150px"
-                                                          AutoPostBack="True" >
+                                                          AutoPostBack="True">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -280,71 +279,72 @@
 <tr>
     <td class="rowseparator"></td>
 </tr>
-    <caption>
-        <br/>
-        <tr>
-            <td align="center">
-                <fieldset style="padding: 10px">
-                    <asp:GridView ID="grvFabricatorDetails" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" OnPageIndexChanging="grvFabricatorDetails_PageIndexChanging" OnRowEditing="grvFabricatorDetails_RowEditing" PageSize="5">
-                        <RowStyle CssClass="rowStyleGrid" ForeColor="#000066" />
-                        <Columns>
-                            <asp:TemplateField HeaderText="Id">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblId" runat="server" Text='<%#Eval("FleetFabricator_Id") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Fabricator_Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblFabricatorName" runat="server" Text='<%#Eval("FleetFabricator_Name") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="PAN No">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPanno" runat="server" Text='<%#Eval("FleetFabricator_PAN") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="TIN No">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblTinno" runat="server" Text='<%#Eval("FleetFabricator_TIN") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Contact Person">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblContactPerson" runat="server" Text='<%#Eval("FleetFabricator_ContactPerson") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Contact Number">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblContactNumber" runat="server" Text='<%#Eval("FleetFabricator_ContactNo") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Creation Date">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date", "{0:d}") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Edit">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandName="Edit" Text="Edit" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
-                        <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
-                        <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#00547E" />
-                    </asp:GridView>
-                    <asp:HiddenField ID="hidFabId" runat="server" />
-                </fieldset> </td>
-        </tr>
-        <tr>
-            <td class="rowseparator"></td>
-        </tr>
-    </caption>
+<caption>
+    <br/>
+    <tr>
+        <td align="center">
+            <fieldset style="padding: 10px">
+                <asp:GridView ID="grvFabricatorDetails" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" OnPageIndexChanging="grvFabricatorDetails_PageIndexChanging" OnRowEditing="grvFabricatorDetails_RowEditing" PageSize="5">
+                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
+                    <Columns>
+                        <asp:TemplateField HeaderText="Id">
+                            <ItemTemplate>
+                                <asp:Label ID="lblId" runat="server" Text='<%#Eval("FleetFabricator_Id") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Fabricator_Name">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFabricatorName" runat="server" Text='<%#Eval("FleetFabricator_Name") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PAN No">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPanno" runat="server" Text='<%#Eval("FleetFabricator_PAN") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TIN No">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTinno" runat="server" Text='<%#Eval("FleetFabricator_TIN") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contact Person">
+                            <ItemTemplate>
+                                <asp:Label ID="lblContactPerson" runat="server" Text='<%#Eval("FleetFabricator_ContactPerson") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contact Number">
+                            <ItemTemplate>
+                                <asp:Label ID="lblContactNumber" runat="server" Text='<%#Eval("FleetFabricator_ContactNo") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Creation Date">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date", "{0:d}") %>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Edit">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkbtnEdit" runat="server" CommandName="Edit" Text="Edit"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066"/>
+                    <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left"/>
+                    <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White"/>
+                    <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White"/>
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
+                </asp:GridView>
+                <asp:HiddenField ID="hidFabId" runat="server"/>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td class="rowseparator"></td>
+    </tr>
+</caption>
 </table>
 </ContentTemplate>
 </asp:UpdatePanel>

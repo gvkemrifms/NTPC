@@ -7,17 +7,19 @@ using GvkFMSAPP.PL;
 
 public partial class FleetManufacturers : Page
 {
-    private readonly Helper _helper = new Helper();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
+    private readonly Helper _helper = new Helper();
 
-    public string UserId { get;  set; }
+    public string UserId { get; set; }
+
     #region Page Load
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             grvManufacturerDetails.Columns[0].Visible = false;
@@ -77,24 +79,24 @@ public partial class FleetManufacturers : Page
     }
 
     #endregion
+
     #region Fill Districts Function
 
     private void FillDistricts()
     {
-        string query = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
-            try
-            {
-                _helper.FillDropDownHelperMethod(query, "DISTRICT_NAME", "DISTRICT_ID", ddlFleetManufacturerDistrict);
-            }
-            catch (Exception ex)
-            {
-                _helper.ErrorsEntry(ex);
-            }
+        var query = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
+        try
+        {
+            _helper.FillDropDownHelperMethod(query, "DISTRICT_NAME", "DISTRICT_ID", ddlFleetManufacturerDistrict);
+        }
+        catch (Exception ex)
+        {
+            _helper.ErrorsEntry(ex);
+        }
     }
 
     #endregion
 
-   
     #region Save and Update Button
 
     protected void btnManufacturerSave_Click(object sender, EventArgs e)

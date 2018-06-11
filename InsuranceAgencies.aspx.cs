@@ -7,6 +7,7 @@ using GvkFMSAPP.PL;
 public partial class InsuranceAgencies : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
@@ -33,10 +34,9 @@ public partial class InsuranceAgencies : Page
 
     public void FillGridInsuranceAgencyDetails()
     {
-       
-            var ds = _fleetMaster.FillInsuranceAgencies();
-            if (ds == null) return;
-            grvInsuranceAgencyDetails.DataSource = ds;
+        var ds = _fleetMaster.FillInsuranceAgencies();
+        if (ds == null) return;
+        grvInsuranceAgencyDetails.DataSource = ds;
         grvInsuranceAgencyDetails.DataBind();
     }
 

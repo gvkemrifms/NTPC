@@ -6,8 +6,8 @@ using GvkFMSAPP.PL;
 
 public partial class MaintenanceWorksServiceGroup : Page
 {
-    private readonly Helper _helper = new Helper();
     private readonly FleetMaster _fleetMaster = new FleetMaster();
+    private readonly Helper _helper = new Helper();
 
     #region Page Load
 

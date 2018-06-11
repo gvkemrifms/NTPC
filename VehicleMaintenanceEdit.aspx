@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 
     function validation() {
 
@@ -31,13 +31,7 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-        $('#<%= ddlDistrict.ClientID %>').select2({
-            disable_search_threshold: 5,
-            search_contains: true,
-            minimumResultsForSearch: 20,
-            placeholder: "Select an option"
-        });
-        $('#<%= ddlVehicleNumber.ClientID %>').select2({
+        $('#<%= ddlDistrict.ClientID %>,#<%= ddlVehicleNumber.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
             minimumResultsForSearch: 20,
@@ -138,7 +132,7 @@
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" ForeColor="#000066"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumber" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -208,10 +202,10 @@
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                 </asp:GridView>
 
                             </td>
@@ -256,10 +250,10 @@
                                               DataKeyNames="RowNumberLubri" CssClass="gridviewStyle" GridLines="None"
                                               OnRowDataBound="grdvwLubricantBillDetails_RowDataBound" ForeColor="Black">
                                     <RowStyle CssClass="rowStyleGrid" Width="100%"/>
-                                    <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                                    <AlternatingRowStyle BackColor="PaleGoldenrod"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumberLubri" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -331,10 +325,10 @@
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="DarkSlateBlue" ForeColor="GhostWhite"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="Tan" Font-Bold="True"/>
-                                    <SortedAscendingCellStyle BackColor="#FAFAE7" />
-                                    <SortedAscendingHeaderStyle BackColor="#DAC09E" />
-                                    <SortedDescendingCellStyle BackColor="#E1DB9C" />
-                                    <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+                                    <SortedAscendingCellStyle BackColor="#FAFAE7"/>
+                                    <SortedAscendingHeaderStyle BackColor="#DAC09E"/>
+                                    <SortedDescendingCellStyle BackColor="#E1DB9C"/>
+                                    <SortedDescendingHeaderStyle BackColor="#C2A47B"/>
                                 </asp:GridView>
 
                             </td>
@@ -378,10 +372,10 @@
                                               DataKeyNames="RowNumberLabour" CssClass="gridviewStyle" GridLines="None"
                                               OnRowDataBound="grdvwLabourBillDetails_RowDataBound" ForeColor="#333333">
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" BackColor="#F7F6F3" ForeColor="#333333"/>
-                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumberLabour" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -458,15 +452,15 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <EditRowStyle BackColor="#999999" />
+                                    <EditRowStyle BackColor="#999999"/>
                                     <FooterStyle CssClass="footerStylegrid" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"/>
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="#284775" ForeColor="White" HorizontalAlign="Center"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                    <SortedAscendingCellStyle BackColor="#E9E7E2"/>
+                                    <SortedAscendingHeaderStyle BackColor="#506C8C"/>
+                                    <SortedDescendingCellStyle BackColor="#FFFDF8"/>
+                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE"/>
                                 </asp:GridView>
 
                             </td>
@@ -528,27 +522,27 @@
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" BackColor="#DEDFDE" ForeColor="Black"/>
                                     <Columns>
                                         <asp:BoundField DataField="TypeBillDetails" HeaderText="Type" HeaderStyle-Width="150px">
-                                        <HeaderStyle Width="150px" />
+                                            <HeaderStyle Width="150px"/>
                                         </asp:BoundField>
                                         <asp:BoundField DataField="TotalBillNumbers" HeaderText="Total Bills" HeaderStyle-Width="100px"
                                                         HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px"/>
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:BoundField DataField="TotalBillAmount" HeaderText="Total Bill Amount" HeaderStyle-Width="100px"
                                                         HeaderStyle-Wrap="false" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="100px" Wrap="False" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px" Wrap="False"/>
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                     </Columns>
                                     <FooterStyle CssClass="footerStylegrid" BackColor="#C6C3C6" ForeColor="Black"/>
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#9471DE" Font-Bold="True" ForeColor="White"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF"/>
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#33276A" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                    <SortedAscendingHeaderStyle BackColor="#594B9C"/>
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                    <SortedDescendingHeaderStyle BackColor="#33276A"/>
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -712,10 +706,10 @@
                 <PagerStyle CssClass="pagerStylegrid" BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left"/>
                 <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#000099" Font-Bold="True" ForeColor="White"/>
                 <HeaderStyle CssClass="headerStyle" BackColor="Black" Font-Bold="True" ForeColor="White"/>
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#808080" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#383838" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#808080"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#383838"/>
             </asp:GridView>
 
         </td>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Web.UI;
 using GvkFMSAPP.PL;
@@ -19,7 +18,7 @@ public partial class BaseVehicleDetails : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             var dsPerms = (DataSet) Session["PermissionsDS"];
@@ -69,9 +68,9 @@ public partial class BaseVehicleDetails : Page
                         if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "ModelCapacity", "Battery_Id", ddlModelCapacity);
                         break;
                     case "getDistrict":
-                        DataSet dsUser = new DataSet();
-                        var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId = '" + UserId + "'";
-                        DataTable dt=_helper.ExecuteSelectStmt(sqlQuery);
+                        var dsUser = new DataSet();
+                        var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId = '" + UserId + "'";
+                        var dt = _helper.ExecuteSelectStmt(sqlQuery);
                         dsUser.Tables.Add(dt);
                         _helper.FillDropDownHelperMethodWithDataSet(dsUser, "district_name", "district_id", ddlDistrict, null, ddlTRDistrict);
                         break;
@@ -212,8 +211,8 @@ public partial class BaseVehicleDetails : Page
 
                         break;
                     default:
-                       DateTime endTime= DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                        
+                        var endTime = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
                         txtValEDate.Text = endTime.AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1, 0, 0)).ToShortDateString();
                         txtVehicleCost.Text = txtVehCost.Text;
                         ViewState["ValidityPeriod"] = Convert.ToString(ddlPolicyValidityPeriod.SelectedItem.Value);
@@ -228,12 +227,14 @@ public partial class BaseVehicleDetails : Page
     {
         ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
     }
+
     protected void txtValiSDate_TextChanged(object sender, EventArgs e)
     {
         ddlPolicyValidityPeriod.SelectedIndex = 0;
         txtValEDate.Text = "";
         txtVehicleCost.Text = txtVehCost.Text;
     }
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
         if (_basevehdet != null)
@@ -241,7 +242,7 @@ public partial class BaseVehicleDetails : Page
             {
                 _basevehdet.InvoiceNo = txtInvoiceNo.Text;
                 _basevehdet.VehicleID = int.Parse(ddlEngineNo.SelectedItem.Value);
-                _basevehdet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+                _basevehdet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.BasicPrice = float.Parse(txtBasicPrice.Text);
                 _basevehdet.HandlingCharges = float.Parse(txtHandlingCharges.Text);
                 _basevehdet.ExciseDuty = float.Parse(txtExciseDuty.Text);
@@ -268,7 +269,7 @@ public partial class BaseVehicleDetails : Page
                 _basevehdet.CurrentPolicyEndDate = DateTime.Now;
                 _basevehdet.InsuranceReceiptNo = txtInsuranceReceiptNo.Text;
                 _basevehdet.InsuranceFeesPaid = float.Parse(txtInsFee.Text);
-                _basevehdet.InsuranceFeesPaidDate = DateTime.ParseExact(txtInsuranceFeesPaidDate.Text,"MM/dd/yyyy", CultureInfo.InvariantCulture);
+                _basevehdet.InsuranceFeesPaidDate = DateTime.ParseExact(txtInsuranceFeesPaidDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.PolicyStartDate = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.PolicyValidityPeriod = ddlPolicyValidityPeriod.SelectedItem.Value;
                 _basevehdet.PolicyEndDate = Convert.ToDateTime(txtValEDate.Text);
@@ -281,12 +282,12 @@ public partial class BaseVehicleDetails : Page
                 _basevehdet.TyreModelSize = int.Parse(ddlModelSize.SelectedItem.Value);
                 _basevehdet.OdometerReading = long.Parse(txtOdometerReading.Text);
                 _basevehdet.TRNo = txtTRNo.Text;
-                _basevehdet.TRDate = DateTime.ParseExact(txtTRDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+                _basevehdet.TRDate = DateTime.ParseExact(txtTRDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.TRDistrict = ddlTRDistrict.SelectedItem.Text;
                 _basevehdet.VehicleRTACircle = txtVeRTACircle.Text;
                 _basevehdet.RoadTaxFee = float.Parse(txtRoadTaxFee.Text);
                 _basevehdet.SeatingCapacity = int.Parse(txtSittingCapacity.Text);
-                _basevehdet.InspectionDate = DateTime.ParseExact(txtInspectionDate.Text,"MM/dd/yyyy", CultureInfo.InvariantCulture);
+                _basevehdet.InspectionDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.Inspected = null;
                 _basevehdet.InspectedBy = txtInspectedBy.Text;
                 _basevehdet.Battery1 = txtBattery1.Text;
@@ -311,7 +312,7 @@ public partial class BaseVehicleDetails : Page
                     {
                         Show("T/R Number is already present");
                         var validityPeriod = ViewState["ValidityPeriod"].ToString();
-                        txtValEDate.Text = DateTime.ParseExact(txtValiSDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(validityPeriod)).Subtract(new TimeSpan(1, 0, 0)).ToShortDateString();
+                        txtValEDate.Text = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(validityPeriod)).Subtract(new TimeSpan(1, 0, 0)).ToShortDateString();
                         txtVehicleCost.Text = txtVehCost.Text;
                     }
 

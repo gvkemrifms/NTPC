@@ -71,10 +71,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </div>
             <div style="display: block; padding: 5px; width: 300px;" id="dvReason">

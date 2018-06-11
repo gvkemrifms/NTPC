@@ -3,97 +3,97 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        function validation() {
-            var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
-            var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
-            var odometer = document.getElementById('<%= txtOdometer.ClientID %>');
-            var pdiBy = document.getElementById('<%= txtPDIBy.ClientID %>');
-            var pdiDate = document.getElementById('<%= txtPDIDate.ClientID %>');
-            var vehicleFabInspDate = document.getElementById('<%= vehicleFabInspDate.ClientID %>');
-            var now = new Date();
-            var id = document.getElementById('<%= ddlTRNo.ClientID %>');
-            var inputs = id.getElementsByTagName('input');
-            var i;
-            for (i = 0; i < inputs.length; i++) {
-                switch (inputs[i].type) {
-                case 'text':
-                    if (inputs[i].value !== "" && inputs[i].value != null && inputs[i].value === "--Select--") {
-                        alert('Select the Vehicle');
-                        return false;
-                    }
-                    break;
+    function validation() {
+        var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
+        var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
+        var odometer = document.getElementById('<%= txtOdometer.ClientID %>');
+        var pdiBy = document.getElementById('<%= txtPDIBy.ClientID %>');
+        var pdiDate = document.getElementById('<%= txtPDIDate.ClientID %>');
+        var vehicleFabInspDate = document.getElementById('<%= vehicleFabInspDate.ClientID %>');
+        var now = new Date();
+        var id = document.getElementById('<%= ddlTRNo.ClientID %>');
+        var inputs = id.getElementsByTagName('input');
+        var i;
+        for (i = 0; i < inputs.length; i++) {
+            switch (inputs[i].type) {
+            case 'text':
+                if (inputs[i].value !== "" && inputs[i].value != null && inputs[i].value === "--Select--") {
+                    alert('Select the Vehicle');
+                    return false;
                 }
+                break;
             }
-
-            switch (vehicleReceived.selectedIndex) {
-            case 0:
-                alert("Please select Vehicle Received From");
-                window.VehicleReceivedFrom.focus();
-                return false;
-            }
-            if (!RequiredValidation(receivedDate, "Received Date Cannot be Blank"))
-                return false;
-
-            if (!isValidDate(receivedDate.value)) {
-                alert("Enter Valid Date");
-                receivedDate.focus();
-                return false;
-            }
-
-            if (Date.parse(receivedDate.value) > Date.parse(now)) {
-                alert("Received Date should not be greater than Current Date");
-                receivedDate.focus();
-                return false;
-            }
-
-            if (Date.parse(receivedDate.value) < Date.parse(vehicleFabInspDate.value)) {
-                alert("Received Date should be greater than Fabrication Inspection Date.(Fabrication Inspection Date-" +
-                    vehicleFabInspDate.value +
-                    ")");
-                receivedDate.focus();
-                return false;
-            }
-
-            if (!RequiredValidation(odometer, "Odometer Cannot be Blank"))
-                return false;
-
-            if (!RequiredValidation(pdiBy, "PDIBy Cannot be Blank"))
-                return false;
-
-            if (!RequiredValidation(pdiDate, "PDIDate Cannot be Blank"))
-                return false;
-
-            if (!isValidDate(pdiDate.value)) {
-                alert("Enter Valid Date");
-                pdiDate.focus();
-                return false;
-            }
-
-            if (Date.parse(pdiDate.value) > Date.parse(now)) {
-                alert("PDI Date should not be greater than Current Date");
-                pdiDate.focus();
-                return false;
-            }
-
-            if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
-                alert("PDI Date should be greater than Received Date");
-                receivedDate.focus();
-                return false;
-            }
-            return true;
         }
-    </script>
+
+        switch (vehicleReceived.selectedIndex) {
+        case 0:
+            alert("Please select Vehicle Received From");
+            window.VehicleReceivedFrom.focus();
+            return false;
+        }
+        if (!RequiredValidation(receivedDate, "Received Date Cannot be Blank"))
+            return false;
+
+        if (!isValidDate(receivedDate.value)) {
+            alert("Enter Valid Date");
+            receivedDate.focus();
+            return false;
+        }
+
+        if (Date.parse(receivedDate.value) > Date.parse(now)) {
+            alert("Received Date should not be greater than Current Date");
+            receivedDate.focus();
+            return false;
+        }
+
+        if (Date.parse(receivedDate.value) < Date.parse(vehicleFabInspDate.value)) {
+            alert("Received Date should be greater than Fabrication Inspection Date.(Fabrication Inspection Date-" +
+                vehicleFabInspDate.value +
+                ")");
+            receivedDate.focus();
+            return false;
+        }
+
+        if (!RequiredValidation(odometer, "Odometer Cannot be Blank"))
+            return false;
+
+        if (!RequiredValidation(pdiBy, "PDIBy Cannot be Blank"))
+            return false;
+
+        if (!RequiredValidation(pdiDate, "PDIDate Cannot be Blank"))
+            return false;
+
+        if (!isValidDate(pdiDate.value)) {
+            alert("Enter Valid Date");
+            pdiDate.focus();
+            return false;
+        }
+
+        if (Date.parse(pdiDate.value) > Date.parse(now)) {
+            alert("PDI Date should not be greater than Current Date");
+            pdiDate.focus();
+            return false;
+        }
+
+        if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
+            alert("PDI Date should be greater than Received Date");
+            receivedDate.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-        $('#<%=txtReceivedDate.ClientID%>,#<%=txtPDIDate.ClientID%>').datepicker({
+        $('#<%= txtReceivedDate.ClientID %>,#<%= txtPDIDate.ClientID %>').datepicker({
             dateFormat: 'mm/dd/yy',
             changeMonth: true,
-            changeYear:true
+            changeYear: true
         });
     }
 </script>
@@ -298,10 +298,10 @@
                         <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                         <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                         <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                        <SortedDescendingHeaderStyle BackColor="#00547E"/>
                     </asp:GridView>
                 </td>
             </tr>

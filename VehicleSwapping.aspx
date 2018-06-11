@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleSwapping.aspx.cs" Inherits="VehicleSwapping" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
 
         function validation() {
             var district = document.getElementById('<%= ddlDistrict.ClientID %>');
@@ -44,25 +44,13 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%= ddlDistrict.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-                    $('#<%= ddlSrcVehicle.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-                    $('#<%= ddlDestVehicle.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-
+                    $('#<%= ddlDistrict.ClientID %>,#<%= ddlSrcVehicle.ClientID %>,#<%= ddlDestVehicle.ClientID %>')
+                        .select2({
+                            disable_search_threshold: 5,
+                            search_contains: true,
+                            minimumResultsForSearch: 20,
+                            placeholder: "Select an option"
+                        });
                 }
             </script>
             <fieldset style="padding: 10px">

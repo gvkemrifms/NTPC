@@ -121,7 +121,7 @@ public partial class VehicleAccidentInvestigationDetails : Page
         try
         {
             _vehicleAccidentDetail.VehicleNumber = ddlistVehicleNumber.SelectedIndex != 0 ? Convert.ToString(ddlistVehicleNumber.SelectedItem.Text) : txtVehNum.Text;
-            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtAccidentDateTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtAccidentDateTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.AccidentDescription = TxtAccidentTitle.Text;
             _vehicleAccidentDetail.SpotSurveyor = TxtSpotSurveyor.Text;
             _vehicleAccidentDetail.SpotSurDate = TxtSpotSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtSpotSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);

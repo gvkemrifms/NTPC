@@ -1,5 +1,4 @@
 ﻿<%@ Page AutoEventWireup="true" CodeFile="BatteryIssue.aspx.cs" Inherits="BatteryIssue" Language="C#" MasterPageFile="~/temp.master" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
@@ -10,7 +9,6 @@
             var remarks = document.getElementById('<%= txtRemarks.ClientID %>');
             if (!RequiredValidation(dcNumberPopup, "DC Number cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(dcDate, "DC Date cannot be Blank"))
                 return false;
             if (trim(dcDate.value) !== "") {
@@ -38,8 +36,6 @@
                 return false;
             return true;
         }
-
-
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -82,10 +78,10 @@
                             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                         </asp:GridView>
                     </div>
                     <asp:Button ID="btnShowPopup" runat="server" Style="display: none"/>
@@ -164,10 +160,10 @@
                                         <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                         <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                         <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                        <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                     </asp:GridView>
                                     <div id="Div7" align="center" style="background-color: white; width: 95%;">
                                         Remarks

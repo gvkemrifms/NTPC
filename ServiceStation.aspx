@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <legend align="center" style="color:brown">Service Station</legend>
+            <legend align="center" style="color: brown">Service Station</legend>
             <table align="center">
                 <tr>
                     <td>
@@ -87,10 +87,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </div>
         </td>
@@ -108,7 +108,7 @@
                     return false;
                 }
 
-                if (document.getElementById("<%= txtServiceSrationName.ClientID %>").value == 0) {
+                if (document.getElementById("<%= txtServiceSrationName.ClientID %>").value === 0) {
                     alert("Service Station Cannot be Blank");
                     document.getElementById("<%= txtServiceSrationName.ClientID %>").focus();
                     return false;

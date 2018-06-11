@@ -5,16 +5,15 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
-                function pageLoad()
-                {
-                    $('#<%=txtTripDate.ClientID%>').datepicker({
+                function pageLoad() {
+                    $('#<%= txtTripDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
                     });
                 }
             </script>
-            
+
             <div class="center">
                 <fieldset style="padding: 10px">
                     <legend align="center" style="color: brown">Trip Details Entry</legend>
@@ -199,12 +198,13 @@
             </div>
             <script type="text/javascript" language="javascript">
                 $(function() {
-                    $('#<%=txtTripDate.ClientID%>').datepicker({
+                    $('#<%= txtTripDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
                     });
                 });
+
                 function validationFuelEntry() {
 
 

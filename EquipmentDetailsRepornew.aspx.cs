@@ -10,12 +10,11 @@ public partial class EquipmentDetailsRepornew : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
         {
             if (Session["User_Id"] == null)
                 Response.Redirect("Login.aspx");
             else
-                UserId = (string)Session["User_Id"];
+                UserId = (string) Session["User_Id"];
             BindDistrictdropdown();
             Withoutdist();
         }
@@ -25,7 +24,7 @@ public partial class EquipmentDetailsRepornew : Page
     {
         try
         {
-            var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)

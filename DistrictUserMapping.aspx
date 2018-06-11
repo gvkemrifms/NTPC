@@ -27,7 +27,7 @@
                 }
             </script>
             <fieldset style="padding: 10px">
-                <legend align="center" style="color:brown">State User Mapping</legend>
+                <legend align="center" style="color: brown">State User Mapping</legend>
                 <table style="width: 100%">
                     <tr>
                         <td align="top" align="center">

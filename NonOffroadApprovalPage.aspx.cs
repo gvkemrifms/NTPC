@@ -3,8 +3,6 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
-using Label = System.Web.UI.WebControls.Label;
-using Page = System.Web.UI.Page;
 
 public partial class NonOffroadApprovalPage : Page
 {

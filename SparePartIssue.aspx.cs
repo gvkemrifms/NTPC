@@ -10,7 +10,7 @@ public partial class SparePartIssue : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
-    public int fleetInventoryCategoryId = Convert.ToInt32(ConfigurationManager.AppSettings["fICategoryId"]);
+    public int FleetInventoryCategoryId = Convert.ToInt32(ConfigurationManager.AppSettings["fICategoryId"]);
     public IInventory ObjInventory = new FMSInventory();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -72,7 +72,7 @@ public partial class SparePartIssue : Page
 
     private void FillGridApprovedRequisitions(int vehicleId)
     {
-        var ds = ObjInventory.GetApprovedInventoryRequisitions(fleetInventoryCategoryId, vehicleId);
+        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId, vehicleId);
         gvApprovedRequisition.DataSource = ds;
         gvApprovedRequisition.DataBind();
     }
@@ -80,7 +80,7 @@ public partial class SparePartIssue : Page
     protected void gvApprovedRequisition_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvApprovedRequisition.PageIndex = e.NewPageIndex;
-        var ds = ObjInventory.GetApprovedInventoryRequisitions(fleetInventoryCategoryId, Convert.ToInt32(ddlVehicles.SelectedValue));
+        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId, Convert.ToInt32(ddlVehicles.SelectedValue));
         gvApprovedRequisition.DataSource = ds;
         gvApprovedRequisition.DataBind();
     }

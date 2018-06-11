@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="BatteryReceipt.aspx.cs" Inherits="BatteryReceipt" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <script language="javascript" type="text/javascript">
     function validation() {
@@ -113,10 +111,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </td>
         </tr>

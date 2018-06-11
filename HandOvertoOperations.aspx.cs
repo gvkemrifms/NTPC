@@ -43,7 +43,7 @@ public partial class HandOvertoOperations : Page
     {
         _handovertooperation.VehicleID = int.Parse(ddlVehicleNo.SelectedItem.Value);
         _handovertooperation.HandoverTo = txtHandOverto.Text;
-        _handovertooperation.HandoverDate = DateTime.ParseExact(txtHandoverDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _handovertooperation.HandoverDate = DateTime.ParseExact(txtHandoverDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _handovertooperation.HandoverBy = txtHandOverBy.Text;
         _handovertooperation.QualityInspectionNo = txtQualityInspectionNo.Text;
         _handovertooperation.HTOInspectionDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);

@@ -9,11 +9,11 @@ using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
 using GvkFMSAPP.DLL;
 using MySql.Data.MySqlClient;
-
+using BaseVehicleDetails = GvkFMSAPP.BLL.BaseVehicleDetails;
 
 public partial class VehicleAllocation : Page
 {
-    private readonly GvkFMSAPP.BLL.BaseVehicleDetails _fmsobj = new GvkFMSAPP.BLL.BaseVehicleDetails();
+    private readonly BaseVehicleDetails _fmsobj = new BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vehallobj = new VASGeneral();
 
@@ -36,7 +36,7 @@ public partial class VehicleAllocation : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             btnSubmit.Attributes.Add("onclick", "return validation()");
@@ -53,7 +53,7 @@ public partial class VehicleAllocation : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id",ddlDistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -124,9 +124,9 @@ public partial class VehicleAllocation : Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         btnSubmit.Enabled = false;
-        DateTime upHour=DateTime.ParseExact(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
-        DateTime downHr = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-        if (Convert.ToDecimal(ViewState["OdoReading"].ToString()) <= Convert.ToDecimal(txtOdo.Text) && (downHr < upHour))
+        var upHour = DateTime.ParseExact(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+        var downHr = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        if (Convert.ToDecimal(ViewState["OdoReading"].ToString()) <= Convert.ToDecimal(txtOdo.Text) && downHr < upHour)
         {
             _vehallobj.District = ddlDistrict.SelectedItem.Text;
             _vehallobj.OffRoadVehicleNo = ddlVehicleNumber.SelectedItem.Text;
@@ -134,7 +134,7 @@ public partial class VehicleAllocation : Page
             _vehallobj.OffRoadDate = Convert.ToDateTime(txtDownTime.Text);
             _vehallobj.Odometer = txtOdo.Text;
             _vehallobj.RequestedBy = txtReqBy.Text;
-            
+
             _vehallobj.UpTime = Convert.ToDateTime(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue);
             _vehallobj.BaseLocation = "0";
             _vehallobj.NewSegFlag = "";

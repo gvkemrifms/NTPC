@@ -1,13 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/temp.master" CodeFile="VehicleMaintenanceDetailsNew.aspx.cs" Inherits="VehicleMaintenanceDetailsNew" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<script language="javascript" type="text/javascript">
-    
-
+<script type="text/javascript">
     function validation() {
-
         var vehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
         var district = document.getElementById('<%= ddlDistrict.ClientID %>');
         var maintenanceDate = document.getElementById('<%= txtMaintenanceDate.ClientID %>');
@@ -105,11 +100,11 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-            $('#<%=txtUptime.ClientID%>,#<%=txtMaintenanceDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true
-            });
+        $('#<%= txtUptime.ClientID %>,#<%= txtMaintenanceDate.ClientID %>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -126,30 +121,30 @@
 </script>
 
 <table align="center">
-<tr>
-<td>
-<fieldset style="padding: 10px">
-<legend align="center" style="color: brown">
-    Vehicle Maintenance Details<br/>
-</legend>
-<table align="center">
-    <tr>
-        <td style="width: 150px" class="rowseparator"></td>
-    </tr>
     <tr>
         <td>
-            State<span style="color: red">*</span>
-        </td>
-        <td></td>
-        
-        <td>
-            <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
-            </asp:DropDownList>
-        </td>
-        <td></td>
-        <td >
+            <fieldset style="padding: 10px">
+            <legend align="center" style="color: brown">
+                Vehicle Maintenance Details<br/>
+            </legend>
+            <table align="center">
+            <tr>
+                <td style="width: 150px" class="rowseparator"></td>
+            </tr>
+            <tr>
+            <td>
+                State<span style="color: red">*</span>
+            </td>
+            <td></td>
+
+            <td>
+                <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+                </asp:DropDownList>
+            </td>
+            <td></td>
+            <td >
             <td> Vehicle No<span style="color: red">*</span></td>
-           
+
         </td>
         <td></td>
         <td>
@@ -172,13 +167,13 @@
         </td>
         <td></td>
         <td>
-           <td> Maintenance Date</td>
-        </td>
-        <td></td>
-        <td nowrap="nowrap">
-          <asp:TextBox ID="txtMaintenanceDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
-        </td>
-        <td></td>
+        <td> Maintenance Date</td>
+    </td>
+    <td></td>
+    <td nowrap="nowrap">
+        <asp:TextBox ID="txtMaintenanceDate" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
+    </td>
+    <td></td>
     </tr>
     <tr>
         <td class="rowseparator"></td>
@@ -193,12 +188,12 @@
         </td>
         <td></td>
         <td>
-            <td>Down Time</td>
-        </td>
-        <td></td>
-        <td>
-            <asp:TextBox ID="txtDownTime" CssClass="search_3" runat="server" Width="135px" onkeypress="return false;"></asp:TextBox>
-        </td>
+        <td>Down Time</td>
+    </td>
+    <td></td>
+    <td>
+        <asp:TextBox ID="txtDownTime" CssClass="search_3" runat="server" Width="135px" onkeypress="return false;"></asp:TextBox>
+    </td>
     </tr>
     <tr>
         <td class="rowseparator"></td>
@@ -215,21 +210,21 @@
         </td>
         <td></td>
         <td>
-            <td>Up Time</td>
-        </td>
-        <td></td>
-        <td nowrap="nowrap">
-            <asp:TextBox ID="txtUptime" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
-        </td>
-        <td></td>
-        <td nowrap="nowrap">
-            <asp:DropDownList ID="ddlUpHour" CssClass="search_3" runat="server" Width="55px">
-                <asp:ListItem Value="-1">--hh--</asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="ddlUpMin" CssClass="search_3" runat="server" Width="80px">
-                <asp:ListItem Value="-1">--mm--</asp:ListItem>
-            </asp:DropDownList>
-        </td>
+        <td>Up Time</td>
+    </td>
+    <td></td>
+    <td nowrap="nowrap">
+        <asp:TextBox ID="txtUptime" CssClass="search_3" runat="server" Width="120px" onkeypress="return false;"></asp:TextBox>
+    </td>
+    <td></td>
+    <td nowrap="nowrap">
+        <asp:DropDownList ID="ddlUpHour" CssClass="search_3" runat="server" Width="55px">
+            <asp:ListItem Value="-1">--hh--</asp:ListItem>
+        </asp:DropDownList>
+        <asp:DropDownList ID="ddlUpMin" CssClass="search_3" runat="server" Width="80px">
+            <asp:ListItem Value="-1">--mm--</asp:ListItem>
+        </asp:DropDownList>
+    </td>
     </tr>
     <tr>
         <td class="rowseparator"></td>
@@ -241,10 +236,10 @@
         <td class="columnseparator"></td>
         <td>
             <asp:Label runat="server" ID="lblBreakdownID"/>
-        </td> 
+        </td>
         <td></td>
         <td>
-            Approved Cost <asp:Label runat="server" ID="lblApprovedCost" style="color:green"/>   
+            Approved Cost <asp:Label runat="server" ID="lblApprovedCost" style="color: green"/>
         </td>
     </tr>
 </table>
@@ -293,7 +288,7 @@
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" ForeColor="#000066"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumber" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -362,10 +357,10 @@
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -407,10 +402,10 @@
                                               BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2"
                                               DataKeyNames="RowNumberLubri" CssClass="gridviewStyle" GridLines="None" OnRowDataBound="grdvwLubricantBillDetails_RowDataBound" ForeColor="Black">
                                     <RowStyle CssClass="rowStyleGrid" Width="100%"/>
-                                    <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                                    <AlternatingRowStyle BackColor="PaleGoldenrod"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumberLubri" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -480,10 +475,10 @@
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="DarkSlateBlue" ForeColor="GhostWhite"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="Tan" Font-Bold="True"/>
-                                    <SortedAscendingCellStyle BackColor="#FAFAE7" />
-                                    <SortedAscendingHeaderStyle BackColor="#DAC09E" />
-                                    <SortedDescendingCellStyle BackColor="#E1DB9C" />
-                                    <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+                                    <SortedAscendingCellStyle BackColor="#FAFAE7"/>
+                                    <SortedAscendingHeaderStyle BackColor="#DAC09E"/>
+                                    <SortedDescendingCellStyle BackColor="#E1DB9C"/>
+                                    <SortedDescendingHeaderStyle BackColor="#C2A47B"/>
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -524,10 +519,10 @@
                                 <asp:GridView ID="grdvwLabourBillDetails" runat="server" AutoGenerateColumns="False" CellPadding="4"
                                               DataKeyNames="RowNumberLabour" CssClass="gridviewStyle" GridLines="None" OnRowDataBound="grdvwLabourBillDetails_RowDataBound" ForeColor="#333333">
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" BackColor="#F7F6F3" ForeColor="#333333"/>
-                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775"/>
                                     <Columns>
                                         <asp:BoundField DataField="RowNumberLabour" HeaderText="S.No" ItemStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:TemplateField Visible="false">
                                             <ItemTemplate>
@@ -603,15 +598,15 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <EditRowStyle BackColor="#999999" />
+                                    <EditRowStyle BackColor="#999999"/>
                                     <FooterStyle CssClass="footerStylegrid" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"/>
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="#284775" ForeColor="White" HorizontalAlign="Center"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                    <SortedAscendingCellStyle BackColor="#E9E7E2"/>
+                                    <SortedAscendingHeaderStyle BackColor="#506C8C"/>
+                                    <SortedDescendingCellStyle BackColor="#FFFDF8"/>
+                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE"/>
                                 </asp:GridView>
 
                             </td>
@@ -669,31 +664,31 @@
                                 <asp:GridView ID="grdvwBillDetailsSummary" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="TypeBillDetails" CssClass="gridviewStyle" GridLines="None"
                                               Width="100%" ForeColor="#333333">
                                     <RowStyle CssClass="rowStyleGrid" Width="100%" BackColor="#E3EAEB"/>
-                                    <AlternatingRowStyle BackColor="White" />
+                                    <AlternatingRowStyle BackColor="White"/>
                                     <Columns>
                                         <asp:BoundField DataField="TypeBillDetails" HeaderText="Type" HeaderStyle-Width="150px">
-                                        <HeaderStyle Width="150px" />
+                                            <HeaderStyle Width="150px"/>
                                         </asp:BoundField>
                                         <asp:BoundField DataField="TotalBillNumbers" HeaderText="Total Bills" HeaderStyle-Width="100px"
                                                         HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px"/>
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                         <asp:BoundField DataField="TotalBillAmount" HeaderText="Total Bill Amount" HeaderStyle-Width="100px"
                                                         HeaderStyle-Wrap="false" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="100px" Wrap="False" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px" Wrap="False"/>
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:BoundField>
                                     </Columns>
-                                    <EditRowStyle BackColor="#7C6F57" />
+                                    <EditRowStyle BackColor="#7C6F57"/>
                                     <FooterStyle CssClass="footerStylegrid" BackColor="#1C5E55" Font-Bold="True" ForeColor="White"/>
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="#666666" ForeColor="White" HorizontalAlign="Center"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#1C5E55" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                    <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                    <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                    <SortedAscendingCellStyle BackColor="#F8FAFA"/>
+                                    <SortedAscendingHeaderStyle BackColor="#246B61"/>
+                                    <SortedDescendingCellStyle BackColor="#D4DFE1"/>
+                                    <SortedDescendingHeaderStyle BackColor="#15524A"/>
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -836,10 +831,10 @@
     <PagerStyle CssClass="pagerStylegrid" BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right"/>
     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#9471DE" Font-Bold="True" ForeColor="White"/>
     <HeaderStyle CssClass="headerStyle" BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF"/>
-    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-    <SortedAscendingHeaderStyle BackColor="#594B9C" />
-    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-    <SortedDescendingHeaderStyle BackColor="#33276A" />
+    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+    <SortedAscendingHeaderStyle BackColor="#594B9C"/>
+    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+    <SortedDescendingHeaderStyle BackColor="#33276A"/>
 </asp:GridView>
 <br/>
 <table align="center">

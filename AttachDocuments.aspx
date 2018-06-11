@@ -20,7 +20,6 @@
                     $('#<%= ddlistVehicleNumber.ClientID %>').empty();
                     $('#<%= ddlistAttachmentPurpose.ClientID %>').empty();
                     $('#<%= txtRemarks.ClientID %>').val('');
-                    $('#<%= ddlistVehicleNumber.ClientID %>').chosen();
                 }
 
                 function Validations() {
@@ -171,10 +170,10 @@
                             <PagerStyle ForeColor="#000066" HorizontalAlign="Left" BackColor="White"/>
                             <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                             <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                         </asp:GridView>
                     </td>
                 </tr>

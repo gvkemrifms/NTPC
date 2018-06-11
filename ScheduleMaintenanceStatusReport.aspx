@@ -5,13 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script>
         function pageLoad() {
-            $('#<%= ddldistrict.ClientID %>').select2({
-                disable_search_threshold: 5,
-                search_contains: true,
-                minimumResultsForSearch: 20,
-                placeholder: "Select an option"
-            });
-            $('#<%= ddlvehicle.ClientID %>').select2({
+            $('#<%= ddldistrict.ClientID %>,#<%= ddlvehicle.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
                 minimumResultsForSearch: 20,
@@ -20,12 +14,11 @@
         }
 
         function Validations() {
-            $('#<%= ddldistrict.ClientID %>').chosen();
+            $('#<%= ddldistrict.ClientID %>,#<%= ddlvehicle.ClientID %>').chosen();
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select State");
             }
-            $('#<%= ddlvehicle.ClientID %>').chosen();
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
             if (ddlVehicle === '--select--') {
                 return alert("Please select Vehicle");
@@ -55,7 +48,7 @@
         </tr>
         <tr>
             <td>
-               Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
+                Vehicle<asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -66,7 +59,7 @@
 
         <tr>
             <td>
-                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if(!Validations()) return false;"></asp:Button>
+                <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
 
             <td>

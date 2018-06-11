@@ -96,7 +96,7 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-       
+
         $('#<%= ddlFleetManufacturerDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -157,18 +157,18 @@
                                 </tr>
                                 <tr>
                                     <td class="rowseparator"></td>
-                                </tr>                           
+                                </tr>
                                 <tr>
                                     <td class="rowseparator"></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 150px" align="left">
-                                       State<span style="color:red">*</span>
+                                        State<span style="color: red">*</span>
 
                                     </td>
                                     <td class="columnseparator"></td>
                                     <td style="height: 23px">
-                                        <asp:DropDownList ID="ddlFleetManufacturerDistrict" runat="server" Width="150px" 
+                                        <asp:DropDownList ID="ddlFleetManufacturerDistrict" runat="server" Width="150px"
                                                           AutoPostBack="True">
                                         </asp:DropDownList>
                                     </td>
@@ -328,10 +328,10 @@
                 <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                 <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                 <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#00547E"/>
             </asp:GridView>
             <br/>
             <asp:HiddenField ID="hidManId" runat="server"/>

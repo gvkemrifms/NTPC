@@ -2,12 +2,12 @@
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
 
 public partial class VehicleTypes : Page
 {
-    private readonly FleetMaster _fleetMaster=new FleetMaster();
+    private readonly FleetMaster _fleetMaster = new FleetMaster();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Error.aspx");

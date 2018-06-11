@@ -48,7 +48,9 @@ public partial class Login : Page
                     Session["District_Name"] = dist.Tables[0].Rows[0]["district_name"].ToString();
                 }
                 else
+                {
                     Session["District_Name"] = "All";
+                }
 
                 switch (Request.QueryString["alert"])
                 {

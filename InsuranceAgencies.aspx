@@ -51,7 +51,7 @@
                 <tr>
                     <td style="height: 200px">
                         <fieldset style="padding: 10px;">
-                            <legend align="center" style="color:brown">Insurance Agency</legend>
+                            <legend align="center" style="color: brown">Insurance Agency</legend>
                             <table id="table2" width="91%" align="center">
                                 <tr>
                                     <td>
@@ -189,10 +189,10 @@
                                 <PagerStyle ForeColor="#000066" HorizontalAlign="Left" BackColor="White"/>
                                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
                             </asp:GridView>
                         </fieldset>
                     </td>

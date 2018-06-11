@@ -6,7 +6,7 @@
     <style>
         .WrapStyle TD { word-break: break-all; }
     </style>
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
 
         function Validation() {
             var vehiclenoddl = document.getElementById('<%= ddlVehicles.ClientID %>');
@@ -46,7 +46,7 @@
             var txtquantity = $('#<%= txtQuant.ClientID %>').val();
             if (txtquantity === "") {
                 return alert('Item Quantity is mandatory');
-            }     
+            }
             return true;
         }
 
@@ -57,24 +57,13 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%= ddlVehicles.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-                    $('#<%= ddlMaintenanceType.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-                    $('#<%= ddlVendorName.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
+                    $('#<%= ddlVehicles.ClientID %>,#<%= ddlMaintenanceType.ClientID %>,#<%= ddlVendorName.ClientID %>')
+                        .select2({
+                            disable_search_threshold: 5,
+                            search_contains: true,
+                            minimumResultsForSearch: 20,
+                            placeholder: "Select an option"
+                        });
                 }
             </script>
 
@@ -120,14 +109,14 @@
                                     Maintenance Type <span style="color: Red">*</span>
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="ddlMaintenanceType" runat="server" Width="180px">
+                                    <asp:DropDownList ID="ddlMaintenanceType" runat="server" Width="150px">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td>
-                                   Maintenance Date<span style="color: Red">*</span>
+                                    Maintenance Date<span style="color: Red">*</span>
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtMaintenanceDate" runat="server"
@@ -144,7 +133,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:DropDownList ID="ddlVendorName" runat="server" Width="180px"/>
+                                    <asp:DropDownList ID="ddlVendorName" runat="server" Width="150px"/>
                                 </td>
                             </tr>
                             <tr>
@@ -159,7 +148,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                  Bill Date <span style="color: Red">*</span>
+                                    Bill Date <span style="color: Red">*</span>
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtBillDate" runat="server"
@@ -172,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                   Part Code
+                                    Part Code
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtPartCode" runat="server" MaxLength="10"
@@ -192,7 +181,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                   Item Quantity<span style="color: Red">*</span>
+                                    Item Quantity<span style="color: Red">*</span>
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtQuant" runat="server" MaxLength="5"
@@ -203,7 +192,7 @@
 
                             <tr>
                                 <td>
-                                   Bill Amount<span style="color: Red">*</span>
+                                    Bill Amount<span style="color: Red">*</span>
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtBillAmount" runat="server" MaxLength="12" onkeypress="return numericOnly(this);"></asp:TextBox>
@@ -213,7 +202,7 @@
                             <tr>
                                 <td>
                                     <asp:Button runat="server" CssClass="form-submit-button" Text="Save" Width="52px"
-                                                OnClick="btnSave_Click" OnClientClick="if(!Validation()) return false;"/>
+                                                OnClick="btnSave_Click" OnClientClick="if (!Validation()) return false;"/>
                                 </td>
                                 <td>
                                     <asp:Button runat="server" CssClass="form-reset-button" Text="Reset"

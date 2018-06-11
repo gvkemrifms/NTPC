@@ -84,7 +84,7 @@ public partial class VehicleAccidentDetails : Page
             }
 
             if (txtAccidentDateTime.Text == "")
-                txtAccidentDateTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);            
+                txtAccidentDateTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             if (txtInitiatedTime.Text == "") txtInitiatedTime.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             if (txtAgeofVehicle.Text == "") txtAgeofVehicle.Text = "0";
             _vehicleAccidentDetail.VehicleID = int.Parse(ddlistVehicleNumber.SelectedValue);
@@ -93,7 +93,7 @@ public partial class VehicleAccidentDetails : Page
             _vehicleAccidentDetail.KilometerRun = txtKilometerRun.Text;
             _vehicleAccidentDetail.IncidentHandledBy = txtIncidentHandledBy.Text;
             _vehicleAccidentDetail.AccidentDescription = txtAccidentDescription.Text;
-            _vehicleAccidentDetail.AccidentDateTime = DateTime.ParseExact(txtAccidentDateTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.AccidentDateTime = DateTime.ParseExact(txtAccidentDateTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.AccidentTimeHrs = ddlistHour.SelectedItem.Value;
             _vehicleAccidentDetail.AccidentTimeMinutes = ddlistMinute.SelectedItem.Value;
             _vehicleAccidentDetail.ActionInitiatedBy = txtActionInitiatedBy.Text;
@@ -106,7 +106,7 @@ public partial class VehicleAccidentDetails : Page
             _vehicleAccidentDetail.Damageto3rdPartyProperty = txtDamageto3rdPartyProperty.Text;
             _vehicleAccidentDetail.PilotName = txtPilotName.Text;
             _vehicleAccidentDetail.DrivingLicenseNumber = txtDrivingLicenseNumber.Text;
-            _vehicleAccidentDetail.ExpiryDate = DateTime.ParseExact(txtExpiryDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.ExpiryDate = DateTime.ParseExact(txtExpiryDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.EMTName = txtEmtName.Text;
             _vehicleAccidentDetail.IsVehicleOperational = true;
             _vehicleAccidentDetail.InjuriesToEmriStaff = txtInjuriestoEMRIStaff.Text;

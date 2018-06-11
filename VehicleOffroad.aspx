@@ -1,27 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleOffroad.aspx.cs" Inherits="VehicleOffroad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function pageLoad() {
         $(function() {
-            $('#<%=txtOfftimeDate.ClientID%>,#<%=txtExpDateOfRec.ClientID%>').datepicker({
+            $('#<%= txtOfftimeDate.ClientID %>,#<%= txtExpDateOfRec.ClientID %>').datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear: true
             });
         });
-        $('#<%= ddlDistrict.ClientID %>').select2({
-            disable_search_threshold: 5,
-            search_contains: true,
-            minimumResultsForSearch: 20,
-            placeholder: "Select an option"
-        });
-        $('#<%= ddlVehicleNumber.ClientID %>').select2({
-            disable_search_threshold: 5,
-            search_contains: true,
-            minimumResultsForSearch: 20,
-            placeholder: "Select an option"
-        });
-        $('#<%= ddlreasons.ClientID %>').select2({
+        $('#<%= ddlDistrict.ClientID %>,#<%= ddlVehicleNumber.ClientID %>,#<%= ddlreasons.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
             minimumResultsForSearch: 20,
@@ -293,10 +281,10 @@
                     <PagerStyle ForeColor="#000066" HorizontalAlign="Left" BackColor="White"/>
                     <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </td>
         </tr>
@@ -474,10 +462,10 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
                             </asp:GridView>
                         </fieldset>
                     </asp:Panel>
@@ -542,10 +530,10 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
-                                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                         </asp:GridView>
                                     </td>
                                 </tr>

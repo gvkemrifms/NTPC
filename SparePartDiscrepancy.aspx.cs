@@ -122,7 +122,9 @@ public partial class SparePartDiscrepancy : Page
             FillGridSparePartDiscrepancy();
         }
         else
+        {
             Show("Please Fill The Remarks");
+        }
 
         ClearFields();
     }

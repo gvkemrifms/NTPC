@@ -1,15 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" Debug="true" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="FuelEntry.aspx.cs" Inherits="FuelEntry" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:UpdatePanel runat="server">
+<asp:UpdatePanel runat="server">
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-            $('#<%=txtFuelEntryDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true
-            });
+        $('#<%= txtFuelEntryDate.ClientID %>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
         $('#<%= ddlVehicleNumber.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -21,155 +21,155 @@
 </script>
 
 <fieldset style="padding: 10px">
-<legend align="center" style="color: brown">Fuel Entry</legend>
-<table align="center">
-    <caption>
-        <br/>
-        <tr>
-            <td style="float: left">Vehicle Number<span style="color: Red">*</span> </td>
-            <td>
-                <asp:DropDownList ID="ddlVehicleNumber" runat="server" AutoCompleteMode="Append" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleNumber_SelectedIndexChanged" Width="150px">
-                </asp:DropDownList>
-            </td>
-            <td style="float: right; padding-right: 10px">Borrowed Vehicle </td>
-            <td>
-                <asp:DropDownList ID="ddlDistrict" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" Width="150px">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td class="rowseparator" colspan="4"></td>
-        </tr>
-        <tr>
-            <td style="width: auto">State </td>
-            <td>
-                <asp:Label ID="lblDistrict" runat="server" />
-            </td>
-            <td style="float: right; padding: 10px">Base Location </td>
-            <td>
-                <asp:Label ID="lblLocation" runat="server" />
-            </td>
-        </tr>
-        <tr>
-            <td class="rowseparator" colspan="4"></td>
-        </tr>
-        <tr>
-            <td style="float: left">FuelEntry Date<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtFuelEntryDate" runat="server" CssClass="search_3" MaxLength="15" oncut="return false;" onkeypress="return false" onpaste="return false;">
-        </asp:TextBox>
-            </td>
-            <td style="float: right; padding: 10px">Bill Number<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtBillNumber" runat="server" CssClass="search_3" MaxLength="16"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>Odometer(km)<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtOdometer" runat="server" CssClass="search_3" MaxLength="6"></asp:TextBox>
-            </td>
-            <td style="float: right; padding-right: 10px">Station Name<span style="color: Red">*</span> </td>
-            <td>
-                <div>
-                    <asp:DropDownList ID="ddlBunkName" CssClass="search_3" width="150px" runat="server" Style="float: left">
+    <legend align="center" style="color: brown">Fuel Entry</legend>
+    <table align="center">
+        <caption>
+            <br/>
+            <tr>
+                <td style="float: left">Vehicle Number<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:DropDownList ID="ddlVehicleNumber" runat="server" AutoCompleteMode="Append" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleNumber_SelectedIndexChanged" Width="150px">
                     </asp:DropDownList>
-                    <asp:TextBox ID="txtBunkName" runat="server" CssClass="search_3" Enabled="false" MaxLength="20" Style="float: left" Width="150px"></asp:TextBox>
-                </div>
-                <div>
-                    <asp:LinkButton ID="linkExisting" runat="server" OnClick="linkExisting_Click" Style="float: right" Text="Add Existing">
-            </asp:LinkButton>
-                    <asp:LinkButton ID="lnkNew" runat="server" OnClick="lnkNew_Click" Style="float: right" Text="Add New">
-            </asp:LinkButton>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Paymode<span style="color: Red">*</span> </td>
-            <td>
-                <asp:DropDownList ID="ddlPaymode" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlPaymode_SelectedIndexChanged">
-                </asp:DropDownList>
-            </td>
-            <td style="float: right; padding-right: 10px">Quantity(Litres)<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtQuantity" runat="server" CssClass="search_3" MaxLength="6" OnChange="onKeyPressBlockNumbers1(this.value);"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>Petro Card Number<span id="spPetro" runat="server" style="color: Red">*</span> </td>
-            <td>
-                <asp:DropDownList ID="ddlPetroCardNumber" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlPetroCardNumber_SelectedIndexChanged">
-                    <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td style="float: right; padding: 10px">Unit Price(Rs)<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtUnitPrice" runat="server" CssClass="search_3" MaxLength="6" onchange="onKeyPressBlockNumbers(this.value);"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>Agency <span id="spAgency" runat="server" style="color: Red"></span></td>
-            <td>
-                <asp:DropDownList ID="ddlAgency" runat="server" AutoCompleteMode="Append" CssClass="search_3">
-                    <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-            <td style="float: right; padding-right: 10px">Amount(Rs)<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtAmount" runat="server" CssClass="search_3" Enabled="False"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>Location<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtLocation" runat="server" CssClass="search_3" MaxLength="20"></asp:TextBox>
-            </td>
-            <td style="float: right; padding: 10px">Pilot ID<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtPilotID" runat="server" CssClass="search_3" MaxLength="6"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>Pilot Name<span style="color: Red">*</span> </td>
-            <td>
-                <asp:TextBox ID="txtPilotName" runat="server" CssClass="search_3"></asp:TextBox>
-            </td>
-            <td style="float: right; padding-right: 10px">Card Swiped<span id="spCard" runat="server" style="color:red">*</span> </td>
-            <td>
-                <asp:DropDownList ID="ddlCardSwiped"  runat="server" CssClass="search_3">
-                    <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
-                    <asp:ListItem Text="No" Value="0"></asp:ListItem>
-                    <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 10px">Remarks </td>
-            <td>
-                <asp:TextBox ID="txtRemarks" runat="server" CssClass="search_3" />
-            </td>
-        </tr>
-        <tr>
-            <td class="rowseparator"></td>
-        </tr>
-        <tr>
-            <td>
-                <asp:TextBox ID="txtSegmentID" runat="server" CssClass="search_3" Visible="False"></asp:TextBox>
-            </td>
-            <td>
-                <asp:Button ID="Save" runat="server" CssClass="form-submit-button" OnClick="Save_Click" OnClientClick="if (!validationFuelEntry()) return false;" Text="Save" />
-            </td>
-            <td>
-                <asp:Button ID="Reset" runat="server" CssClass="form-reset-button" OnClick="Reset_Click" Text="Reset" />
-            </td>
-            <td>
-                <asp:TextBox ID="txtEdit" runat="server" CssClass="search_3" Visible="False"></asp:TextBox>
-            </td>
-        </tr>
-    </caption>
+                </td>
+                <td style="float: right; padding-right: 10px">Borrowed Vehicle </td>
+                <td>
+                    <asp:DropDownList ID="ddlDistrict" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" Width="150px">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="rowseparator" colspan="4"></td>
+            </tr>
+            <tr>
+                <td style="width: auto">State </td>
+                <td>
+                    <asp:Label ID="lblDistrict" runat="server"/>
+                </td>
+                <td style="float: right; padding: 10px">Base Location </td>
+                <td>
+                    <asp:Label ID="lblLocation" runat="server"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="rowseparator" colspan="4"></td>
+            </tr>
+            <tr>
+                <td style="float: left">FuelEntry Date<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtFuelEntryDate" runat="server" CssClass="search_3" MaxLength="15" oncut="return false;" onkeypress="return false" onpaste="return false;">
+                    </asp:TextBox>
+                </td>
+                <td style="float: right; padding: 10px">Bill Number<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtBillNumber" runat="server" CssClass="search_3" MaxLength="16"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Odometer(km)<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtOdometer" runat="server" CssClass="search_3" MaxLength="6"></asp:TextBox>
+                </td>
+                <td style="float: right; padding-right: 10px">Station Name<span style="color: Red">*</span> </td>
+                <td>
+                    <div>
+                        <asp:DropDownList ID="ddlBunkName" CssClass="search_3" width="150px" runat="server" Style="float: left">
+                        </asp:DropDownList>
+                        <asp:TextBox ID="txtBunkName" runat="server" CssClass="search_3" Enabled="false" MaxLength="20" Style="float: left" Width="150px"></asp:TextBox>
+                    </div>
+                    <div>
+                        <asp:LinkButton ID="linkExisting" runat="server" OnClick="linkExisting_Click" Style="float: right" Text="Add Existing">
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="lnkNew" runat="server" OnClick="lnkNew_Click" Style="float: right" Text="Add New">
+                        </asp:LinkButton>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Paymode<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:DropDownList ID="ddlPaymode" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlPaymode_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+                <td style="float: right; padding-right: 10px">Quantity(Litres)<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtQuantity" runat="server" CssClass="search_3" MaxLength="6" OnChange="onKeyPressBlockNumbers1(this.value);"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Petro Card Number<span id="spPetro" runat="server" style="color: Red">*</span> </td>
+                <td>
+                    <asp:DropDownList ID="ddlPetroCardNumber" runat="server" AutoCompleteMode="Append" AutoPostBack="True" CssClass="search_3" OnSelectedIndexChanged="ddlPetroCardNumber_SelectedIndexChanged">
+                        <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+                <td style="float: right; padding: 10px">Unit Price(Rs)<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtUnitPrice" runat="server" CssClass="search_3" MaxLength="6" onchange="onKeyPressBlockNumbers(this.value);"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Agency <span id="spAgency" runat="server" style="color: Red"></span></td>
+                <td>
+                    <asp:DropDownList ID="ddlAgency" runat="server" AutoCompleteMode="Append" CssClass="search_3">
+                        <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+                <td style="float: right; padding-right: 10px">Amount(Rs)<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtAmount" runat="server" CssClass="search_3" Enabled="False"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Location<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtLocation" runat="server" CssClass="search_3" MaxLength="20"></asp:TextBox>
+                </td>
+                <td style="float: right; padding: 10px">Pilot ID<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtPilotID" runat="server" CssClass="search_3" MaxLength="6"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Pilot Name<span style="color: Red">*</span> </td>
+                <td>
+                    <asp:TextBox ID="txtPilotName" runat="server" CssClass="search_3"></asp:TextBox>
+                </td>
+                <td style="float: right; padding-right: 10px">Card Swiped<span id="spCard" runat="server" style="color: red">*</span> </td>
+                <td>
+                    <asp:DropDownList ID="ddlCardSwiped" runat="server" CssClass="search_3">
+                        <asp:ListItem Text="--Select--" Value="-1"></asp:ListItem>
+                        <asp:ListItem Text="No" Value="0"></asp:ListItem>
+                        <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px">Remarks </td>
+                <td>
+                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="search_3"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="rowseparator"></td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:TextBox ID="txtSegmentID" runat="server" CssClass="search_3" Visible="False"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:Button ID="Save" runat="server" CssClass="form-submit-button" OnClick="Save_Click" OnClientClick="if (!validationFuelEntry()) return false;" Text="Save"/>
+                </td>
+                <td>
+                    <asp:Button ID="Reset" runat="server" CssClass="form-reset-button" OnClick="Reset_Click" Text="Reset"/>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtEdit" runat="server" CssClass="search_3" Visible="False"></asp:TextBox>
+                </td>
+            </tr>
+        </caption>
 
-</table>
-<br/>
+    </table>
+    <br/>
 </fieldset>
 <fieldset style="padding: 10px">
     <table align="center" style="width: 615px">
@@ -213,10 +213,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </td>
         </tr>
@@ -244,10 +244,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </td>
         </tr>
@@ -373,7 +373,9 @@
         var givenOdo = document.getElementById("<%= txtOdometer.ClientID %>");
 
         if (parseInt(maxOdo.value) >= parseInt(givenOdo.value)) {
-            alert("Odometer value should be greater than the Previous Odometer value (Pre Odo Reading=" + maxOdo.value +")");
+            alert("Odometer value should be greater than the Previous Odometer value (Pre Odo Reading=" +
+                maxOdo.value +
+                ")");
             givenOdo.focus();
             return false;
         }

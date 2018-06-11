@@ -12,7 +12,7 @@ public partial class BatteryDetailsReportnew : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             BindDistrictdropdown();
@@ -24,7 +24,7 @@ public partial class BatteryDetailsReportnew : Page
     {
         try
         {
-            var sqlQuery = "select d.ds_dsid,d.ds_lname from M_FMS_Districts d join m_users u on d.ds_dsid=u.stateId where u.UserId ='"+ UserId+"'";
+            var sqlQuery = "select d.ds_dsid,d.ds_lname from M_FMS_Districts d join m_users u on d.ds_dsid=u.stateId where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "ds_lname", "ds_dsid", ddldistrict);
         }
         catch (Exception ex)

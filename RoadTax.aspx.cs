@@ -77,7 +77,7 @@ public partial class RoadTax : Page
 
     protected void btSave_Click(object sender, EventArgs e)
     {
-        _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _roadtax.RTValidityPeriod = ddlRoadTaxValidityPeriod.SelectedItem.Value;
         _roadtax.RTValidityEndDate = DateTime.Parse(txtRoadTaxValidityEndDate.Text);
         if (!chkbxTaxExempted.Checked)
@@ -169,7 +169,7 @@ public partial class RoadTax : Page
                 txtVehicleNumber.Text = drroadtax[0][0].ToString();
                 ViewState["VehNum"] = Convert.ToInt16(drroadtax[0][1].ToString());
                 var dates = _fmsGeneral.GetRegistrationDate(int.Parse(drroadtax[0][1].ToString()));
-                var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture);
+                var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 vehicleRegistrationDate.Value = dt.ToString();
                 txtRoadTaxValidityStartDate.Text = drroadtax[0][3].ToString();
                 ddlRoadTaxValidityPeriod.Items.FindByValue(drroadtax[0][4].ToString()).Selected = true;
@@ -178,7 +178,7 @@ public partial class RoadTax : Page
                 txtRoadTaxReceiptNo.Text = drroadtax[0][7].ToString();
                 txtRoadTaxFee.Text = drroadtax[0][8].ToString();
                 var datesUpdate = _fmsGeneral.GetRegistrationDate(int.Parse(ViewState["VehNum"].ToString()));
-                var dtUpdate = DateTime.ParseExact(datesUpdate.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture);
+                var dtUpdate = DateTime.ParseExact(datesUpdate.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 vehicleRegistrationDate.Value = dtUpdate.ToString(CultureInfo.InvariantCulture);
                 pnlRoadtax.Visible = true;
                 btSave.Text = "Update";

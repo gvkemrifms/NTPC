@@ -6,7 +6,7 @@ public partial class CardTypeReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get;  set; }
+    public string UserId { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -15,7 +15,7 @@ public partial class CardTypeReport : Page
             if (Session["User_Id"] == null)
                 Response.Redirect("Login.aspx");
             else
-                UserId = (string)Session["User_Id"];
+                UserId = (string) Session["User_Id"];
             ddlstation.Enabled = false;
             BindDistrictdropdown();
         }
@@ -23,7 +23,7 @@ public partial class CardTypeReport : Page
 
     private void BindDistrictdropdown()
     {
-        var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+        var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
         _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
     }
 

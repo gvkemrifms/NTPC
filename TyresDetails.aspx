@@ -41,7 +41,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <legend align="center" style="color:brown">Tyres Details </legend>
+            <legend align="center" style="color: brown">Tyres Details </legend>
 
             <asp:Panel ID="pnltyredetails" runat="server">
                 <table align="center">
@@ -171,10 +171,10 @@
                         <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                         <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                         <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                        <SortedDescendingHeaderStyle BackColor="#00547E"/>
                     </asp:GridView>
                 </fieldset>
                 <asp:HiddenField ID="hidTyresId" runat="server"/>

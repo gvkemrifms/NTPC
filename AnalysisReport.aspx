@@ -4,28 +4,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
         $(function () {
-            $('#<%=txtfrmDate.ClientID%>').datepicker({
+            $('#<%=txtfrmDate.ClientID%>,#<%=txttodate.ClientID%>').datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear:true
-            });
-            $('#<%=txttodate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true
-            });
-            $('#<%= ddldistrict.ClientID %>').select2({
+            });          
+            $('#<%= ddldistrict.ClientID %>,#<%= ddlvehicle.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
                 minimumResultsForSearch: 20,
                 placeholder: "Select an option"
-            });
-            $('#<%= ddlvehicle.ClientID %>').select2({
-                disable_search_threshold: 5,
-                search_contains: true,
-                minimumResultsForSearch: 20,
-                placeholder: "Select an option"
-            });
+            });          
         });
 
         function Validations() {

@@ -4,7 +4,7 @@ using System.Web.UI;
 
 public partial class TyreAndBatteryReport : Page
 {
-    readonly Helper _helper = new Helper();
+    private readonly Helper _helper = new Helper();
 
     public string UserId { get; private set; }
 
@@ -13,7 +13,7 @@ public partial class TyreAndBatteryReport : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             BindDistrictdropdown();
@@ -25,7 +25,7 @@ public partial class TyreAndBatteryReport : Page
     {
         try
         {
-            var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)

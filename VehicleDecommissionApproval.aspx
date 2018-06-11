@@ -2,13 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-   function pageLoad() {
-        $('#<%=txtDateOfRegistration.ClientID%>,#<%=txtOffRoadDate.ClientID%>,#<%=txtDateOfLaunching.ClientID%>,#<%=txtDateofPurchase.ClientID%>,#<%=txtSurveyDate.ClientID%>,#<%=txtDecommisionDate.ClientID%>').datepicker({
-            dateFormat: 'mm/dd/yy',
-            changeMonth: true,
-            changeYear: true
-        });
+    function pageLoad() {
+        $(
+                '#<%= txtDateOfRegistration.ClientID %>,#<%= txtOffRoadDate.ClientID %>,#<%= txtDateOfLaunching.ClientID %>,#<%= txtDateofPurchase.ClientID %>,#<%= txtSurveyDate.ClientID %>,#<%= txtDecommisionDate.ClientID %>')
+            .datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
     };
+
     function validation(obj, id) {
         var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");
         var txtApproveRejectedRemarks = obj.id.replace(id, "txtApproveRejectedRemarks");
@@ -89,7 +92,7 @@
                                 <tr>
                                     <td nowrap="nowrap">
                                         <asp:TextBox ID="txtOffRoadDate" CssClass="search_3" runat="server" onkeypress="return false;"></asp:TextBox>
-                                        
+
                                     </td>
                                     <td>
                                         <asp:DropDownList CssClass="search_3" runat="server" Visible="false">
@@ -224,63 +227,63 @@
         </asp:Panel>
     </td>
 </tr>
-    <caption>
-        <br/>
-        <tr>
-            <td>
-                <asp:GridView ID="grdVehicleDecompositionApproval" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" EmptyDataText="No Records Found" OnRowCommand="grdVehicleDecompositionApproval_RowCommand" Width="630px">
-                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066" />
-                    <Columns>
-                        <asp:TemplateField HeaderText="Vehicle Number">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleProposalId") %>' CommandName="vehicleApproval">
-                            <%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>
-                        </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Off Road Date">
-                            <ItemTemplate>
-                                <asp:Label ID="lblOffRoadDateandDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OffRoadDate") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Total Km Covered">
-                            <ItemTemplate>
-                                <asp:Label ID="lblTotalKmCovered" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TotalDistanceTravelled") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Date of Registration">
-                            <ItemTemplate>
-                                <asp:Label ID="lblDateofRegistration" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DateOfRegistration") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Survey By">
-                            <ItemTemplate>
-                                <asp:Label ID="lblDateofPurchase" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyBy") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Survey Remarks">
-                            <ItemTemplate>
-                                <asp:Label ID="lblSurveyorRemark" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyRemark") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Proposed Remarks">
-                            <ItemTemplate>
-                                <asp:Label ID="lblProposedRemarks" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ProposedRemark") %>'>&#39;&gt;</asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
-                    <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
-                    <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
-                </asp:GridView>
-            </td>
-        </tr>
-    </caption>
+<caption>
+    <br/>
+    <tr>
+        <td>
+            <asp:GridView ID="grdVehicleDecompositionApproval" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" EmptyDataText="No Records Found" OnRowCommand="grdVehicleDecompositionApproval_RowCommand" Width="630px">
+                <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
+                <Columns>
+                    <asp:TemplateField HeaderText="Vehicle Number">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleProposalId") %>' CommandName="vehicleApproval">
+                                <%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Off Road Date">
+                        <ItemTemplate>
+                            <asp:Label ID="lblOffRoadDateandDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OffRoadDate") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Total Km Covered">
+                        <ItemTemplate>
+                            <asp:Label ID="lblTotalKmCovered" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TotalDistanceTravelled") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Date of Registration">
+                        <ItemTemplate>
+                            <asp:Label ID="lblDateofRegistration" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DateOfRegistration") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Survey By">
+                        <ItemTemplate>
+                            <asp:Label ID="lblDateofPurchase" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyBy") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Survey Remarks">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSurveyorRemark" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyRemark") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Proposed Remarks">
+                        <ItemTemplate>
+                            <asp:Label ID="lblProposedRemarks" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ProposedRemark") %>'>&#39;&gt;</asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066"/>
+                <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left"/>
+                <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White"/>
+                <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White"/>
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#00547E"/>
+            </asp:GridView>
+        </td>
+    </tr>
+</caption>
 
 
 </table>

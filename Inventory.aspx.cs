@@ -52,7 +52,7 @@ public partial class Inventory : Page
 
         strXml += " </dataset>";
         strXml += "</graph>";
-        var myChart=FusionCharts.RenderChartHTML("FusionCharts/FCF_MSColumn3D.swf", "", strXml, "myNext", "700", "500", false);
+        var myChart = FusionCharts.RenderChartHTML("FusionCharts/FCF_MSColumn3D.swf", "", strXml, "myNext", "700", "500", false);
         return myChart;
     }
 }

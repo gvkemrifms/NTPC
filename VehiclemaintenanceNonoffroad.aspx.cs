@@ -82,8 +82,8 @@ public partial class VehiclemaintenanceNonoffroad : Page
         {
             _vehicleobj.VehNumforNonOff = ddlVehicles.SelectedItem.ToString();
             var ds = _vehicleobj.getDistandLocation();
-            if (ds.Tables[0].Rows.Count>0) txtLocation.Text = ds.Tables[0].Rows[0]["vi_BaseLocation"].ToString();
-            if (ds.Tables[1].Rows.Count>0) txtDistrict.Text = ds.Tables[1].Rows[0]["ds_lname"].ToString();
+            if (ds.Tables[0].Rows.Count > 0) txtLocation.Text = ds.Tables[0].Rows[0]["vi_BaseLocation"].ToString();
+            if (ds.Tables[1].Rows.Count > 0) txtDistrict.Text = ds.Tables[1].Rows[0]["ds_lname"].ToString();
         }
     }
 

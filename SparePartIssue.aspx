@@ -80,7 +80,7 @@
 </tr>
 <tr>
     <td align="center">
-        <asp:Label ID="lb_Vehicles" runat="server" Text="Vehicles"></asp:Label>
+        <asp:Label runat="server" Text="Vehicles"></asp:Label>
         <span style="color: Red">*</span>&nbsp;
         <ajaxToolKit:ComboBox AutoCompleteMode="Append" ID="ddlVehicles" runat="server"
                               AutoPostBack="True" OnSelectedIndexChanged="ddlVehicles_SelectedIndexChanged"
@@ -113,10 +113,10 @@
             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#00547E" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+            <SortedDescendingHeaderStyle BackColor="#00547E"/>
         </asp:GridView>
     </td>
 </tr>

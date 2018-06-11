@@ -37,7 +37,7 @@
         <tr>
 
             <td>
-                Select Vehicle <asp:Label runat="server" Text="" style="color: red">*</asp:Label>
+                Vehicle <asp:Label runat="server" Text="" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
             <td>
-                Select Bill Number <asp:Label runat="server" Text="Select&nbsp;billnumber" style="color: red">*</asp:Label>
+                Bill Number <asp:Label runat="server" Text="Select&nbsp;billnumber" style="color: red">*</asp:Label>
             </td>
 
             <td>
@@ -69,15 +69,15 @@
     <div align="center">
         <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Center">
             <asp:GridView ID="Grddetails" runat="server" HorizontalAlign="Center" EmptyDataText="No Records Found" BorderWidth="1px" BorderColor="#CCCCCC" BackColor="White" BorderStyle="None" CellPadding="3">
-                <FooterStyle BackColor="White" ForeColor="#000066" />
-                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                <RowStyle ForeColor="#000066" />
-                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                <FooterStyle BackColor="White" ForeColor="#000066"/>
+                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
+                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+                <RowStyle ForeColor="#000066"/>
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#00547E"/>
             </asp:GridView>
         </asp:Panel>
     </div>

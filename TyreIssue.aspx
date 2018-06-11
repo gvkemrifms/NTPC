@@ -47,7 +47,7 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%=txtDcDate.ClientID%>').datepicker({
+                    $('#<%= txtDcDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
@@ -94,128 +94,128 @@
                             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                         </asp:GridView>
                     </div>
                     <asp:Button ID="btnShowPopup" runat="server" Style="display: none"/>
                     <ajaxToolkit:ModalPopupExtender ID="gv_ModalPopupExtenderTyreIssue" BehaviorID="mdlPopup"
                                                     runat="server" TargetControlID="btnShowPopup" PopupControlID="pnlPopup" BackgroundCssClass="modalBackground"/>
-                    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPanel" Style="padding: 5px;margin-top: 125px;position:fixed">
+                    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPanel" Style="margin-top: 125px; padding: 5px; position: fixed">
                         <asp:UpdatePanel ID="updPnlReqDetail" runat="server">
                             <ContentTemplate>
-            
-                                    <legend style="margin-top: 1px;color:brown">Tyre Issue Detail</legend>
-                                    <table class="style1" align="center" style="border:1px solid brown">
-                                        <tr>
-                                            <td class="rowseparator"></td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">
-                                                Vehicle Number
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtTyreIssVehicleNumber" runat="server" ReadOnly="True" MaxLength="20"></asp:TextBox>
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                District
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtTyreIssDistrict" runat="server" ReadOnly="True" MaxLength="20"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rowseparator"></td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">
-                                                Total Tyre Cost
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtTyreCost" runat="server" MaxLength="6" Height="20px"></asp:TextBox>
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                DC Number
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtDcNumberPopup" runat="server" MaxLength="5"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rowseparator"></td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">
-                                                DC Date
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtDcDate" runat="server" MaxLength="20" onkeypress="return false"
-                                                             oncut="return false;" onpaste="return false;" oncopy="return false;">
+
+                                <legend style="color: brown; margin-top: 1px;">Tyre Issue Detail</legend>
+                                <table class="style1" align="center" style="border: 1px solid brown">
+                                    <tr>
+                                        <td class="rowseparator"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            Vehicle Number
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtTyreIssVehicleNumber" runat="server" ReadOnly="True" MaxLength="20"></asp:TextBox>
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            District
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtTyreIssDistrict" runat="server" ReadOnly="True" MaxLength="20"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowseparator"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            Total Tyre Cost
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtTyreCost" runat="server" MaxLength="6" Height="20px"></asp:TextBox>
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            DC Number
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtDcNumberPopup" runat="server" MaxLength="5"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowseparator"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            DC Date
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtDcDate" runat="server" MaxLength="20" onkeypress="return false"
+                                                         oncut="return false;" onpaste="return false;" oncopy="return false;">
+                                            </asp:TextBox>
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            Courier Name
+                                        </td>
+                                        <td class="columnseparator"></td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtCourierName" runat="server" MaxLength="15"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowseparator"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7">
+                                            <asp:GridView ID="grvTyreIssueDetailsPopup" runat="server" AutoGenerateColumns="False" Width="100%"
+                                                          OnRowDataBound="grvTyreIssueDetailsPopup_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+                                                <Columns>
+
+                                                    <asp:BoundField DataField="TyrePosition" HeaderText="Current Tyre Position"/>
+                                                    <asp:BoundField DataField="TyreNumber" HeaderText="Current Tyre Number"/>
+                                                    <asp:BoundField DataField="Make" HeaderText="Make"/>
+                                                    <asp:BoundField DataField="Model" HeaderText="Model"/>
+                                                    <asp:BoundField DataField="TotalKmTravelled" HeaderText="Current Total Travel ODO"/>
+                                                    <asp:TemplateField HeaderText="Tyre Number">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlTyreNumber" runat="server">
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
+                                                <FooterStyle CssClass="footerStylegrid" BackColor="White" ForeColor="#000066"/>
+                                                <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+                                                <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+                                                <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
+                                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
+                                            </asp:GridView>
+                                            <div id="Div7" align="center" style="background-color: white; width: 95%;">
+                                                Remarks
+                                                <asp:TextBox ID="txtRemarks" runat="server" onkeypress="return OnlyAlphaNumeric(event)"
+                                                             MaxLength="20" TextMode="MultiLine" onKeyUp="CheckLength(this,50)" onChange="CheckLength(this,50)">
                                                 </asp:TextBox>
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                Courier Name
-                                            </td>
-                                            <td class="columnseparator"></td>
-                                            <td align="left">
-                                                <asp:TextBox ID="txtCourierName" runat="server" MaxLength="15"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="rowseparator"></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="7">
-                                                <asp:GridView ID="grvTyreIssueDetailsPopup" runat="server" AutoGenerateColumns="False"  Width="100%"
-                                                              OnRowDataBound="grvTyreIssueDetailsPopup_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
-                                                    <Columns>
 
-                                                        <asp:BoundField DataField="TyrePosition" HeaderText="Current Tyre Position"/>
-                                                        <asp:BoundField DataField="TyreNumber" HeaderText="Current Tyre Number"/>
-                                                        <asp:BoundField DataField="Make" HeaderText="Make"/>
-                                                        <asp:BoundField DataField="Model" HeaderText="Model"/>
-                                                        <asp:BoundField DataField="TotalKmTravelled" HeaderText="Current Total Travel ODO"/>
-                                                        <asp:TemplateField HeaderText="Tyre Number">
-                                                            <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlTyreNumber" runat="server">
-                                                                </asp:DropDownList>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                    <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
-                                                    <FooterStyle CssClass="footerStylegrid" BackColor="White" ForeColor="#000066"/>
-                                                    <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
-                                                    <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
-                                                    <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                    <SortedDescendingHeaderStyle BackColor="#00547E" />
-                                                </asp:GridView>
-                                                <div id="Div7" align="center" style="background-color: white; width: 95%;">
-                                                    Remarks
-                                                    <asp:TextBox ID="txtRemarks" runat="server" onkeypress="return OnlyAlphaNumeric(event)"
-                                                                 MaxLength="20" TextMode="MultiLine" onKeyUp="CheckLength(this,50)" onChange="CheckLength(this,50)">
-                                                    </asp:TextBox>
+                                                <asp:Button ID="btnOk" runat="server" CssClass="form-submit-button" Text="Issue" Width="50px" OnClick="btnOk_Click"/>
 
-                                                    <asp:Button ID="btnOk" runat="server" CssClass="form-submit-button" Text="Issue" Width="50px" OnClick="btnOk_Click"/>
-
-                                                    <asp:Button runat="server" Text="Cancel" CssClass="form-reset-button" Width="50px" OnClick="btnNo_Click"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </fieldset>
+                                                <asp:Button runat="server" Text="Cancel" CssClass="form-reset-button" Width="50px" OnClick="btnNo_Click"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </asp:Panel>

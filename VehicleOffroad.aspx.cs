@@ -37,14 +37,13 @@ public partial class VehicleOffroad : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         txtAllEstimatedCost.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
         txtEMEId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
         txtPilotId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             divAggre.Visible = false;
@@ -175,7 +174,7 @@ public partial class VehicleOffroad : Page
             _vehallobj.PilotID = txtPilotId.Text;
             _vehallobj.PilotName = txtPilotName.Text;
             _vehallobj.Odometer = txtOdo.Text;
-            _vehallobj.ExpDateOfRecovery=DateTime.ParseExact(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedValue + ":" + ddlExpDateOfRecMin.SelectedValue,"MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            _vehallobj.ExpDateOfRecovery = DateTime.ParseExact(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedValue + ":" + ddlExpDateOfRecMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
             //_vehallobj.ExpDateOfRecovery = Convert.ToDateTime(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedItem.Text + ":" + ddlExpDateOfRecMin.SelectedItem.Text);
             _vehallobj.SegmentId = 0;
             _vehallobj.totEstimated = txtAllEstimatedCost.Text;

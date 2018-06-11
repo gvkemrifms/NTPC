@@ -87,10 +87,10 @@ public partial class PreDeliveryInspection : Page
 
     protected void btSave_Click(object sender, EventArgs e)
     {
-        Show("Record Inserted Successfully on"+" "+DateTime.Now.ToString(CultureInfo.InvariantCulture));
+        Show("Record Inserted Successfully on" + " " + DateTime.Now.ToString(CultureInfo.InvariantCulture));
         if (ViewState["PreDeliveryInspectionID"] != null) _predelinsp.PreDeliveryInspectionID = int.Parse(ViewState["PreDeliveryInspectionID"].ToString());
         _predelinsp.VehicleReceivedFrom = ddlVehicleReceived.SelectedItem.Value;
-        _predelinsp.ReceivedDate = DateTime.ParseExact(txtReceivedDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _predelinsp.ReceivedDate = DateTime.ParseExact(txtReceivedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _predelinsp.Odometer = int.Parse(txtOdometer.Text);
         _predelinsp.PDIBy = txtPDIBy.Text;
         _predelinsp.PDIDate = DateTime.ParseExact(txtPDIDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);

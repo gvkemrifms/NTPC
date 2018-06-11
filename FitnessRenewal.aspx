@@ -4,8 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <link href="css/FitnessRenewal.css" rel="stylesheet"/>
 <script type="text/javascript">
-
-
     function validation() {
         var fitnessValidityStartDate = document.getElementById('<%= txtFitnessValidityStartDate.ClientID %>');
         var fitnessValidityPeriod = document.getElementById('<%= ddlFitnessValidityPeriod.ClientID %>');
@@ -73,7 +71,7 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-        $('#<%=txtFitnessValidityStartDate.ClientID%>').datepicker({
+        $('#<%= txtFitnessValidityStartDate.ClientID %>').datepicker({
             dateFormat: 'mm/dd/yy',
             changeMonth: true,
             changeYear: true
@@ -121,7 +119,7 @@
                                      Width="145px" OnTextChanged="txtFitnessValidityStartDate_TextChanged1" CssClass="search_3" onkeypress="return false;"
                                      oncut="return false;" onpaste="return false;">
                         </asp:TextBox>
-                    </td>                
+                    </td>
                 </tr>
                 <tr>
                     <td align="center"></td>
@@ -301,10 +299,10 @@
             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#00547E" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+            <SortedDescendingHeaderStyle BackColor="#00547E"/>
         </asp:GridView>
     </td>
 </tr>

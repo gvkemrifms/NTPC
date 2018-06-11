@@ -4,7 +4,7 @@ using System.Web.UI;
 
 public partial class MaintenanceDetailsReport : Page
 {
-    readonly Helper _helper = new Helper();
+    private readonly Helper _helper = new Helper();
 
     public string UserId { get; private set; }
 
@@ -13,7 +13,7 @@ public partial class MaintenanceDetailsReport : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ddlvehicle.Enabled = false;
@@ -25,7 +25,7 @@ public partial class MaintenanceDetailsReport : Page
     {
         try
         {
-             var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)
@@ -37,7 +37,9 @@ public partial class MaintenanceDetailsReport : Page
     protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
+        {
             ddlvehicle.Enabled = false;
+        }
         else
         {
             ddlvehicle.Enabled = true;

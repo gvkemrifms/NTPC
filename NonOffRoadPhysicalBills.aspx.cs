@@ -2,14 +2,14 @@
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GvkFMSAPP.BLL.VAS_BLL;
 
 public partial class NonOffRoadPhysicalBills : Page
 {
     private readonly Helper _helper = new Helper();
-    DataSet _dsVehicle;
-    private DataSet _dsDistricts, _dsBillNo;
-    readonly GvkFMSAPP.BLL.BaseVehicleDetails _fmsobj = new GvkFMSAPP.BLL.BaseVehicleDetails();
-    readonly GvkFMSAPP.BLL.VAS_BLL.VASGeneral _obj = new GvkFMSAPP.BLL.VAS_BLL.VASGeneral();
+    private readonly VASGeneral _obj = new VASGeneral();
+    private DataSet _dsBillNo;
+    private DataSet _dsVehicle;
 
     public string UserId { get; private set; }
 
@@ -18,7 +18,7 @@ public partial class NonOffRoadPhysicalBills : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ddlVehicleno.Enabled = false;
@@ -32,9 +32,9 @@ public partial class NonOffRoadPhysicalBills : Page
     {
         try
         {
-            DataSet dsStates = new DataSet();
-            var query ="SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='"+UserId+"' order by d.district_name";
-            DataTable dt=_helper.ExecuteSelectStmt(query);
+            var dsStates = new DataSet();
+            var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
+            var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
             _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
             ViewState["dsDistricts"] = dt;
@@ -118,7 +118,7 @@ public partial class NonOffRoadPhysicalBills : Page
                 {
                     _obj.MandalId = int.Parse(lblBrkdwn.Text);
                     if (HiddenField1 != null) _obj.VenName = HiddenField1.Value;
-                    int i = _obj.InsertNonoffroadPhysicalBills();
+                    var i = _obj.InsertNonoffroadPhysicalBills();
                     switch (i)
                     {
                         case 0:
@@ -148,10 +148,9 @@ public partial class NonOffRoadPhysicalBills : Page
         {
             _helper.ErrorsEntry(ex);
         }
+    }
 
-    
-}
-public void BindGridView()
+    public void BindGridView()
     {
         var ds = _obj.GetNonOffPhysicalBills();
         if (ds == null) throw new ArgumentNullException(nameof(ds));
@@ -175,17 +174,17 @@ public void BindGridView()
     {
         if (e.CommandName.ToUpper() == "VEHMAINEDIT")
         {
-            GridViewRow row = (GridViewRow) ((WebControl) e.CommandSource).Parent.Parent;
+            var row = (GridViewRow) ((WebControl) e.CommandSource).Parent.Parent;
             btnSave.Visible = false;
             btnUpdate.Visible = true;
-            DateTime dt = Convert.ToDateTime(((Label) ((row.FindControl("lblReceiptDate")))).Text);
+            var dt = Convert.ToDateTime(((Label) row.FindControl("lblReceiptDate")).Text);
             txtReceiptDate.Text = dt.ToString("dd/MM/yyyy");
             txtCourierName.Text = ((Label) row.FindControl("lblCourier_Name")).Text;
             txtDocketNo.Text = ((Label) row.FindControl("lblDocketNo")).Text;
             lblBrkdwn.Text = ((Label) row.FindControl("lblBrkDwnID")).Text;
-            DataSet dsDist = (DataSet) ViewState["dsDistricts"];
-            DataView dvDistrict = dsDist.Tables[0].DefaultView;
-            dvDistrict.RowFilter = "ds_lname='" + ((Label) ((row.FindControl("lblDistrict")))).Text + "'";
+            var dsDist = (DataSet) ViewState["dsDistricts"];
+            var dvDistrict = dsDist.Tables[0].DefaultView;
+            dvDistrict.RowFilter = "ds_lname='" + ((Label) row.FindControl("lblDistrict")).Text + "'";
             ddlDistricts.SelectedValue = Convert.ToString(dvDistrict.ToTable().Rows[0]["ds_dsid"]);
             ddlDistricts.Enabled = false;
             ddlDistricts_SelectedIndexChanged(this, null);
@@ -209,7 +208,7 @@ public void BindGridView()
         _obj.CourierName = txtCourierName.Text;
         _obj.DocketNo = txtDocketNo.Text;
         _obj.NonOffAmount = txtBillAmount.Text;
-        int i = _obj.UpdateNonoffroadPhysicalBills();
+        var i = _obj.UpdateNonoffroadPhysicalBills();
         if (i != 0)
         {
             Show("Records Updated successfully");
@@ -229,7 +228,9 @@ public void BindGridView()
             lblBrkdwn.Text = "";
         }
         else
+        {
             Show("Records not Updated successfully");
+        }
     }
 
     protected void ddlBillNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,10 +240,10 @@ public void BindGridView()
             _obj.District = ddlDistricts.SelectedItem.ToString();
             _obj.VehNumforNonOff = ddlVehicleno.SelectedItem.ToString();
             _obj.NonOffBillNo = ddlBillNo.SelectedItem.ToString();
-            DataSet ds = _obj.GetNonOffroadBillAmt();
+            var ds = _obj.GetNonOffroadBillAmt();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-if(ds.Tables[0].Rows.Count>0)
-            txtBillAmount.Text = ds.Tables[0].Rows[0][0].ToString();
+            if (ds.Tables[0].Rows.Count > 0)
+                txtBillAmount.Text = ds.Tables[0].Rows[0][0].ToString();
             if (ds.Tables[1].Rows.Count > 0)
             {
                 lblBrkdwn.Text = ds.Tables[1].Rows[0][0].ToString();
@@ -250,7 +251,9 @@ if(ds.Tables[0].Rows.Count>0)
             }
         }
         else
+        {
             txtBillAmount.Text = "";
+        }
     }
 
     protected void btnReset_Click(object sender, EventArgs e)

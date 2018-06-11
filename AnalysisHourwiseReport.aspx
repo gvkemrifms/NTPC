@@ -1,27 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="AnalysisHourwiseReport.aspx.cs" Inherits="AnalysisHourwiseReport" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-        $(function () {
-            $('#<%=txtfrmDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear:true
-            });
-            $('#<%=txttodate.ClientID%>').datepicker({
+        $(function() {
+            $('#<%= txtfrmDate.ClientID %>,#<%= txttodate.ClientID %>').datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear: true
             });
-            $('#<%= ddldistrict.ClientID %>').select2({
-                disable_search_threshold: 5,
-                search_contains: true,
-                minimumResultsForSearch: 20,
-                placeholder: "Select an option"
-            });
-            $('#<%= ddlvehicle.ClientID %>').select2({
+            $('#<%= ddldistrict.ClientID %>,#<%= ddlvehicle.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
                 minimumResultsForSearch: 20,
@@ -116,15 +104,15 @@
     </table>
     <br/>
     <br/>
-            <asp:GridView ID="Grddetails" HorizontalAlign="Center" EmptyDataText="No Records Found" runat="server" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
-                <FooterStyle BackColor="White" ForeColor="#000066" />
-                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                <RowStyle ForeColor="#000066" />
-                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+    <asp:GridView ID="Grddetails" HorizontalAlign="Center" EmptyDataText="No Records Found" runat="server" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
+        <FooterStyle BackColor="White" ForeColor="#000066"/>
+        <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
+        <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+        <RowStyle ForeColor="#000066"/>
+        <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+        <SortedDescendingHeaderStyle BackColor="#00547E"/>
     </asp:GridView>
 </asp:Content>

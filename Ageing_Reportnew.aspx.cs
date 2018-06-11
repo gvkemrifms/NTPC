@@ -13,7 +13,7 @@ public partial class AgeingReportnew : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             BindDistrictdropdown();
@@ -25,7 +25,7 @@ public partial class AgeingReportnew : Page
     {
         try
         {
-            var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+            var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
             _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
         }
         catch (Exception ex)
@@ -38,7 +38,8 @@ public partial class AgeingReportnew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, null, null, null, null, null, null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, null, null, null,
+                null, null, null, null, null, null, Grdtyre);
         }
         catch (Exception ex)
         {
@@ -50,7 +51,8 @@ public partial class AgeingReportnew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, ddldistrict, null, null, null, "@DistrictID", null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, ddldistrict, null,
+                null, null, "@DistrictID", null, null, null, null, Grdtyre);
         }
         catch (Exception ex)
         {

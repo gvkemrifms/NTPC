@@ -9,10 +9,9 @@ using GvkFMSAPP.BLL.VAS_BLL;
 public partial class DistrictVehicleMapping : Page
 {
     private readonly GvkFMSAPP.BLL.Admin.DistrictVehicleMapping _distvehmapp = new GvkFMSAPP.BLL.Admin.DistrictVehicleMapping();
+    private readonly FleetMaster _fleetMaster = new FleetMaster();
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vehallobj = new VASGeneral();
-    private readonly FleetMaster _fleetMaster = new FleetMaster();
-
     public string UserId { get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +19,7 @@ public partial class DistrictVehicleMapping : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "text", "abc()", true);
@@ -208,7 +207,7 @@ public partial class DistrictVehicleMapping : Page
                 _vehallobj.VehType = ddlVehType.SelectedItem.Value;
                 var clsGen = new ClsGeneral();
                 var dtGetVehData = clsGen.getVehicleData(ddlVehicleNumber.SelectedItem.Text);
-                var insres = _fleetMaster.InsNewVehAllocation_new(_vehallobj.OffRoadVehcileId, _vehallobj.OffRoadVehicleNo, _vehallobj.DistrictId, _vehallobj.District,0,"", _vehallobj.MandalId, _vehallobj.Mandal, _vehallobj.CityId, _vehallobj.City, _vehallobj.BaseLocationId, _vehallobj.BaseLocation, _vehallobj.ContactNumber,"New","New", _vehallobj.NewSegMandalIds, _vehallobj.Latitude, _vehallobj.Longitude, _vehallobj.VehType);
+                var insres = _fleetMaster.InsNewVehAllocation_new(_vehallobj.OffRoadVehcileId, _vehallobj.OffRoadVehicleNo, _vehallobj.DistrictId, _vehallobj.District, 0, "", _vehallobj.MandalId, _vehallobj.Mandal, _vehallobj.CityId, _vehallobj.City, _vehallobj.BaseLocationId, _vehallobj.BaseLocation, _vehallobj.ContactNumber, "New", "New", _vehallobj.NewSegMandalIds, _vehallobj.Latitude, _vehallobj.Longitude, _vehallobj.VehType);
                 switch (insres)
                 {
                     case 0:

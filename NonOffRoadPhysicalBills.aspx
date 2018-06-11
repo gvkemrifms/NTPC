@@ -8,13 +8,7 @@
         <ContentTemplate>
             <script>
                 function pageLoad() {
-                    $('#<%= ddlDistricts.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-                    $('#<%= ddlVehicleno.ClientID %>').select2({
+                    $('#<%= ddlDistricts.ClientID %>,#<%= ddlVehicleno.ClientID %>').select2({
                         disable_search_threshold: 5,
                         search_contains: true,
                         minimumResultsForSearch: 20,
@@ -234,13 +228,13 @@
                         </Columns>
                         <FooterStyle CssClass="footerStylegrid" BackColor="White" ForeColor="#000066"/>
                         <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
-                        <RowStyle ForeColor="#000066" />
+                        <RowStyle ForeColor="#000066"/>
                         <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                         <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                        <SortedDescendingHeaderStyle BackColor="#00547E"/>
                     </asp:GridView>
                 </div>
             </div>

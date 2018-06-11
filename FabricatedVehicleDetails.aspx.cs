@@ -101,12 +101,12 @@ public partial class FabricatedVehicleDetails : Page
             if (ViewState["FabricatedVehicleDetID"] != null) _fabricatedvehicledet.FabricatedVehicleDetID = int.Parse(ViewState["FabricatedVehicleDetID"].ToString());
             _fabricatedvehicledet.FabricatorName = ddlFabricatorName.SelectedItem.Value;
             _fabricatedvehicledet.InvoiceNo = txtInvoiceNo.Text;
-            _fabricatedvehicledet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _fabricatedvehicledet.FabricationCost = float.Parse(txtFabricationCost.Text);
-            _fabricatedvehicledet.VehicleHandoverToFabricatorDate = DateTime.ParseExact(txtVehicleHandoverDate.Text,"MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _fabricatedvehicledet.FabricationCompletionDate = DateTime.ParseExact(txtFabricationCompDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.VehicleHandoverToFabricatorDate = DateTime.ParseExact(txtVehicleHandoverDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.FabricationCompletionDate = DateTime.ParseExact(txtFabricationCompDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _fabricatedvehicledet.FVDInspectedBy = txtInspecetedBy.Text;
-            _fabricatedvehicledet.FVDInspectedDate = DateTime.ParseExact(txtInspectionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.FVDInspectedDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             var valfabvel = _fabricatedvehicledet.ValidateFabricatedVehicleDet();
             if (valfabvel.Tables[0].Rows.Count > 0)
             {

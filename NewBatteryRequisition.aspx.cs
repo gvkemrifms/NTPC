@@ -7,9 +7,9 @@ using GvkFMSAPP.PL;
 
 public partial class NewBatteryRequisition : Page
 {
+    private readonly FMSGeneral _fmsg = new FMSGeneral();
+    private readonly Helper _helper = new Helper();
     public IInventory ObjFmsInventory = new FMSInventory();
-    readonly Helper _helper = new Helper();
-    readonly GvkFMSAPP.BLL.FMSGeneral _fmsg = new GvkFMSAPP.BLL.FMSGeneral();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,9 +20,9 @@ public partial class NewBatteryRequisition : Page
             FillInventoryVehicles();
             grvInventoryNewBatteryRequisition.Visible = false;
             btnNewBatteryReqSave.Attributes.Add("OnClick", "return validationInventoryBatteryVehicleType()");
-            DataSet dsPerms = (DataSet) Session["PermissionsDS"];
+            var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            PagePermissions p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             grvBatteryPendingForApproval.Columns[4].Visible = false;
             pnlNewBatteryRequisition.Visible = false;
             grvBatteryPendingForApproval.Visible = false;
@@ -52,7 +52,7 @@ public partial class NewBatteryRequisition : Page
         try
         {
             _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
-            DataSet ds = _fmsg.GetVehicleNumber();
+            var ds = _fmsg.GetVehicleNumber();
             if (ds != null)
             {
                 _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlInventoryVehicles);
@@ -92,22 +92,21 @@ public partial class NewBatteryRequisition : Page
 
     protected void btnNewBatteryReqSave_Click(object sender, EventArgs e)
     {
-        int chk = 0;
-        DataTable dtUpdateBattery = new DataTable();
-        dtUpdateBattery.Columns.Add("VehicleID", typeof(Int32));
-        dtUpdateBattery.Columns.Add("VehicleNum", typeof(String));
-        dtUpdateBattery.Columns.Add("DistrictID", typeof(Int32));
-        dtUpdateBattery.Columns.Add("FleetInventoryCategory", typeof(Int32));
-        dtUpdateBattery.Columns.Add("BatteryNo", typeof(String));
-        dtUpdateBattery.Columns.Add("BatteryReqQty", typeof(Int32));
-        dtUpdateBattery.Columns.Add("BatteryReqRemarks", typeof(String));
-        dtUpdateBattery.Columns.Add("RequestedBy", typeof(Int32));
-        dtUpdateBattery.Columns.Add("Battery1or2", typeof(String));
+        var chk = 0;
+        var dtUpdateBattery = new DataTable();
+        dtUpdateBattery.Columns.Add("VehicleID", typeof(int));
+        dtUpdateBattery.Columns.Add("VehicleNum", typeof(string));
+        dtUpdateBattery.Columns.Add("DistrictID", typeof(int));
+        dtUpdateBattery.Columns.Add("FleetInventoryCategory", typeof(int));
+        dtUpdateBattery.Columns.Add("BatteryNo", typeof(string));
+        dtUpdateBattery.Columns.Add("BatteryReqQty", typeof(int));
+        dtUpdateBattery.Columns.Add("BatteryReqRemarks", typeof(string));
+        dtUpdateBattery.Columns.Add("RequestedBy", typeof(int));
+        dtUpdateBattery.Columns.Add("Battery1or2", typeof(string));
         foreach (GridViewRow row in grvInventoryNewBatteryRequisition.Rows)
-        {
             if (((CheckBox) row.FindControl("chk")).Checked)
             {
-                TextBox txt = (TextBox) row.FindControl("txtRemarks");
+                var txt = (TextBox) row.FindControl("txtRemarks");
                 switch (txt.Text)
                 {
                     case "":
@@ -127,10 +126,11 @@ public partial class NewBatteryRequisition : Page
                 dr["Battery1or2"] = row.Cells[1].Text;
                 dtUpdateBattery.Rows.Add(dr);
             }
-        }
 
         if (chk > 0)
+        {
             Show("Please Fill The Remarks");
+        }
         else
         {
             string strFmsScript;
@@ -141,7 +141,7 @@ public partial class NewBatteryRequisition : Page
                     Show(strFmsScript);
                     break;
                 default:
-                    bool updResult = ObjFmsInventory.InsertingBatteryRequisitionRow(dtUpdateBattery);
+                    var updResult = ObjFmsInventory.InsertingBatteryRequisitionRow(dtUpdateBattery);
                     if (updResult)
                     {
                         strFmsScript = "Battery Details Mapped successfully";
@@ -195,7 +195,7 @@ public partial class NewBatteryRequisition : Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(txtRequestIdPopup.Text);
+        var id = Convert.ToInt32(txtRequestIdPopup.Text);
         ObjFmsInventory.BatteryApproveRejectRequisition(id, 2);
         FillGrid_BatteryPendingForApproval(3, ViewState["vehicleid"] != null ? Convert.ToInt32(ViewState["vehicleid"]) : Convert.ToInt32(ddlInventoryVehicles.SelectedValue));
         Show("New Battery Request Approved");
@@ -203,7 +203,7 @@ public partial class NewBatteryRequisition : Page
 
     protected void btnNo_Click(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(txtRequestIdPopup.Text);
+        var id = Convert.ToInt32(txtRequestIdPopup.Text);
         ObjFmsInventory.BatteryApproveRejectRequisition(id, 3);
         FillGrid_BatteryPendingForApproval(3, ViewState["vehicleid"] != null ? Convert.ToInt32(ViewState["vehicleid"]) : Convert.ToInt32(ddlInventoryVehicles.SelectedValue));
         FillGrid_NewBatteryRequisition(ViewState["vehicleid"] != null ? Convert.ToInt32(ViewState["vehicleid"]) : Convert.ToInt32(ddlInventoryVehicles.SelectedValue));
@@ -222,7 +222,7 @@ public partial class NewBatteryRequisition : Page
         hideHistory.Visible = true;
     }
 
-    public void FillGrid_RequisitionHistory(int @vehicleId, int @districtId, int fleetInventoryItemId)
+    public void FillGrid_RequisitionHistory(int vehicleId, int districtId, int fleetInventoryItemId)
     {
         var ds = ObjFmsInventory.IFillFleetInventoryRequisitionHistory(vehicleId, districtId, 3);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
@@ -238,7 +238,7 @@ public partial class NewBatteryRequisition : Page
 
     protected void grvBatteryPendingForApproval_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int id = Convert.ToInt32(e.CommandArgument.ToString());
+        var id = Convert.ToInt32(e.CommandArgument.ToString());
         var ds = ObjFmsInventory.GetInventoryReqForEdit(id);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         txtRequestIdPopup.Text = Convert.ToString(id);

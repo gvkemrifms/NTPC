@@ -82,9 +82,9 @@
                                         <asp:Button ID="btnDelete" runat="server" Text="Delete" ToolTip='<%# Eval("SNo") %>'
                                                     CssClass="button2" OnClick="BtnDelete_Click"/>
                                     </ItemTemplate>
-                                    <ControlStyle Width="50px" />
-                                    <HeaderStyle Width="60px" />
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ControlStyle Width="50px"/>
+                                    <HeaderStyle Width="60px"/>
+                                    <ItemStyle HorizontalAlign="Center"/>
                                 </asp:TemplateField>
                             </Columns>
                             <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
@@ -92,10 +92,10 @@
                             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                         </asp:GridView>
                     </td>
                 </tr>
@@ -143,8 +143,8 @@
                                                 CssClass="button2" OnClick="btnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>"
                                                 CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
                             </ItemTemplate>
-                            <ControlStyle Width="50px" />
-                            <HeaderStyle Width="60px" />
+                            <ControlStyle Width="50px"/>
+                            <HeaderStyle Width="60px"/>
                         </asp:TemplateField>
                     </Columns>
                     <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
@@ -152,10 +152,10 @@
                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                 </asp:GridView>
             </td>
         </tr>
@@ -176,15 +176,15 @@
                             <tr>
                                 <td>
                                     <asp:GridView ID="grvRequisitionHistory" HorizontalAlign="Center" runat="server" AllowPaging="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="gridviewStyle" EmptyDataText="No History Found" OnPageIndexChanging="grvRequisitionHistory_PageIndexChanging" PageSize="5" Width="95%">
-                                        <RowStyle CssClass="rowStyleGrid" ForeColor="#000066" />
-                                        <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
-                                        <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
-                                        <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
-                                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                        <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
+                                        <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066"/>
+                                        <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left"/>
+                                        <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White"/>
+                                        <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White"/>
+                                        <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                        <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                        <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                        <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                     </asp:GridView>
                                 </td>
                             </tr>

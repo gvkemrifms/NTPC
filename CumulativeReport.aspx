@@ -5,7 +5,7 @@
     <div id="main">
         <div id="five" style="float: left; width: 5%">
             <div class="row" style="margin-top: 30px">
-                <asp:Button ID="btntoExcel" class="form-submit-button"  runat="server" OnClick="btntoExcel_Click" Text="Export To Excel" Style="font-size: 12px; height: 33px; width: 150px;margin-top:-20px;margin-bottom:20px;margin-left:20px"></asp:Button>
+                <asp:Button ID="btntoExcel" class="form-submit-button" runat="server" OnClick="btntoExcel_Click" Text="Export To Excel" Style="font-size: 12px; height: 33px; margin-bottom: 20px; margin-left: 20px; margin-top: -20px; width: 150px;"></asp:Button>
             </div>
         </div>
 
@@ -43,18 +43,18 @@
 
                 </Columns>
 
-<EmptyDataRowStyle ForeColor="Red"></EmptyDataRowStyle>
+                <EmptyDataRowStyle ForeColor="Red"></EmptyDataRowStyle>
 
-                <FooterStyle BackColor="White" ForeColor="#000066" />
+                <FooterStyle BackColor="White" ForeColor="#000066"/>
 
-<HeaderStyle ForeColor="White" BackColor="#006699" Font-Bold="True"></HeaderStyle>
-                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                <RowStyle ForeColor="#000066" />
-                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                <HeaderStyle ForeColor="White" BackColor="#006699" Font-Bold="True"></HeaderStyle>
+                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+                <RowStyle ForeColor="#000066"/>
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#00547E"/>
             </asp:GridView>
         </div>
     </div>

@@ -4,16 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
         $(function() {
-            $('#<%=txtfromdate.ClientID%>').datepicker({
+            $('#<%=txtfromdate.ClientID%>,#<%=txttodate.ClientID%>').datepicker({
                 dateFormat: 'yy/mm/dd',
                 changeMonth: true,
                 changeYear: true
-            });
-            $('#<%=txttodate.ClientID%>').datepicker({
-                dateFormat: 'yy/mm/dd',
-                changeMonth: true,
-                changeYear: true
-            });
+            });           
         });
         function Validations() {
             var txtFirstDate = $('#<%= txtfromdate.ClientID %>').val();

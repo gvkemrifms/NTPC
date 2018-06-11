@@ -7,7 +7,7 @@ public partial class ZonewiseReport : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["User_Name"]==null)Response.Redirect("Login.aspx");
+        if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) BindDistrictdropdown();
     }
 
@@ -49,11 +49,11 @@ public partial class ZonewiseReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_ZonewiseReport", null, null, ddldistrict, ddlmonth, null, null, "@DistrictID", "@Month", null,null, "@Year", Grddetails, ddlyear);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_ZonewiseReport", null, null, ddldistrict, ddlmonth, null, null, "@DistrictID", "@Month", null, null, "@Year", Grddetails, ddlyear);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-           _helper.ErrorsEntry(ex);
+            _helper.ErrorsEntry(ex);
         }
     }
 }

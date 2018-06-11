@@ -6,12 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-using BaseVehicleDetails = GvkFMSAPP.BLL.BaseVehicleDetails;
 
 public partial class VehicleRegistration : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
-    private readonly BaseVehicleDetails _getDistrict = new BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
     private readonly GvkFMSAPP.BLL.VehicleRegistration _vehreg = new GvkFMSAPP.BLL.VehicleRegistration();
     private int _ret;
@@ -23,7 +21,7 @@ public partial class VehicleRegistration : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             var dsPerms = (DataSet) Session["PermissionsDS"];
@@ -98,7 +96,7 @@ public partial class VehicleRegistration : Page
         _vehreg.ChasisNumber = txtChassisNo.Text;
         _vehreg.SeatingCapacity = int.Parse(txtSittingCapacity.Text);
         _vehreg.PRNo = txtPRNo.Text;
-        _vehreg.RegDate = DateTime.ParseExact(txtRegistrationDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _vehreg.RegDate = DateTime.ParseExact(txtRegistrationDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehreg.VehicleRTACircle = txtRTACircle.Text;
         _vehreg.District = ddlDistrict.SelectedItem.Value;
         _vehreg.RegExpenses = float.Parse(txtRegisExpenses.Text);

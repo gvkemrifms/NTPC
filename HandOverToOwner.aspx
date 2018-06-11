@@ -108,8 +108,8 @@
                     <td>
                         <asp:Panel ID="pnlgrdTemporaryVehicle" runat="server">
                             <fieldset style="padding: 10px">
-                                <legend align="center" style="color:brown">Temporary Vehicle </legend>
-                                <br />
+                                <legend align="center" style="color: brown">Temporary Vehicle </legend>
+                                <br/>
                                 <asp:GridView ID="grdTemporaryVehicle" align="center" runat="server" AutoGenerateColumns="False"
                                               CellPadding="3" OnRowCommand="grdTemporaryVehicle_RowCommand"
                                               Width="238px" EmptyDataText="No Records Found" CssClass="gridviewStyle" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
@@ -132,10 +132,10 @@
                                     <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                     <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                     <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                    <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                    <SortedDescendingHeaderStyle BackColor="#00547E"/>
                                 </asp:GridView>
                             </fieldset>
                         </asp:Panel>
@@ -245,7 +245,7 @@
                 <tr>
                     <td>
                         <fieldset style="padding: 10px">
-                            <legend align="center" style="color:brown">Hand Over to Owner</legend>
+                            <legend align="center" style="color: brown">Hand Over to Owner</legend>
                             <asp:GridView ID="grdVehicleDecompositionApproval" align="center" runat="server" AutoGenerateColumns="False"
                                           Width="630px" OnRowCommand="grdVehicleDecompositionApproval_RowCommand" AllowPaging="True"
                                           OnPageIndexChanging="grdVehicleDecompositionApproval_PageIndexChanging" CellPadding="3" EmptyDataText="No Records Found" CssClass="gridviewStyle" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
@@ -277,10 +277,10 @@
                                 <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                 <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                 <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
                             </asp:GridView>
                         </fieldset>
                     </td>

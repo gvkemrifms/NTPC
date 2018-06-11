@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
     function validationAgencyDetails() {
-        
+
 
         if (document.getElementById('<%= txtAgencyName.ClientID %>').value === "") {
             alert("Please Enter Agency Name");
@@ -61,7 +61,7 @@
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
 <script type="text/javascript">
-    function pageLoad() {      
+    function pageLoad() {
         $('#<%= ddlDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -77,7 +77,7 @@
     <tr>
         <td>
         <fieldset style="padding: 10px">
-        <legend align="center" style="color:brown">Agency Details</legend>
+        <legend align="center" style="color: brown">Agency Details</legend>
         <asp:Panel runat="server">
         <table style="height: 150px; width: 100%;">
         <tr>
@@ -88,7 +88,7 @@
             <td align="left" style="width: 200px">
                 <asp:TextBox ID="txtAgencyName" runat="server" MaxLength="35" CssClass="txtbox"></asp:TextBox>
             </td>
-            <td class="columnseparator"></td>           
+            <td class="columnseparator"></td>
         </tr>
         <tr>
             <td class="rowseparator"></td>
@@ -262,10 +262,10 @@
                                 <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                                 <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                                 <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
                             </asp:GridView>
                         </td>
                     </tr>

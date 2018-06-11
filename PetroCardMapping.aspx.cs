@@ -6,8 +6,8 @@ using GvkFMSAPP.BLL;
 
 public partial class PetroCardMapping : Page
 {
-    public IFuelManagement Objpetmap = new FuelManagement();
     private readonly Helper _helper = new Helper();
+    public IFuelManagement Objpetmap = new FuelManagement();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -210,7 +210,9 @@ public partial class PetroCardMapping : Page
             else if (Save.Text == "Update" && ddlVehicleNumber.Enabled == false && ddlNewVehicleNumber.Enabled && TransfertoNewVehicle.Checked && Deactivate.Checked == false)
             {
                 if (ddlNewVehicleNumber.SelectedIndex != 0)
+                {
                     UpdMapping1(Convert.ToInt32(txtEdit.Text), Convert.ToInt32(ddlNewVehicleNumber.SelectedValue), Convert.ToInt32(ddlPetroCardNumber.SelectedValue), Convert.ToDateTime(txtIssDate.Text));
+                }
                 else
                 {
                     var strFmsScript = "Please Select a new Vehicle to transfer";
@@ -226,7 +228,9 @@ public partial class PetroCardMapping : Page
                     var petroCardId = Convert.ToInt32(ddlPetroCardNumber.SelectedValue);
                     var ds = Objpetmap.ICheckPetroCard(petroCardId);
                     if (ds.Tables[0].Rows.Count == 0 && ddlReason.SelectedIndex != 0)
+                    {
                         UpdMapping2(Convert.ToInt32(txtEdit.Text), Convert.ToInt32(ddlReason.SelectedValue), Convert.ToString(txtRemarks.Text));
+                    }
                     else if (ds.Tables[0].Rows.Count == 0 && ddlReason.SelectedIndex == 0)
                     {
                         var strFmsScript = "Please Select A Reason and Deactivate";
@@ -432,7 +436,7 @@ public partial class PetroCardMapping : Page
         ddlVehicleNumber.SelectedValue = ds.Tables[0].Rows[0]["VehicleID"].ToString();
         FillNewVehicleNumber();
         ddlVehicleNumber.Enabled = false;
-        string petro= ds.Tables[0].Rows[0]["PetroCardIssueID"].ToString();
+        var petro = ds.Tables[0].Rows[0]["PetroCardIssueID"].ToString();
         ddlPetroCardNumber.SelectedValue = petro;
         ddlPetroCardNumber.Enabled = false;
         var pid = Convert.ToInt32(ddlPetroCardNumber.SelectedValue);

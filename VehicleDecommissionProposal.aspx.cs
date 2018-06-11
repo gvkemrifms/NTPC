@@ -52,7 +52,7 @@ public partial class VehicleDecommissionProposal : Page
             _vehicleProposalBol.VehicleID = Convert.ToInt32(ViewState["VehicleId"]);
             _vehicleApprovalBol.OffRoadDateTime = DateTime.Now;
             _vehicleProposalBol.TotalKmCovered = txtTotalKmCovered.Text;
-            _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(txtDateOfPurchase.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyDate = DateTime.ParseExact(txtSurveyDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);

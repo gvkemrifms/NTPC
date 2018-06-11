@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="RoadTax.aspx.cs" Inherits="RoadTax" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
         function validation() {
@@ -67,22 +65,15 @@
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%=txtRoadTaxValidityStartDate.ClientID%>').datepicker({
+                    $('#<%= txtRoadTaxValidityStartDate.ClientID %>,#<%= ddlVehicleNumber.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
-                        changeYear:true
+                        changeYear: true
                     });
-                    $('#<%= ddlVehicleNumber.ClientID %>').select2({
-                        disable_search_threshold: 5,
-                        search_contains: true,
-                        minimumResultsForSearch: 20,
-                        placeholder: "Select an option"
-                    });
-
                 }
             </script>
-            <legend align="center" style="color:brown">Road Tax</legend>
-            <br />
+            <legend align="center" style="color: brown">Road Tax</legend>
+            <br/>
             <table align="center">
                 <tr>
                     <td>
@@ -117,7 +108,7 @@
                                                      oncut="return false;" onpaste="return false;">
                                         </asp:TextBox>
                                     </td>
-                             
+
                                 </tr>
                                 <tr>
 
@@ -207,22 +198,22 @@
                     <tr align="center">
                         <td>
                             <asp:GridView ID="gvRoadTax" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" HeaderStyle-ForeColor="#337ab7" OnPageIndexChanging="gvRoadTax_PageIndexChanging" OnRowCommand="gvRoadTax_RowCommand" OnRowDataBound="gvRoadTax_RowDataBound" PagerStyle-CssClass="pager" style="margin-top: 20px" Width="630px">
-                                <RowStyle CssClass="rows" ForeColor="#000066" />
+                                <RowStyle CssClass="rows" ForeColor="#000066"/>
                                 <Columns>
                                     <asp:TemplateField HeaderText="Vehicle Number">
                                         <ItemTemplate>
                                             <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
-                                        </asp:Label>
+                                            </asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="RTValidityStartDate" DataFormatString="{0:d}" HeaderText="RTValidity StartDate" />
+                                    <asp:BoundField DataField="RTValidityStartDate" DataFormatString="{0:d}" HeaderText="RTValidity StartDate"/>
                                     <asp:TemplateField HeaderText="RTValidity Period">
                                         <ItemTemplate>
                                             <asp:Label ID="lblRTValidityPeriod" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "RTValidityPeriod") %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblRTValidityPeriodText" runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="RTValidityEndDate" DataFormatString="{0:d}" HeaderText="RTValidity EndDate" />
+                                    <asp:BoundField DataField="RTValidityEndDate" DataFormatString="{0:d}" HeaderText="RTValidity EndDate"/>
                                     <asp:TemplateField HeaderText="Vehicle RTA Circle">
                                         <ItemTemplate>
                                             <asp:Label ID="lblVehicleRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleRTACircle") %>'></asp:Label>
@@ -241,22 +232,22 @@
                                     <asp:TemplateField HeaderText="Edit">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "RoadTaxID") %>' CommandName="roadTaxEdit" Text="Edit">
-                                        </asp:LinkButton>
+                                            </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066" />
-                                <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left" />
-                                <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                                <FooterStyle BackColor="White" CssClass="footerStylegrid" ForeColor="#000066"/>
+                                <PagerStyle BackColor="White" CssClass="pagerStylegrid" ForeColor="#000066" HorizontalAlign="Left"/>
+                                <SelectedRowStyle BackColor="#669999" CssClass="selectedRowStyle" Font-Bold="True" ForeColor="White"/>
+                                <HeaderStyle BackColor="#006699" CssClass="headerStyle" Font-Bold="True" ForeColor="White"/>
+                                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                                <SortedDescendingHeaderStyle BackColor="#00547E"/>
                             </asp:GridView>
                         </td>
                     </tr>
-                    <asp:HiddenField ID="vehicleRegistrationDate" runat="server" />
+                    <asp:HiddenField ID="vehicleRegistrationDate" runat="server"/>
                 </caption>
             </table>
 

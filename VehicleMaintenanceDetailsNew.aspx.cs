@@ -43,7 +43,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             btnSave.Attributes.Add("onclick", "return validation()");
@@ -1551,13 +1551,13 @@ public partial class VehicleMaintenanceDetailsNew : Page
             var ds2 = _vehMain.GetSpareParts(vehicleNumber);
             if (ds != null)
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlSpareVendorName,null,null,null,"1");
+                _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlSpareVendorName, null, null, null, "1");
                 ViewState["Vendor"] = ds;
             }
 
             if (ds2 != null)
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds2, "SparePart_Name", "ManufacturerSpare_Id", ddlSpareItemDesc,null,null,null,"1");
+                _helper.FillDropDownHelperMethodWithDataSet(ds2, "SparePart_Name", "ManufacturerSpare_Id", ddlSpareItemDesc, null, null, null, "1");
                 ViewState["SpareItemDesc"] = ds2;
             }
 
@@ -1595,7 +1595,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                     var ds = _vehMain.IFillVendorsMaintenance();
                     if (ds != null && ddlLubricantVendorName != null)
                     {
-                        _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLubricantVendorName,null,null,null,"1");
+                        _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLubricantVendorName, null, null, null, "1");
                         ViewState["Vendor"] = ds;
                     }
 
@@ -1626,7 +1626,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ds = _vehMain.IFillVendorsMaintenance();
                 if (ds != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLabourVendorName,null,null,null,"1");
+                    _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLabourVendorName, null, null, null, "1");
                     ViewState["Vendor"] = ds;
                 }
 
@@ -1635,7 +1635,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourAggregates = e.Row.FindControl("ddlLabourAggregates") as ComboBox;
                 if (_dslabourAggregates != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates,null,null,"1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates, null, null, "1");
                     ViewState["LabourAggregates"] = _dslabourAggregates;
                 }
 
@@ -1644,7 +1644,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourCategories = e.Row.FindControl("ddlLabourCategories") as ComboBox;
                 if (_dsLabourCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories,null,null,"1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories, null, null, "1");
                     ViewState["LabourCategories"] = _dsLabourCategories;
                 }
 
@@ -1653,7 +1653,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourSubCategories = e.Row.FindControl("ddlLabourSubCategories") as ComboBox;
                 if (_dsLabourSubCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories,null,null,"1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories, null, null, "1");
                     ViewState["LabourSubCategories"] = _dsLabourSubCategories;
                 }
             }
@@ -1680,7 +1680,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 _dslabourAggregates = new DataSet();
                 _dslabourAggregates = _vehallobj.GetAggregates();
                 var ddlLabourAggregates = e.Row.FindControl("ddlLabourAggregates") as ComboBox;
-                if (_dslabourAggregates != null) _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates,null,null,"1");
+                if (_dslabourAggregates != null) _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates, null, null, "1");
                 if (_dslabourAggregates != null)
                 {
                     var dv1 = new DataView(_dslabourAggregates.Tables[0]) {RowFilter = "Aggregates='" + Convert.ToString(((DataRowView) e.Row.DataItem).Row.ItemArray[4]) + "'"};
@@ -1698,7 +1698,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 _dsLabourCategories = new DataSet();
                 _dsLabourCategories = _vehallobj.GetCategoriesMaintenance();
                 var ddlLabourCategories = e.Row.FindControl("ddlLabourCategories") as ComboBox;
-                if (_dsLabourCategories != null) _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories,null,null,"1");
+                if (_dsLabourCategories != null) _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories, null, null, "1");
                 if (_dsLabourCategories != null)
                 {
                     var dv2 = new DataView(_dsLabourCategories.Tables[0]) {RowFilter = "Categories='" + Convert.ToString(((DataRowView) e.Row.DataItem).Row.ItemArray[5]) + "'"};
@@ -1718,7 +1718,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourSubCategories = e.Row.FindControl("ddlLabourSubCategories") as ComboBox;
                 if (_dsLabourSubCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories,null,null,"1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories, null, null, "1");
                     ViewState["LabourSubCategories"] = _dsLabourSubCategories;
                 }
 

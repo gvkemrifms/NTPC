@@ -7,8 +7,9 @@ using System.Web.UI.WebControls;
 
 public partial class Equipment : Page
 {
+    private readonly FleetMaster _fleetMaster = new FleetMaster();
     private readonly Helper _helper = new Helper();
-    private readonly FleetMaster _fleetMaster=new FleetMaster();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
@@ -31,41 +32,41 @@ public partial class Equipment : Page
 
     private void BindGrid(int number)
     {
-            try
+        try
+        {
+            var ds = _fleetMaster.GetSelectAllMedicalEquipmentByEquipmentTypeId(number);
+            switch (number)
             {
-                var ds = _fleetMaster.GetSelectAllMedicalEquipmentByEquipmentTypeId(number);
-                switch (number)
-                {
-                    case 1:
-                        grdviewMedicalEqupment.DataSource = ds;
-                        grdviewMedicalEqupment.DataBind();
-                        break;
-                    case 2:
-                        grdviewMedicalDisposables.DataSource = ds;
-                        grdviewMedicalDisposables.DataBind();
-                        break;
-                    case 3:
-                        grdviewExtricationTools.DataSource = ds;
-                        grdviewExtricationTools.DataBind();
-                        break;
-                    case 4:
-                        grdviewCOmmunicationTechnology.DataSource = ds;
-                        grdviewCOmmunicationTechnology.DataBind();
-                        break;
-                    case 5:
-                        grdviewMedicines.DataSource = ds;
-                        grdviewMedicines.DataBind();
-                        break;
-                    case 6:
-                        grdviewNoMedicalSupplies.DataSource = ds;
-                        grdviewNoMedicalSupplies.DataBind();
-                        break;
-                }
+                case 1:
+                    grdviewMedicalEqupment.DataSource = ds;
+                    grdviewMedicalEqupment.DataBind();
+                    break;
+                case 2:
+                    grdviewMedicalDisposables.DataSource = ds;
+                    grdviewMedicalDisposables.DataBind();
+                    break;
+                case 3:
+                    grdviewExtricationTools.DataSource = ds;
+                    grdviewExtricationTools.DataBind();
+                    break;
+                case 4:
+                    grdviewCOmmunicationTechnology.DataSource = ds;
+                    grdviewCOmmunicationTechnology.DataBind();
+                    break;
+                case 5:
+                    grdviewMedicines.DataSource = ds;
+                    grdviewMedicines.DataBind();
+                    break;
+                case 6:
+                    grdviewNoMedicalSupplies.DataSource = ds;
+                    grdviewNoMedicalSupplies.DataBind();
+                    break;
             }
-            catch (Exception ex)
-            {
-                _helper.ErrorsEntry(ex);
-            }
+        }
+        catch (Exception ex)
+        {
+            _helper.ErrorsEntry(ex);
+        }
     }
 
     protected void BtnSave_Click(object sender, EventArgs e)

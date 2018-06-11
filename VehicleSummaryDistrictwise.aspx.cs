@@ -13,7 +13,7 @@ public partial class VehicleSummaryDistrictwise : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack) BindDistrictdropdown();
     }
 

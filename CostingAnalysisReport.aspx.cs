@@ -13,7 +13,7 @@ public partial class CostingAnalysisReport : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ddlvehicle.Enabled = false;
@@ -23,7 +23,7 @@ public partial class CostingAnalysisReport : Page
 
     private void BindDistrictdropdown()
     {
-        var sqlQuery = ConfigurationManager.AppSettings["Query"]+" "+ "where u.UserId ='" + UserId + "'";
+        var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
         _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
     }
 

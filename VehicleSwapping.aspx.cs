@@ -2,12 +2,10 @@
 using System.Configuration;
 using System.Data;
 using System.Web.UI;
-using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.VAS_BLL;
 
 public partial class VehicleSwapping : Page
 {
-    private readonly BaseVehicleDetails _fmsobj = new BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vasbll = new VASGeneral();
 
@@ -18,7 +16,7 @@ public partial class VehicleSwapping : Page
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (IsPostBack) return;
         btnSubmit.Attributes.Add("onclick", "return validation()");
         GetDistrict();

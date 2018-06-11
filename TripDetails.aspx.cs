@@ -84,7 +84,7 @@ public partial class TripDetails : Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        var tripDate = DateTime.ParseExact(txtTripDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        var tripDate = DateTime.ParseExact(txtTripDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         var vehicle = Convert.ToInt32(ddlAmbulanceID.SelectedValue);
         var trip = Convert.ToInt32(ddlTripType.SelectedValue);
         var destination = Convert.ToString(txtDestinationLocation.Text);

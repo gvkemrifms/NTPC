@@ -1,39 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="AccidentReport.aspx.cs" Inherits="AccidentReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-        
-        $(function () {          
-            $('#<%=txtfrmDate.ClientID%>').datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear:true
-            });
-            $('#<%=txttodate.ClientID%>').datepicker({
+
+        $(function() {
+            $('#<%= txtfrmDate.ClientID %>,#<%= txttodate.ClientID %>').datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear: true
             });
-            $('#<%= ddldistrict.ClientID %>').select2({
+            $('#<%= ddldistrict.ClientID %>,#<%= ddlvehicle.ClientID %>').select2({
                 disable_search_threshold: 5,
                 search_contains: true,
-                minimumResultsForSearch: 20,
-                placeholder: "Select an option"
-            });
-            $('#<%= ddlvehicle.ClientID %>').select2({
-                disable_search_threshold: 5,
-                search_contains: true,
-                minimumResultsForSearch: 20,
+                minimumResultsForSearch: 10,
                 placeholder: "Select an option"
             });
         });
 
         function Validations() {
-            $('#<%= ddldistrict.ClientID %>').chosen();
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select State");
             }
-            $('#<%= ddlvehicle.ClientID %>').chosen();
             var ddlVehicle = $('#<%= ddlvehicle.ClientID %> option:selected').text().toLowerCase();
             if (ddlVehicle === '--select--') {
                 return alert("Please select Vehicle");
@@ -128,15 +115,15 @@
     </table>
     <asp:Panel ID="Panel2" runat="server" Style="margin-left: 2px; margin-top: 20px" HorizontalAlign="Center">
         <asp:GridView ID="Grddetails" runat="server" EmptyDataText="No Rows Found" ShowHeaderWhenEmpty="True" BorderColor="#CCCCCC" BorderWidth="1px" BackColor="White" BorderStyle="None" CellPadding="3">
-            <FooterStyle BackColor="White" ForeColor="#000066" />
-            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-            <RowStyle ForeColor="#000066" />
-            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#00547E" />
+            <FooterStyle BackColor="White" ForeColor="#000066"/>
+            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White"/>
+            <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+            <RowStyle ForeColor="#000066"/>
+            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+            <SortedDescendingHeaderStyle BackColor="#00547E"/>
         </asp:GridView>
     </asp:Panel>
 </asp:Content>
