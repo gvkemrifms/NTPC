@@ -5,14 +5,13 @@ using System.Globalization;
 using System.Web.UI;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class VehicleInsurance : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.VehicleInsurance _vehicleInsurance = new GvkFMSAPP.BLL.StatutoryCompliance.VehicleInsurance();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -20,8 +19,8 @@ public partial class VehicleInsurance : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetVehicleNumber();
             if (Request.QueryString["vehicleid"] != null)
                 try
@@ -39,7 +38,7 @@ public partial class VehicleInsurance : Page
             GetAgency();
             GetInsuranceType();
             pnlVehicleInsurance.Visible = p.Add;
-            if (p.View && p.Add == false && p.Modify == false && p.Approve == false) Response.Redirect("~/VehicleInsuranceViewHistory.aspx", false);
+            if (p.View && p.Add == false && p.Modify == false && p.Approve == false) Response.Redirect("~/VehicleInsuranceViewHistory.aspx",false);
         }
 
         switch (chkBoxChangeInsuranceDetails.Checked)
@@ -60,7 +59,7 @@ public partial class VehicleInsurance : Page
         {
             _vehicleInsurance.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = _vehicleInsurance.GetVehicleNumber();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlVehicleNo);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlVehicleNo);
         }
         catch (Exception ex)
         {
@@ -68,7 +67,7 @@ public partial class VehicleInsurance : Page
         }
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         _vehicleInsurance.VehicleID = Convert.ToInt32(ddlVehicleNo.SelectedItem.Value);
         _vehicleInsurance.District = Convert.ToInt32(ViewState["District"].ToString());
@@ -97,7 +96,7 @@ public partial class VehicleInsurance : Page
         ClearControls();
     }
 
-    protected void ddlPolicyValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlPolicyValidityPeriod_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (txtPolicyStartDate.Text)
         {
@@ -109,15 +108,15 @@ public partial class VehicleInsurance : Page
         }
 
         if (ddlPolicyValidityPeriod.SelectedIndex == 0) return;
-        txtPolicyEndDate.Text = Convert.ToDateTime(txtPolicyStartDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString();
+        txtPolicyEndDate.Text = Convert.ToDateTime(txtPolicyStartDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void ddlVehicleNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         GetVehicleInsuranceData();
         var pdt = _fmsGeneral.GetPurchaseDate(int.Parse(ddlVehicleNo.SelectedItem.Value));
@@ -129,7 +128,7 @@ public partial class VehicleInsurance : Page
         try
         {
             var ds = _vehicleInsurance.GetInsuranceType();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "InsuranceTypeName", "InsuranceTypeId", ddlInsuranceType);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"InsuranceTypeName","InsuranceTypeId",ddlInsuranceType);
         }
         catch (Exception ex)
         {
@@ -142,7 +141,7 @@ public partial class VehicleInsurance : Page
         try
         {
             var ds = _vehicleInsurance.GetAgency();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "InsuranceAgency", "InsuranceId", ddlInsuranceAgency);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"InsuranceAgency","InsuranceId",ddlInsuranceAgency);
         }
         catch (Exception ex)
         {
@@ -183,7 +182,7 @@ public partial class VehicleInsurance : Page
         }
     }
 
-    protected void chkBoxChangeInsuranceDetails_CheckedChanged(object sender, EventArgs e)
+    protected void chkBoxChangeInsuranceDetails_CheckedChanged(object sender,EventArgs e)
     {
         if (chkBoxChangeInsuranceDetails.Checked && chkBoxChangeInsuranceDetails.Checked)
         {
@@ -196,7 +195,7 @@ public partial class VehicleInsurance : Page
         }
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
@@ -219,17 +218,17 @@ public partial class VehicleInsurance : Page
         ddlVehicleNo.ClearSelection();
     }
 
-    protected void txtPolicyStartDate_TextChanged(object sender, EventArgs e)
+    protected void txtPolicyStartDate_TextChanged(object sender,EventArgs e)
     {
         ddlPolicyValidityPeriod.SelectedIndex = 0;
         txtPolicyEndDate.Text = "";
     }
 
-    protected void ddlInsuranceType_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlInsuranceType_SelectedIndexChanged(object sender,EventArgs e)
     {
     }
 
-    protected void ddlInsuranceAgency_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlInsuranceAgency_SelectedIndexChanged(object sender,EventArgs e)
     {
     }
 }

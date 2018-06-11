@@ -206,29 +206,17 @@
                 });
 
                 function validationFuelEntry() {
-
-
                     var tripDate = document.getElementById('<%= txtTripDate.ClientID %>');
                     var id = document.getElementById('<%= ddlAmbulanceID.ClientID %>');
-
                     var tripType = document.getElementById('<%= ddlTripType.ClientID %>');
-
                     var destination = document.getElementById('<%= txtDestinationLocation.ClientID %>');
-
                     var startHr = document.getElementById('<%= ddlHours.ClientID %>');
-
                     var startMin = document.getElementById('<%= ddlMinutes.ClientID %>');
-
                     var startOdo = document.getElementById('<%= txtStartOdo.ClientID %>');
-
                     var endHr = document.getElementById('<%= ddlHours1.ClientID %>');
-
                     var endMin = document.getElementById('<%= ddlMinutes2.ClientID %>');
-
                     var endOdo = document.getElementById('<%= txtEndOdo.ClientID %>');
-
                     var remarks = document.getElementById('<%= txtRemarks.ClientID %>');
-
                     if (!RequiredValidation(tripDate, "TripDate Cannot be Blank"))
                         return false;
                     var now = new Date();
@@ -237,7 +225,6 @@
                         tripDate.focus();
                         return false;
                     }
-
                     var inputs = id.getElementsByTagName('input');
                     var i;
                     for (i = 0; i < inputs.length; i++) {
@@ -250,14 +237,12 @@
                             break;
                         }
                     }
-
                     switch (tripType.selectedIndex) {
                     case 0:
                         alert("Please select the TripType");
                         tripType.focus();
                         return false;
                     }
-
                     if (!RequiredValidation(destination, "Destination Cannot be Blank"))
                         return false;
                     switch (startHr.selectedIndex) {
@@ -266,32 +251,26 @@
                         startHr.focus();
                         return false;
                     }
-
-
                     switch (startMin.selectedIndex) {
                     case 0:
                         alert("Please select the StartMin");
                         startMin.focus();
                         return false;
                     }
-
                     if (!RequiredValidation(startOdo, "StartOdo Cannot be Blank"))
                         return false;
-
                     switch (endHr.selectedIndex) {
                     case 0:
                         alert("Please select the EndHr");
                         endHr.focus();
                         return false;
                     }
-
                     switch (endMin.selectedIndex) {
                     case 0:
                         alert("Please select the EndMin");
                         endMin.focus();
                         return false;
                     }
-
                     if (parseInt(startHr.value) > parseInt(endHr.value)) {
                         alert("End Time should be greater than the Start Time value");
                         endHr.focus();
@@ -307,24 +286,16 @@
                         }
                         break;
                     }
-
-
                     if (!RequiredValidation(endOdo, "EndOdo Cannot be Blank"))
                         return false;
-
                     if (parseInt(startOdo.value) >= parseInt(endOdo.value)) {
                         alert("End Odometer value should be greater than the Start Odometer value");
                         endOdo.focus();
                         return false;
                     }
-
                     if (!RequiredValidation(remarks, "Remarks Cannot be Blank"))
                         return false;
-
-
                     var maxOdo = document.getElementById("<%= maxOdo.ClientID %>");
-
-
                     if (parseInt(maxOdo.value) >= parseInt(startOdo.value)) {
                         alert("Odometer value should be greater than the Previous Odometer value (Pre Odo Reading=" +
                             maxOdo.value +
@@ -334,7 +305,6 @@
                     }
                     return true;
                 }
-
             </script>
 
         </ContentTemplate>

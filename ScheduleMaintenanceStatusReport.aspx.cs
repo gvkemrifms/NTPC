@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class ScheduleMaintenanceStatusReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -26,7 +25,7 @@ public partial class ScheduleMaintenanceStatusReport : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -34,7 +33,7 @@ public partial class ScheduleMaintenanceStatusReport : Page
         }
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
         {
@@ -45,7 +44,7 @@ public partial class ScheduleMaintenanceStatusReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@districtID");
+                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber","VehicleNumber","VehicleID",ddldistrict,ddlvehicle,null,null,"@districtID");
             }
             catch (Exception ex)
             {
@@ -54,11 +53,11 @@ public partial class ScheduleMaintenanceStatusReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -66,7 +65,7 @@ public partial class ScheduleMaintenanceStatusReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -75,7 +74,7 @@ public partial class ScheduleMaintenanceStatusReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Reports_Sch_Maint_Status", null, null, ddldistrict, ddlvehicle, null, null, "@DistrictID", "@VehicleID", null, null, null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_Reports_Sch_Maint_Status",null,null,ddldistrict,ddlvehicle,null,null,"@DistrictID","@VehicleID",null,null,null,Grddetails);
         }
         catch (Exception ex)
         {

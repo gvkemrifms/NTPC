@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="AccidentReport.aspx.cs" Inherits="AccidentReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-
         $(function() {
             $('#<%= txtfrmDate.ClientID %>,#<%= txttodate.ClientID %>').datepicker({
                 dateFormat: 'mm/dd/yy',

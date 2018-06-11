@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class DetailedReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -23,8 +22,7 @@ public partial class DetailedReport : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            ;
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -36,11 +34,11 @@ public partial class DetailedReport : Page
     {
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -48,7 +46,7 @@ public partial class DetailedReport : Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -57,7 +55,7 @@ public partial class DetailedReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_SummaryDetailed1", null, null, ddldistrict, null, txtfrmDate, txttodate, "@DistrictID", null, "@From", "@To", null, Grddtreport);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_SummaryDetailed1",null,null,ddldistrict,null,txtfrmDate,txttodate,"@DistrictID",null,"@From","@To",null,Grddtreport);
         }
         catch (Exception ex)
         {

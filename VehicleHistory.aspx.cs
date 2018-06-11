@@ -5,7 +5,6 @@ using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.Admin;
 using GvkFMSAPP.BLL.StatutoryCompliance;
-
 public partial class VehicleHistory : Page
 {
     private readonly DistrictVehicleMapping _distvehmapp = new DistrictVehicleMapping();
@@ -17,7 +16,7 @@ public partial class VehicleHistory : Page
     private readonly PollutionUnderControl _vehiclePuc = new PollutionUnderControl();
     public IFuelManagement ObjFuelEntry = new FuelManagement();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) FillVehicleNumber();
@@ -30,7 +29,7 @@ public partial class VehicleHistory : Page
             if (Session["UserdistrictId"] != null) _fmsGeneral.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = _fmsGeneral.GetVehicleNumber();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlVehicleList);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlVehicleList);
         }
         catch (Exception ex)
         {
@@ -38,7 +37,7 @@ public partial class VehicleHistory : Page
         }
     }
 
-    protected void ddlVehicleList_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleList_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlVehicleList.SelectedIndex)
         {
@@ -123,31 +122,31 @@ public partial class VehicleHistory : Page
         grdPetroCard.DataBind();
     }
 
-    protected void gvFitnessRenewal_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvFitnessRenewal_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvFitnessRenewal.PageIndex = e.NewPageIndex;
         FillVehicleFitnessRenewall();
     }
 
-    protected void gvRoadTax_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvRoadTax_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvRoadTax.PageIndex = e.NewPageIndex;
         FillRoadTax();
     }
 
-    protected void gvVehicleInsurance_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehicleInsurance_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehicleInsurance.PageIndex = e.NewPageIndex;
         FillVehicleInsurance();
     }
 
-    protected void gvPollutionUnderControl_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvPollutionUnderControl_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvPollutionUnderControl.PageIndex = e.NewPageIndex;
         FillPuc();
     }
 
-    protected void gvFitnessRenewal_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvFitnessRenewal_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)
         {
@@ -174,7 +173,7 @@ public partial class VehicleHistory : Page
         }
     }
 
-    protected void grdPetroCard_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdPetroCard_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdPetroCard.PageIndex = e.NewPageIndex;
         FillPetrolCard();

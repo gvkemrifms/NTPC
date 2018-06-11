@@ -3,14 +3,13 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class TripDetails : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     public IFuelManagement ObjFuelEntry = new FuelManagement();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -19,8 +18,8 @@ public partial class TripDetails : Page
             FillVehicles();
             FillTrips();
             FillHoursandMins();
-            txtDestinationLocation.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
-            txtRemarks.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
+            txtDestinationLocation.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtRemarks.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
         }
     }
 
@@ -30,7 +29,7 @@ public partial class TripDetails : Page
         {
             var ds = ObjFuelEntry.IGetTripTypes();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "TripTypeDescription", "TripTypeID", ddlTripType);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"TripTypeDescription","TripTypeID",ddlTripType);
             ddlTripType.Enabled = true;
         }
         catch (Exception ex)
@@ -45,7 +44,7 @@ public partial class TripDetails : Page
         {
             var ds = _fmsg.GetVehicleNumber();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlAmbulanceID);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlAmbulanceID);
             ddlAmbulanceID.Enabled = true;
         }
         catch (Exception ex)
@@ -60,31 +59,31 @@ public partial class TripDetails : Page
         for (i = 0; i < 24; i++)
             if (i < 10)
             {
-                ddlHours.Items.Add(new ListItem("0" + i, "0" + i));
-                ddlHours1.Items.Add(new ListItem("0" + i, "0" + i));
+                ddlHours.Items.Add(new ListItem("0" + i,"0" + i));
+                ddlHours1.Items.Add(new ListItem("0" + i,"0" + i));
             }
             else
             {
-                ddlHours.Items.Add(new ListItem(i.ToString(), i.ToString()));
-                ddlHours1.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                ddlHours.Items.Add(new ListItem(i.ToString(),i.ToString()));
+                ddlHours1.Items.Add(new ListItem(i.ToString(),i.ToString()));
             }
 
         for (i = 0; i < 60; i++)
             if (i < 10)
             {
-                ddlMinutes.Items.Add(new ListItem("0" + i, "0" + i));
-                ddlMinutes2.Items.Add(new ListItem("0" + i, "0" + i));
+                ddlMinutes.Items.Add(new ListItem("0" + i,"0" + i));
+                ddlMinutes2.Items.Add(new ListItem("0" + i,"0" + i));
             }
             else
             {
-                ddlMinutes.Items.Add(new ListItem(i.ToString(), i.ToString()));
-                ddlMinutes2.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                ddlMinutes.Items.Add(new ListItem(i.ToString(),i.ToString()));
+                ddlMinutes2.Items.Add(new ListItem(i.ToString(),i.ToString()));
             }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
-        var tripDate = DateTime.ParseExact(txtTripDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        var tripDate = DateTime.ParseExact(txtTripDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         var vehicle = Convert.ToInt32(ddlAmbulanceID.SelectedValue);
         var trip = Convert.ToInt32(ddlTripType.SelectedValue);
         var destination = Convert.ToString(txtDestinationLocation.Text);
@@ -96,12 +95,12 @@ public partial class TripDetails : Page
         var endOdo = Convert.ToInt32(txtEndOdo.Text);
         var remarks = Convert.ToString(txtRemarks.Text);
         var createdBy = Convert.ToInt32(Session["User_Id"].ToString());
-        var res = ObjFuelEntry.IInsertTrips(tripDate, vehicle, trip, destination, startTime, startOdo, endTime, endOdo, remarks, createdBy);
+        var res = ObjFuelEntry.IInsertTrips(tripDate,vehicle,trip,destination,startTime,startOdo,endTime,endOdo,remarks,createdBy);
         Show(res == 1 ? "Trip Entry Added Successfully" : "Failure,Please Try After sometime");
         ClearFields();
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearFields();
     }
@@ -121,16 +120,16 @@ public partial class TripDetails : Page
         txtTripDate.Text = "";
     }
 
-    protected void lbtnViewHistory_Click(object sender, EventArgs e)
+    protected void lbtnViewHistory_Click(object sender,EventArgs e)
     {
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void ddlAmbulanceID_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlAmbulanceID_SelectedIndexChanged(object sender,EventArgs e)
     {
         var dsOdo = ObjFuelEntry.IGetTripEntryOdo(Convert.ToInt32(ddlAmbulanceID.SelectedValue));
         maxOdo.Value = dsOdo.Tables[0].Rows.Count != 0 ? (dsOdo.Tables[0].Rows[0]["ODO"].ToString() != string.Empty ? dsOdo.Tables[0].Rows[0]["ODO"].ToString() : "0") : "0";

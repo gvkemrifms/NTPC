@@ -4,14 +4,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
 using GvkFMSAPP.BLL.VehicleMaintenance;
-
 public partial class VehiclemaintenanceNonoffroad : Page
 {
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vehicleobj = new VASGeneral();
     private readonly VehicleMaintenance _vehMain = new VehicleMaintenance();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -28,8 +27,8 @@ public partial class VehiclemaintenanceNonoffroad : Page
         {
             var ds = _vehMain.IFillVendorsMaintenance();
             if (ds == null) return;
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlVendorName);
-            _helper.FillDifferentDataTables(ddlMaintenanceType, ds.Tables[1], "MaintenanceType", "MaintId");
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlVendorName);
+            _helper.FillDifferentDataTables(ddlMaintenanceType,ds.Tables[1],"MaintenanceType","MaintId");
         }
         catch (Exception ex)
         {
@@ -43,7 +42,7 @@ public partial class VehiclemaintenanceNonoffroad : Page
         {
             var ds = _vehicleobj.getVehforNonOffroad();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "vi_VehicleNumber", "", ddlVehicles);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"vi_VehicleNumber","",ddlVehicles);
         }
         catch (Exception ex)
         {
@@ -56,17 +55,17 @@ public partial class VehiclemaintenanceNonoffroad : Page
         var dt = new DataTable();
 
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColVehNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColMainType", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColMainBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("Vendor_Name", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColQuantity", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumber",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColVehNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColMainType",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColMainBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("Vendor_Name",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColQuantity",typeof(string)));
+        dt.Columns.Add(new DataColumn("Column3",typeof(string)));
         //Add a Dummy Data on Initial Load
         var dr = dt.NewRow();
         dr["RowNumber"] = 1;
@@ -76,7 +75,7 @@ public partial class VehiclemaintenanceNonoffroad : Page
         ViewState["CurrentTable"] = dt;
     }
 
-    protected void ddlVehicles_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicles_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlVehicles.SelectedIndex != 0)
         {
@@ -87,7 +86,7 @@ public partial class VehiclemaintenanceNonoffroad : Page
         }
     }
 
-    protected void btnSPReset_Click(object sender, EventArgs e)
+    protected void btnSPReset_Click(object sender,EventArgs e)
     {
         SetInitialMaintenanceDetails();
         ddlVehicles.SelectedIndex = 0;
@@ -95,7 +94,7 @@ public partial class VehiclemaintenanceNonoffroad : Page
         txtLocation.Text = "";
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         _vehicleobj.VehNumforNonOff = ddlVehicles.SelectedItem.Text;
         _vehicleobj.NonOffVenName = ddlVendorName.Text;
@@ -137,7 +136,7 @@ public partial class VehiclemaintenanceNonoffroad : Page
         }
     }
 
-    protected void grdvwMaintenanceDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvwMaintenanceDetails_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         try
         {
@@ -152,8 +151,8 @@ public partial class VehiclemaintenanceNonoffroad : Page
                         ddlVName.Items.Clear();
                         if (ds != null)
                         {
-                            _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlVName);
-                            if (ddlMType != null) _helper.FillDifferentDataTables(ddlMType, ds.Tables[1], "MaintId", "MaintenanceType");
+                            _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlVName);
+                            if (ddlMType != null) _helper.FillDifferentDataTables(ddlMType,ds.Tables[1],"MaintId","MaintenanceType");
                         }
                     }
 
@@ -168,10 +167,10 @@ public partial class VehiclemaintenanceNonoffroad : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void grdvwMaintenanceDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grdvwMaintenanceDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
     }
 }

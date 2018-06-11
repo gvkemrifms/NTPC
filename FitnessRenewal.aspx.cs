@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class FitnessRenewal : Page
 {
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.FitnessRenewal _fitnessren = new GvkFMSAPP.BLL.StatutoryCompliance.FitnessRenewal();
@@ -13,7 +12,7 @@ public partial class FitnessRenewal : Page
     private readonly Helper _helper = new Helper();
     private int _ret;
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -21,8 +20,8 @@ public partial class FitnessRenewal : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetFitnessRenewal();
             GetVehicleNumber();
             if (Request.QueryString["vehicleid"] != null) ddlVehicleNumber.Items.FindByValue(Request.QueryString["vehicleid"]).Selected = true;
@@ -65,10 +64,10 @@ public partial class FitnessRenewal : Page
     public void GetVehicleNumber()
     {
         var ds = _fitnessren.GetVehicleNumber();
-        if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+        if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         if (ViewState["FitnessRenewalID"] != null)
             if (_fitnessren != null)
@@ -111,12 +110,12 @@ public partial class FitnessRenewal : Page
         GetVehicleNumber();
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
-    protected void ddlFitnessValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlFitnessValidityPeriod_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (txtFitnessValidityStartDate.Text)
         {
@@ -128,10 +127,10 @@ public partial class FitnessRenewal : Page
         }
 
         if (ddlFitnessValidityPeriod.SelectedIndex == 0) return;
-        txtFitnessValidityEndDate.Text = Convert.ToDateTime(txtFitnessValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlFitnessValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1, 0, 0)).ToString();
+        txtFitnessValidityEndDate.Text = Convert.ToDateTime(txtFitnessValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlFitnessValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1,0,0)).ToString(CultureInfo.InvariantCulture);
     }
 
-    protected void gvFitnessRenewal_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvFitnessRenewal_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName != null)
             try
@@ -184,10 +183,10 @@ public partial class FitnessRenewal : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvFitnessRenewal_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvFitnessRenewal_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         if (e.Row == null) return;
         try
@@ -224,19 +223,19 @@ public partial class FitnessRenewal : Page
         }
     }
 
-    protected void gvFitnessRenewal_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvFitnessRenewal_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvFitnessRenewal.PageIndex = e.NewPageIndex;
         GetFitnessRenewal();
     }
 
-    protected void txtFitnessValidityStartDate_TextChanged1(object sender, EventArgs e)
+    protected void txtFitnessValidityStartDate_TextChanged1(object sender,EventArgs e)
     {
         ddlFitnessValidityPeriod.SelectedIndex = 0;
         txtFitnessValidityEndDate.Text = "";
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (_fmsGeneral == null) return;
         var dt = _fmsGeneral.GetPurchaseDate(int.Parse(ddlVehicleNumber.SelectedItem.Value));

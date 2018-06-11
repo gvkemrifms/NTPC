@@ -21,7 +21,6 @@
                 return alert("Please select Station");
             return true;
         }
-
     </script>
     <table align="center">
         <tr>

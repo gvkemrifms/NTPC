@@ -10,7 +10,6 @@ using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.VAS_BLL;
 using MySql.Data.MySqlClient;
-
 public partial class VehicleOffroad : Page
 {
     private readonly FMSGeneral _fmsgeneral = new FMSGeneral();
@@ -20,9 +19,9 @@ public partial class VehicleOffroad : Page
     private DataTable _dtBreakdown = new DataTable();
     public IInventory ObjInventory = new FMSInventory();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_PreInit(object sender, EventArgs e)
+    protected void Page_PreInit(object sender,EventArgs e)
     {
         if (Session["Role_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -35,11 +34,11 @@ public partial class VehicleOffroad : Page
             }
     }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
-        txtAllEstimatedCost.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
-        txtEMEId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
-        txtPilotId.Attributes.Add("onKeyPress", "javascript: return Integersonly(event);");
+        txtAllEstimatedCost.Attributes.Add("onKeyPress","javascript: return Integersonly(event);");
+        txtEMEId.Attributes.Add("onKeyPress","javascript: return Integersonly(event);");
+        txtPilotId.Attributes.Add("onKeyPress","javascript: return Integersonly(event);");
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
@@ -47,7 +46,7 @@ public partial class VehicleOffroad : Page
         if (!IsPostBack)
         {
             divAggre.Visible = false;
-            btnSubmit.Attributes.Add("onclick", "return validation()");
+            btnSubmit.Attributes.Add("onclick","return validation()");
             GetDistrict();
             FillHoursandMins();
             GetTime();
@@ -63,9 +62,9 @@ public partial class VehicleOffroad : Page
         {
             var dset = _fmsgeneral.GetMaintenanceType();
             if (dset == null) return;
-            _helper.FillDropDownHelperMethodWithDataSet(dset, "Maint_Desc", "Maint_Type_ID", ddlreasons);
-            ddlreasons.Items.Insert(12, new ListItem("RESOURCE SHORTAGE", "13"));
-            ddlreasons.Items.Insert(13, new ListItem("NO FUEL", "14"));
+            _helper.FillDropDownHelperMethodWithDataSet(dset,"Maint_Desc","Maint_Type_ID",ddlreasons);
+            ddlreasons.Items.Insert(12,new ListItem("RESOURCE SHORTAGE","13"));
+            ddlreasons.Items.Insert(13,new ListItem("NO FUEL","14"));
         }
         catch (Exception ex)
         {
@@ -115,11 +114,11 @@ public partial class VehicleOffroad : Page
         ddlOFFMin.Items.FindByValue(timenow[1].Split(':')[1]).Selected = true;
     }
 
-    public void Insertdata(string smsContent, string name, string mobileno)
+    public void Insertdata(string smsContent,string name,string mobileno)
     {
     }
 
-    public void InsertAgent(string offroadid, string vehicleNo, string agentId)
+    public void InsertAgent(string offroadid,string vehicleNo,string agentId)
     {
         try
         {
@@ -133,7 +132,7 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    public void SendSms(string vehicleno, string breakdownid, string reason)
+    public void SendSms(string vehicleno,string breakdownid,string reason)
     {
         try
         {
@@ -146,10 +145,10 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         btnSubmit.Enabled = false;
-        var entrydate = DateTime.ParseExact(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedValue + ":" + ddlOFFMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+        var entrydate = DateTime.ParseExact(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedValue + ":" + ddlOFFMin.SelectedValue,"MM/dd/yyyy HH:mm",CultureInfo.InvariantCulture);
         if (entrydate > DateTime.Now)
         {
             Show("Off road date should not be greater than current date ");
@@ -157,7 +156,7 @@ public partial class VehicleOffroad : Page
         }
 
         //Declarations
-        string segmentids = "", segmentnames = "", mandalids = "";
+        string segmentids = "",segmentnames = "",mandalids = "";
         try
         {
             var objStringBuilder = new StringBuilder();
@@ -166,7 +165,7 @@ public partial class VehicleOffroad : Page
             _vehallobj.ContactNumber = txtContactNumber.Text;
             _vehallobj.Comments = txtComment.Text;
             _vehallobj.District = ddlDistrict.SelectedItem.Text;
-            _vehallobj.OffRoadDate = DateTime.ParseExact(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedValue + ":" + ddlOFFMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            _vehallobj.OffRoadDate = DateTime.ParseExact(txtOfftimeDate.Text + " " + ddlOFFHour.SelectedValue + ":" + ddlOFFMin.SelectedValue,"MM/dd/yyyy HH:mm",CultureInfo.InvariantCulture);
             _vehallobj.OffRoadVehicleNo = ddlVehicleNumber.SelectedItem.Text;
             _vehallobj.ReasonForOffRoad = ddlreasons.SelectedItem.Text;
             _vehallobj.RequestedBy = txtReqBy.Text;
@@ -174,7 +173,7 @@ public partial class VehicleOffroad : Page
             _vehallobj.PilotID = txtPilotId.Text;
             _vehallobj.PilotName = txtPilotName.Text;
             _vehallobj.Odometer = txtOdo.Text;
-            _vehallobj.ExpDateOfRecovery = DateTime.ParseExact(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedValue + ":" + ddlExpDateOfRecMin.SelectedValue, "MM/dd/yyyy HH:mm", CultureInfo.InvariantCulture);
+            _vehallobj.ExpDateOfRecovery = DateTime.ParseExact(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedValue + ":" + ddlExpDateOfRecMin.SelectedValue,"MM/dd/yyyy HH:mm",CultureInfo.InvariantCulture);
             //_vehallobj.ExpDateOfRecovery = Convert.ToDateTime(txtExpDateOfRec.Text + " " + ddlExpDateOfRecHr.SelectedItem.Text + ":" + ddlExpDateOfRecMin.SelectedItem.Text);
             _vehallobj.SegmentId = 0;
             _vehallobj.totEstimated = txtAllEstimatedCost.Text;
@@ -217,7 +216,7 @@ public partial class VehicleOffroad : Page
                 _vehallobj.SegmentIds = segmentids;
                 _vehallobj.MandalIds = mandalids;
                 _vehallobj.SegmentNames = segmentnames;
-                MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text,_vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"),ddlreasons.SelectedItem.Text,Session["User_Name"].ToString(),txtOdo.Text,txtReqBy.Text,txtPilotName.Text,txtPilotId.Text);
                 var insres = _vehallobj.InsertOffRoadVehicleDetail();
                 switch (insres)
                 {
@@ -225,8 +224,8 @@ public partial class VehicleOffroad : Page
                         Show("Record not Inserted Successfully!!");
                         break;
                     default:
-                        InsertAgent(insres.ToString(), ddlVehicleNumber.SelectedItem.Text, Session["User_Id"].ToString());
-                        SendSms(ddlVehicleNumber.SelectedItem.Text, insres.ToString(), ddlreasons.SelectedItem.Text);
+                        InsertAgent(insres.ToString(),ddlVehicleNumber.SelectedItem.Text,Session["User_Id"].ToString());
+                        SendSms(ddlVehicleNumber.SelectedItem.Text,insres.ToString(),ddlreasons.SelectedItem.Text);
                         Show("Record Inserted Successfully!! And BreakDown Id=" + insres);
                         break;
                 }
@@ -247,7 +246,7 @@ public partial class VehicleOffroad : Page
                     _vehallobj.MandalIds = mandalids;
                     _vehallobj.SegmentNames = segmentnames;
                     _vehallobj.OtherVehicleNumber = ddlothervehicle.SelectedItem.Text;
-                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text,_vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"),ddlreasons.SelectedItem.Text,Session["User_Name"].ToString(),txtOdo.Text,txtReqBy.Text,txtPilotName.Text,txtPilotId.Text);
                     var insres = _vehallobj.InsertOtherOffRoadVehicleDetail();
                     Session["offId"] = insres;
                     switch (insres)
@@ -256,8 +255,8 @@ public partial class VehicleOffroad : Page
                             Show("Record not Inserted Successfully!!");
                             break;
                         default:
-                            InsertAgent(insres.ToString(), ddlVehicleNumber.SelectedItem.Text, Session["User_Id"].ToString());
-                            SendSms(ddlVehicleNumber.SelectedItem.Text, insres.ToString(), ddlreasons.SelectedItem.Text);
+                            InsertAgent(insres.ToString(),ddlVehicleNumber.SelectedItem.Text,Session["User_Id"].ToString());
+                            SendSms(ddlVehicleNumber.SelectedItem.Text,insres.ToString(),ddlreasons.SelectedItem.Text);
                             Show("Record Inserted Successfully!! And Breakdown Id=" + insres);
                             break;
                     }
@@ -270,7 +269,7 @@ public partial class VehicleOffroad : Page
                     _vehallobj.SegmentIds = segmentids;
                     _vehallobj.MandalIds = mandalids;
                     _vehallobj.SegmentNames = segmentnames;
-                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text, _vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"), ddlreasons.SelectedItem.Text, Session["User_Name"].ToString(), txtOdo.Text, txtReqBy.Text, txtPilotName.Text, txtPilotId.Text);
+                    MakeVehicleoffRoad(ddlVehicleNumber.SelectedItem.Text,_vehallobj.OffRoadDate.ToString("yyyy-MM-dd HH:mm:ss"),ddlreasons.SelectedItem.Text,Session["User_Name"].ToString(),txtOdo.Text,txtReqBy.Text,txtPilotName.Text,txtPilotId.Text);
                     var insres = _vehallobj.InsertOffRoadVehicleDetail();
                     Session["offId"] = insres;
                     switch (insres)
@@ -279,8 +278,8 @@ public partial class VehicleOffroad : Page
                             Show("Record not Inserted Successfully!!");
                             break;
                         default:
-                            InsertAgent(insres.ToString(), ddlVehicleNumber.SelectedItem.Text, Session["User_Id"].ToString());
-                            SendSms(ddlVehicleNumber.SelectedItem.Text, insres.ToString(), ddlreasons.SelectedItem.Text);
+                            InsertAgent(insres.ToString(),ddlVehicleNumber.SelectedItem.Text,Session["User_Id"].ToString());
+                            SendSms(ddlVehicleNumber.SelectedItem.Text,insres.ToString(),ddlreasons.SelectedItem.Text);
                             Show("Record Inserted Successfully!!And Breakdown Id=" + insres);
                             break;
                     }
@@ -307,21 +306,21 @@ public partial class VehicleOffroad : Page
         throw new Exception("Local IP Address Not Found!");
     }
 
-    private void MakeVehicleoffRoad(string vehicleNumber, string offroaddate, string offroadtype, string statusChangeBy, string odoMeter, string informerName, string piliotName, string piliotGid)
+    private void MakeVehicleoffRoad(string vehicleNumber,string offroaddate,string offroadtype,string statusChangeBy,string odoMeter,string informerName,string piliotName,string piliotGid)
     {
         try
         {
             var conn = new MySqlConnection(ConfigurationManager.AppSettings["MySqlConn"]);
             conn.Open();
-            var cmd = new MySqlCommand {CommandType = CommandType.StoredProcedure, CommandText = "UpdateVehicleStatus", Connection = conn};
-            cmd.Parameters.AddWithValue("VehicleNumber", vehicleNumber);
-            cmd.Parameters.AddWithValue("offroaddate", offroaddate);
-            cmd.Parameters.AddWithValue("offroadtype", offroadtype);
-            cmd.Parameters.AddWithValue("Status_change_by", statusChangeBy);
-            cmd.Parameters.AddWithValue("odo_meter", odoMeter);
-            cmd.Parameters.AddWithValue("informer_name", informerName);
-            cmd.Parameters.AddWithValue("piliot_name", piliotName);
-            cmd.Parameters.AddWithValue("piliot_gid", piliotGid);
+            var cmd = new MySqlCommand {CommandType = CommandType.StoredProcedure,CommandText = "UpdateVehicleStatus",Connection = conn};
+            cmd.Parameters.AddWithValue("VehicleNumber",vehicleNumber);
+            cmd.Parameters.AddWithValue("offroaddate",offroaddate);
+            cmd.Parameters.AddWithValue("offroadtype",offroadtype);
+            cmd.Parameters.AddWithValue("Status_change_by",statusChangeBy);
+            cmd.Parameters.AddWithValue("odo_meter",odoMeter);
+            cmd.Parameters.AddWithValue("informer_name",informerName);
+            cmd.Parameters.AddWithValue("piliot_name",piliotName);
+            cmd.Parameters.AddWithValue("piliot_gid",piliotGid);
             var adp = new MySqlDataAdapter(cmd);
             var ds = new DataSet();
             adp.Fill(ds);
@@ -338,7 +337,7 @@ public partial class VehicleOffroad : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -348,7 +347,7 @@ public partial class VehicleOffroad : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     public void ClearControls()
@@ -400,71 +399,71 @@ public partial class VehicleOffroad : Page
         for (i = 0; i < 24; i++)
             if (i >= 10)
             {
-                ddlOFFHour.Items.Add(new ListItem(i.ToString(), i.ToString()));
-                ddlExpDateOfRecHr.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                ddlOFFHour.Items.Add(new ListItem(i.ToString(),i.ToString()));
+                ddlExpDateOfRecHr.Items.Add(new ListItem(i.ToString(),i.ToString()));
             }
             else
             {
-                ddlOFFHour.Items.Add(new ListItem("0" + i, "0" + i));
-                ddlExpDateOfRecHr.Items.Add(new ListItem("0" + i, "0" + i));
+                ddlOFFHour.Items.Add(new ListItem("0" + i,"0" + i));
+                ddlExpDateOfRecHr.Items.Add(new ListItem("0" + i,"0" + i));
             }
 
         for (i = 0; i < 60; i++)
             if (i >= 10)
             {
-                ddlOFFMin.Items.Add(new ListItem(i.ToString(), i.ToString()));
-                ddlExpDateOfRecMin.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                ddlOFFMin.Items.Add(new ListItem(i.ToString(),i.ToString()));
+                ddlExpDateOfRecMin.Items.Add(new ListItem(i.ToString(),i.ToString()));
             }
             else
             {
-                ddlOFFMin.Items.Add(new ListItem("0" + i, "0" + i));
-                ddlExpDateOfRecMin.Items.Add(new ListItem("0" + i, "0" + i));
+                ddlOFFMin.Items.Add(new ListItem("0" + i,"0" + i));
+                ddlExpDateOfRecMin.Items.Add(new ListItem("0" + i,"0" + i));
             }
     }
 
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlDistrict.SelectedIndex)
         {
             case 0:
                 ddlVehicleNumber.SelectedIndex = 0;
-                ddlVehicleNumber_SelectedIndexChanged(this, null);
+                ddlVehicleNumber_SelectedIndexChanged(this,null);
                 break;
             default:
                 _vehallobj.DistrictId = int.Parse(ddlDistrict.SelectedItem.Value);
                 var ds = _vehallobj.GetActiveVehiclesForOffRoad_new();
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "Vehicle", "VehicleNumber", ddlVehicleNumber);
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"Vehicle","VehicleNumber",ddlVehicleNumber);
                 ddlVehicleNumber.Items[0].Value = "0";
                 ddlVehicleNumber.SelectedIndex = 0;
                 Session["dsvehilce"] = ds;
                 lblSegmentName.Text = "";
                 txtContactNumber.Text = "";
                 ddlreasons.SelectedIndex = 0;
-                ddlreasons_SelectedIndexChanged(this, null);
+                ddlreasons_SelectedIndexChanged(this,null);
                 grdvwBreakdownDetails.DataSource = null;
                 grdvwBreakdownDetails.DataBind();
                 break;
         }
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlVehicleNumber.SelectedIndex)
         {
             case 0:
                 ddlreasons.SelectedIndex = 0;
-                ddlreasons_SelectedIndexChanged(this, null);
+                ddlreasons_SelectedIndexChanged(this,null);
                 break;
             default:
                 ddlreasons.SelectedIndex = 0;
-                ddlreasons_SelectedIndexChanged(this, null);
+                ddlreasons_SelectedIndexChanged(this,null);
                 txtContactNumber.Text = "";
-                var ds = ObjInventory.GetVehicleContactNumber(ddlVehicleNumber.SelectedItem.Text, ConfigurationManager.AppSettings["StrCTIAPPS"]);
+                var ds = ObjInventory.GetVehicleContactNumber(ddlVehicleNumber.SelectedItem.Text,ConfigurationManager.AppSettings["StrCTIAPPS"]);
                 if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows) txtContactNumber.Text = dr["vi_VehicleContact"].ToString();
@@ -477,7 +476,7 @@ public partial class VehicleOffroad : Page
         lblmsg.Visible = false;
     }
 
-    protected void rdbtnlstOption_SelectedIndexChanged(object sender, EventArgs e)
+    protected void rdbtnlstOption_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (rdbtnlstOption != null)
             switch (rdbtnlstOption.SelectedValue)
@@ -490,12 +489,12 @@ public partial class VehicleOffroad : Page
                     if (ddlothervehicle.Items.Count > 0) ddlothervehicle.Items.Clear();
                     DataSet dsvehicler;
                     dsvehicler = (DataSet) Session["dsvehilce"];
-                    var dv = new DataView(dsvehicler.Tables[0], "Vehicle <>'" + ddlVehicleNumber.SelectedValue + "'", "Sg_SName", DataViewRowState.CurrentRows);
+                    var dv = new DataView(dsvehicler.Tables[0],"Vehicle <>'" + ddlVehicleNumber.SelectedValue + "'","Sg_SName",DataViewRowState.CurrentRows);
                     ddlothervehicle.DataSource = dv;
                     ddlothervehicle.DataTextField = "VehicleNumber";
                     ddlothervehicle.DataValueField = "Vehicle";
                     ddlothervehicle.DataBind();
-                    ddlothervehicle.Items.Insert(0, "--Select--");
+                    ddlothervehicle.Items.Insert(0,"--Select--");
                     txtotherbaselocation.Text = "";
                     txtothercontactno.Text = "";
                     lblOtherVehSegment.Visible = false;
@@ -508,7 +507,7 @@ public partial class VehicleOffroad : Page
             }
     }
 
-    protected void grdvothersegment_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvothersegment_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         try
         {
@@ -519,7 +518,7 @@ public partial class VehicleOffroad : Page
             {
                 case DataControlRowType.DataRow:
                     var ddl = (DropDownList) e.Row.FindControl("DropDownList1");
-                    _helper.FillDropDownHelperMethodWithDataSet(dssegmentgot, "Sg_SName", "Sg_Segid", ddl);
+                    _helper.FillDropDownHelperMethodWithDataSet(dssegmentgot,"Sg_SName","Sg_Segid",ddl);
                     break;
             }
         }
@@ -529,18 +528,18 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void grdvothervehicle_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvothervehicle_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         var dsvehiclevgvo = (DataSet) Session["dsvehilce"];
         if (dsvehiclevgvo == null) throw new ArgumentNullException(nameof(dsvehiclevgvo));
         var dssegmentgvo = (DataSet) Session["dssegment"];
         if (dssegmentgvo == null) throw new ArgumentNullException(nameof(dssegmentgvo));
-        using (var dv1 = new DataView(dsvehiclevgvo.Tables[0], "Vehicle ='" + ddlothervehicle.SelectedValue + "'", "Sg_SName", DataViewRowState.CurrentRows))
+        using (var dv1 = new DataView(dsvehiclevgvo.Tables[0],"Vehicle ='" + ddlothervehicle.SelectedValue + "'","Sg_SName",DataViewRowState.CurrentRows))
         {
             Session["othersegmentid"] = Convert.ToInt32(dv1[0][3]);
         }
 
-        using (var dv = new DataView(dssegmentgvo.Tables[0], "Sg_Segid <>" + Convert.ToInt32(Session["othersegmentid"]), "Sg_SName", DataViewRowState.CurrentRows))
+        using (var dv = new DataView(dssegmentgvo.Tables[0],"Sg_Segid <>" + Convert.ToInt32(Session["othersegmentid"]),"Sg_SName",DataViewRowState.CurrentRows))
         {
             switch (e.Row.RowType)
             {
@@ -555,11 +554,11 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void ddlothervehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlothervehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         var dsvehiclevov = (DataSet) Session["dsvehilce"];
         if (dsvehiclevov == null) throw new ArgumentNullException(nameof(dsvehiclevov));
-        using (var dv = new DataView(dsvehiclevov.Tables[0], "Vehicle ='" + ddlothervehicle.SelectedValue + "'", "Sg_SName", DataViewRowState.CurrentRows))
+        using (var dv = new DataView(dsvehiclevov.Tables[0],"Vehicle ='" + ddlothervehicle.SelectedValue + "'","Sg_SName",DataViewRowState.CurrentRows))
         {
             Session["othersegmentid"] = Convert.ToInt32(dv[0][3]);
             lblOtherVehSegmentName.Text = dv[0][2].ToString();
@@ -587,7 +586,7 @@ public partial class VehicleOffroad : Page
             Session["dsmandals"] = ds;
         }
 
-        var dvvehicleos = new DataView(dsvehiclevov.Tables[0], "SegmentId ='" + Convert.ToInt32(Session["othersegmentid"]) + "'", "Sg_SName", DataViewRowState.CurrentRows);
+        var dvvehicleos = new DataView(dsvehiclevov.Tables[0],"SegmentId ='" + Convert.ToInt32(Session["othersegmentid"]) + "'","Sg_SName",DataViewRowState.CurrentRows);
         if (dvvehicleos.Count > 1) grdvothervehicle.Visible = false;
     }
 
@@ -599,7 +598,7 @@ public partial class VehicleOffroad : Page
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "Aggregate_Id", "Aggregates", ddlAggregates);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"Aggregate_Id","Aggregates",ddlAggregates);
         }
         catch (Exception ex)
         {
@@ -607,7 +606,7 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void ddlreasons_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlreasons_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlreasons.SelectedIndex)
         {
@@ -637,7 +636,7 @@ public partial class VehicleOffroad : Page
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "Category_Id", "Categories", ddlCategories);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"Category_Id","Categories",ddlCategories);
         }
         catch (Exception ex)
         {
@@ -645,7 +644,7 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void ddlAggregates_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlAggregates_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtEstCost.Text = "";
         switch (ddlAggregates.SelectedIndex)
@@ -670,7 +669,7 @@ public partial class VehicleOffroad : Page
             _vehallobj.Categories2 = Convert.ToInt16(ddlCategories.SelectedValue);
             var ds = _vehallobj.GetSubcategories();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "SubCategory_Id", "SubCategories", ddlSubCategories);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"SubCategory_Id","SubCategories",ddlSubCategories);
         }
         catch (Exception ex)
         {
@@ -678,7 +677,7 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void ddlCategories_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlCategories_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtEstCost.Text = "";
         switch (ddlCategories.SelectedIndex)
@@ -694,7 +693,7 @@ public partial class VehicleOffroad : Page
         }
     }
 
-    protected void ddlSubCategories_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlSubCategories_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtEstCost.Text = "";
         switch (ddlSubCategories.SelectedIndex)
@@ -708,7 +707,7 @@ public partial class VehicleOffroad : Page
         txtEstCost.Text = text;
     }
 
-    protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnAdd_Click(object sender,EventArgs e)
     {
         double sum = 0;
         var aggregates = ddlAggregates.SelectedItem.ToString();
@@ -719,14 +718,14 @@ public partial class VehicleOffroad : Page
         switch (_dtBreakdown.Columns.Count)
         {
             case 0:
-                _dtBreakdown.Columns.Add("Aggregates", typeof(string));
-                _dtBreakdown.Columns.Add("Categories", typeof(string));
-                _dtBreakdown.Columns.Add("Subcategories", typeof(string));
-                _dtBreakdown.Columns.Add("EstimatedCost", typeof(string));
+                _dtBreakdown.Columns.Add("Aggregates",typeof(string));
+                _dtBreakdown.Columns.Add("Categories",typeof(string));
+                _dtBreakdown.Columns.Add("Subcategories",typeof(string));
+                _dtBreakdown.Columns.Add("EstimatedCost",typeof(string));
                 break;
         }
 
-        _dtBreakdown.Rows.Add(aggregates, categories, subcategories, estimatedCost);
+        _dtBreakdown.Rows.Add(aggregates,categories,subcategories,estimatedCost);
         ViewState["dtBreakdown"] = _dtBreakdown;
         grdvwBreakdownDetails.DataSource = _dtBreakdown;
         grdvwBreakdownDetails.DataBind();
@@ -740,7 +739,7 @@ public partial class VehicleOffroad : Page
         ddlSubCategories.Enabled = false;
     }
 
-    protected void grdvwBreakdownDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void grdvwBreakdownDetails_RowDeleting(object sender,GridViewDeleteEventArgs e)
     {
         var sum = Convert.ToDouble(txtAllEstimatedCost.Text);
         var index = Convert.ToInt32(e.RowIndex);

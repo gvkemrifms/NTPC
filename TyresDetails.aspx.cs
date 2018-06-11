@@ -3,27 +3,26 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
-
 public partial class TyresDetails : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             grvTyresDetails.Columns[0].Visible = false;
             FillGrid_TyresDetails();
-            txtTyreItemCode.Attributes.Add("onkeypress", "javascript:return OnlyAlphaNumeric(this,event)");
-            txtTyreNumber.Attributes.Add("onkeypress", "javascript:return OnlyAlphaNumeric(this,event)");
-            txtTyreMake.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
-            txtTyreModel.Attributes.Add("onkeypress", "javascript:return OnlyAlphaNumeric(this,event)");
-            txtTyreSize.Attributes.Add("onkeypress", "javascript:return OnlyNumbers(this,event)");
+            txtTyreItemCode.Attributes.Add("onkeypress","javascript:return OnlyAlphaNumeric(this,event)");
+            txtTyreNumber.Attributes.Add("onkeypress","javascript:return OnlyAlphaNumeric(this,event)");
+            txtTyreMake.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtTyreModel.Attributes.Add("onkeypress","javascript:return OnlyAlphaNumeric(this,event)");
+            txtTyreSize.Attributes.Add("onkeypress","javascript:return OnlyNumbers(this,event)");
             //Permissions
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             pnltyredetails.Visible = false;
             grvTyresDetails.Visible = false;
             if (p.View)
@@ -58,7 +57,7 @@ public partial class TyresDetails : Page
         else
         {
             var strScript1 = "<script language=JavaScript>alert('" + "No record found" + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "Success", strScript1);
+            ClientScript.RegisterStartupScript(GetType(),"Success",strScript1);
         }
     }
 
@@ -72,7 +71,7 @@ public partial class TyresDetails : Page
         btnTyresDetailsSave.Text = "Save";
     }
 
-    protected void btnTyresDetailsSave_Click(object sender, EventArgs e)
+    protected void btnTyresDetailsSave_Click(object sender,EventArgs e)
     {
         switch (btnTyresDetailsSave.Text)
         {
@@ -97,7 +96,7 @@ public partial class TyresDetails : Page
                     var tCreateby = Convert.ToString(Session["User_Id"]);
                     var tUpdatedate = DateTime.Today;
                     var tUpdateby = Convert.ToString(Session["User_Id"]);
-                    ds = _fleetMaster.InsertTyresDetails(tyreItemCode, tyreNumber, make, model, size, tStatus, tInactdate, tCreatedate, tCreateby, tUpdatedate, tUpdateby);
+                    ds = _fleetMaster.InsertTyresDetails(tyreItemCode,tyreNumber,make,model,size,tStatus,tInactdate,tCreatedate,tCreateby,tUpdatedate,tUpdateby);
                     switch (ds.Tables.Count)
                     {
                         case 0:
@@ -127,7 +126,7 @@ public partial class TyresDetails : Page
                     var make = txtTyreMake.Text;
                     var model = txtTyreModel.Text;
                     var size = txtTyreSize.Text;
-                    ds = _fleetMaster.UpdateTyresDetails(tyreId, tyreItemCode, tyreNumber, make, model, size);
+                    ds = _fleetMaster.UpdateTyresDetails(tyreId,tyreItemCode,tyreNumber,make,model,size);
                     switch (ds.Tables.Count)
                     {
                         case 0:
@@ -147,18 +146,18 @@ public partial class TyresDetails : Page
         FillGrid_TyresDetails();
     }
 
-    protected void btnTyresDetailsReset_Click(object sender, EventArgs e)
+    protected void btnTyresDetailsReset_Click(object sender,EventArgs e)
     {
         TyresDetailsReset();
     }
 
-    protected void grvTyresDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvTyresDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvTyresDetails.PageIndex = e.NewPageIndex;
         FillGrid_TyresDetails();
     }
 
-    protected void grvTyresDetails_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvTyresDetails_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btnTyresDetailsSave.Text = "Update";
         var index = e.NewEditIndex;
@@ -177,6 +176,6 @@ public partial class TyresDetails : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 }

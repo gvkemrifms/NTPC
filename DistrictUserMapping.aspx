@@ -2,14 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <script type="text/javascript">
-
         function validation() {
             var userList = document.getElementById('<%= ddlUserList.ClientID %>');
-
             switch (userList.selectedIndex) {
             case 0:
                 return alert("Please select User Name");
-
             }
             return true;
         }

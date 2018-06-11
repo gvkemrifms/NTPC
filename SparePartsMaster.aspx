@@ -11,20 +11,17 @@
             var fldSparePartGroupId = document.getElementById('<%= txtSparePartGroupID.ClientID %>');
             var fldGroupName = document.getElementById('<%= txtGroupName.ClientID %>');
             var fldCost = document.getElementById('<%= txtCost.ClientID %>');
-
             if (fldSparePartName)
                 if (!RequiredValidation(fldSparePartName, "Please enter Spare Part Name"))
                     return false;
             if (fldManufacturerSpareId)
                 if (!RequiredValidation(fldManufacturerSpareId, "Please enter ManufacturerId"))
                     return false;
-
             if (fldManufacturerId && fldManufacturerId.selectedIndex === 0) {
                 alert("Please select Manufacturer");
                 fldManufacturerId.focus();
                 return false;
             }
-
             if (fldSparePartGroupId)
                 if (!RequiredValidation(fldSparePartGroupId, "Please enter Spare Part GroupId"))
                     return false;
@@ -59,10 +56,8 @@
                 document.getElementById("<%= txtCost.ClientID %>").value = "";
                 return false;
             }
-
             return reg.test(value);
         }
-
     </script>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>

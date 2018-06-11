@@ -4,24 +4,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
     function validationAgencyDetails() {
-
-
         if (document.getElementById('<%= txtAgencyName.ClientID %>').value === "") {
             alert("Please Enter Agency Name");
             document.getElementById("<%= txtAgencyName.ClientID %>").focus();
             return false;
         }
-
         if (document.getElementById("<%= txtAddress.ClientID %>").value === "") {
             document.getElementById("<%= txtAddress.ClientID %>").focus();
             return alert("Please Enter Address");
-
         }
         if (document.getElementById("<%= txtContactNo.ClientID %>").value === "") {
             document.getElementById("<%= txtContactNo.ClientID %>").focus();
             return alert("Please Enter Contact Number");
         }
-
         var phone = document.getElementById("<%= txtContactNo.ClientID %>").value;
         if (isNaN(parseInt(phone))) {
             document.getElementById("<%= txtContactNo.ClientID %>").focus();
@@ -31,29 +26,22 @@
             document.getElementById("<%= txtContactNo.ClientID %>").focus();
             return alert("The Contact number is the wrong length");
         }
-
-
         if (document.getElementById("<%= txtPanNo.ClientID %>").value === "") {
             document.getElementById("<%= txtPanNo.ClientID %>").focus();
             return alert("Please Enter PAN");
-
-
         }
         var pan = document.getElementById("<%= txtPanNo.ClientID %>").value;
         if (isValidPAN(pan) === false) {
             return false;
         }
-
         if (!isValidPAN(document.getElementById("<%= txtPanNo.ClientID %>").value)) {
             document.getElementById("<%= txtPanNo.ClientID %>").value = "";
             document.getElementById("<%= txtPanNo.ClientID %>").focus();
             return false;
         }
-
         if (document.getElementById("<%= txtTin.ClientID %>").value === "") {
             document.getElementById("<%= txtTin.ClientID %>").focus();
             return alert("Please Enter TIN");
-
         }
         return true;
     }

@@ -8,7 +8,6 @@
         var recDate = document.getElementById('<%= txtBatRecDate.ClientID %>');
         var remarks = document.getElementById('<%= txtRemarks.ClientID %>');
         var poDate = document.getElementById('<%= txtBatRecPODate.ClientID %>');
-
         if (!RequiredValidation(recInvoiceNo, "Invoice Number cannot be Blank"))
             return false;
         if (!RequiredValidation(recInvoiceDate, "Invoice Date cannot be Blank"))
@@ -18,21 +17,17 @@
             recInvoiceDate.focus();
             return false;
         }
-
         if (Date.parse(recInvoiceDate.value) < Date.parse(poDate.value)) {
             alert("Invoice Date should be greater than PODate Date");
             recInvoiceDate.focus();
             return false;
         }
-
-
         var now = new Date();
         if (Date.parse(recInvoiceDate.value) > Date.parse(now)) {
             alert("Invoice Date should not be greater than Current Date");
             recInvoiceDate.focus();
             return false;
         }
-
         if (Date.parse(recDate.value) < Date.parse(recInvoiceDate.value)) {
             alert("Receipt Date should be greater than Invoice Date");
             recDate.focus();
@@ -53,13 +48,11 @@
             recDate.focus();
             return false;
         }
-
         if (!RequiredValidation(remarks, "Remarks cannot be Blank"))
             return false;
         return true;
     }
 </script>
-
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
@@ -100,7 +93,7 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnViewDetails" runat="server" Text="Receipt" ToolTip="Click here to Receipt the details"
                                                 OnClick="BtnViewDetails_Click" CssClass="button2" RowIndex="<%# Container.DisplayIndex %>"
-                                                CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "InventoryItemIssueID") %>'/>
+                                                CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"InventoryItemIssueID") %>'/>
                             </ItemTemplate>
                             <ControlStyle Width="50px"/>
                             <HeaderStyle Width="60px"/>
@@ -268,13 +261,13 @@
                             <asp:TemplateField HeaderText="ReceivedQty">
                                 <ItemTemplate>
                                     <asp:Label ID="txtBatteryReceivedQty" runat="server" Text="1"></asp:Label>
-                                    <asp:Label ID="LbIssueID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "InventoryItemIssueID") %>'
+                                    <asp:Label ID="LbIssueID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"InventoryItemIssueID") %>'
                                                Visible="false">
                                     </asp:Label>
-                                    <asp:Label ID="LbReqID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'
+                                    <asp:Label ID="LbReqID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>'
                                                Visible="false">
                                     </asp:Label>
-                                    <asp:Label ID="LbBatteryID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "BatteryIssueDetailsID") %>'
+                                    <asp:Label ID="LbBatteryID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"BatteryIssueDetailsID") %>'
                                                Visible="false">
                                     </asp:Label>
                                 </ItemTemplate>

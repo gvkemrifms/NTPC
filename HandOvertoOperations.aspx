@@ -2,7 +2,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-
         function validation() {
             var handOverto = document.getElementById('<%= txtHandOverto.ClientID %>');
             var handoverDate = document.getElementById('<%= txtHandoverDate.ClientID %>');
@@ -27,25 +26,20 @@
                     break;
                 }
             }
-
             if (!RequiredValidation(handOverto, "Handover To Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(handoverDate, "Handover Date Cannot be Blank"))
                 return false;
-
             if (!isValidDate(handoverDate.value)) {
                 alert("Enter Valid Date");
                 handoverDate.focus();
                 return false;
             }
-
             if (Date.parse(handoverDate.value) > Date.parse(now)) {
                 alert("Handover Date should not be greater than Current Date");
                 handoverDate.focus();
                 return false;
             }
-
             if (Date.parse(handoverDate.value) < Date.parse(vehicleRegistrationDate.value)) {
                 alert("Handover Date should not be greater than Registration Date.(Registration Date-" +
                     vehicleRegistrationDate.value +
@@ -53,28 +47,22 @@
                 handoverDate.focus();
                 return false;
             }
-
             if (!RequiredValidation(handOverBy, "HandOver By Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(qualityInspectionNo, "Quality Inspection Number Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(inspectionDate, "Inspection Date Cannot be Blank"))
                 return false;
-
             if (!isValidDate(inspectionDate.value)) {
                 alert("Enter Valid Date");
                 inspectionDate.focus();
                 return false;
             }
-
             if (Date.parse(inspectionDate.value) > Date.parse(now)) {
                 alert("Inspection Date should not be greater than Current Date");
                 inspectionDate.focus();
                 return false;
             }
-
             if (Date.parse(inspectionDate.value) > Date.parse(handoverDate.value)) {
                 alert("Inspection Date should not be greater than Handover Date");
                 inspectionDate.focus();
@@ -87,18 +75,13 @@
                 inspectionDate.focus();
                 return false;
             }
-
-
             if (!RequiredValidation(inspectedBy, "Inspected By Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(remarks, "Remarks Cannot be Blank"))
                 return false;
             return true;
         }
-
     </script>
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

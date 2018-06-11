@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validationMaintenanceWorksMaster() {
         switch (document.getElementById("<%= ddlServiceGroupName.ClientID %>").selectedIndex) {
         case 0:
@@ -28,7 +27,6 @@
             case 0:
                 document.getElementById("<%= ddlSSName.ClientID %>").focus();
                 return alert("Please select Category");
-
             }
         }
         switch (document.getElementById("<%= txtServiceName.ClientID %>").value) {
@@ -56,7 +54,6 @@
             return false;
         }
         return true;
-
     }
 </script>
 <asp:UpdatePanel runat="server">
@@ -232,7 +229,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Creation Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Creation_Date", "{0:d}") %>'/>
+                                    <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Creation_Date","{0:d}") %>'/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit">

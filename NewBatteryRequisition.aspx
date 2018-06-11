@@ -13,8 +13,6 @@
                 return alert("Please select Vehicle");
             return true;
         }
-
-
     </script>
     <fieldset style="padding: 10px">
         <legend align="center" style="color: brown">Battery Requisition</legend>
@@ -49,7 +47,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:CheckBox ID="chk" runat="server" Enabled='<%# !Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Enabled") == DBNull.Value ? 0 : 1) %>'/>
+                                                    <asp:CheckBox ID="chk" runat="server" Enabled='<%# !Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"Enabled") == DBNull.Value ? 0 : 1) %>'/>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center"/>
                                             </asp:TemplateField>
@@ -61,8 +59,8 @@
                                             <asp:BoundField HeaderText="TotalKmRun" DataField="IssueOdoReading"/>
                                             <asp:TemplateField HeaderText="Remarks">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" Enabled='<%# !Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Enabled") == DBNull.Value ? 0 : 1) %>'
-                                                                 Text='<%# DataBinder.Eval(Container.DataItem, "Enabled") %>' MaxLength="30"
+                                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" Enabled='<%# !Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"Enabled") == DBNull.Value ? 0 : 1) %>'
+                                                                 Text='<%# DataBinder.Eval(Container.DataItem,"Enabled") %>' MaxLength="30"
                                                                  onkeypress="return remark(event);" onKeyUp="CheckLength(this,50)" onChange="CheckLength(this,50)">
                                                     </asp:TextBox>
                                                 </ItemTemplate>
@@ -114,7 +112,7 @@
                                             <asp:BoundField DataField="Status" HeaderText="Status"/>
                                             <asp:TemplateField ControlStyle-Width="50px" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="btnViewDetails" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>' CommandName="Show" CssClass="button2" OnClick="BtnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>" Text="View" ToolTip="Click here to Approve/Reject the details"/>
+                                                    <asp:LinkButton ID="btnViewDetails" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>' CommandName="Show" CssClass="button2" OnClick="BtnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>" Text="View" ToolTip="Click here to Approve/Reject the details"/>
                                                 </ItemTemplate>
                                                 <ControlStyle Width="50px"/>
                                                 <HeaderStyle Width="60px"/>

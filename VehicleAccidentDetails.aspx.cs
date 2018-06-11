@@ -5,14 +5,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class VehicleAccidentDetails : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private readonly VehicleAccidentDetailsBLL _vehicleAccidentDetail = new VehicleAccidentDetailsBLL();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -20,8 +19,8 @@ public partial class VehicleAccidentDetails : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btnSave.Attributes.Add("onclick", "return validation(this,'" + btnSave.ID + "')");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btnSave.Attributes.Add("onclick","return validation(this,'" + btnSave.ID + "')");
             GetVehicleNumber();
             FillHour();
             FillSecond();
@@ -37,7 +36,7 @@ public partial class VehicleAccidentDetails : Page
         {
             if (Session["UserdistrictId"] != null) _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = _fmsg.GetVehicleNumberAccident();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlistVehicleNumber);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlistVehicleNumber);
         }
         catch (Exception ex)
         {
@@ -51,12 +50,12 @@ public partial class VehicleAccidentDetails : Page
         ddlistInitiatedHr.Items.Clear();
         for (var i = 0; i <= 23; i++)
         {
-            ddlistHour.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            ddlistInitiatedHr.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            ddlistHour.Items.Add(new ListItem(i.ToString(),i.ToString()));
+            ddlistInitiatedHr.Items.Add(new ListItem(i.ToString(),i.ToString()));
         }
 
-        ddlistHour.Items.Insert(0, new ListItem("--hh--", "0"));
-        ddlistInitiatedHr.Items.Insert(0, new ListItem("--hh--", "0"));
+        ddlistHour.Items.Insert(0,new ListItem("--hh--","0"));
+        ddlistInitiatedHr.Items.Insert(0,new ListItem("--hh--","0"));
     }
 
     protected void FillSecond()
@@ -65,21 +64,21 @@ public partial class VehicleAccidentDetails : Page
         ddlistInitiatedTimeMin.Items.Clear();
         for (var i = 0; i <= 59; i++)
         {
-            ddlistMinute.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            ddlistInitiatedTimeMin.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            ddlistMinute.Items.Add(new ListItem(i.ToString(),i.ToString()));
+            ddlistInitiatedTimeMin.Items.Add(new ListItem(i.ToString(),i.ToString()));
         }
 
-        ddlistMinute.Items.Insert(0, new ListItem("--mm--", "0"));
-        ddlistInitiatedTimeMin.Items.Insert(0, new ListItem("--mm--", "0"));
+        ddlistMinute.Items.Insert(0,new ListItem("--mm--","0"));
+        ddlistInitiatedTimeMin.Items.Insert(0,new ListItem("--mm--","0"));
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         try
         {
             if (rdBtnIsInsuranceClaimed.SelectedValue == "")
             {
-                ScriptManager.RegisterStartupScript(Page, GetType(), "tmp", "<script type='text/javascript'>alert(\"Please select your option for radio button list.\");</script>", false);
+                ScriptManager.RegisterStartupScript(Page,GetType(),"tmp","<script type='text/javascript'>alert(\"Please select your option for radio button list.\");</script>",false);
                 return;
             }
 
@@ -93,11 +92,11 @@ public partial class VehicleAccidentDetails : Page
             _vehicleAccidentDetail.KilometerRun = txtKilometerRun.Text;
             _vehicleAccidentDetail.IncidentHandledBy = txtIncidentHandledBy.Text;
             _vehicleAccidentDetail.AccidentDescription = txtAccidentDescription.Text;
-            _vehicleAccidentDetail.AccidentDateTime = DateTime.ParseExact(txtAccidentDateTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.AccidentDateTime = DateTime.ParseExact(txtAccidentDateTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.AccidentTimeHrs = ddlistHour.SelectedItem.Value;
             _vehicleAccidentDetail.AccidentTimeMinutes = ddlistMinute.SelectedItem.Value;
             _vehicleAccidentDetail.ActionInitiatedBy = txtActionInitiatedBy.Text;
-            _vehicleAccidentDetail.InitiatedTime = DateTime.ParseExact(txtInitiatedTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.InitiatedTime = DateTime.ParseExact(txtInitiatedTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.InitiatedTimeHrs = ddlistInitiatedHr.SelectedItem.Value;
             _vehicleAccidentDetail.InitiatedTimeMinutes = ddlistInitiatedTimeMin.SelectedItem.Value;
             _vehicleAccidentDetail.InitialContainmentAction = txtInitialContainmentAction.Text;
@@ -106,7 +105,7 @@ public partial class VehicleAccidentDetails : Page
             _vehicleAccidentDetail.Damageto3rdPartyProperty = txtDamageto3rdPartyProperty.Text;
             _vehicleAccidentDetail.PilotName = txtPilotName.Text;
             _vehicleAccidentDetail.DrivingLicenseNumber = txtDrivingLicenseNumber.Text;
-            _vehicleAccidentDetail.ExpiryDate = DateTime.ParseExact(txtExpiryDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.ExpiryDate = DateTime.ParseExact(txtExpiryDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.EMTName = txtEmtName.Text;
             _vehicleAccidentDetail.IsVehicleOperational = true;
             _vehicleAccidentDetail.InjuriesToEmriStaff = txtInjuriestoEMRIStaff.Text;
@@ -134,14 +133,14 @@ public partial class VehicleAccidentDetails : Page
         }
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     private void ClearControls()
@@ -187,12 +186,12 @@ public partial class VehicleAccidentDetails : Page
             }
     }
 
-    protected void grdVehicleAccidentDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdVehicleAccidentDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdVehicleAccidentDetails.PageIndex = e.NewPageIndex;
     }
 
-    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlistVehicleNumber.SelectedIndex)
         {

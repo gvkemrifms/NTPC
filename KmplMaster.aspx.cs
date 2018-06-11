@@ -3,21 +3,20 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class KmplMaster : Page
 {
     private readonly BaseVehicleDetails _fmsobj = new BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
     private DataSet _dataset = new DataSet();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             BindData();
             Bindgrid();
-            txtKMPL.Attributes.Add("onkeypress", "javascript:return numeric_only(this)");
+            txtKMPL.Attributes.Add("onkeypress","javascript:return numeric_only(this)");
         }
     }
 
@@ -27,7 +26,7 @@ public partial class KmplMaster : Page
         {
             _dataset = null;
             if (_fmsobj != null) _dataset = _fmsobj.GetVehicleNumber();
-            _helper.FillDropDownHelperMethodWithDataSet(_dataset, "VehicleNumber", "VehicleID", null, ddlVehNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(_dataset,"VehicleNumber","VehicleID",null,ddlVehNumber);
             ViewState["dsVehicles"] = _dataset;
         }
         catch (Exception ex)
@@ -45,7 +44,7 @@ public partial class KmplMaster : Page
         ViewState["dsGrid"] = ds;
     }
 
-    protected void ddlVehNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlVehNumber.SelectedIndex == 0) return;
         _fmsobj.VehicleID = Convert.ToInt16(ddlVehNumber.SelectedValue);
@@ -53,7 +52,7 @@ public partial class KmplMaster : Page
         txtKMPL.Text = text;
     }
 
-    protected void gvVehKmplDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehKmplDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         try
@@ -84,7 +83,7 @@ public partial class KmplMaster : Page
         }
     }
 
-    protected void btnUpdate_Click(object sender, EventArgs e)
+    protected void btnUpdate_Click(object sender,EventArgs e)
     {
         var id = Session["Id"] != null ? Convert.ToInt16(Session["Id"]) : 0;
         _fmsobj.VehKMPL = Convert.ToDecimal(txtKMPL.Text);
@@ -114,10 +113,10 @@ public partial class KmplMaster : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvVehKmplDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehKmplDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehKmplDetails.PageIndex = e.NewPageIndex;
         Bindgrid();

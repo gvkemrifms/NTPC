@@ -3,13 +3,12 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class ScheduleServiceMaster : Page
 {
     private readonly Helper _helper = new Helper();
     private readonly VAS _obj = new VAS();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -34,7 +33,7 @@ public partial class ScheduleServiceMaster : Page
         try
         {
             var ds = _obj.GetManufaturerName();
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "FleetManufacturer_Name", "FleetManufacturer_Id", ddlManufactName, null, null, null, "1");
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"FleetManufacturer_Name","FleetManufacturer_Id",ddlManufactName,null,null,null,"1");
             ViewState["ManufaturerName"] = ds;
         }
         catch (Exception ex)
@@ -43,7 +42,7 @@ public partial class ScheduleServiceMaster : Page
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         _obj.ManufacturerId = Convert.ToInt16(ddlManufactName.SelectedValue);
         _obj.ManufacturerName = ddlManufactName.SelectedItem.Text;
@@ -76,10 +75,10 @@ public partial class ScheduleServiceMaster : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvScheduleServiceMaster_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvScheduleServiceMaster_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName.ToUpper())
         {
@@ -92,7 +91,7 @@ public partial class ScheduleServiceMaster : Page
                 dv.RowFilter = "FleetManufacturer_Name='" + ((Label) gvScheduleServiceMaster.Rows[index].FindControl("lblManufacturerName")).Text + "'";
                 ddlManufactName.SelectedValue = Convert.ToString(dv.ToTable().Rows[0]["FleetManufacturer_Id"]);
                 ddlManufactName.Enabled = false;
-                if (ddlManufactName.SelectedValue == "68") ddlManufactName_SelectedIndexChanged(this, null);
+                if (ddlManufactName.SelectedValue == "68") ddlManufactName_SelectedIndexChanged(this,null);
                 txtGeneralService.Text = ((Label) gvScheduleServiceMaster.Rows[index].FindControl("lblGSAlert")).Text;
                 txtSSAlert1.Text = ((Label) gvScheduleServiceMaster.Rows[index].FindControl("lblAlert1")).Text;
                 txtSSAlert2.Text = ((Label) gvScheduleServiceMaster.Rows[index].FindControl("lblAlert2")).Text;
@@ -103,7 +102,7 @@ public partial class ScheduleServiceMaster : Page
         }
     }
 
-    protected void btnUpdate_Click(object sender, EventArgs e)
+    protected void btnUpdate_Click(object sender,EventArgs e)
     {
         _obj.ManufacturerId = Convert.ToInt16(ddlManufactName.SelectedValue);
         _obj.ManufacturerName = ddlManufactName.SelectedItem.Text;
@@ -137,7 +136,7 @@ public partial class ScheduleServiceMaster : Page
         }
     }
 
-    protected void ddlManufactName_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlManufactName_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtSSAlert5.Enabled = ddlManufactName.SelectedItem.ToString() == "TATA MOTORS LIMITED";
     }

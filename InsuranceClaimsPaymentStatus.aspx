@@ -5,7 +5,6 @@
 <link href="css/InsuranceClaimsPaymentStatus.css" rel="stylesheet"/>
 <script type="text/javascript">
     function validation() {
-
         var spotSurveyor = document.getElementById('<%= txtSpotSurveyor.ClientID %>');
         var finalSurveyor = document.getElementById('<%= txtFinalSurveyor.ClientID %>');
         var reinspectionSurveyor = document.getElementById('<%= txtReinspectionSurveyor.ClientID %>');
@@ -19,30 +18,21 @@
         var chequeNo = document.getElementById('<%= txtChequeNo.ClientID %>');
         var amountReceivedFromInsurance = document.getElementById('<%= txtAmountReceivedFromInsurance.ClientID %>');
         var costToCompany = document.getElementById('<%= txtCostToCompany.ClientID %>');
-
-
         if (!RequiredValidation(spotSurveyor, "Spot Surveyor Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(finalSurveyor, "Final Surveyor Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(reinspectionSurveyor, "Reinspection Surveyor Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(claimFormSubmissionDate, "Claim Form Submission Date Cannot be Blank"))
             return false;
-
         if (isValidDate(claimFormSubmissionDate.value)) {
             if (!RequiredValidation(totalCostOfRepairs, "Total Cost Of Repairs Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(surveyorAssessmentValue, "Surveyor Assessment Value Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(billSubmissionDate, "Bill Submission Date Cannot be Blank"))
                 return false;
-
             if (isValidDate(billSubmissionDate.value)) {
                 switch (paymentStatus.selectedIndex) {
                 case 0:
@@ -50,21 +40,16 @@
                     paymentStatus.focus();
                     return false;
                 }
-
                 if (!RequiredValidation(remarks, "Remarks Cannot be Blank"))
                     return false;
-
                 if (!RequiredValidation(paymentReceivedDate, "Payment Received Date Cannot be Blank"))
                     return false;
-
                 if (isValidDate(paymentReceivedDate.value)) {
                     if (!RequiredValidation(chequeNo, "Cheque No Cannot be Blank"))
                         return false;
-
                     if (!RequiredValidation(amountReceivedFromInsurance,
                         "Amount Received From Insurance Cannot be Blank"))
                         return false;
-
                     if (!RequiredValidation(costToCompany, "Cost To Company Cannot be Blank"))
                         return false;
                 } else {

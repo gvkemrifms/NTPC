@@ -3,22 +3,21 @@ using System.Configuration;
 using System.Data;
 using System.Web.UI;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class VehicleSwapping : Page
 {
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vasbll = new VASGeneral();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
             UserId = (string) Session["User_Id"];
         if (IsPostBack) return;
-        btnSubmit.Attributes.Add("onclick", "return validation()");
+        btnSubmit.Attributes.Add("onclick","return validation()");
         GetDistrict();
         var o = Session["User_Name"];
         if (o != null) txtRequestedBy.Text = o.ToString();
@@ -30,7 +29,7 @@ public partial class VehicleSwapping : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -38,7 +37,7 @@ public partial class VehicleSwapping : Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         btnSubmit.Enabled = false;
         _vasbll.DistrictId = Convert.ToInt32(ddlDistrict.SelectedItem.Value);
@@ -73,16 +72,16 @@ public partial class VehicleSwapping : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
             _vasbll.DistrictId = Convert.ToInt32(ddlDistrict.SelectedItem.Value);
             var ds = _vasbll.GetActiveVehicles();
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlSrcVehicle);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlSrcVehicle);
             Session["dsvehicle"] = ds;
         }
         catch (Exception ex)
@@ -91,18 +90,18 @@ public partial class VehicleSwapping : Page
         }
     }
 
-    protected void ddlSrcVehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlSrcVehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
             if (ddlSrcVehicle.SelectedIndex == 0) return;
             var ds = (DataSet) Session["dsvehicle"];
             var dsVehicle = new DataSet();
-            var dvsrcvehbase = new DataView(ds.Tables[0], "VehicleID ='" + ddlSrcVehicle.SelectedItem.Value + "'", "VehicleNumber", DataViewRowState.CurrentRows);
+            var dvsrcvehbase = new DataView(ds.Tables[0],"VehicleID ='" + ddlSrcVehicle.SelectedItem.Value + "'","VehicleNumber",DataViewRowState.CurrentRows);
             txtSrcBaseLocation.Text = dvsrcvehbase[0][1].ToString();
             txtSrcContactNo.Text = dvsrcvehbase[0][3].ToString();
             ViewState["SrcBaseLocationId"] = Convert.ToInt32(dvsrcvehbase[0][4]);
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlDestVehicle);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlDestVehicle);
         }
         catch (Exception ex)
         {
@@ -110,18 +109,18 @@ public partial class VehicleSwapping : Page
         }
     }
 
-    protected void ddlDestVehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDestVehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlDestVehicle.SelectedIndex == 0) return;
         var dsDestVeh = (DataSet) Session["dsvehicle"];
         if (dsDestVeh == null) throw new ArgumentNullException(nameof(dsDestVeh));
-        var dvdestvehbase = new DataView(dsDestVeh.Tables[0], "VehicleID ='" + ddlDestVehicle.SelectedItem.Value + "'", "VehicleNumber", DataViewRowState.CurrentRows);
+        var dvdestvehbase = new DataView(dsDestVeh.Tables[0],"VehicleID ='" + ddlDestVehicle.SelectedItem.Value + "'","VehicleNumber",DataViewRowState.CurrentRows);
         txtDestBaseLocation.Text = dvdestvehbase[0][1].ToString();
         txtDestContactNo.Text = dvdestvehbase[0][3].ToString();
         ViewState["DestBaseLocationId"] = Convert.ToInt32(dvdestvehbase[0][4]);
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearAll();
     }

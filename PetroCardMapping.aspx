@@ -32,7 +32,6 @@
                 document.getElementById("<%= ddlPetroCardNumber.ClientID %>").focus();
                 return false;
             }
-
             switch (document.getElementById("<%= txtIssDate.ClientID %>").value) {
             case '':
                 alert("Please enter Issued Date");
@@ -48,7 +47,6 @@
             }
             return true;
         }
-
     </script>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -80,7 +78,7 @@
                                                 <asp:BoundField HeaderText="Validity" DataField="Validity"/>
                                                 <asp:TemplateField HeaderText="Edit">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "MapID") %>'></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"MapID") %>'></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

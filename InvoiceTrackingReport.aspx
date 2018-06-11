@@ -17,7 +17,6 @@
             if (ddlVehicle === '--select--') {
                 return alert("Please select Vehicle");
             }
-
             var ddlBillNo = $('#<%= ddlbillno.ClientID %> option:selected').text().toLowerCase();
             if (ddlBillNo === '--select--') {
                 return alert("Please select Bill");
@@ -63,7 +62,6 @@
             </td>
         </tr>
 
-
     </table>
     <br/>
     <div align="center">
@@ -81,6 +79,5 @@
             </asp:GridView>
         </asp:Panel>
     </div>
-
 
 </asp:Content>

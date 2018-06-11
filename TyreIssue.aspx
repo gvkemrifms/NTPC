@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         function validation() {
             var tyreCost = document.getElementById('<%= txtTyreCost.ClientID %>');
             var dcNumPopup = document.getElementById('<%= txtDcNumberPopup.ClientID %>');
@@ -83,7 +83,7 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnViewDetails" runat="server" Text="Issue" ToolTip="Click here to Issue the details"
                                                         OnClick="BtnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>" CommandName="Show"
-                                                        CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
+                                                        CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>'/>
                                     </ItemTemplate>
                                     <ControlStyle Width="50px"/>
                                     <HeaderStyle Width="60px"/>

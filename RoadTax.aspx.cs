@@ -5,22 +5,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class RoadTax : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.RoadTax _roadtax = new GvkFMSAPP.BLL.StatutoryCompliance.RoadTax();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetRoadTax();
             GetVehicleNumber();
             if (Request.QueryString["vehicleid"] != null) ddlVehicleNumber.Items.FindByValue(Request.QueryString["vehicleid"]).Selected = true;
@@ -72,12 +71,12 @@ public partial class RoadTax : Page
     public void GetVehicleNumber()
     {
         var ds = _roadtax.GetVehicleNumber();
-        if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlVehicleNumber);
+        if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlVehicleNumber);
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
-        _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _roadtax.RTValidityPeriod = ddlRoadTaxValidityPeriod.SelectedItem.Value;
         _roadtax.RTValidityEndDate = DateTime.Parse(txtRoadTaxValidityEndDate.Text);
         if (!chkbxTaxExempted.Checked)
@@ -115,12 +114,12 @@ public partial class RoadTax : Page
         GetVehicleNumber();
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
-    protected void ddlRoadTaxValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlRoadTaxValidityPeriod_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (txtRoadTaxValidityStartDate.Text)
         {
@@ -132,10 +131,10 @@ public partial class RoadTax : Page
         }
 
         if (ddlRoadTaxValidityPeriod.SelectedIndex == 0) return;
-        txtRoadTaxValidityEndDate.Text = Convert.ToDateTime(txtRoadTaxValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlRoadTaxValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1, 0, 0)).ToString();
+        txtRoadTaxValidityEndDate.Text = Convert.ToDateTime(txtRoadTaxValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlRoadTaxValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1,0,0)).ToString(CultureInfo.InvariantCulture);
     }
 
-    protected void chkbxTaxExempted_CheckedChanged(object sender, EventArgs e)
+    protected void chkbxTaxExempted_CheckedChanged(object sender,EventArgs e)
     {
         if (chkbxTaxExempted.Checked && chkbxTaxExempted.Checked)
         {
@@ -154,7 +153,7 @@ public partial class RoadTax : Page
         }
     }
 
-    protected void gvRoadTax_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvRoadTax_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -169,7 +168,7 @@ public partial class RoadTax : Page
                 txtVehicleNumber.Text = drroadtax[0][0].ToString();
                 ViewState["VehNum"] = Convert.ToInt16(drroadtax[0][1].ToString());
                 var dates = _fmsGeneral.GetRegistrationDate(int.Parse(drroadtax[0][1].ToString()));
-                var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture);
                 vehicleRegistrationDate.Value = dt.ToString();
                 txtRoadTaxValidityStartDate.Text = drroadtax[0][3].ToString();
                 ddlRoadTaxValidityPeriod.Items.FindByValue(drroadtax[0][4].ToString()).Selected = true;
@@ -178,7 +177,7 @@ public partial class RoadTax : Page
                 txtRoadTaxReceiptNo.Text = drroadtax[0][7].ToString();
                 txtRoadTaxFee.Text = drroadtax[0][8].ToString();
                 var datesUpdate = _fmsGeneral.GetRegistrationDate(int.Parse(ViewState["VehNum"].ToString()));
-                var dtUpdate = DateTime.ParseExact(datesUpdate.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                var dtUpdate = DateTime.ParseExact(datesUpdate.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture);
                 vehicleRegistrationDate.Value = dtUpdate.ToString(CultureInfo.InvariantCulture);
                 pnlRoadtax.Visible = true;
                 btSave.Text = "Update";
@@ -202,10 +201,10 @@ public partial class RoadTax : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvRoadTax_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvRoadTax_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)
         {
@@ -232,19 +231,19 @@ public partial class RoadTax : Page
         }
     }
 
-    protected void gvRoadTax_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvRoadTax_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvRoadTax.PageIndex = e.NewPageIndex;
         GetRoadTax();
     }
 
-    protected void txtRoadTaxValidityStartDate_TextChanged(object sender, EventArgs e)
+    protected void txtRoadTaxValidityStartDate_TextChanged(object sender,EventArgs e)
     {
         ddlRoadTaxValidityPeriod.SelectedIndex = 0;
         txtRoadTaxValidityEndDate.Text = "";
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         var dates = _fmsGeneral.GetRegistrationDate(int.Parse(ddlVehicleNumber.SelectedItem.Value));
         var dt = Convert.ToDateTime(dates.Tables[0].Rows[0]["RegDate"].ToString());

@@ -4,33 +4,22 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validation() {
-
         var vehicleId = document.getElementById('<%= ddlVehicles.ClientID %>');
-
         var dcNumber = document.getElementById('<%= txtDCNumber.ClientID %>');
-
         var dcDate = document.getElementById('<%= txtDCDate.ClientID %>');
-
         var courierName = document.getElementById('<%= txtCourierName.ClientID %>');
-
         var remarks = document.getElementById('<%= txtRemarks.ClientID %>');
-
         if (!RequiredValidation(dcNumber, "DC Number Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(dcDate, "DC Date cannot be Blank"))
             return false;
-
         switch (vehicleId.selectedIndex) {
         case 0:
             alert("Please select Vehicle");
             vehicleId.focus();
             return false;
         }
-
-
         if (trim(dcDate.value) !== "") {
             if (!isValidDate(dcDate.value)) {
                 alert("Enter the Valid Date");
@@ -38,20 +27,16 @@
                 return false;
             }
         }
-
         var now = new Date();
         if (Date.parse(dcDate.value) > Date.parse(now)) {
             alert("DCDate should not be greater than Current Date");
             dcDate.focus();
             return false;
         }
-
         if (!RequiredValidation(courierName, "Courier Name cannot be Blank"))
             return false;
-
         if (!RequiredValidation(remarks, "Remarks cannot be Blank"))
             return false;
-
         var txtIssuedQuantity = document.getElementById(window.IssuedQuantity);
         if (!RequiredValidation(txtIssuedQuantity, "Issue Qty cannot be Blank"))
             return false;
@@ -67,8 +52,6 @@
         }
         return true;
     }
-
-
 </script>
 <asp:UpdatePanel ID="UpdPanel1" runat="server">
 <ContentTemplate>
@@ -102,7 +85,7 @@
                 <asp:TemplateField ControlStyle-Width="50px" HeaderStyle-Width="60px">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnViewDetails" runat="server" Text="Issue" ToolTip="Click here to Issue the details"
-                                        RowIndex="<%# Container.DisplayIndex %>" CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
+                                        RowIndex="<%# Container.DisplayIndex %>" CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>'/>
                     </ItemTemplate>
                     <ControlStyle Width="50px"/>
                     <HeaderStyle Width="60px"/>

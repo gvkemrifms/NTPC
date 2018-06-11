@@ -19,14 +19,12 @@
         var vehicleNumber = document.getElementById(txtVehicleNumber);
         var approveRejectedRemarks = document.getElementById(txtApproveRejectedRemarks);
         var decommisionDate = document.getElementById(txtDecommisionDate);
-
         switch (trim(vehicleNumber.value)) {
         case '':
             alert("Vehicle Number Cannot be Blank");
             vehicleNumber.focus();
             return false;
         }
-
         switch (trim(approveRejectedRemarks.value)) {
         case '':
             alert("Approve Rejected Remarks Cannot be Blank");
@@ -40,7 +38,6 @@
                 decommisionDate.focus();
                 return false;
             }
-
             if (decommisionDate.value !== "" && !isValidDate(decommisionDate.value)) {
                 alert("Enter the Valid Date");
                 decommisionDate.focus();
@@ -49,8 +46,6 @@
         }
         return true;
     }
-
-
 </script>
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -236,39 +231,39 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Vehicle Number">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleProposalId") %>' CommandName="vehicleApproval">
-                                <%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>
+                            <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"VehicleProposalId") %>' CommandName="vehicleApproval">
+                                <%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Off Road Date">
                         <ItemTemplate>
-                            <asp:Label ID="lblOffRoadDateandDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OffRoadDate") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblOffRoadDateandDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"OffRoadDate") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Total Km Covered">
                         <ItemTemplate>
-                            <asp:Label ID="lblTotalKmCovered" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TotalDistanceTravelled") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblTotalKmCovered" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"TotalDistanceTravelled") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Date of Registration">
                         <ItemTemplate>
-                            <asp:Label ID="lblDateofRegistration" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DateOfRegistration") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblDateofRegistration" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DateOfRegistration") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Survey By">
                         <ItemTemplate>
-                            <asp:Label ID="lblDateofPurchase" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyBy") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblDateofPurchase" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SurveyBy") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Survey Remarks">
                         <ItemTemplate>
-                            <asp:Label ID="lblSurveyorRemark" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SurveyRemark") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblSurveyorRemark" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SurveyRemark") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Proposed Remarks">
                         <ItemTemplate>
-                            <asp:Label ID="lblProposedRemarks" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ProposedRemark") %>'>&#39;&gt;</asp:Label>
+                            <asp:Label ID="lblProposedRemarks" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ProposedRemark") %>'>&#39;&gt;</asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -284,7 +279,6 @@
         </td>
     </tr>
 </caption>
-
 
 </table>
 </ContentTemplate>

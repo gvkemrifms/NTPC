@@ -15,29 +15,24 @@
                 minimumResultsForSearch: 2,
                 placeholder: "Select an option"
             });
-
         });
 
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select State");
-
             }
             var ddlVendor = $('#<%= ddlvendor.ClientID %> option:selected').text().toLowerCase();
             if (ddlVendor === '--select--') {
                 return alert("Please select Vendor");
-
             }
             var txtFirstDate = $('#<%= txtfrmDate.ClientID %>').val();
             var txtToDate = $('#<%= txttodate.ClientID %>').val();
             if (txtFirstDate === "") {
                 return alert('From Date is Mandatory');
-
             }
             if (txtToDate === "") {
                 return alert("End Date is Mandatory");
-
             }
             var fromDate = (txtFirstDate).replace(/\D/g, '/');
             var toDate = (txtToDate).replace(/\D/g, '/');
@@ -46,7 +41,6 @@
             var currentDate = new Date();
             if (ordFromDate > currentDate) {
                 return alert("From date should not be greater than today's date");
-
             }
             if (ordToDate < ordFromDate) {
                 return alert("Please select valid date range");

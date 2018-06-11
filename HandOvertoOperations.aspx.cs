@@ -3,14 +3,13 @@ using System.Data;
 using System.Globalization;
 using System.Web.UI;
 using GvkFMSAPP.PL;
-
 public partial class HandOvertoOperations : Page
 {
     private readonly GvkFMSAPP.BLL.HandOvertoOperations _handovertooperation = new GvkFMSAPP.BLL.HandOvertoOperations();
 
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -18,8 +17,8 @@ public partial class HandOvertoOperations : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btHandover.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btHandover.Attributes.Add("onclick","return validation()");
             GetVehicleNumber();
             pnlHandOverToOperation.Visible = p.Add;
         }
@@ -31,7 +30,7 @@ public partial class HandOvertoOperations : Page
         if (ds != null)
             try
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNo);
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNo);
             }
             catch (Exception ex)
             {
@@ -39,14 +38,14 @@ public partial class HandOvertoOperations : Page
             }
     }
 
-    protected void btHandover_Click(object sender, EventArgs e)
+    protected void btHandover_Click(object sender,EventArgs e)
     {
         _handovertooperation.VehicleID = int.Parse(ddlVehicleNo.SelectedItem.Value);
         _handovertooperation.HandoverTo = txtHandOverto.Text;
-        _handovertooperation.HandoverDate = DateTime.ParseExact(txtHandoverDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _handovertooperation.HandoverDate = DateTime.ParseExact(txtHandoverDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _handovertooperation.HandoverBy = txtHandOverBy.Text;
         _handovertooperation.QualityInspectionNo = txtQualityInspectionNo.Text;
-        _handovertooperation.HTOInspectionDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _handovertooperation.HTOInspectionDate = DateTime.ParseExact(txtInspectionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _handovertooperation.HTOInspectionBy = txtInspectedBy.Text;
         _handovertooperation.Remarks = txtRemarks.Text;
         var ret = _handovertooperation.InsHandoverToOperations();
@@ -55,14 +54,14 @@ public partial class HandOvertoOperations : Page
         GetVehicleNumber();
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     protected void ClearControls()
@@ -77,7 +76,7 @@ public partial class HandOvertoOperations : Page
         txtRemarks.Text = "";
     }
 
-    protected void ddlVehicleNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNo_SelectedIndexChanged(object sender,EventArgs e)
     {
     }
 }

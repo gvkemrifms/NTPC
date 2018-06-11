@@ -3,15 +3,14 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class VehicleDecommission : Page
 {
     private readonly FMSGeneral _fmsgenobj = new FMSGeneral();
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -19,7 +18,7 @@ public partial class VehicleDecommission : Page
             UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
-            btnSubmit.Attributes.Add("onclick", "return validation()");
+            btnSubmit.Attributes.Add("onclick","return validation()");
             GetDistrict();
             GetDecommVehicleDetails();
         }
@@ -30,7 +29,7 @@ public partial class VehicleDecommission : Page
         try
         {
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
-            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistrict);
+            _helper.FillDropDownHelperMethod(query,"ds_lname","ds_dsid",ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -38,13 +37,13 @@ public partial class VehicleDecommission : Page
         }
     }
 
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
             _fmsgenobj.UserDistrictId = int.Parse(ddlDistrict.SelectedItem.Value);
             var ds = _fmsgenobj.GetVehicleForDecomm();
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
         }
         catch (Exception ex)
         {
@@ -52,7 +51,7 @@ public partial class VehicleDecommission : Page
         }
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearAll();
     }
@@ -71,7 +70,7 @@ public partial class VehicleDecommission : Page
         btnSubmit.Text = "Submit";
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         _fmsgenobj.DecommReason = txtDecommReason.Text;
         _fmsgenobj.DecommDate = Convert.ToDateTime(txtDecommDate.Text);
@@ -97,7 +96,7 @@ public partial class VehicleDecommission : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     private void GetDecommVehicleDetails()
@@ -107,13 +106,13 @@ public partial class VehicleDecommission : Page
         grdvwDecommVehicles.DataBind();
     }
 
-    protected void grdvwDecommVehicles_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdvwDecommVehicles_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdvwDecommVehicles.PageIndex = e.NewPageIndex;
         GetDecommVehicleDetails();
     }
 
-    protected void grdvwDecommVehicles_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grdvwDecommVehicles_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -122,7 +121,7 @@ public partial class VehicleDecommission : Page
                 txtVehicleNumber.Visible = true;
                 ddlDistrict.Visible = false;
                 txtDistrict.Visible = true;
-                var dv = new DataView(((DataSet) ViewState["DecommVehDet"]).Tables[0], "VehicleDecommId ='" + e.CommandArgument + "'", "VehicleDecommId", DataViewRowState.CurrentRows);
+                var dv = new DataView(((DataSet) ViewState["DecommVehDet"]).Tables[0],"VehicleDecommId ='" + e.CommandArgument + "'","VehicleDecommId",DataViewRowState.CurrentRows);
                 ViewState["VehDecommId"] = e.CommandArgument;
                 txtDistrict.Text = dv[0]["District"].ToString();
                 txtVehicleNumber.Text = dv[0]["VehicleNumber"].ToString();

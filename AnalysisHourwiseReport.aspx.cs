@@ -34,7 +34,6 @@ public partial class AnalysisHourwiseReport : Page
         }
     }
 
-
     protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddldistrict.SelectedIndex > 0)
@@ -42,8 +41,7 @@ public partial class AnalysisHourwiseReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict,
-                    ddlvehicle, null, null, "@districtID");
+                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@districtID");
             }
             catch (Exception ex)
             {
@@ -77,8 +75,7 @@ public partial class AnalysisHourwiseReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisHourwise", null, null, ddldistrict,
-                ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisHourwise", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
         }
         catch (Exception ex)
         {

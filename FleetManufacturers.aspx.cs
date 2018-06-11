@@ -4,17 +4,16 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
-
 public partial class FleetManufacturers : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
     #region Page Load
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -25,18 +24,18 @@ public partial class FleetManufacturers : Page
             grvManufacturerDetails.Columns[0].Visible = false;
             FillDistricts();
             FillGrid_FleetManufacturerDetails();
-            btnManufacturerSave.Attributes.Add("onclick", "javascript:return validationFleetManufacturers()");
-            txtManufacturerName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
-            txtManufacturerModel.Attributes.Add("onkeypress", "javascript:return OnlyAlphaNumeric(this,event)");
-            txtManufacturerAddress.Attributes.Add("onkeypress", "javascript:return remark(this,event)");
-            txtManufacturerContactPerson.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
+            btnManufacturerSave.Attributes.Add("onclick","javascript:return validationFleetManufacturers()");
+            txtManufacturerName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtManufacturerModel.Attributes.Add("onkeypress","javascript:return OnlyAlphaNumeric(this,event)");
+            txtManufacturerAddress.Attributes.Add("onkeypress","javascript:return remark(this,event)");
+            txtManufacturerContactPerson.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
         }
 
         //Permissions
         var dsPerms = (DataSet) Session["PermissionsDS"];
         if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
         dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-        var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+        var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
         pnlFleetManufacturers.Visible = false;
         grvManufacturerDetails.Visible = false;
         if (p.View)
@@ -87,7 +86,7 @@ public partial class FleetManufacturers : Page
         var query = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
         try
         {
-            _helper.FillDropDownHelperMethod(query, "DISTRICT_NAME", "DISTRICT_ID", ddlFleetManufacturerDistrict);
+            _helper.FillDropDownHelperMethod(query,"DISTRICT_NAME","DISTRICT_ID",ddlFleetManufacturerDistrict);
         }
         catch (Exception ex)
         {
@@ -99,7 +98,7 @@ public partial class FleetManufacturers : Page
 
     #region Save and Update Button
 
-    protected void btnManufacturerSave_Click(object sender, EventArgs e)
+    protected void btnManufacturerSave_Click(object sender,EventArgs e)
     {
         if (btnManufacturerSave != null)
             try
@@ -130,7 +129,7 @@ public partial class FleetManufacturers : Page
                             var mfcreateby = Convert.ToString(Session["User_Id"]);
                             var mfupdtdate = DateTime.Today;
                             var mfupdateby = Convert.ToString(Session["User_Id"]);
-                            ds = _fleetMaster.InsertManufacturerDetails(mfname, mftypid, mfmodel, mfdist, mfmandal, mfcity, mfaddress, mfcontno, mfcontper, mfmail, mftin, mfern, mfstatus, mfinactby, mfinactdate, mfcreatedate, mfcreateby, mfupdtdate, mfupdateby);
+                            ds = _fleetMaster.InsertManufacturerDetails(mfname,mftypid,mfmodel,mfdist,mfmandal,mfcity,mfaddress,mfcontno,mfcontper,mfmail,mftin,mfern,mfstatus,mfinactby,mfinactdate,mfcreatedate,mfcreateby,mfupdtdate,mfupdateby);
                             switch (ds.Tables.Count)
                             {
                                 case 0:
@@ -147,9 +146,7 @@ public partial class FleetManufacturers : Page
                             Show("Manufacturer Name Already Exists");
                         }
                     }
-
                         break;
-
                     default:
                     {
                         var ds = _fleetMaster.FillGrid_FleetManufacturerDetails();
@@ -169,7 +166,7 @@ public partial class FleetManufacturers : Page
                             var mfmail = txtManufacturerEmailId.Text;
                             var mftin = Convert.ToInt64(txtManufacturerTin.Text);
                             var mfern = Convert.ToInt64(txtManufacturerErn.Text);
-                            ds = _fleetMaster.UpdateManufacturerDetails(mfId, mfname, mftypid, mfmodel, mfdist, mfmandal, mfcity, mfaddress, mfcontno, mfcontper, mfmail, mftin, mfern);
+                            ds = _fleetMaster.UpdateManufacturerDetails(mfId,mfname,mftypid,mfmodel,mfdist,mfmandal,mfcity,mfaddress,mfcontno,mfcontper,mfmail,mftin,mfern);
                             switch (ds.Tables.Count)
                             {
                                 case 0:
@@ -202,7 +199,7 @@ public partial class FleetManufacturers : Page
 
     #region Reset Button
 
-    protected void btnManufacturerReset_Click(object sender, EventArgs e)
+    protected void btnManufacturerReset_Click(object sender,EventArgs e)
     {
         FleetManufacturerDetailsReset();
     }
@@ -223,7 +220,7 @@ public partial class FleetManufacturers : Page
         else
         {
             var strScript1 = "<script language=JavaScript>alert('" + "No record found" + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "Success", strScript1);
+            ClientScript.RegisterStartupScript(GetType(),"Success",strScript1);
         }
     }
 
@@ -231,7 +228,7 @@ public partial class FleetManufacturers : Page
 
     #region Row Editing of Manufacturer Details
 
-    protected void grvManufacturerDetails_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvManufacturerDetails_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btnManufacturerSave.Text = "Update";
         var index = e.NewEditIndex;
@@ -260,7 +257,7 @@ public partial class FleetManufacturers : Page
 
     #region Page Index Changing of Manufacturer Details
 
-    protected void grvManufacturerDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvManufacturerDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvManufacturerDetails.PageIndex = e.NewPageIndex;
         FillGrid_FleetManufacturerDetails();
@@ -270,7 +267,7 @@ public partial class FleetManufacturers : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     #region Selected Index Change for Mandal Drop Down List

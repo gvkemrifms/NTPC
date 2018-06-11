@@ -27,41 +27,32 @@
         }
         if (!RequiredValidation(invoiceNo, "Invoice Number Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(invoiceDate, "Invoice Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(invoiceDate.value)) {
             alert("Enter Valid Invoice Date");
             invoiceDate.focus();
             return false;
         }
-
         if (Date.parse(invoiceDate.value) > Date.parse(now)) {
             alert("Invoice Date should not be greater than Current Date");
             invoiceDate.focus();
             return false;
         }
-
         if (Date.parse(invoiceDate.value) < Date.parse(vehiclePurchaseDate.value)) {
             alert("Invoice Date should be greater than Purchase Date.(PurchaseDate-" + vehiclePurchaseDate.value + ")");
             invoiceDate.focus();
             return false;
         }
-
-
         if (!RequiredValidation(fabricationCost, "Fabrication Cost Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(vehicleHandoverDate, "Vehicle Handover To Fabricator Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(vehicleHandoverDate.value)) {
             alert("Enter Valid Vehicle Handover Date");
             vehicleHandoverDate.focus();
             return false;
         }
-
         if (Date.parse(vehicleHandoverDate.value) < Date.parse(vehiclePurchaseDate.value)) {
             alert("Vehicle Handover Date should be greater than Purchase Date.(PurchaseDate-" +
                 vehiclePurchaseDate.value +
@@ -69,40 +60,32 @@
             invoiceDate.focus();
             return false;
         }
-
         if (Date.parse(vehicleHandoverDate.value) > Date.parse(now)) {
             alert("Vehicle Handover Date should not be greater than Current Date");
             vehicleHandoverDate.focus();
             return false;
         }
-
         if (!RequiredValidation(fabricationCompDate, "Fabrication Completion Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(fabricationCompDate.value)) {
             alert("Enter Valid Fabrication Completion Date");
             fabricationCompDate.focus();
             return false;
         }
-
         if (Date.parse(fabricationCompDate.value) > Date.parse(now)) {
             alert("Fabrication Completion Date should not be greater than Current Date");
             fabricationCompDate.focus();
             return false;
         }
-
         if (Date.parse(fabricationCompDate.value) <= Date.parse(vehicleHandoverDate.value)) {
             alert("Fabrication Completion Date should be greater than Vehicle Handover Date");
             fabricationCompDate.focus();
             return false;
         }
-
         if (!RequiredValidation(inspecetedBy, "Inspeceted By Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(inspectionDate, "Inspection Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(inspectionDate.value)) {
             alert("Enter Valid Inspection Date");
             inspectionDate.focus();
@@ -113,7 +96,6 @@
             inspectionDate.focus();
             return false;
         }
-
         if (Date.parse(inspectionDate.value) < Date.parse(fabricationCompDate.value)) {
             alert("Inspection Date should be greater than Fabrication Completion Date");
             inspectionDate.focus();
@@ -121,9 +103,7 @@
         }
         return true;
     }
-
 </script>
-
 
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
@@ -331,39 +311,39 @@
                         <Columns>
                             <asp:TemplateField HeaderText="T/R No">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TRNo") %>'></asp:Label>
+                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"TRNo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fabricator Name">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblFabricatorName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FleetFabricator_Name") %>'></asp:Label>
+                                    <asp:Label ID="lblFabricatorName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FleetFabricator_Name") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Hand Over Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblVehicleHandoverDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleHandoverToFabricatorDate") %>'></asp:Label>
+                                    <asp:Label ID="lblVehicleHandoverDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleHandoverToFabricatorDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fabrication Complition Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblFabricationCompDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FabricationCompletionDate") %>'></asp:Label>
+                                    <asp:Label ID="lblFabricationCompDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FabricationCompletionDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fabrication Cost">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblFabricationCost" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FabricationCost") %>'></asp:Label>
+                                    <asp:Label ID="lblFabricationCost" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FabricationCost") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="fabVehEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FabricatedVehicleDetID") %>'
+                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="fabVehEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FabricatedVehicleDetID") %>'
                                                     Text="Edit">
                                     </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Delete">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandName="fabVehDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FabricatedVehicleDetID") %>'
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandName="fabVehDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FabricatedVehicleDetID") %>'
                                                     Text="Delete">
                                     </asp:LinkButton>
                                     <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" TargetControlID="lnkDelete"

@@ -7,7 +7,6 @@
             alert("Please Enter Fabricator Name");
             document.getElementById("<%= txtFabricatorName.ClientID %>").focus();
             return false;
-
         }
         switch (document.getElementById("<%= ddlFabricatorType.ClientID %>").selectedIndex) {
         case 0:
@@ -15,7 +14,6 @@
             document.getElementById("<%= ddlFabricatorType.ClientID %>").focus();
             return false;
         }
-
         switch (document.getElementById("<%= txtFabricatorAddress.ClientID %>").value) {
         case '':
             alert("Please Enter Fabricator Address");
@@ -28,7 +26,6 @@
             document.getElementById("<%= txtFabricatorContactNumber.ClientID %>").focus();
             return false;
         }
-
         var phone = document.getElementById("<%= txtFabricatorContactNumber.ClientID %>");
         if (isNaN(parseInt(phone.value))) {
             alert("The phone number contains illegal characters");
@@ -40,7 +37,6 @@
             phone.focus();
             return false;
         }
-
         switch (document.getElementById('<%= txtFabricatorContactPerson.ClientID %>').value) {
         case '':
             alert("Please Enter Fabricator Contact Person");
@@ -57,14 +53,12 @@
         if (isValidPAN(pan) === false) {
             return false;
         }
-
         switch (document.getElementById("<%= txtFabricatorEmailId.ClientID %>").value) {
         case '':
             alert("Please Enter Fabricator EmailId");
             document.getElementById("<%= txtFabricatorEmailId.ClientID %>").focus();
             return false;
         }
-
         var emailPat =
             /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         var emailid = document.getElementById("<%= txtFabricatorEmailId.ClientID %>").value;
@@ -79,7 +73,6 @@
                 alert("Please Enter Fabricator Tin");
                 document.getElementById("<%= txtFabricatorTin.ClientID %>").focus();
                 return false;
-
             }
             switch (document.getElementById("<%= txtFabricatorErn.ClientID %>").value) {
             case '':
@@ -319,7 +312,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Creation Date">
                             <ItemTemplate>
-                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date", "{0:d}") %>'/>
+                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date","{0:d}") %>'/>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Edit">

@@ -27,14 +27,12 @@
                 document.getElementById("<%= txtTyreModel.ClientID %>").focus();
                 return false;
             }
-
             switch (document.getElementById("<%= txtTyreSize.ClientID %>").value) {
             case '':
                 alert("Please Enter Tyre Size");
                 document.getElementById("<%= txtTyreSize.ClientID %>").focus();
                 return false;
             }
-
             return true;
         }
     </script>

@@ -1,14 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleSwappingDistrictWise.aspx.cs" Inherits="VehicleSwappingDistrictWise" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-
         function validation() {
             var district = document.getElementById('<%= ddlSourceDistrict.ClientID %>');
             var srcVehicle = document.getElementById('<%= ddlSrcVehicle.ClientID %>');
             var destVehicle = document.getElementById('<%= ddlDestVehicle.ClientID %>');
             var srcContactNo = document.getElementById('<%= txtSrcContactNo.ClientID %>');
             var destContactNo = document.getElementById('<%= txtDestContactNo.ClientID %>');
-
             if (district)
                 switch (district.selectedIndex) {
                 case 0:
@@ -16,7 +14,6 @@
                     district.focus();
                     return false;
                 }
-
             if (srcVehicle)
                 switch (srcVehicle.selectedIndex) {
                 case 0:
@@ -24,24 +21,19 @@
                     srcVehicle.focus();
                     return false;
                 }
-
             if (destVehicle && destVehicle.selectedIndex === 0) {
                 alert("Please select Destination Vehicle");
                 destVehicle.focus();
                 return false;
             }
-
             if (!RequiredValidation(srcContactNo, "Source Contact Number Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(destContactNo, "Destination Contact Number Cannot be Blank"))
                 return false;
-
             document.getElementById("loaderButton").style.display = '';
             document.all('<%= pnlButton.ClientID %>').style.display = "none";
             return true;
         }
-
     </script>
 
     <asp:UpdatePanel runat="server">
@@ -53,7 +45,7 @@
                         .select2({
                             disable_search_threshold: 5,
                             search_contains: true,
-                            minimumResultsForSearch:10,
+                            minimumResultsForSearch: 10,
                             placeholder: "Select an option"
                         });
                 }

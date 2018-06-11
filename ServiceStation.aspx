@@ -52,19 +52,19 @@
                     <Columns>
                         <asp:TemplateField HeaderText="Station">
                             <ItemTemplate>
-                                <asp:Label ID="lblServiceStation" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ServiceStation_Name") %>'>
+                                <asp:Label ID="lblServiceStation" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ServiceStation_Name") %>'>
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="District">
                             <ItemTemplate>
-                                <asp:Label ID="lblDistricts" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ds_lname") %>'>
+                                <asp:Label ID="lblDistricts" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ds_lname") %>'>
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="VehicleNumber">
                             <ItemTemplate>
-                                <asp:Label ID="lblVehNum" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                                <asp:Label ID="lblVehNum" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                                 </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -98,25 +98,19 @@
         </table>
 
         <script type="text/javascript" language="javascript">
-
             function validationFuelEntry() {
-
                 var vehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>').control
                     ._textBoxControl.value;
                 if (vehicleNumber === '--Select--') {
                     alert("Please select the Vehicle");
                     return false;
                 }
-
                 if (document.getElementById("<%= txtServiceSrationName.ClientID %>").value === 0) {
                     alert("Service Station Cannot be Blank");
                     document.getElementById("<%= txtServiceSrationName.ClientID %>").focus();
                     return false;
                 }
-
-
                 var districts = document.getElementById('<%= ddlDistricts.ClientID %>');
-
                 if (districts.selectedIndex === 0) {
                     alert("Please select the District");
                     districts.focus();
@@ -139,7 +133,6 @@
                 else
                     return true;
             }
-
         </script>
 
         </ContentTemplate>

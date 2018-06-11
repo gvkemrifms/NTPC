@@ -38,7 +38,6 @@
                 <asp:Button runat="server" Text="Report" ID="btnsubmit" CssClass="form-submit-button" OnClick="btnsubmit_Click"></asp:Button>
             </td>
 
-
             <td>
                 <asp:Button runat="server" Text="Excel" ID="btntoExcel" CssClass="form-reset-button" OnClick="btntoExcel_Click"></asp:Button>
 

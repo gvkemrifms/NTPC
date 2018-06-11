@@ -24,13 +24,10 @@
                 dcDate.focus();
                 return false;
             }
-
             if (!RequiredValidation(courierName, "Courier Name cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(remarks, "Remarks cannot be Blank"))
                 return false;
-
             var txtIssuedQuantity = document.getElementById(window.IssuedQuantity);
             if (!RequiredValidation(txtIssuedQuantity, "Issue Qty cannot be Blank"))
                 return false;
@@ -67,7 +64,7 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnViewDetails" runat="server" Text="Issue" ToolTip="Click here to Issue the details"
                                                         OnClick="BtnViewDetails_Click" CssClass="button2" RowIndex="<%# Container.DisplayIndex %>"
-                                                        CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
+                                                        CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>'/>
                                     </ItemTemplate>
                                     <ControlStyle Width="50px"/>
                                     <HeaderStyle Width="60px"/>

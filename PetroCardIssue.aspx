@@ -3,16 +3,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-  
         function isMandatory() {
-
             switch (document.getElementById("<%= txtPetroCardNumber.ClientID %>").value) {
             case '':
                 alert("Please enter PetroCardNumber");
                 document.getElementById("<%= txtPetroCardNumber.ClientID %>").focus();
                 return false;
             }
-
             var agency = document.getElementById('<%= ddlAgency.ClientID %>');
             switch (agency.selectedIndex) {
             case 0:
@@ -20,7 +17,6 @@
                 agency.focus();
                 return false;
             }
-
             var cardType = document.getElementById('<%= ddlCardType.ClientID %>');
             switch (cardType.selectedIndex) {
             case 0:
@@ -28,8 +24,6 @@
                 cardType.focus();
                 return false;
             }
-
-
             switch (document.getElementById("<%= txtValidityEndDate.ClientID %>").value) {
             case '':
                 alert("Please Select ValidityEndDate");
@@ -49,19 +43,13 @@
                 listFe.focus();
                 return false;
             }
-
-
             var validityEndDate = document.getElementById('<%= txtValidityEndDate.ClientID %>');
-
             var issuedDate = document.getElementById('<%= txtIssuedDate.ClientID %>');
-
             if (trim(validityEndDate.value) !== "" && !isValidDate(validityEndDate.value)) {
                 alert("Enter the Valid Date");
                 validityEndDate.focus();
                 return false;
             }
-
-
             if (trim(issuedDate.value) !== "" && !isValidDate(issuedDate.value)) {
                 alert("Enter the Valid Date");
                 issuedDate.focus();
@@ -73,16 +61,13 @@
                 validityEndDate.focus();
                 return false;
             }
-
             now = new Date();
             if (Date.parse(issuedDate.value) > Date.parse(now)) {
                 alert("Issued Date should not be greater than Current Date");
                 issuedDate.focus();
                 return false;
             }
-
             var id = document.getElementById('<%= ddlVehicles.ClientID %>');
-
             var inputs = id.getElementsByTagName('input');
             var i;
             for (i = 0; i < inputs.length; i++) {
@@ -92,21 +77,16 @@
                     alert('Select the Vehicle');
                     return false;
                 }
-
                 break;
             }
-
-
             return true;
         }
-
-
     </script>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
                 function pageLoad() {
-                    $('#<%=txtValidityEndDate.ClientID%>,#<%=txtIssuedDate.ClientID%>').datepicker({
+                    $('#<%= txtValidityEndDate.ClientID %>,#<%= txtIssuedDate.ClientID %>').datepicker({
                         dateFormat: 'mm/dd/yy',
                         changeMonth: true,
                         changeYear: true
@@ -199,7 +179,6 @@
                                       Enabled="False">
                         </cc1:ComboBox>
 
-
                     </td>
                 </tr>
                 <tr>
@@ -207,7 +186,7 @@
                         Issued To District<span style="color: Red">*</span>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlFeuserDistrict" CssClass="search_3" runat="server" AutoPostBack="True" >
+                        <asp:DropDownList ID="ddlFeuserDistrict" CssClass="search_3" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -240,13 +219,13 @@
                                 <asp:BoundField HeaderText="IssuedVehicle" DataField="IssuedToVehicle"/>
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "IssueID") %>'></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"IssueID") %>'></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Deactivate">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lnDeactivate" runat="server" Text="Deactivate" CommandName="Delete"
-                                                        CommandArgument='<%#DataBinder.Eval(Container.DataItem, "IssueID") %>'>
+                                                        CommandArgument='<%#DataBinder.Eval(Container.DataItem,"IssueID") %>'>
                                         </asp:LinkButton>
                                         <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" TargetControlID="lnDeactivate"
                                                                    ConfirmText="Are you sure you want to Deactivate?">
@@ -258,10 +237,10 @@
                             <PagerStyle CssClass="pagerStylegrid" BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
                             <SelectedRowStyle CssClass="selectedRowStyle" BackColor="#669999" Font-Bold="True" ForeColor="White"/>
                             <HeaderStyle CssClass="headerStyle" BackColor="#006699" Font-Bold="True" ForeColor="White"/>
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                            <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                            <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                            <SortedDescendingHeaderStyle BackColor="#00547E"/>
                         </asp:GridView>
                     </td>
                 </tr>

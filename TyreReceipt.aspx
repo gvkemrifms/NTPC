@@ -8,10 +8,8 @@
             var tyreRecDate = document.getElementById('<%= txtTyreRecDate.ClientID %>');
             var remarks = document.getElementById('<%= txtRemarks.ClientID %>');
             var dcDate = document.getElementById('<%= txtTyreDCDate.ClientID %>');
-
             if (!window.requiredValidation(tyreRecDate, "Receipt Date cannot be Blank"))
                 return false;
-
             if (trim(tyreRecDate.value) !== "") {
                 if (!isValidDate(tyreRecDate.value)) {
                     alert("Enter the Receipt Date");
@@ -19,7 +17,6 @@
                     return false;
                 }
             }
-
             var now = new Date();
             if (Date.parse(tyreRecDate.value) > Date.parse(now)) {
                 alert("Receipt Date should not be greater than Current Date");
@@ -31,14 +28,10 @@
                 tyreRecDate.focus();
                 return false;
             }
-
             if (!window.requiredValidation(remarks, "Remarks cannot be Blank"))
                 return false;
-
             return true;
         }
-
-
     </script>
 
     <asp:UpdatePanel runat="server">
@@ -73,7 +66,7 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnViewDetails" Text="Receipt" ToolTip="Click here to Receipt the details"
                                                     runat="server" OnClick="BtnViewDetails_Click" CssClass="button2" RowIndex="<%# Container.DisplayIndex %>"
-                                                    CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "InventoryItemIssueID") %>'/>
+                                                    CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"InventoryItemIssueID") %>'/>
                                 </ItemTemplate>
                                 <ControlStyle Width="50px"/>
                                 <HeaderStyle Width="60px"/>

@@ -38,8 +38,7 @@ public partial class AgeingReportnew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, null, null, null,
-                null, null, null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, null, null, null, null, null, null, null, null, null, Grdtyre);
         }
         catch (Exception ex)
         {
@@ -51,8 +50,7 @@ public partial class AgeingReportnew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, ddldistrict, null,
-                null, null, "@DistrictID", null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_VehicleAgeingReport", null, null, ddldistrict, null, null, null, "@DistrictID", null, null, null, null, Grdtyre);
         }
         catch (Exception ex)
         {

@@ -4,28 +4,27 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class TyreIssue : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     public IInventory ObjTyreIssue = new FMSInventory();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             FillInventoryVehicles();
-            btnOk.Attributes.Add("onclick", "return validation()");
-            txtTyreCost.Attributes.Add("onkeypress", "javascript:return isNumberKey(this,event)");
-            txtDcNumberPopup.Attributes.Add("onkeypress", "javascript:return isNumberKey(this,event)");
-            txtCourierName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
-            txtRemarks.Attributes.Add("onkeypress", "javascript:return remark(this,event)");
+            btnOk.Attributes.Add("onclick","return validation()");
+            txtTyreCost.Attributes.Add("onkeypress","javascript:return isNumberKey(this,event)");
+            txtDcNumberPopup.Attributes.Add("onkeypress","javascript:return isNumberKey(this,event)");
+            txtCourierName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtRemarks.Attributes.Add("onkeypress","javascript:return remark(this,event)");
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             grvTyrePendingForIssue.Columns[2].Visible = false;
             grvTyrePendingForIssue.Visible = false;
             if (p.View)
@@ -48,7 +47,7 @@ public partial class TyreIssue : Page
         {
             _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = _fmsg.GetVehicleNumber();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlInventoryTyreIssueVehicles);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlInventoryTyreIssueVehicles);
         }
         catch (Exception ex)
         {
@@ -56,7 +55,7 @@ public partial class TyreIssue : Page
         }
     }
 
-    protected void ddlInventoryTyreIssueVehicles_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlInventoryTyreIssueVehicles_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlInventoryTyreIssueVehicles.SelectedIndex)
         {
@@ -64,18 +63,18 @@ public partial class TyreIssue : Page
                 grvTyrePendingForIssue.Visible = false;
                 break;
             default:
-                FillGrid_TyreForIssue(1, Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
+                FillGrid_TyreForIssue(1,Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
                 Session["vehId"] = Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue);
                 grvTyrePendingForIssue.Visible = true;
                 break;
         }
     }
 
-    private void FillGrid_TyreForIssue(int fleetInventoryItemId, int vehicleId)
+    private void FillGrid_TyreForIssue(int fleetInventoryItemId,int vehicleId)
     {
         try
         {
-            var ds = ObjTyreIssue.GetTyrePendingForIssue(1, vehicleId);
+            var ds = ObjTyreIssue.GetTyrePendingForIssue(1,vehicleId);
             if (ds == null) throw new ArgumentNullException(nameof(ds));
             grvTyrePendingForIssue.DataSource = ds.Tables[0];
             grvTyrePendingForIssue.DataBind();
@@ -86,17 +85,17 @@ public partial class TyreIssue : Page
         }
     }
 
-    protected void BtnViewDetails_Click(object sender, EventArgs e)
+    protected void BtnViewDetails_Click(object sender,EventArgs e)
     {
     }
 
-    protected void grvTyrePendingForIssue_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvTyrePendingForIssue_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvTyrePendingForIssue.PageIndex = e.NewPageIndex;
-        FillGrid_TyreForIssue(1, Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
+        FillGrid_TyreForIssue(1,Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
     }
 
-    protected void grvTyreIssueDetailsPopup_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grvTyreIssueDetailsPopup_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         try
         {
@@ -106,7 +105,7 @@ public partial class TyreIssue : Page
             {
                 case DataControlRowType.DataRow:
                     var ddl = (DropDownList) e.Row.FindControl("ddlTyreNumber");
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "TyreNumber", "Tyre_Id", ddl);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds,"TyreNumber","Tyre_Id",ddl);
                     break;
             }
         }
@@ -116,22 +115,22 @@ public partial class TyreIssue : Page
         }
     }
 
-    private void InsertTyreIssueDetails(int fleetInventoryReqId, int dcNumber, DateTime dcDate, string courierName, string remarks, int totalTyreCost, string make, string model, int vehicleId, string tyreNumber, string tyrePosition)
+    private void InsertTyreIssueDetails(int fleetInventoryReqId,int dcNumber,DateTime dcDate,string courierName,string remarks,int totalTyreCost,string make,string model,int vehicleId,string tyreNumber,string tyrePosition)
     {
-        var res = ObjTyreIssue.InsertTyreIssueDetails(fleetInventoryReqId, dcNumber, dcDate, courierName, remarks, totalTyreCost, make, model, vehicleId, tyreNumber, tyrePosition);
+        var res = ObjTyreIssue.InsertTyreIssueDetails(fleetInventoryReqId,dcNumber,dcDate,courierName,remarks,totalTyreCost,make,model,vehicleId,tyreNumber,tyrePosition);
         if (res > 0)
         {
             var strFmsScript = "<script language=JavaScript>alert('" + "TYRE ISSUED" + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "Success", strFmsScript);
+            ClientScript.RegisterStartupScript(GetType(),"Success",strFmsScript);
         }
         else
         {
             var strFmsScript = "<script language=JavaScript>alert('" + "FAILURE " + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "failure", strFmsScript);
+            ClientScript.RegisterStartupScript(GetType(),"failure",strFmsScript);
         }
     }
 
-    protected void btnOk_Click(object sender, EventArgs e)
+    protected void btnOk_Click(object sender,EventArgs e)
     {
         foreach (GridViewRow row in grvTyreIssueDetailsPopup.Rows)
         {
@@ -154,8 +153,8 @@ public partial class TyreIssue : Page
                 }
                 else
                 {
-                    InsertTyreIssueDetails(fleetReqId, Convert.ToInt32(txtDcNumberPopup.Text), Convert.ToDateTime(txtDcDate.Text), txtCourierName.Text, txtRemarks.Text, Convert.ToInt32(txtTyreCost.Text), make, model, vehId, tyreNumber, tyrePosition);
-                    FillGrid_TyreForIssue(1, Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
+                    InsertTyreIssueDetails(fleetReqId,Convert.ToInt32(txtDcNumberPopup.Text),Convert.ToDateTime(txtDcDate.Text),txtCourierName.Text,txtRemarks.Text,Convert.ToInt32(txtTyreCost.Text),make,model,vehId,tyreNumber,tyrePosition);
+                    FillGrid_TyreForIssue(1,Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
                     ClearControls();
                     gv_ModalPopupExtenderTyreIssue.Hide();
                     Show("Tyre Issued SuccessFully");
@@ -172,7 +171,7 @@ public partial class TyreIssue : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     protected void UpdateSessionTable()
@@ -184,7 +183,7 @@ public partial class TyreIssue : Page
         }
     }
 
-    protected void btnNo_Click(object sender, EventArgs e)
+    protected void btnNo_Click(object sender,EventArgs e)
     {
         ClearControls();
         gv_ModalPopupExtenderTyreIssue.Hide();
@@ -200,7 +199,7 @@ public partial class TyreIssue : Page
         gv_ModalPopupExtenderTyreIssue.Hide();
     }
 
-    protected void grvTyrePendingForIssue_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grvTyrePendingForIssue_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         var id = Convert.ToInt32(e.CommandArgument.ToString());
         var ds = ObjTyreIssue.GetGridTyreIssuePopup(id);

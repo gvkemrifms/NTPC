@@ -18,7 +18,6 @@
         }
     </script>
     <script type="text/javascript">
-
         function Validations() {
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {

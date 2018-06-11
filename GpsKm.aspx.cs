@@ -6,14 +6,13 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
-
 public partial class GpsKm : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -53,18 +52,18 @@ public partial class GpsKm : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     private void bindVehicles()
     {
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, null, "gvtoexcel.xls", grdRepData);
+            _helper.LoadExcelSpreadSheet(this,null,"gvtoexcel.xls",grdRepData);
         }
         catch (Exception ex)
         {
@@ -76,11 +75,11 @@ public partial class GpsKm : Page
     {
     }
 
-    protected void btnShow_Click(object sender, EventArgs e)
+    protected void btnShow_Click(object sender,EventArgs e)
     {
     }
 
-    protected void grdRepData_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grdRepData_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         try
@@ -108,7 +107,7 @@ public partial class GpsKm : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         try
         {
@@ -147,7 +146,7 @@ public partial class GpsKm : Page
             request.ContentLength = data.Length;
             using (var stream = request.GetRequestStream())
             {
-                stream.Write(data, 0, data.Length);
+                stream.Write(data,0,data.Length);
             }
 
             var response = (HttpWebResponse) request.GetResponse();
@@ -188,7 +187,7 @@ public partial class GpsKm : Page
 
     public class WebClient : System.Net.WebClient
     {
-        public int Timeout { get; set; }
+        public int Timeout{ get;set; }
 
         protected override WebRequest GetWebRequest(Uri uri)
         {

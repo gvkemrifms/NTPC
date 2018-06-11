@@ -6,68 +6,49 @@
 <script type="text/javascript">
     function validation() {
         var vehicleId = document.getElementById('<%= ddlVehicles.ClientID %>');
-
         var receiptDate = document.getElementById('<%= txtReceiptDate.ClientID %>');
-
         var receiptRemarks = document.getElementById('<%= txtReceiptRemarks.ClientID %>');
-
         var invoiceNo = document.getElementById('<%= txtInvoiceNo.ClientID %>');
-
         var invoiceDate = document.getElementById('<%= txtInvoiceDate.ClientID %>');
-
         var dcDate = document.getElementById('<%= txtDCDate.ClientID %>');
-
         var txtReceivedQuantity = document.getElementById(window.ReceivedQuantity);
-
         switch (vehicleId.selectedIndex) {
         case 0:
             alert("Please select Vehicle");
             vehicleId.focus();
             return false;
         }
-
-
         if (!RequiredValidation(receiptDate, "ReceiptDate cannot be Blank"))
             return false;
-
         if (!RequiredValidation(receiptRemarks, "ReceiptRemarks cannot be blank"))
             return false;
-
         if (!RequiredValidation(invoiceNo, "InvoiceNo cannot be blank"))
             return false;
-
         if (!RequiredValidation(invoiceDate, "InvoiceDate cannot be blank"))
             return false;
-
         if (!RequiredValidation(txtReceivedQuantity, "ReceivedQuantity cannot be blank"))
             return false;
-
-
         if (trim(receiptDate.value) !== "" && !isValidDate(receiptDate.value)) {
             alert("Enter the Valid Date");
             receiptDate.focus();
             return false;
         }
-
         var now = new Date();
         if (Date.parse(receiptDate.value) > Date.parse(now)) {
             alert("Receipt Date should not be greater than Current Date");
             receiptDate.focus();
             return false;
         }
-
         if (Date.parse(receiptDate.value) < Date.parse(invoiceDate.value)) {
             alert("Receipt Date should be greater than Invoice Date");
             receiptDate.focus();
             return false;
         }
-
         if (Date.parse(dcDate.value) > Date.parse(invoiceDate.value)) {
             alert("Invoice Date should be greater than DC Date");
             invoiceDate.focus();
             return false;
         }
-
         if (trim(invoiceDate.value) !== "" && !isValidDate(invoiceDate.value)) {
             alert("Enter the Valid Date");
             invoiceDate.focus();
@@ -128,7 +109,7 @@
                     <ItemTemplate>
                         <asp:LinkButton ID="btnViewDetails" runat="server" Text="Receipt" ToolTip="Click here to Receipt the details"
                                         OnClick="btnViewDetails_Click" CssClass="button2" RowIndex="<%# Container.DisplayIndex %>"
-                                        CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "InventoryItemIssueID") %>'/>
+                                        CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"InventoryItemIssueID") %>'/>
                     </ItemTemplate>
                     <ControlStyle Width="50px"/>
                     <HeaderStyle Width="60px"/>
@@ -346,7 +327,7 @@
                                 <asp:TextBox ID="txtReceivedQty" runat="server" onkeypress="return isNumberKey(event);"
                                              MaxLength="4">
                                 </asp:TextBox>
-                                <asp:Label ID="LbDetID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SparePartIssueDetID") %>'
+                                <asp:Label ID="LbDetID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SparePartIssueDetID") %>'
                                            Visible="false">
                                 </asp:Label>
                             </ItemTemplate>

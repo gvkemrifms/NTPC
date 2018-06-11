@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Web.UI;
-
 public partial class HistoryReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
-            UserId = (string)Session["User_Id"];
+            UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ddlvehicle.Enabled = false;
@@ -25,7 +24,7 @@ public partial class HistoryReport : Page
         try
         {
             var sqlQuery = "select d.ds_dsid,d.ds_lname from M_FMS_Districts d join m_users u on d.ds_dsid=u.stateId where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "ds_lname", "ds_dsid", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"ds_lname","ds_dsid",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -33,7 +32,7 @@ public partial class HistoryReport : Page
         }
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
         {
@@ -44,7 +43,7 @@ public partial class HistoryReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_Get_Vehicles", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@DistrictID");
+                _helper.FillDropDownHelperMethodWithSp("P_Get_Vehicles","VehicleNumber","VehicleID",ddldistrict,ddlvehicle,null,null,"@DistrictID");
             }
             catch (Exception ex)
             {
@@ -53,7 +52,7 @@ public partial class HistoryReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -62,7 +61,7 @@ public partial class HistoryReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleHistoryReport", null, null, ddldistrict, ddlvehicle, null, null, "@district_id", "@VehID", null, "@Year", "@Month", Grddetails, ddlmonth, ddlyear);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleHistoryReport",null,null,ddldistrict,ddlvehicle,null,null,"@district_id","@VehID",null,"@Year","@Month",Grddetails,ddlmonth,ddlyear);
         }
         catch (Exception ex)
         {
@@ -70,11 +69,11 @@ public partial class HistoryReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleHistoryReport.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleHistoryReport.xls");
         }
         catch (Exception ex)
         {

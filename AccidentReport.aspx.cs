@@ -45,8 +45,7 @@ public partial class AccidentReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict,
-                    ddlvehicle, null, null, "@districtID");
+                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@districtID");
             }
             catch (Exception ex)
             {
@@ -76,8 +75,7 @@ public partial class AccidentReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_FuelReport", null, null, ddldistrict, ddlvehicle,
-                txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@End", null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_FuelReport", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@End", null, Grddetails);
         }
         catch (Exception ex)
         {

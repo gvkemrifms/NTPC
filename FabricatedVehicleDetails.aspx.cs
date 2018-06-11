@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class FabricatedVehicleDetails : Page
 {
     private readonly GvkFMSAPP.BLL.FabricatedVehicleDetails _fabricatedvehicledet = new GvkFMSAPP.BLL.FabricatedVehicleDetails();
@@ -13,7 +12,7 @@ public partial class FabricatedVehicleDetails : Page
     private readonly Helper _helper = new Helper();
     private int _ret;
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -21,8 +20,8 @@ public partial class FabricatedVehicleDetails : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetFabricatedVehicleDetails();
             GetTrNo();
             GetFabricatorName();
@@ -67,7 +66,7 @@ public partial class FabricatedVehicleDetails : Page
             {
                 var ds = _fabricatedvehicledet.GetTRNo();
                 if (ds == null) return;
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "TRNo", "VehicleID", ddlTRNo);
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"TRNo","VehicleID",ddlTRNo);
             }
             catch (Exception ex)
             {
@@ -78,35 +77,31 @@ public partial class FabricatedVehicleDetails : Page
     public void GetFabricatorName()
     {
         if (_fabricatedvehicledet != null)
-        {
             try
             {
                 var ds = _fabricatedvehicledet.GetFabicatorName();
                 if (ds == null) return;
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "FleetFabricator_Name", "FleetFabricator_Id", ddlFabricatorName);
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"FleetFabricator_Name","FleetFabricator_Id",ddlFabricatorName);
             }
             catch (Exception ex)
             {
                 _helper.ErrorsEntry(ex);
             }
-
-            ;
-        }
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         try
         {
             if (ViewState["FabricatedVehicleDetID"] != null) _fabricatedvehicledet.FabricatedVehicleDetID = int.Parse(ViewState["FabricatedVehicleDetID"].ToString());
             _fabricatedvehicledet.FabricatorName = ddlFabricatorName.SelectedItem.Value;
             _fabricatedvehicledet.InvoiceNo = txtInvoiceNo.Text;
-            _fabricatedvehicledet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.InvoiceDate = DateTime.ParseExact(txtInvoiceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _fabricatedvehicledet.FabricationCost = float.Parse(txtFabricationCost.Text);
-            _fabricatedvehicledet.VehicleHandoverToFabricatorDate = DateTime.ParseExact(txtVehicleHandoverDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _fabricatedvehicledet.FabricationCompletionDate = DateTime.ParseExact(txtFabricationCompDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.VehicleHandoverToFabricatorDate = DateTime.ParseExact(txtVehicleHandoverDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.FabricationCompletionDate = DateTime.ParseExact(txtFabricationCompDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _fabricatedvehicledet.FVDInspectedBy = txtInspecetedBy.Text;
-            _fabricatedvehicledet.FVDInspectedDate = DateTime.ParseExact(txtInspectionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _fabricatedvehicledet.FVDInspectedDate = DateTime.ParseExact(txtInspectionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             var valfabvel = _fabricatedvehicledet.ValidateFabricatedVehicleDet();
             if (valfabvel.Tables[0].Rows.Count > 0)
             {
@@ -151,7 +146,7 @@ public partial class FabricatedVehicleDetails : Page
         }
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
         ddlTRNo.Visible = true;
@@ -160,16 +155,16 @@ public partial class FabricatedVehicleDetails : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gridView_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvFabricatedVehicleDetails.PageIndex = e.NewPageIndex;
         GetFabricatedVehicleDetails();
     }
 
-    protected void gridView_Sorting(object sender, GridViewSortEventArgs e)
+    protected void gridView_Sorting(object sender,GridViewSortEventArgs e)
     {
         var dataTable = (DataTable) gvFabricatedVehicleDetails.DataSource;
         if (dataTable == null) return;
@@ -190,7 +185,7 @@ public partial class FabricatedVehicleDetails : Page
         btSave.Text = "Save";
     }
 
-    protected void gvFabricatedVehicleDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvFabricatedVehicleDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName != null)
             try
@@ -246,7 +241,7 @@ public partial class FabricatedVehicleDetails : Page
             }
     }
 
-    protected void ddlTRNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlTRNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlTRNo.SelectedIndex == 0) return;
         if (_fmsGeneral != null)

@@ -3,12 +3,11 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class NonOffroadApprovalPage : Page
 {
     private readonly VASGeneral _objBll = new VASGeneral();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -27,7 +26,7 @@ public partial class NonOffroadApprovalPage : Page
         gvNonOffroadApprovalPage.DataBind();
     }
 
-    protected void gvNonOffroadApprovalPage_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvNonOffroadApprovalPage_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         switch (e.CommandName.ToUpper())
@@ -83,23 +82,23 @@ public partial class NonOffroadApprovalPage : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvNonOffroadApprovalPage_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvNonOffroadApprovalPage_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvNonOffroadApprovalPage.PageIndex = e.NewPageIndex;
         BindGridview();
     }
 
-    protected void lnkChangeDate_Click(object sender, EventArgs e)
+    protected void lnkChangeDate_Click(object sender,EventArgs e)
     {
         txtApprovalDate.Text = "";
         txtApprovalDate.Enabled = true;
         txtApprovalDate.Focus();
     }
 
-    protected void gvNonOffroadApprovalPage_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvNonOffroadApprovalPage_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)
         {
@@ -110,11 +109,11 @@ public partial class NonOffroadApprovalPage : Page
         }
     }
 
-    protected void btnDoWork_Click(object sender, EventArgs e)
+    protected void btnDoWork_Click(object sender,EventArgs e)
     {
     }
 
-    protected void btnReason_Click(object sender, EventArgs e)
+    protected void btnReason_Click(object sender,EventArgs e)
     {
         _objBll.District = (string) ViewState["District"];
         _objBll.SrcVehNo = (string) ViewState["VehNo"];
@@ -142,7 +141,7 @@ public partial class NonOffroadApprovalPage : Page
         }
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender,EventArgs e)
     {
         txtrejectReason.Text = "";
     }

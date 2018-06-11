@@ -76,7 +76,6 @@
             </div>
         </div>
 
-
         <div id="five" style="float: left; width: 5%">
             <div class="row" style="margin-left: 15px; margin-top: -10px;">
                 <asp:Button ID="btntoExcel" runat="server" OnClick="btntoExcel_Click" Text="Export to Excel" CssClass="form-submit-button" Style="font-size: 12px; height: 33px; margin-top: -15px; width: 150px;"></asp:Button>
@@ -89,7 +88,7 @@
             <Columns>
                 <asp:TemplateField HeaderText="Change">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "vehiclenumber") %>'
+                        <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"vehiclenumber") %>'
                                         CommandName="change" Text="Change">
                         </asp:LinkButton>
                     </ItemTemplate>

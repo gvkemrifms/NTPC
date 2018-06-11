@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class VehicleSummaryDistrictwise : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -22,7 +21,7 @@ public partial class VehicleSummaryDistrictwise : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -30,12 +29,12 @@ public partial class VehicleSummaryDistrictwise : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("VAS_Districtwise_Vehicles_Inactive", null, null, ddldistrict, null, null, null, "@dsid", null, null, null, null, GridInactive);
-            _helper.FillDropDownHelperMethodWithSp("VAS_Districtwise_Vehicles_Active", null, null, ddldistrict, null, null, null, "@dsid", null, null, null, null, GridActive);
+            _helper.FillDropDownHelperMethodWithSp("VAS_Districtwise_Vehicles_Inactive",null,null,ddldistrict,null,null,null,"@dsid",null,null,null,null,GridInactive);
+            _helper.FillDropDownHelperMethodWithSp("VAS_Districtwise_Vehicles_Active",null,null,ddldistrict,null,null,null,"@dsid",null,null,null,null,GridActive);
         }
         catch (Exception ex)
         {
@@ -47,11 +46,11 @@ public partial class VehicleSummaryDistrictwise : Page
     {
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {

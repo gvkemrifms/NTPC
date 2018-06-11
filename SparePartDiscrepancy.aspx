@@ -5,15 +5,12 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <script type="text/javascript">
-
                 function validation() {
                     var txtReceivedQuantity = document.getElementById(window.Remarks);
                     if (!RequiredValidation(txtReceivedQuantity, "Remarks cannot be blank"))
                         return false;
                     return true;
                 }
-
-
             </script>
 
             <div style="background-color: #f7f7f7; border: 1px #E2BBA0 solid; height: 150px; margin: 0 0px 15px 0px; padding: 5px;">
@@ -54,16 +51,16 @@
                                                                 <asp:TextBox ID="txtRemarks" runat="server" MaxLength="25" TextMode="MultiLine" onkeypress="return remark(event);" onKeyUp="CheckLength(this,50)"
                                                                              onChange="CheckLength(this,50)">
                                                                 </asp:TextBox>
-                                                                <asp:Label ID="lbdistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DistrictID") %>'
+                                                                <asp:Label ID="lbdistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DistrictID") %>'
                                                                            Visible="false">
                                                                 </asp:Label>
-                                                                <asp:Label ID="lbDetID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SparePartReceiptDetID") %>'
+                                                                <asp:Label ID="lbDetID" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SparePartReceiptDetID") %>'
                                                                            Visible="false">
                                                                 </asp:Label>
-                                                                <asp:Label ID="lbVehicle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleID") %>'
+                                                                <asp:Label ID="lbVehicle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleID") %>'
                                                                            Visible="false">
                                                                 </asp:Label>
-                                                                <asp:Label ID="lbCreatedBy" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "CreatedBy") %>'
+                                                                <asp:Label ID="lbCreatedBy" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"CreatedBy") %>'
                                                                            Visible="false">
                                                                 </asp:Label>
                                                             </ItemTemplate>

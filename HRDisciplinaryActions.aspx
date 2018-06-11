@@ -116,7 +116,6 @@
                         $('#<%= ddlMinor.ClientID %>').attr("disabled", true);
                     else
                         $('#<%= ddlMinor.ClientID %>').prop("disabled", false);
-
                     commonMinor();
                 }
 
@@ -128,7 +127,6 @@
                     commonMajor();
                 }
 
-
                 function ValidatePage() {
                     var ddlVehicle = $('#<%= ddlVehicleno.ClientID %> option:selected').text().toLowerCase();
                     if (ddlVehicle === '--select--') {
@@ -137,7 +135,6 @@
                     var ddlSituation = $('#<%= ddlSitIfAction.ClientID %> option:selected').text().toLowerCase();
                     if (ddlSituation === '-- select --') {
                         return alert("Please select situation of Accident");
-
                     }
                     var ddlCauseofAccident = $('#<%= ddlCause.ClientID %> option:selected').text().toLowerCase();
                     if (ddlCauseofAccident === '--select--') {

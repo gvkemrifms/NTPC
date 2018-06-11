@@ -19,13 +19,9 @@
             alert('The value should be a valid decimal value and cannot be zero');
             obj.value = '';
         } else {
-            var totalCostofRepairs = document.getElementById('<%= TxtTotalCostofRepairs.ClientID %>').value === ''
-                ? 0
-                : document.getElementById('<%= TxtTotalCostofRepairs.ClientID %>').value;
+            var totalCostofRepairs = document.getElementById('<%= TxtTotalCostofRepairs.ClientID %>').value === '' ? 0 : document.getElementById('<%= TxtTotalCostofRepairs.ClientID %>').value;
             var amountRecievedFromInsurance =
-                document.getElementById('<%= TxtAmountRecievedFromInsurance.ClientID %>').value === ''
-                    ? 0
-                    : document.getElementById('<%= TxtAmountRecievedFromInsurance.ClientID %>').value;
+                document.getElementById('<%= TxtAmountRecievedFromInsurance.ClientID %>').value === '' ? 0 : document.getElementById('<%= TxtAmountRecievedFromInsurance.ClientID %>').value;
             var costToCompany = document.getElementById('<%= TxtCostToCompany.ClientID %>');
             costToCompany.value = (parseFloat(totalCostofRepairs) - parseFloat(amountRecievedFromInsurance)).toFixed(2);
         }
@@ -35,7 +31,6 @@
         var costToCompany = document.getElementById('<%= TxtCostToCompany.ClientID %>');
         costToCompany.value =
             (parseFloat(window.TotalCostofRepairs) - parseFloat(window.AmountRecievedFromInsurance)).toFixed(2);
-
     }
 </script>
 <asp:UpdatePanel runat="server">
@@ -268,7 +263,6 @@
 
     <asp:Button ID="BtnReset" runat="server" CssClass="form-reset-button" Text="Reset" Width="70px"
                 OnClick="BtnReset_Click"/>
-
 
 </div>
 

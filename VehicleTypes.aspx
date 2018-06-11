@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleTypes.aspx.cs" Inherits="VehicleTypes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         function validation() {
             switch (document.getElementById("<%= txtVehicleType.ClientID %>").value) {
             case '':

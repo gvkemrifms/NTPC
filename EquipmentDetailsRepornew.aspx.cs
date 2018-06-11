@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class EquipmentDetailsRepornew : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         {
             if (Session["User_Id"] == null)
@@ -25,7 +24,7 @@ public partial class EquipmentDetailsRepornew : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -37,7 +36,7 @@ public partial class EquipmentDetailsRepornew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleEquipmentDetails", null, null, null, null, null, null, null, null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleEquipmentDetails",null,null,null,null,null,null,null,null,null,null,null,Grdtyre);
         }
         catch (Exception ex)
         {
@@ -49,7 +48,7 @@ public partial class EquipmentDetailsRepornew : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleEquipmentDetails", null, null, ddldistrict, null, null, null, "@DistrictID", null, null, null, null, Grdtyre);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_VehicleEquipmentDetails",null,null,ddldistrict,null,null,null,"@DistrictID",null,null,null,null,Grdtyre);
         }
         catch (Exception ex)
         {
@@ -57,7 +56,7 @@ public partial class EquipmentDetailsRepornew : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         switch (ddldistrict.SelectedValue)
         {
@@ -70,11 +69,11 @@ public partial class EquipmentDetailsRepornew : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {

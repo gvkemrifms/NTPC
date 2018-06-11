@@ -3,15 +3,14 @@ using System.Configuration;
 using System.Data;
 using System.Web.UI;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class VehicleSwappingDistrictWise : Page
 {
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _vasbll = new VASGeneral();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -19,7 +18,7 @@ public partial class VehicleSwappingDistrictWise : Page
             UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
-            btnSubmit.Attributes.Add("onclick", "return validation()");
+            btnSubmit.Attributes.Add("onclick","return validation()");
             ddlSrcVehicle.Enabled = false;
             ddlDestVehicle.Enabled = false;
             ddlDestDistrict.Enabled = false;
@@ -38,7 +37,7 @@ public partial class VehicleSwappingDistrictWise : Page
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
             var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
-            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlSourceDistrict);
+            _helper.FillDropDownHelperMethod(query,"ds_lname","ds_dsid",ddlSourceDistrict);
             ViewState["Districts"] = dsStates;
         }
         catch (Exception ex)
@@ -47,31 +46,31 @@ public partial class VehicleSwappingDistrictWise : Page
         }
     }
 
-    protected void ddlSrcVehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlSrcVehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlSrcVehicle.SelectedIndex == 0) return;
         var ds = (DataSet) Session["dsvehicle"];
         if (ds == null) throw new ArgumentNullException(nameof(ds));
-        var dvsrcvehbase = new DataView(ds.Tables[0], "VehicleID ='" + ddlSrcVehicle.SelectedItem.Value + "'", "VehicleNumber", DataViewRowState.CurrentRows);
+        var dvsrcvehbase = new DataView(ds.Tables[0],"VehicleID ='" + ddlSrcVehicle.SelectedItem.Value + "'","VehicleNumber",DataViewRowState.CurrentRows);
         if (dvsrcvehbase.ToTable().Rows.Count <= 0) return;
         txtSrcBaseLocation.Text = dvsrcvehbase[0][1].ToString();
         txtSrcContactNo.Text = dvsrcvehbase[0][3].ToString();
         ViewState["SrcBaseLocationId"] = Convert.ToInt32(dvsrcvehbase[0][4]);
     }
 
-    protected void ddlDestVehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDestVehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlDestVehicle.SelectedIndex == 0) return;
         var dsDestVeh = (DataSet) Session["dsvehicle"];
         if (dsDestVeh == null) throw new ArgumentNullException(nameof(dsDestVeh));
-        var dvdestvehbase = new DataView(dsDestVeh.Tables[0], "VehicleID ='" + ddlDestVehicle.SelectedItem.Value + "'", "VehicleNumber", DataViewRowState.CurrentRows);
+        var dvdestvehbase = new DataView(dsDestVeh.Tables[0],"VehicleID ='" + ddlDestVehicle.SelectedItem.Value + "'","VehicleNumber",DataViewRowState.CurrentRows);
         if (dvdestvehbase.ToTable().Rows.Count <= 0) return;
         txtDestBaseLocation.Text = dvdestvehbase[0][1].ToString();
         txtDestContactNo.Text = dvdestvehbase[0][3].ToString();
         ViewState["DestBaseLocationId"] = Convert.ToInt32(dvdestvehbase[0][4]);
     }
 
-    protected void ddlSourceDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlSourceDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
@@ -95,13 +94,13 @@ public partial class VehicleSwappingDistrictWise : Page
                     _vasbll.DistrictId = Convert.ToInt32(ddlSourceDistrict.SelectedItem.Value);
                     var ds = _vasbll.GetActiveVehicles();
                     ddlSrcVehicle.DataSource = ds;
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlSrcVehicle);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlSrcVehicle);
                     Session["dsvehicle"] = ds;
                     //Destination District based on Source district
                     var dsDestDist = (DataSet) ViewState["Districts"];
                     var dvDestDist = dsDestDist.Tables[0].DefaultView;
                     dvDestDist.RowFilter = "ds_lname <>'" + ddlSourceDistrict.SelectedItem.Text + "'";
-                    _helper.FillDropDownHelperMethodWithDataSet(dsDestDist, "ds_lname", "ds_dsid", ddlDestDistrict);
+                    _helper.FillDropDownHelperMethodWithDataSet(dsDestDist,"ds_lname","ds_dsid",ddlDestDistrict);
                     break;
             }
         }
@@ -111,7 +110,7 @@ public partial class VehicleSwappingDistrictWise : Page
         }
     }
 
-    protected void ddlDestDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDestDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
@@ -128,7 +127,7 @@ public partial class VehicleSwappingDistrictWise : Page
                     _vasbll.DistrictId = Convert.ToInt32(ddlDestDistrict.SelectedItem.Value);
                     var ds = _vasbll.GetActiveVehicles();
                     ddlDestVehicle.DataSource = ds;
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlDestVehicle);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlDestVehicle);
                     Session["dsvehicle"] = ds;
                     break;
             }
@@ -139,7 +138,7 @@ public partial class VehicleSwappingDistrictWise : Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         btnSubmit.Enabled = false;
         _vasbll.SrcDistrictId = Convert.ToInt32(ddlSourceDistrict.SelectedItem.Value);
@@ -191,10 +190,10 @@ public partial class VehicleSwappingDistrictWise : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearAll();
     }

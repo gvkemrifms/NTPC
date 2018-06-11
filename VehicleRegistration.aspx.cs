@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class VehicleRegistration : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
@@ -14,9 +13,9 @@ public partial class VehicleRegistration : Page
     private readonly GvkFMSAPP.BLL.VehicleRegistration _vehreg = new GvkFMSAPP.BLL.VehicleRegistration();
     private int _ret;
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -27,8 +26,8 @@ public partial class VehicleRegistration : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetVehicleRegistration();
             GetTrNo();
             GetDistricts();
@@ -68,7 +67,7 @@ public partial class VehicleRegistration : Page
         try
         {
             var ds = _vehreg.GetTRNo(); //FMS.BLL.VehicleRegistration.GetTrNo();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "TRNo", "VehicleID", null, ddlTRNo);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"TRNo","VehicleID",null,ddlTRNo);
         }
         catch (Exception ex)
         {
@@ -81,7 +80,7 @@ public partial class VehicleRegistration : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -89,14 +88,14 @@ public partial class VehicleRegistration : Page
         }
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         if (ViewState["VehicleRegID"] != null) _vehreg.VehicleRegID = int.Parse(ViewState["VehicleRegID"].ToString());
         _vehreg.EngineNumber = txtEngineNo.Text;
         _vehreg.ChasisNumber = txtChassisNo.Text;
         _vehreg.SeatingCapacity = int.Parse(txtSittingCapacity.Text);
         _vehreg.PRNo = txtPRNo.Text;
-        _vehreg.RegDate = DateTime.ParseExact(txtRegistrationDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _vehreg.RegDate = DateTime.ParseExact(txtRegistrationDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _vehreg.VehicleRTACircle = txtRTACircle.Text;
         _vehreg.District = ddlDistrict.SelectedItem.Value;
         _vehreg.RegExpenses = float.Parse(txtRegisExpenses.Text);
@@ -160,7 +159,7 @@ public partial class VehicleRegistration : Page
         }
     }
 
-    protected void ddlTRNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlTRNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtEngineNo.Text = "";
         txtChassisNo.Text = "";
@@ -190,7 +189,7 @@ public partial class VehicleRegistration : Page
         }
     }
 
-    protected void gvVehicleRegistration_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehicleRegistration_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -219,7 +218,7 @@ public partial class VehicleRegistration : Page
         }
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
         btSave.Text = "Save";
@@ -243,10 +242,10 @@ public partial class VehicleRegistration : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvVehicleRegistration_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehicleRegistration_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehicleRegistration.PageIndex = e.NewPageIndex;
         GetVehicleRegistration();

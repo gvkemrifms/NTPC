@@ -5,14 +5,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.Alert;
-
 public partial class MaintenanceAlert : Page
 {
     private readonly Alert _fmsAlert = new Alert();
     private readonly Helper _helper = new Helper();
     private readonly VehicleRegistration _vehreg = new VehicleRegistration();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) GetVehicles();
@@ -34,7 +33,7 @@ public partial class MaintenanceAlert : Page
         try
         {
             var ds = _vehreg.GetvehiclesReport(); //FMS.BLL.VehicleRegistration.GetDistrcts();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicle);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicle);
         }
         catch (Exception ex)
         {
@@ -72,19 +71,19 @@ public partial class MaintenanceAlert : Page
         return htmlText;
     }
 
-    protected void grdMaintAlert_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdMaintAlert_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdMaintAlert.PageIndex = e.NewPageIndex;
         FillGrid();
     }
 
-    protected void btnSendMail_Click1(object sender, EventArgs e)
+    protected void btnSendMail_Click1(object sender,EventArgs e)
     {
         try
         {
             var subject = "Vehicle Maintenance Alert";
             var mailBody = CreateHtml((DataSet) ViewState["ds"]);
-            MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MasterMailid"], ConfigurationManager.AppSettings["AdminMailid"], "", "", subject, mailBody);
+            MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MasterMailid"],ConfigurationManager.AppSettings["AdminMailid"],"","",subject,mailBody);
         }
         catch (Exception ex)
         {
@@ -92,7 +91,7 @@ public partial class MaintenanceAlert : Page
         }
     }
 
-    protected void ddlVehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlVehicle.SelectedItem.Text != string.Empty) FillGrid();
     }

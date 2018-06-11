@@ -3,7 +3,6 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
-
 public partial class MaintenanceWorksMaster : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
@@ -11,22 +10,22 @@ public partial class MaintenanceWorksMaster : Page
 
     #region Page Load
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             FillServiceGroupNames();
             FillGrid_MaintenanceWorksMaster();
-            btnSaveMaintenanceWorksMaster.Attributes.Add("onclick", "javascript:return validationMaintenanceWorksMaster()");
-            txtServiceName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
+            btnSaveMaintenanceWorksMaster.Attributes.Add("onclick","javascript:return validationMaintenanceWorksMaster()");
+            txtServiceName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
             ddlMaintenanceManufacturerName.Enabled = false;
             ddlServiceGroupName.SelectedIndex = 0;
             //Permissions
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             pnlMaintenanceWorksMaster.Visible = false;
             grvMaintenanceWorksMasterDetails.Visible = false;
             if (p.View)
@@ -80,7 +79,7 @@ public partial class MaintenanceWorksMaster : Page
         try
         {
             var ds = _fleetMaster.FillServiceGroupNames();
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "ServiceGroup_Name", "ServiceGroup_Id", ddlServiceGroupName);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"ServiceGroup_Name","ServiceGroup_Id",ddlServiceGroupName);
         }
         catch (Exception ex)
         {
@@ -104,7 +103,7 @@ public partial class MaintenanceWorksMaster : Page
             else
             {
                 var strScript1 = "<script language=JavaScript>alert('" + "No record found" + "')</script>";
-                ClientScript.RegisterStartupScript(GetType(), "Success", strScript1);
+                ClientScript.RegisterStartupScript(GetType(),"Success",strScript1);
             }
         }
     }
@@ -113,7 +112,7 @@ public partial class MaintenanceWorksMaster : Page
 
     #region Save and Update Button
 
-    protected void btnSaveMaintenanceWorksMaster_Click(object sender, EventArgs e)
+    protected void btnSaveMaintenanceWorksMaster_Click(object sender,EventArgs e)
     {
         try
         {
@@ -155,7 +154,7 @@ public partial class MaintenanceWorksMaster : Page
                     var costAGrade = Convert.ToDecimal(txtCostGrade.Text);
                     var costOtherThanAGrade = Convert.ToDecimal(txtCostOtherGrade.Text);
                     var timeTaken = txtTimeTaken.Text;
-                    var ds = _fleetMaster.InsertMaintenanceWorksMasterDetails(serviceGroupId, vehicleManufacturer, serviceGroupName, serviceName, subserviceName, costAGrade, costOtherThanAGrade, timeTaken, flag);
+                    var ds = _fleetMaster.InsertMaintenanceWorksMasterDetails(serviceGroupId,vehicleManufacturer,serviceGroupName,serviceName,subserviceName,costAGrade,costOtherThanAGrade,timeTaken,flag);
                     if (ds == null) throw new ArgumentNullException(nameof(ds));
                     switch (ds.Tables.Count)
                     {
@@ -179,7 +178,7 @@ public partial class MaintenanceWorksMaster : Page
                     var costAGrade = Convert.ToDecimal(txtCostGrade.Text);
                     var costOtherThanAGrade = Convert.ToDecimal(txtCostOtherGrade.Text);
                     var timeTaken = txtTimeTaken.Text;
-                    var ds = _fleetMaster.UpdateMaintenanceWorksMasterDetails(serviceId, serviceGroupId, serviceName, costAGrade, costOtherThanAGrade, subserviceName, timeTaken);
+                    var ds = _fleetMaster.UpdateMaintenanceWorksMasterDetails(serviceId,serviceGroupId,serviceName,costAGrade,costOtherThanAGrade,subserviceName,timeTaken);
                     if (ds == null) throw new ArgumentNullException(nameof(ds));
                     switch (ds.Tables.Count)
                     {
@@ -209,7 +208,7 @@ public partial class MaintenanceWorksMaster : Page
 
     #region Reset Button
 
-    protected void btnResetMaintenanceWorksMaster_Click(object sender, EventArgs e)
+    protected void btnResetMaintenanceWorksMaster_Click(object sender,EventArgs e)
     {
         MaintenanceWorksMasterReset();
     }
@@ -218,7 +217,7 @@ public partial class MaintenanceWorksMaster : Page
 
     #region Selected Index Change For Service Group Names
 
-    protected void ddlServiceGroupName_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlServiceGroupName_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlServiceGroupName.SelectedIndex == 0) return;
         if (!ddlSSName.Visible)
@@ -233,7 +232,7 @@ public partial class MaintenanceWorksMaster : Page
         {
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetCategories", "Categories", "Category_Id", ddlServiceGroupName, ddlMaintenanceManufacturerName, null, null, "@Aggre", "@VehicleManufacturer", null, null, null, null, ddlSSName);
+                _helper.FillDropDownHelperMethodWithSp("P_GetCategories","Categories","Category_Id",ddlServiceGroupName,ddlMaintenanceManufacturerName,null,null,"@Aggre","@VehicleManufacturer",null,null,null,null,ddlSSName);
             }
             catch (Exception ex)
             {
@@ -246,7 +245,7 @@ public partial class MaintenanceWorksMaster : Page
 
     #region Row Editing of Maintenance Works Master Details
 
-    protected void grvMaintenanceWorksMasterDetails_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvMaintenanceWorksMasterDetails_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btnSaveMaintenanceWorksMaster.Text = "Update";
         var index = e.NewEditIndex;
@@ -267,9 +266,9 @@ public partial class MaintenanceWorksMaster : Page
         txtServiceName.Text = Convert.ToString(ds.Tables[0].Rows[0]["Sub Categories"].ToString());
         txtCategories.Text = Convert.ToString(ds.Tables[0].Rows[0]["Categories"].ToString());
         var cGrade = Convert.ToString(ds.Tables[0].Rows[0]["Cost"].ToString()).Split('.');
-        txtCostGrade.Text = cGrade[0] + '.' + cGrade[1].Substring(0, 2);
+        txtCostGrade.Text = cGrade[0] + '.' + cGrade[1].Substring(0,2);
         var coAGrade = Convert.ToString(ds.Tables[0].Rows[0]["Cost_Other_Than_A_Grade"].ToString()).Split('.');
-        txtCostOtherGrade.Text = coAGrade[0] + '.' + coAGrade[1].Substring(0, 2);
+        txtCostOtherGrade.Text = coAGrade[0] + '.' + coAGrade[1].Substring(0,2);
         txtTimeTaken.Text = Convert.ToString(ds.Tables[0].Rows[0]["Time_Taken"].ToString());
         FillServiceGroupNames();
         ddlServiceGroupName.ClearSelection();
@@ -281,26 +280,26 @@ public partial class MaintenanceWorksMaster : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void grvMaintenanceWorksMasterDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvMaintenanceWorksMasterDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvMaintenanceWorksMasterDetails.PageIndex = e.NewPageIndex;
         FillGrid_MaintenanceWorksMaster();
     }
 
-    protected void linkCat_Click(object sender, EventArgs e)
+    protected void linkCat_Click(object sender,EventArgs e)
     {
         txtCategories.Visible = false;
         ddlSSName.Visible = true;
         linkCat.Visible = false;
         linkNew.Visible = true;
         ddlMaintenanceManufacturerName.Enabled = false;
-        ddlServiceGroupName_SelectedIndexChanged(this, null);
+        ddlServiceGroupName_SelectedIndexChanged(this,null);
     }
 
-    protected void linkNew_Click(object sender, EventArgs e)
+    protected void linkNew_Click(object sender,EventArgs e)
     {
         txtCategories.Visible = true;
         ddlSSName.Visible = false;
@@ -309,7 +308,7 @@ public partial class MaintenanceWorksMaster : Page
         ddlMaintenanceManufacturerName.Enabled = true;
     }
 
-    protected void ddlMaintenanceManufacturerName_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlMaintenanceManufacturerName_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtCategories.Visible = true;
         ddlSSName.Visible = false;
@@ -321,7 +320,7 @@ public partial class MaintenanceWorksMaster : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(dset, "FleetManufacturer_Name", "FleetManufacturer_Id", ddlMaintenanceManufacturerName, null, null, null, "1");
+            _helper.FillDropDownHelperMethodWithDataSet(dset,"FleetManufacturer_Name","FleetManufacturer_Id",ddlMaintenanceManufacturerName,null,null,null,"1");
         }
         catch (Exception ex)
         {

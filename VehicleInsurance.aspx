@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleInsurance.aspx.cs" Inherits="VehicleInsurance" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validation() {
         var id = document.getElementById('<%= ddlVehicleNo.ClientID %>');
         switch (id.selectedIndex) {
@@ -23,20 +22,15 @@
         var policyStartDate = document.getElementById('<%= txtPolicyStartDate.ClientID %>');
         var policyValidityPeriod = document.getElementById('<%= ddlPolicyValidityPeriod.ClientID %>');
         var now = new Date();
-
         if (!RequiredValidation(district, "State Cannot be Blank"))
             return false;
-
-
         if (document.getElementById('<%= chkBoxChangeInsuranceDetails.ClientID %>').checked) {
-
             switch (insuranceTypeDdl.selectedIndex) {
             case 0:
                 alert("Please select Insurance Type");
                 insuranceTypeDdl.focus();
                 return false;
             }
-
             switch (insuranceAgencyDdl.selectedIndex) {
             case 0:
                 alert("Please select Insurance Agency");
@@ -49,67 +43,53 @@
             if (!RequiredValidation(insuranceAgency, "Insurance Agency Cannot be Blank"))
                 return false;
         }
-
         if (!RequiredValidation(insurancePolicyNo, "Insurance Policy Number Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(currentPolicyEndDate, "Current Policy End Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(currentPolicyEndDate.value)) {
             alert("Enter Valid Current Policy End Date");
             currentPolicyEndDate.focus();
             return false;
         }
-
         if (!RequiredValidation(receiptNumber, "Receipt Number Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(feesPaid, "Fees Paid Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(feesPaidDate, "Fees Paid Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(feesPaidDate.value)) {
             alert("Enter Valid Fees Paid Date");
             feesPaidDate.focus();
             return false;
         }
-
         if (Date.parse(feesPaidDate.value) > Date.parse(now)) {
             alert("Fees Paid Date should not be greater than Current Date");
             policyStartDate.focus();
             return false;
         }
-
         if (!RequiredValidation(policyStartDate, "Policy Start Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(policyStartDate.value)) {
             alert("Enter Valid Policy Start Date");
             policyStartDate.focus();
             return false;
         }
-
         if (Date.parse(policyStartDate.value) > Date.parse(now)) {
             alert("Policy Start Date should not be greater than Current Date");
             policyStartDate.focus();
             return false;
         }
-
         if (Date.parse(policyStartDate.value) < Date.parse(feesPaidDate.value)) {
             alert("Policy Start Date should not be less than Fees Paid Date");
             policyStartDate.focus();
             return false;
         }
-
         if (Date.parse(policyStartDate.value) <= Date.parse(currentPolicyEndDate.value)) {
             alert("Policy Start Date should  be greater than Current Policy End Date");
             policyStartDate.focus();
             return false;
         }
-
         switch (policyValidityPeriod.selectedIndex) {
         case 0:
             alert("Please select Policy Validity Period");
@@ -118,7 +98,6 @@
         }
         return true;
     }
-
 </script>
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
@@ -129,7 +108,6 @@
             changeMonth: true,
             changeYear: true
         });
-
         $('#<%= ddlVehicleNo.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,

@@ -60,13 +60,13 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="VehicleNumber">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblVehNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                                                <asp:Label ID="lblVehNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                                                 </asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="KMPL">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblKMPL" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "KMPL") %>'>
+                                                <asp:Label ID="lblKMPL" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"KMPL") %>'>
                                                 </asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -100,7 +100,6 @@
                     switch (districts) {
                     case '--Select--':
                         return alert("Please Select the VehicleNumber");
-
                     }
                     switch (document.getElementById("<%= txtKMPL.ClientID %>").value) {
                     case '':

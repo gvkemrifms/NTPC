@@ -3,13 +3,12 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class PetroCardMapping : Page
 {
     private readonly Helper _helper = new Helper();
     public IFuelManagement Objpetmap = new FuelManagement();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -30,7 +29,7 @@ public partial class PetroCardMapping : Page
         {
             var ds = Objpetmap.IFillddlReasons();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "Reason", "ReasonsID", ddlReason);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"Reason","ReasonsID",ddlReason);
             ddlReason.Enabled = true;
         }
         catch (Exception ex)
@@ -57,7 +56,7 @@ public partial class PetroCardMapping : Page
             if (Session["User_Id"] != null) userId = Convert.ToInt32(Session["User_Id"].ToString());
             var ds = Objpetmap.IFillPetroCardformapping(userId);
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "PetroCardNum", "PetroCardIssueID", ddlPetroCardNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"PetroCardNum","PetroCardIssueID",ddlPetroCardNumber);
             ddlPetroCardNumber.Enabled = true;
         }
         catch (Exception ex)
@@ -72,7 +71,7 @@ public partial class PetroCardMapping : Page
         {
             var ds = Objpetmap.IFillPetroCardformapping1();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "PetroCardNum", "PetroCardIssueID", ddlPetroCardNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"PetroCardNum","PetroCardIssueID",ddlPetroCardNumber);
             ddlPetroCardNumber.Enabled = true;
         }
         catch (Exception ex)
@@ -89,7 +88,7 @@ public partial class PetroCardMapping : Page
             if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = Objpetmap.IFillVehiclesformapping(districtId);
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
             ddlVehicleNumber.Enabled = true;
         }
         catch (Exception ex)
@@ -106,7 +105,7 @@ public partial class PetroCardMapping : Page
             if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = Objpetmap.IFillVehiclesformappingEdit(districtId);
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
             ddlVehicleNumber.Enabled = true;
         }
         catch (Exception ex)
@@ -115,7 +114,7 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         FillNewVehicleNumber();
         FillPetroCardformapping();
@@ -129,7 +128,7 @@ public partial class PetroCardMapping : Page
             if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = Objpetmap.IFillVehiclesformapping(districtId);
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlNewVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlNewVehicleNumber);
             ddlNewVehicleNumber.Items.Remove(ddlVehicleNumber.SelectedItem);
             ddlNewVehicleNumber.Enabled = true;
         }
@@ -139,7 +138,7 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void ddlPetroCardNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlPetroCardNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         FillCardTypeAgencyValidity(Convert.ToInt32(ddlPetroCardNumber.SelectedValue));
     }
@@ -160,7 +159,7 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void Deactivate_CheckedChanged(object sender, EventArgs e)
+    protected void Deactivate_CheckedChanged(object sender,EventArgs e)
     {
         if (Deactivate.Checked)
         {
@@ -177,7 +176,7 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void TransfertoNewVehicle_CheckedChanged(object sender, EventArgs e)
+    protected void TransfertoNewVehicle_CheckedChanged(object sender,EventArgs e)
     {
         if (TransfertoNewVehicle.Checked)
         {
@@ -193,25 +192,25 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void Save_Click(object sender, EventArgs e)
+    protected void Save_Click(object sender,EventArgs e)
     {
         if (Save.Text == "Save")
         {
-            InsMapping(Convert.ToInt32(ddlVehicleNumber.SelectedValue), Convert.ToInt32(ddlPetroCardNumber.SelectedValue), Convert.ToDateTime(txtIssDate.Text), 12, DateTime.Now, 15, DateTime.Now);
+            InsMapping(Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text),12,DateTime.Now,15,DateTime.Now);
             FillGridformapping();
         }
         else
         {
             if (Save.Text == "Update" && ddlVehicleNumber.Enabled == false && Deactivate.Checked == false && TransfertoNewVehicle.Checked == false)
             {
-                UpdMapping(Convert.ToInt32(txtEdit.Text), Convert.ToInt32(ddlVehicleNumber.SelectedValue), Convert.ToInt32(ddlPetroCardNumber.SelectedValue), Convert.ToDateTime(txtIssDate.Text));
+                UpdMapping(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text));
                 FillGridformapping();
             }
             else if (Save.Text == "Update" && ddlVehicleNumber.Enabled == false && ddlNewVehicleNumber.Enabled && TransfertoNewVehicle.Checked && Deactivate.Checked == false)
             {
                 if (ddlNewVehicleNumber.SelectedIndex != 0)
                 {
-                    UpdMapping1(Convert.ToInt32(txtEdit.Text), Convert.ToInt32(ddlNewVehicleNumber.SelectedValue), Convert.ToInt32(ddlPetroCardNumber.SelectedValue), Convert.ToDateTime(txtIssDate.Text));
+                    UpdMapping1(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlNewVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text));
                 }
                 else
                 {
@@ -229,7 +228,7 @@ public partial class PetroCardMapping : Page
                     var ds = Objpetmap.ICheckPetroCard(petroCardId);
                     if (ds.Tables[0].Rows.Count == 0 && ddlReason.SelectedIndex != 0)
                     {
-                        UpdMapping2(Convert.ToInt32(txtEdit.Text), Convert.ToInt32(ddlReason.SelectedValue), Convert.ToString(txtRemarks.Text));
+                        UpdMapping2(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlReason.SelectedValue),Convert.ToString(txtRemarks.Text));
                     }
                     else if (ds.Tables[0].Rows.Count == 0 && ddlReason.SelectedIndex == 0)
                     {
@@ -248,9 +247,9 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    private void UpdMapping(int petroCardVehicleMapId, int vehicleId, int petroCardIssueId, DateTime issuedToAmbyDate)
+    private void UpdMapping(int petroCardVehicleMapId,int vehicleId,int petroCardIssueId,DateTime issuedToAmbyDate)
     {
-        var res = Objpetmap.IUpdMapping(petroCardVehicleMapId, vehicleId, petroCardIssueId, issuedToAmbyDate);
+        var res = Objpetmap.IUpdMapping(petroCardVehicleMapId,vehicleId,petroCardIssueId,issuedToAmbyDate);
         switch (res)
         {
             case 1:
@@ -270,9 +269,9 @@ public partial class PetroCardMapping : Page
         ClearFields();
     }
 
-    private void UpdMapping1(int petroCardVehicleMapId, int vehicleId, int petroCardIssueId, DateTime issuedToAmbyDate)
+    private void UpdMapping1(int petroCardVehicleMapId,int vehicleId,int petroCardIssueId,DateTime issuedToAmbyDate)
     {
-        var res = Objpetmap.IUpdMapping(petroCardVehicleMapId, vehicleId, petroCardIssueId, issuedToAmbyDate);
+        var res = Objpetmap.IUpdMapping(petroCardVehicleMapId,vehicleId,petroCardIssueId,issuedToAmbyDate);
         switch (res)
         {
             case 1:
@@ -292,9 +291,9 @@ public partial class PetroCardMapping : Page
         ClearFields();
     }
 
-    private void UpdMapping2(int petroCardVehicleMapId, int reasonsId, string remarks)
+    private void UpdMapping2(int petroCardVehicleMapId,int reasonsId,string remarks)
     {
-        var res = Objpetmap.IUpdMapping2(petroCardVehicleMapId, reasonsId, remarks);
+        var res = Objpetmap.IUpdMapping2(petroCardVehicleMapId,reasonsId,remarks);
         switch (res)
         {
             case 2:
@@ -314,9 +313,9 @@ public partial class PetroCardMapping : Page
         ClearFields();
     }
 
-    private void InsMapping(int vehicleId, int petroCardIssueId, DateTime issuedToFe, int createdBy, DateTime createdDate, int updatedBy, DateTime updatedDate)
+    private void InsMapping(int vehicleId,int petroCardIssueId,DateTime issuedToFe,int createdBy,DateTime createdDate,int updatedBy,DateTime updatedDate)
     {
-        var res = Objpetmap.IInsMapping(vehicleId, petroCardIssueId, issuedToFe, createdBy, createdDate, updatedBy, updatedDate);
+        var res = Objpetmap.IInsMapping(vehicleId,petroCardIssueId,issuedToFe,createdBy,createdDate,updatedBy,updatedDate);
         switch (res)
         {
             case 2:
@@ -336,11 +335,11 @@ public partial class PetroCardMapping : Page
         ClearFields();
     }
 
-    protected void gvPetroCardMapping_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void gvPetroCardMapping_RowEditing(object sender,GridViewEditEventArgs e)
     {
     }
 
-    protected void gvPetroCardMapping_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvPetroCardMapping_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         try
         {
@@ -358,12 +357,12 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void ddlReason_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlReason_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtRemarks.Visible = ddlReason.SelectedIndex == 1;
     }
 
-    protected void ddlNewVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlNewVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         txtMappedCardNum.Visible = true;
         FillMappedCardNum(Convert.ToInt32(ddlNewVehicleNumber.SelectedValue));
@@ -384,7 +383,7 @@ public partial class PetroCardMapping : Page
         }
     }
 
-    protected void Reset_Click(object sender, EventArgs e)
+    protected void Reset_Click(object sender,EventArgs e)
     {
         ClearFields();
     }
@@ -419,10 +418,10 @@ public partial class PetroCardMapping : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvPetroCardMapping_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvPetroCardMapping_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         FillVehiclesformappingEdit();
         FillPetroCardformapping1();

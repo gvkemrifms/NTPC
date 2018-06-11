@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class FuelVarienceReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -28,7 +27,7 @@ public partial class FuelVarienceReport : Page
         {
             ddlbunk.Enabled = true;
             var newQuery = "select distinct ServiceStation_Name as ServiceStnName,District_Id  from M_FMS_ServiceStationNames where District_id = (select ds_dsid from M_FMS_Districts where ds_lname = '" + ddldistrict.SelectedItem.Text + "') order by ServiceStation_Name";
-            _helper.FillDropDownHelperMethod(newQuery, "ServiceStnName", "District_Id", ddlbunk);
+            _helper.FillDropDownHelperMethod(newQuery,"ServiceStnName","District_Id",ddlbunk);
         }
         catch (Exception ex)
         {
@@ -41,7 +40,7 @@ public partial class FuelVarienceReport : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -49,7 +48,7 @@ public partial class FuelVarienceReport : Page
         }
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
         {
@@ -61,7 +60,7 @@ public partial class FuelVarienceReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@districtID");
+                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber","VehicleNumber","VehicleID",ddldistrict,ddlvehicle,null,null,"@districtID");
             }
             catch (Exception ex)
             {
@@ -70,11 +69,11 @@ public partial class FuelVarienceReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -82,7 +81,7 @@ public partial class FuelVarienceReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -91,7 +90,7 @@ public partial class FuelVarienceReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_FuelVariance", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@districtID", "@VehicleID", "@From", "@To", "@Bunk", Grddetails, ddlbunk);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_FuelVariance",null,null,ddldistrict,ddlvehicle,txtfrmDate,txttodate,"@districtID","@VehicleID","@From","@To","@Bunk",Grddetails,ddlbunk);
         }
         catch (Exception ex)
         {
@@ -103,7 +102,7 @@ public partial class FuelVarienceReport : Page
     {
     }
 
-    protected void ddlvehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlvehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlvehicle.SelectedIndex <= 0)
             ddlbunk.Enabled = false;

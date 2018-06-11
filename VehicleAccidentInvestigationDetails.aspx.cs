@@ -5,14 +5,13 @@ using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.DLL;
 using FMSGeneral = GvkFMSAPP.BLL.FMSGeneral;
-
 public partial class VehicleAccidentInvestigationDetails : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private VehicleAccidentDetailsBLL _vehicleAccidentDetail;
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -30,7 +29,7 @@ public partial class VehicleAccidentInvestigationDetails : Page
             if (ds == null) throw new ArgumentNullException(nameof(ds));
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count != 0)
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlistVehicleNumber);
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlistVehicleNumber);
                 ViewState["dsVehicles"] = ds;
             }
 
@@ -46,9 +45,9 @@ public partial class VehicleAccidentInvestigationDetails : Page
         }
     }
 
-    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
-        var ds = _fmsg.GetInsuranceAccVehicle(Convert.ToString(ddlistVehicleNumber.SelectedItem.Text), Convert.ToInt16(ddlistVehicleNumber.SelectedValue));
+        var ds = _fmsg.GetInsuranceAccVehicle(Convert.ToString(ddlistVehicleNumber.SelectedItem.Text),Convert.ToInt16(ddlistVehicleNumber.SelectedValue));
         if (ds.Tables[0].Rows.Count > 0)
         {
             TxtPolicyNumber.Text = ds.Tables[0].Rows[0]["InsurancePolicyNo"].ToString();
@@ -64,7 +63,7 @@ public partial class VehicleAccidentInvestigationDetails : Page
         }
     }
 
-    protected void BtnSave_Click(object sender, EventArgs e)
+    protected void BtnSave_Click(object sender,EventArgs e)
     {
         int iReturn;
         _vehicleAccidentDetail = new VehicleAccidentDetailsBLL();
@@ -121,25 +120,25 @@ public partial class VehicleAccidentInvestigationDetails : Page
         try
         {
             _vehicleAccidentDetail.VehicleNumber = ddlistVehicleNumber.SelectedIndex != 0 ? Convert.ToString(ddlistVehicleNumber.SelectedItem.Text) : txtVehNum.Text;
-            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtAccidentDateTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.AccTime = TxtAccidentDateTime.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtAccidentDateTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.AccidentDescription = TxtAccidentTitle.Text;
             _vehicleAccidentDetail.SpotSurveyor = TxtSpotSurveyor.Text;
-            _vehicleAccidentDetail.SpotSurDate = TxtSpotSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtSpotSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.SpotSurDate = TxtSpotSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtSpotSurveyorDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.FinalSurveyor = TxtFinalSurveyor.Text;
-            _vehicleAccidentDetail.FinalSurDate = TxtFinalSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtFinalSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.FinalSurDate = TxtFinalSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtFinalSurveyorDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.ReInsSurveyor = TxtReinspectionSurveyor.Text;
-            _vehicleAccidentDetail.ReInsSurDate = TxtReinspectionSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtReinspectionSurveyorDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.ReInsSurDate = TxtReinspectionSurveyorDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtReinspectionSurveyorDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.PolicyNo = TxtPolicyNumber.Text;
             _vehicleAccidentDetail.Agency = TxtAgency.Text;
-            _vehicleAccidentDetail.InsStDate = TxtInsuranceStartDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _vehicleAccidentDetail.InsEndDate = TxtInsuranceEndDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _vehicleAccidentDetail.ClaimDate = TxtClaimFormSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtClaimFormSubmissionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.InsStDate = TxtInsuranceStartDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.InsEndDate = TxtInsuranceEndDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtInsuranceEndDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.ClaimDate = TxtClaimFormSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtClaimFormSubmissionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.CostRepairs = TxtTotalCostofRepairs.Text == string.Empty ? (float?) null : float.Parse(TxtTotalCostofRepairs.Text);
             _vehicleAccidentDetail.AssValue = TxtSurveyorAssessmentValue.Text == string.Empty ? (float?) null : float.Parse(TxtSurveyorAssessmentValue.Text);
-            _vehicleAccidentDetail.BillDate = TxtBillSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtBillSubmissionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.BillDate = TxtBillSubmissionDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtBillSubmissionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.PayStatus = Convert.ToString(ddlistPaymentStatus.SelectedItem.Value);
             _vehicleAccidentDetail.Remarks = txtRemarks.Text;
-            _vehicleAccidentDetail.PayDate = TxtPaymentRecievedDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtPaymentRecievedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleAccidentDetail.PayDate = TxtPaymentRecievedDate.Text == string.Empty ? (DateTime?) null : DateTime.ParseExact(TxtPaymentRecievedDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleAccidentDetail.Cheque = TxtChequeNo.Text;
             _vehicleAccidentDetail.AmtRecieved = TxtAmountRecievedFromInsurance.Text == string.Empty ? (float?) null : float.Parse(TxtAmountRecievedFromInsurance.Text);
             _vehicleAccidentDetail.Cost = TxtCostToCompany.Text == string.Empty ? (float?) null : float.Parse(TxtCostToCompany.Text);
@@ -147,17 +146,17 @@ public partial class VehicleAccidentInvestigationDetails : Page
         }
         catch (Exception ex)
         {
-            ErrorHandler.ErrorsEntry(ex.GetBaseException().ToString(), "class: AttachDocuments;Method: BtnSave_Click()-VehicleAccidentInvestigationDetails", 0);
+            ErrorHandler.ErrorsEntry(ex.GetBaseException().ToString(),"class: AttachDocuments;Method: BtnSave_Click()-VehicleAccidentInvestigationDetails",0);
             return _vehicleAccidentDetail;
         }
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvVehicleDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehicleDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -198,7 +197,7 @@ public partial class VehicleAccidentInvestigationDetails : Page
         }
     }
 
-    protected void BtnReset_Click(object sender, EventArgs e)
+    protected void BtnReset_Click(object sender,EventArgs e)
     {
         ClearAll();
     }

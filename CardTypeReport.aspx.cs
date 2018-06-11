@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class CardTypeReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (!IsPostBack)
         {
@@ -24,17 +23,17 @@ public partial class CardTypeReport : Page
     private void BindDistrictdropdown()
     {
         var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-        _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+        _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex > 0)
         {
             ddlstation.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_PMS_GetServiceStns", "ServiceStation_Name", "Id", ddldistrict, ddlstation, null, null, "@DistrictID");
+                _helper.FillDropDownHelperMethodWithSp("P_PMS_GetServiceStns","ServiceStation_Name","Id",ddldistrict,ddlstation,null,null,"@DistrictID");
             }
             catch (Exception ex)
             {
@@ -47,7 +46,7 @@ public partial class CardTypeReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -56,7 +55,7 @@ public partial class CardTypeReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_GetCardType", null, null, ddldistrict, ddlstation, null, null, "@DistrictID", "@BunkID", null, null, null, GrdcardData);
+            _helper.FillDropDownHelperMethodWithSp("P_FMSReports_GetCardType",null,null,ddldistrict,ddlstation,null,null,"@DistrictID","@BunkID",null,null,null,GrdcardData);
         }
         catch (Exception ex)
         {
@@ -68,11 +67,11 @@ public partial class CardTypeReport : Page
     {
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {

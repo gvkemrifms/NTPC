@@ -4,25 +4,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class BatteryReceipt : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     public IInventory ObjFmsInvBatRecp = new FMSInventory();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             FillInventoryVehicles();
-            btnOk.Attributes.Add("onclick", "return validation()");
-            txtBatRecInvoiceNo.Attributes.Add("onkeypress", "javascript:return isNumberKey(this,event)");
-            txtRemarks.Attributes.Add("onkeypress", "javascript:return remark(this,event)");
+            btnOk.Attributes.Add("onclick","return validation()");
+            txtBatRecInvoiceNo.Attributes.Add("onkeypress","javascript:return isNumberKey(this,event)");
+            txtRemarks.Attributes.Add("onkeypress","javascript:return remark(this,event)");
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             grvBatteryDetailsForReceipt.Visible = false;
             if (p.View)
             {
@@ -46,7 +45,7 @@ public partial class BatteryReceipt : Page
             {
                 _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
                 var ds = _fmsg.GetVehicleNumber();
-                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlInventoryBatteryReceiptVehicles);
+                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlInventoryBatteryReceiptVehicles);
             }
         }
         catch (Exception ex)
@@ -55,15 +54,15 @@ public partial class BatteryReceipt : Page
         }
     }
 
-    private void FillGrid_BatteryDetailsForReceipt(int fleetInventoryItemId, int vehicleId)
+    private void FillGrid_BatteryDetailsForReceipt(int fleetInventoryItemId,int vehicleId)
     {
-        var ds = ObjFmsInvBatRecp.GetBatteryDetailsForReceipt(fleetInventoryItemId, vehicleId);
+        var ds = ObjFmsInvBatRecp.GetBatteryDetailsForReceipt(fleetInventoryItemId,vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         grvBatteryDetailsForReceipt.DataSource = ds.Tables[0];
         grvBatteryDetailsForReceipt.DataBind();
     }
 
-    protected void BtnViewDetails_Click(object sender, EventArgs e)
+    protected void BtnViewDetails_Click(object sender,EventArgs e)
     {
         var btnViewDetails = sender as LinkButton;
         if (btnViewDetails != null)
@@ -74,7 +73,7 @@ public partial class BatteryReceipt : Page
         }
     }
 
-    protected void ddlInventoryBatteryReceiptVehicles_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlInventoryBatteryReceiptVehicles_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlInventoryBatteryReceiptVehicles.SelectedIndex)
         {
@@ -82,27 +81,27 @@ public partial class BatteryReceipt : Page
                 grvBatteryDetailsForReceipt.Visible = false;
                 break;
             default:
-                FillGrid_BatteryDetailsForReceipt(3, Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
+                FillGrid_BatteryDetailsForReceipt(3,Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
                 break;
         }
     }
 
-    private void InsertBatteryReceiptDetails(int inventoryItemIssueId, string vehicleNumer, int districtId, int poNumer, DateTime poDate, string courierName, string hoRemarks, int invoiceNo, DateTime invoiceDate, DateTime receiptDate, int batteryDetailsId, int receivedQty)
+    private void InsertBatteryReceiptDetails(int inventoryItemIssueId,string vehicleNumer,int districtId,int poNumer,DateTime poDate,string courierName,string hoRemarks,int invoiceNo,DateTime invoiceDate,DateTime receiptDate,int batteryDetailsId,int receivedQty)
     {
-        var res = ObjFmsInvBatRecp.InsertBatteryReceiptDetails(inventoryItemIssueId, vehicleNumer, districtId, poNumer, poDate, courierName, hoRemarks, invoiceNo, invoiceDate, receiptDate, batteryDetailsId, receivedQty);
+        var res = ObjFmsInvBatRecp.InsertBatteryReceiptDetails(inventoryItemIssueId,vehicleNumer,districtId,poNumer,poDate,courierName,hoRemarks,invoiceNo,invoiceDate,receiptDate,batteryDetailsId,receivedQty);
         if (res > 0)
         {
             var strFmsScript = "<script language=JavaScript>alert('" + "Battery Receipt Details Submitted" + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "Success", strFmsScript);
+            ClientScript.RegisterStartupScript(GetType(),"Success",strFmsScript);
         }
         else
         {
             var strFmsScript = "<script language=JavaScript>alert('" + "Failure " + "')</script>";
-            ClientScript.RegisterStartupScript(GetType(), "failure", strFmsScript);
+            ClientScript.RegisterStartupScript(GetType(),"failure",strFmsScript);
         }
     }
 
-    protected void btnOk_Click(object sender, EventArgs e)
+    protected void btnOk_Click(object sender,EventArgs e)
     {
         var test = false;
         foreach (GridViewRow item in grvBatteryReceiptDetailsPopup.Rows)
@@ -113,9 +112,9 @@ public partial class BatteryReceipt : Page
             switch (receivedQuantity)
             {
                 case 1:
-                    InsertBatteryReceiptDetails(itemIssueId, Convert.ToString(txtBatRecVehicleNo.Text), 1, Convert.ToInt32(txtBatRecPONumber.Text), Convert.ToDateTime(txtBatRecPODate.Text), Convert.ToString(txtBatRecCourierName.Text), Convert.ToString(txtRemarks.Text), Convert.ToInt32(txtBatRecInvoiceNo.Text), Convert.ToDateTime(txtBatRecInvoiceDate.Text), Convert.ToDateTime(txtBatRecDate.Text), batteryDetailsId, receivedQuantity);
+                    InsertBatteryReceiptDetails(itemIssueId,Convert.ToString(txtBatRecVehicleNo.Text),1,Convert.ToInt32(txtBatRecPONumber.Text),Convert.ToDateTime(txtBatRecPODate.Text),Convert.ToString(txtBatRecCourierName.Text),Convert.ToString(txtRemarks.Text),Convert.ToInt32(txtBatRecInvoiceNo.Text),Convert.ToDateTime(txtBatRecInvoiceDate.Text),Convert.ToDateTime(txtBatRecDate.Text),batteryDetailsId,receivedQuantity);
                     ClearControls();
-                    FillGrid_BatteryDetailsForReceipt(3, Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
+                    FillGrid_BatteryDetailsForReceipt(3,Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
                     Show("Battery Receipt Issued");
                     break;
                 default:
@@ -127,16 +126,16 @@ public partial class BatteryReceipt : Page
         if (test) Show("Received Quantity can't be greater than 1");
     }
 
-    protected void btnNo_Click(object sender, EventArgs e)
+    protected void btnNo_Click(object sender,EventArgs e)
     {
         ClearControls();
         gv_ModalPopupExtenderBatteryReceipt.Hide();
     }
 
-    protected void grvBatteryDetailsForReceipt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvBatteryDetailsForReceipt_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvBatteryDetailsForReceipt.PageIndex = e.NewPageIndex;
-        FillGrid_BatteryDetailsForReceipt(3, Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
+        FillGrid_BatteryDetailsForReceipt(3,Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
     }
 
     private void ClearControls()
@@ -149,15 +148,15 @@ public partial class BatteryReceipt : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void grvBatteryReceiptDetailsPopup_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grvBatteryReceiptDetailsPopup_RowDataBound(object sender,GridViewRowEventArgs e)
     {
-        if (e.Row.RowType == DataControlRowType.DataRow) ScriptManager.RegisterClientScriptBlock(this, GetType(), "dsad", "var IssuedQuantity = '" + ((Label) e.Row.FindControl("txtBatteryReceivedQty")).ClientID + "'", true);
+        if (e.Row.RowType == DataControlRowType.DataRow) ScriptManager.RegisterClientScriptBlock(this,GetType(),"dsad","var IssuedQuantity = '" + ((Label) e.Row.FindControl("txtBatteryReceivedQty")).ClientID + "'",true);
     }
 
-    protected void grvBatteryDetailsForReceipt_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grvBatteryDetailsForReceipt_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         var id = Convert.ToInt32(e.CommandArgument.ToString());
         var ds = ObjFmsInvBatRecp.GetGridBatteryReceiptPopup(id);

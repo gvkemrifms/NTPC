@@ -31,13 +31,11 @@
             pollutionValidityStartDate.focus();
             return false;
         }
-
         if (Date.parse(pollutionValidityStartDate.value) > Date.parse(now)) {
             alert("Pollution Validity Start Date should not be greater than Current Date");
             pollutionValidityStartDate.focus();
             return false;
         }
-
         if (Date.parse(pollutionValidityStartDate.value) < Date.parse(vehiclePurchaseDate.value)) {
             alert("Pollution Validity Start Date should be greater than Purchase Date.(PurchaseDate-" +
                 vehiclePurchaseDate.value +
@@ -45,17 +43,14 @@
             pollutionValidityStartDate.focus();
             return false;
         }
-
         switch (pollutionValidityPeriod.selectedIndex) {
         case 0:
             alert("Please select Pollution Validity Period");
             pollutionValidityPeriod.focus();
             return false;
         }
-
         if (!RequiredValidation(pollutionReceiptNo, "Pollution Receipt No Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(pollutionFee, "Pollution Fee Cannot be Blank"))
             return false;
         return true;
@@ -232,44 +227,44 @@
             <Columns>
                 <asp:TemplateField HeaderText="Vehicle Number">
                     <ItemTemplate>
-                        <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                        <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PUC Validity Start Date">
                     <ItemTemplate>
-                        <asp:Label ID="lblPUCValidityStartDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PUCValidityStartDate") %>'>
+                        <asp:Label ID="lblPUCValidityStartDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PUCValidityStartDate") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PUC Validity Period">
                     <ItemTemplate>
-                        <asp:Label ID="lblPUCValidityPeriod" runat="server" Visible="false" Text='<%#DataBinder.Eval(Container.DataItem, "PUCValidityPeriod") %>'>
+                        <asp:Label ID="lblPUCValidityPeriod" runat="server" Visible="false" Text='<%#DataBinder.Eval(Container.DataItem,"PUCValidityPeriod") %>'>
                         </asp:Label>
                         <asp:Label ID="lblPUCValidityPeriodText" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PUC Validity End Date">
                     <ItemTemplate>
-                        <asp:Label ID="lblPUCValidityEndDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PUCValidityEndDate") %>'>
+                        <asp:Label ID="lblPUCValidityEndDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PUCValidityEndDate") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PUC Receipt No">
                     <ItemTemplate>
-                        <asp:Label ID="lblPUCReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PUCReceiptNo") %>'>
+                        <asp:Label ID="lblPUCReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PUCReceiptNo") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PUC Fee">
                     <ItemTemplate>
-                        <asp:Label ID="lblPUCFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PUCFee") %>'>
+                        <asp:Label ID="lblPUCFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PUCFee") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Edit">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" CommandName="roadTaxEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PollutionUnderControlID") %>'
+                        <asp:LinkButton ID="lnkEdit" runat="server" CommandName="roadTaxEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"PollutionUnderControlID") %>'
                                         Text="Edit">
                         </asp:LinkButton>
                     </ItemTemplate>

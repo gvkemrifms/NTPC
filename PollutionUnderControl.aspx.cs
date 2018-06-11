@@ -5,14 +5,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class PollutionUnderControl : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.PollutionUnderControl _puc = new GvkFMSAPP.BLL.StatutoryCompliance.PollutionUnderControl();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -20,8 +19,8 @@ public partial class PollutionUnderControl : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetPollutionUnderControl();
             GetVehicleNumber();
             if (Request.QueryString["vehicleid"] != null) ddlVehicleNumber.Items.FindByValue(Request.QueryString["vehicleid"]).Selected = true;
@@ -62,7 +61,7 @@ public partial class PollutionUnderControl : Page
         try
         {
             var ds = _puc.GetVehicleNumber(); //roadtax.GetVehicleNumber();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
         }
         catch (Exception ex)
         {
@@ -70,10 +69,10 @@ public partial class PollutionUnderControl : Page
         }
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         if (ViewState["PollutionUnderControlID"] != null) _puc.PollutionUnderControlID = int.Parse(ViewState["PollutionUnderControlID"].ToString());
-        _puc.PUCValidityStartDate = DateTime.ParseExact(txtPollutionValidityStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _puc.PUCValidityStartDate = DateTime.ParseExact(txtPollutionValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _puc.PUCValidityPeriod = ddlPollutionValidityPeriod.SelectedItem.Value;
         _puc.PUCValidityEndDate = DateTime.Parse(txtPollutionValidityEndDate.Text);
         _puc.PUCReceiptNo = txtPollutionReceiptNo.Text;
@@ -107,12 +106,12 @@ public partial class PollutionUnderControl : Page
         GetVehicleNumber();
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
-    protected void ddlPollutionValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlPollutionValidityPeriod_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (txtPollutionValidityStartDate.Text)
         {
@@ -124,11 +123,11 @@ public partial class PollutionUnderControl : Page
         }
 
         if (ddlPollutionValidityPeriod.SelectedIndex == 0) return;
-        var test = Convert.ToDateTime(txtPollutionValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlPollutionValidityPeriod.SelectedItem.Value)).ToString();
-        txtPollutionValidityEndDate.Text = string.Format("{0:d}", test); //format test.ToString("0:d");
+        var test = Convert.ToDateTime(txtPollutionValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlPollutionValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
+        txtPollutionValidityEndDate.Text = string.Format("{0:d}",test); //format test.ToString("0:d");
     }
 
-    protected void gvPollutionUnderControl_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvPollutionUnderControl_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -171,10 +170,10 @@ public partial class PollutionUnderControl : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvPollutionUnderControl_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvPollutionUnderControl_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)
         {
@@ -201,19 +200,19 @@ public partial class PollutionUnderControl : Page
         }
     }
 
-    protected void gvPollutionUnderControl_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvPollutionUnderControl_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvPollutionUnderControl.PageIndex = e.NewPageIndex;
         GetPollutionUnderControl();
     }
 
-    protected void txtPollutionValidityStartDate_TextChanged1(object sender, EventArgs e)
+    protected void txtPollutionValidityStartDate_TextChanged1(object sender,EventArgs e)
     {
         ddlPollutionValidityPeriod.SelectedIndex = 0;
         txtPollutionValidityEndDate.Text = "";
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         var dt = _fmsGeneral.GetPurchaseDate(int.Parse(ddlVehicleNumber.SelectedItem.Value));
         vehiclePurchaseDate.Value = dt.ToString(CultureInfo.InvariantCulture);

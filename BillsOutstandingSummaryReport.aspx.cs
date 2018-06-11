@@ -1,35 +1,33 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class BillsOutstandingSummaryReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
         else
             UserId = (string) Session["User_Id"];
         if (!IsPostBack)
-
             BindDistrictdropdown();
     }
 
     private void BindDistrictdropdown()
     {
         var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-        _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+        _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -41,7 +39,7 @@ public partial class BillsOutstandingSummaryReport : Page
     {
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
         {
@@ -52,7 +50,7 @@ public partial class BillsOutstandingSummaryReport : Page
             ddlvendor.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_Get_Agency", "AgencyName", "AgencyID", ddldistrict, ddlvendor, null, null, "@DistrictID");
+                _helper.FillDropDownHelperMethodWithSp("P_Get_Agency","AgencyName","AgencyID",ddldistrict,ddlvendor,null,null,"@DistrictID");
             }
             catch (Exception ex)
             {
@@ -61,7 +59,7 @@ public partial class BillsOutstandingSummaryReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -70,7 +68,7 @@ public partial class BillsOutstandingSummaryReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_VendorWiseBillsOutstandingSummaryReport", null, null, ddldistrict, null, null, null, "@DistrictID", null, null, null, null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_VendorWiseBillsOutstandingSummaryReport",null,null,ddldistrict,null,null,null,"@DistrictID",null,null,null,null,Grddetails);
         }
         catch (Exception ex)
         {

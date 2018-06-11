@@ -17,7 +17,6 @@
             placeholder: "Select an option"
         });
     };
-
 </script>
 
 <fieldset style="padding: 10px">
@@ -193,14 +192,14 @@
                         <asp:BoundField DataField="StatusDesc" HeaderText="Status"/>
                         <asp:TemplateField HeaderText="Edit">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FuelEntryID") %>'
+                                <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FuelEntryID") %>'
                                                 CommandName="EditFuel" Text="Edit">
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Delete">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FuelEntryID") %>'
+                                <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FuelEntryID") %>'
                                                 CommandName="DeleteFuel" Text="Delete">
                                 </asp:LinkButton>
                                 <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Are you sure you want to DELETE"
@@ -269,10 +268,8 @@
             return alert("Please Select the VehicleNumber");
         }
         var fuelEntryDate = document.getElementById('<%= txtFuelEntryDate.ClientID %>');
-
         if (!RequiredValidation(fuelEntryDate, "Fuel Entry Date Cannot be Blank"))
             return false;
-
         if (trim(fuelEntryDate.value) !== "") {
             if (!isValidDate(fuelEntryDate.value)) {
                 alert("Enter the Valid Date");
@@ -280,45 +277,36 @@
                 return false;
             }
         }
-
         var now = new Date();
         if (Date.parse(fuelEntryDate.value) > Date.parse(now)) {
             alert("Fuel Entry Date should not be greater than Current Date");
             fuelEntryDate.focus();
             return false;
         }
-
         if (document.getElementById("<%= txtBillNumber.ClientID %>").value === '') {
             alert("Please Enter BillNumber value");
             document.getElementById("<%= txtBillNumber.ClientID %>").focus();
             return false;
         }
-
-
         if (document.getElementById("<%= txtOdometer.ClientID %>").value === '') {
             alert("Please Enter Odometer value");
             document.getElementById("<%= txtOdometer.ClientID %>").focus();
             return false;
         }
-
         var paymode = document.getElementById('<%= ddlPaymode.ClientID %>');
-
         if (paymode.selectedIndex === 0) {
             alert("Please select the Paymode");
             paymode.focus();
             return false;
         }
-
         if (paymode.options[paymode.selectedIndex].text === "Card") {
             var agency = document.getElementById('<%= ddlAgency.ClientID %>');
-
             if (agency.selectedIndex === -1) {
                 alert("Please select the Agency");
                 agency.focus();
                 return false;
             }
             var petroCardNumber = document.getElementById('<%= ddlPetroCardNumber.ClientID %>');
-
             if (petroCardNumber.selectedIndex === 0) {
                 alert("Please select the PetroCardNumber");
                 petroCardNumber.focus();
@@ -330,48 +318,36 @@
             document.getElementById("<%= txtQuantity.ClientID %>").focus();
             return false;
         }
-
         if (document.getElementById("<%= txtUnitPrice.ClientID %>").value === '') {
             alert("Please Enter UnitPrice value");
             document.getElementById("<%= txtUnitPrice.ClientID %>").focus();
             return false;
         }
-
-
         if (document.getElementById("<%= txtLocation.ClientID %>").value === '') {
             alert("Please Enter Location value");
             document.getElementById("<%= txtLocation.ClientID %>").focus();
             return false;
         }
-
-
         if (document.getElementById("<%= txtPilotID.ClientID %>").value === '') {
             alert("Please Enter Pilot ID");
             document.getElementById("<%= txtPilotID.ClientID %>").focus();
             return false;
         }
-
-
         if (document.getElementById("<%= txtPilotName.ClientID %>").value === '') {
             alert("Please Enter Pilot Name");
             document.getElementById("<%= txtPilotName.ClientID %>").focus();
             return false;
         }
-
         if (paymode.options[paymode.selectedIndex].text === "Card") {
-
             var cardSwiped = document.getElementById('<%= ddlCardSwiped.ClientID %>');
-
             if (cardSwiped.selectedIndex === 0) {
                 alert("Please select the CardSwipedStatus");
                 cardSwiped.focus();
                 return false;
             }
         }
-
         var maxOdo = document.getElementById("<%= maxOdo.ClientID %>");
         var givenOdo = document.getElementById("<%= txtOdometer.ClientID %>");
-
         if (parseInt(maxOdo.value) >= parseInt(givenOdo.value)) {
             alert("Odometer value should be greater than the Previous Odometer value (Pre Odo Reading=" +
                 maxOdo.value +
@@ -379,10 +355,8 @@
             givenOdo.focus();
             return false;
         }
-
         return true;
     }
-
 
     function onKeyPressBlockNumbers(value) {
         var reg = /^\-?([1-9]\d*|0)(\.\d?[1-9])?$/;
@@ -391,18 +365,15 @@
             document.getElementById("<%= txtUnitPrice.ClientID %>").value = "";
             return false;
         }
-
         var text5 = parseFloat(document.getElementById("<%= txtUnitPrice.ClientID %>").value);
         if (text5 > 75) {
             alert("Unit Price Cant be greater than 75");
             document.getElementById("<%= txtUnitPrice.ClientID %>").value = "";
             return false;
         }
-
         sum();
         return reg.test(value);
     }
-
 
     function onKeyPressBlockNumbers1(value) {
         var reg = /^\-?([1-9]\d*|0)(\.\d?[1-9])?$/;
@@ -411,14 +382,12 @@
             document.getElementById("<%= txtQuantity.ClientID %>").value = "";
             return false;
         }
-
         var text5 = parseFloat(document.getElementById("<%= txtQuantity.ClientID %>").value);
         if (text5 > 65) {
             alert("Quantity Cant be greater than 65");
             document.getElementById("<%= txtQuantity.ClientID %>").value = "";
             return false;
         }
-
         sum();
         return reg.test(value);
     }

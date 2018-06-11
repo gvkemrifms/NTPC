@@ -6,13 +6,12 @@ using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.Admin;
 using ServiceReference2;
 using DistrictVehicleMapping = GvkFMSAPP.DLL.Admin.DistrictVehicleMapping;
-
 public partial class DistrictUserMapping : Page
 {
     private readonly DistrictUserMappping _distUserMapping = new DistrictUserMappping();
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -25,12 +24,12 @@ public partial class DistrictUserMapping : Page
     public void FillUserList()
     {
         var client = new ACLServiceClient();
-        using (var ds = client.GetUsersList(0, 0, "FMSGlobalization", ""))
+        using (var ds = client.GetUsersList(0,0,"FMSGlobalization",""))
         {
             if (ds != null)
                 try
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "Login_Name", "PK_USER_ID", ddlUserList);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds,"Login_Name","PK_USER_ID",ddlUserList);
                 }
                 catch (Exception ex)
                 {
@@ -58,7 +57,7 @@ public partial class DistrictUserMapping : Page
             }
     }
 
-    protected void btnMapping_Click(object sender, EventArgs e)
+    protected void btnMapping_Click(object sender,EventArgs e)
     {
         var districtIds = new ArrayList();
         foreach (ListItem lstSelectedDistrict in chkDistrictList.Items)
@@ -68,7 +67,7 @@ public partial class DistrictUserMapping : Page
         {
             if (_distUserMapping != null)
             {
-                var ret = _distUserMapping.InsertDistrictUserMapping(Convert.ToInt32(ddlUserList.SelectedItem.Value), districtIds);
+                var ret = _distUserMapping.InsertDistrictUserMapping(Convert.ToInt32(ddlUserList.SelectedItem.Value),districtIds);
                 Show(ret != 0 ? "User Mapped to States Successfully" : "Error");
             }
         }
@@ -80,12 +79,12 @@ public partial class DistrictUserMapping : Page
         ClearControls();
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender,EventArgs e)
     {
         ClearControls();
     }
 
-    protected void ddlUserList_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlUserList_SelectedIndexChanged(object sender,EventArgs e)
     {
         var districtId = new ArrayList();
         if (ddlUserList.SelectedIndex == 0) return;
@@ -101,7 +100,7 @@ public partial class DistrictUserMapping : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
     public void ClearControls()

@@ -14,23 +14,18 @@
                 alert("Please select Vehicle");
                 return false;
             }
-
-
             if (!RequiredValidation(roadTaxValidityStartDate, "RoadTax Validity Start Date Cannot be Blank"))
                 return false;
-
             if (!isValidDate(roadTaxValidityStartDate.value)) {
                 alert("Enter Valid Road Tax Validity Start Date");
                 roadTaxValidityStartDate.focus();
                 return false;
             }
-
             if (Date.parse(roadTaxValidityStartDate.value) > Date.parse(now)) {
                 alert("Road Tax Validity Start Date should not be greater than Current Date");
                 roadTaxValidityStartDate.focus();
                 return false;
             }
-
             if (Date.parse(roadTaxValidityStartDate.value) < Date.parse(vehicleRegistrationDate.value)) {
                 alert("Road Tax Validity Start Date should be greater than Registration Date.(Registration Date-" +
                     vehicleRegistrationDate.value +
@@ -38,28 +33,23 @@
                 roadTaxValidityStartDate.focus();
                 return false;
             }
-
             switch (roadTaxValidityPeriod.selectedIndex) {
             case 0:
                 alert("Please select Road Tax Validity Period");
                 roadTaxValidityPeriod.focus();
                 return false;
             }
-
             if (vehicleRtaCircle)
                 if (!RequiredValidation(vehicleRtaCircle, "Vehicle RTA Circle Cannot be Blank"))
                     return false;
-
             if (roadTaxReceiptNo)
                 if (!RequiredValidation(roadTaxReceiptNo, "RoadTax Receipt No Cannot be Blank"))
                     return false;
-
             if (roadTaxFee)
                 if (!RequiredValidation(roadTaxFee, "RoadTax Fee Cannot be Blank"))
                     return false;
             return true;
         }
-
     </script>
     <asp:UpdatePanel ID="upPanel" runat="server">
         <ContentTemplate>
@@ -202,36 +192,36 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Vehicle Number">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                                            <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                                             </asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="RTValidityStartDate" DataFormatString="{0:d}" HeaderText="RTValidity StartDate"/>
                                     <asp:TemplateField HeaderText="RTValidity Period">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRTValidityPeriod" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "RTValidityPeriod") %>' Visible="false"></asp:Label>
+                                            <asp:Label ID="lblRTValidityPeriod" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"RTValidityPeriod") %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblRTValidityPeriodText" runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="RTValidityEndDate" DataFormatString="{0:d}" HeaderText="RTValidity EndDate"/>
                                     <asp:TemplateField HeaderText="Vehicle RTA Circle">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblVehicleRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleRTACircle") %>'></asp:Label>
+                                            <asp:Label ID="lblVehicleRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleRTACircle") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="RT Receipt No">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRTReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "RTReceiptNo") %>'></asp:Label>
+                                            <asp:Label ID="lblRTReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"RTReceiptNo") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Road Tax Fee">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRTFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "RTFee") %>'></asp:Label>
+                                            <asp:Label ID="lblRTFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"RTFee") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Edit">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "RoadTaxID") %>' CommandName="roadTaxEdit" Text="Edit">
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"RoadTaxID") %>' CommandName="roadTaxEdit" Text="Edit">
                                             </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>

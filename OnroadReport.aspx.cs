@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Web.UI;
-
 public partial class OnroadReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
     }
 
-    protected void btnShow_Click(object sender, EventArgs e)
+    protected void btnShow_Click(object sender,EventArgs e)
     {
         try
         {
@@ -26,11 +25,11 @@ public partial class OnroadReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, null, "gvtoexcel.xls", GridView1);
+            _helper.LoadExcelSpreadSheet(this,null,"gvtoexcel.xls",GridView1);
         }
         catch (Exception ex)
         {

@@ -4,28 +4,27 @@ using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 public partial class Equipment : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
-            BtnSave.Attributes.Add("onclick", "return validation()");
+            BtnSave.Attributes.Add("onclick","return validation()");
             try
             {
-                _helper.FillDropDownHelperMethodWithDataSet(_fleetMaster.GetVehicles(), "VehicleNumber", "VehicleID", ddlistVehicleNumber);
+                _helper.FillDropDownHelperMethodWithDataSet(_fleetMaster.GetVehicles(),"VehicleNumber","VehicleID",ddlistVehicleNumber);
             }
             catch (Exception ex)
             {
                 _helper.ErrorsEntry(ex);
             }
 
-            var numbers = new List<int> {1, 2, 3, 4, 5, 6};
+            var numbers = new List<int> {1,2,3,4,5,6};
             foreach (var number in numbers) BindGrid(number);
         }
     }
@@ -69,7 +68,7 @@ public partial class Equipment : Page
         }
     }
 
-    protected void BtnSave_Click(object sender, EventArgs e)
+    protected void BtnSave_Click(object sender,EventArgs e)
     {
         var equipmentArray = new ArrayList();
         foreach (GridViewRow row in grdviewMedicalEqupment.Rows)
@@ -121,7 +120,7 @@ public partial class Equipment : Page
         else
         {
             _fleetMaster.DeleteVehicleEquipmentMapping(int.Parse(ddlistVehicleNumber.SelectedItem.Value));
-            foreach (string equipmentArrayId in equipmentArray) _fleetMaster.InsertVehicleEquipmentMapping(int.Parse(equipmentArrayId), int.Parse(ddlistVehicleNumber.SelectedItem.Value));
+            foreach (string equipmentArrayId in equipmentArray) _fleetMaster.InsertVehicleEquipmentMapping(int.Parse(equipmentArrayId),int.Parse(ddlistVehicleNumber.SelectedItem.Value));
             Show("Vehicle Mapped to Equipment Successfully");
             Clearcontrols();
         }
@@ -129,10 +128,10 @@ public partial class Equipment : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlistVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlistVehicleNumber.SelectedIndex)
         {
@@ -227,7 +226,7 @@ public partial class Equipment : Page
         }
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender,EventArgs e)
     {
         Clearcontrols();
     }

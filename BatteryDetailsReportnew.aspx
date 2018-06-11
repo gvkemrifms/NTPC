@@ -16,11 +16,9 @@
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select State");
-
             }
             return true;
         }
-
     </script>
     <style>
         .btnReport { margin-left: 100px; }
@@ -50,7 +48,6 @@
             <td>
                 <asp:Button runat="server" Text="Report" CssClass="form-submit-button" OnClick="btnsubmit_Click" OnClientClick="if (!Validations()) return false;"></asp:Button>
             </td>
-
 
             <td>
                 <asp:Button runat="server" Text="Excel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>

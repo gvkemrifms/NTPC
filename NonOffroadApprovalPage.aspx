@@ -10,13 +10,10 @@
         }
 
         function validation() {
-
             var approvalDate = document.getElementById('<%= txtApprovalDate.ClientID %>');
-
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
-
             var yyyy = today.getFullYear();
             if (dd < 10) {
                 dd = '0' + dd;
@@ -37,14 +34,12 @@
 
         function Rejection() {
             debugger;
-
         }
 
         function Reason() {
             var reason = document.getElementById('<%= txtrejectReason.ClientID %>');
             if (!RequiredValidation(reason, "Please provide reason for Rejection"))
                 return false;
-
             return true;
         }
     </script>
@@ -99,53 +94,53 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="District">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "District_ID") %>'></asp:Label>
+                                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District_ID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Break DownID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblBrkDwn" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ID") %>'></asp:Label>
+                                            <asp:Label ID="lblBrkDwn" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Vehicle No">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Vechicleno") %>'></asp:Label>
+                                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Vechicleno") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Bill No">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Billno") %>'></asp:Label>
+                                            <asp:Label ID="lblBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Billno") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bill Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ReceiptDate") %>'></asp:Label>
+                                            <asp:Label ID="lblBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ReceiptDate") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Down Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDownTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "downtime") %>'></asp:Label>
+                                            <asp:Label ID="lblDownTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"downtime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Up Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblUpTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Uptime") %>'></asp:Label>
+                                            <asp:Label ID="lblUpTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Uptime") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Amount") %>'></asp:Label>
+                                            <asp:Label ID="lblAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Amount") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rejection Reason">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRejReason" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Rejection") %>'></asp:Label>
+                                            <asp:Label ID="lblRejReason" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Rejection") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Vendor Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblVendorName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VenName") %>'></asp:Label>
+                                            <asp:Label ID="lblVendorName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VenName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Approve">
@@ -157,7 +152,6 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Reject">
                                         <ItemTemplate>
-
 
                                             <asp:LinkButton ID="lnkReject" runat="server" CommandName="VehReject" CommandArgument=" <%# Container.DataItemIndex %>"
                                                             Text="Reject" OnClientClick="PressButton()">

@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class SparePartIssue : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
@@ -13,19 +12,19 @@ public partial class SparePartIssue : Page
     public int FleetInventoryCategoryId = Convert.ToInt32(ConfigurationManager.AppSettings["fICategoryId"]);
     public IInventory ObjInventory = new FMSInventory();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Error.aspx");
         if (!IsPostBack)
         {
             FillVehicles();
-            btIssue.Attributes.Add("onclick", "return validation()");
-            txtDCNumber.Attributes.Add("onkeypress", "javascript:return isNumberKey(this,event)");
-            txtCourierName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
-            txtRemarks.Attributes.Add("onkeypress", "javascript:return remark(this,event)");
+            btIssue.Attributes.Add("onclick","return validation()");
+            txtDCNumber.Attributes.Add("onkeypress","javascript:return isNumberKey(this,event)");
+            txtCourierName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtRemarks.Attributes.Add("onkeypress","javascript:return remark(this,event)");
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             gvApprovedRequisition.Visible = false;
             gvApprovedRequisition.Columns[3].Visible = false;
             if (p.View)
@@ -48,7 +47,7 @@ public partial class SparePartIssue : Page
         {
             _fmsg.UserDistrictId = Convert.ToInt32(Session["UserdistrictId"].ToString());
             var ds = _fmsg.GetVehicleNumber();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", null, ddlVehicles);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",null,ddlVehicles);
         }
         catch (Exception ex)
         {
@@ -56,7 +55,7 @@ public partial class SparePartIssue : Page
         }
     }
 
-    protected void ddlVehicles_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicles_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlVehicles.SelectedIndex)
         {
@@ -72,20 +71,20 @@ public partial class SparePartIssue : Page
 
     private void FillGridApprovedRequisitions(int vehicleId)
     {
-        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId, vehicleId);
+        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId,vehicleId);
         gvApprovedRequisition.DataSource = ds;
         gvApprovedRequisition.DataBind();
     }
 
-    protected void gvApprovedRequisition_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvApprovedRequisition_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvApprovedRequisition.PageIndex = e.NewPageIndex;
-        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId, Convert.ToInt32(ddlVehicles.SelectedValue));
+        var ds = ObjInventory.GetApprovedInventoryRequisitions(FleetInventoryCategoryId,Convert.ToInt32(ddlVehicles.SelectedValue));
         gvApprovedRequisition.DataSource = ds;
         gvApprovedRequisition.DataBind();
     }
 
-    protected void btIssue_Click(object sender, EventArgs e)
+    protected void btIssue_Click(object sender,EventArgs e)
     {
         foreach (GridViewRow item in gvIssueDetails.Rows)
         {
@@ -94,7 +93,7 @@ public partial class SparePartIssue : Page
             if (ds == null) throw new ArgumentNullException(nameof(ds));
             if (DateTime.Parse(ds.Tables[0].Rows[0]["RegDate"].ToString()) < DateTime.Parse(txtDCDate.Text))
             {
-                InsertIssueDetails(Convert.ToInt32(txtInvReqID.Text), Convert.ToInt32(txtDCNumber.Text), Convert.ToDateTime(txtDCDate.Text), Convert.ToString(txtCourierName.Text), Convert.ToString(txtRemarks.Text), issuedQuantity, Convert.ToInt32(txtVehicleID.Text));
+                InsertIssueDetails(Convert.ToInt32(txtInvReqID.Text),Convert.ToInt32(txtDCNumber.Text),Convert.ToDateTime(txtDCDate.Text),Convert.ToString(txtCourierName.Text),Convert.ToString(txtRemarks.Text),issuedQuantity,Convert.ToInt32(txtVehicleID.Text));
                 FillGridApprovedRequisitions(Convert.ToInt32(ddlVehicles.SelectedValue));
                 Reset();
             }
@@ -106,9 +105,9 @@ public partial class SparePartIssue : Page
         }
     }
 
-    private void InsertIssueDetails(int reqId, int dcNumber, DateTime dcDate, string courierName, string remarks, int issuedQuantity, int vehicleId)
+    private void InsertIssueDetails(int reqId,int dcNumber,DateTime dcDate,string courierName,string remarks,int issuedQuantity,int vehicleId)
     {
-        var res = ObjInventory.InsertIssueDetails(reqId, dcNumber, dcDate, courierName, remarks, issuedQuantity, vehicleId);
+        var res = ObjInventory.InsertIssueDetails(reqId,dcNumber,dcDate,courierName,remarks,issuedQuantity,vehicleId);
         if (res > 0)
         {
             var strFmsScript = "Spare Parts Issued";
@@ -121,23 +120,23 @@ public partial class SparePartIssue : Page
         }
     }
 
-    protected void gvIssueDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvIssueDetails_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)
         {
             case DataControlRowType.DataRow:
-                ((TextBox) e.Row.FindControl("txtIssuedQty")).Attributes.Add("onblur", "javascript:ValidateIssueQty('" + ((TextBox) e.Row.FindControl("txtIssuedQty")).ClientID + "','" + e.Row.Cells[1].Text + "')");
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "dsad", "var IssuedQuantity = '" + ((TextBox) e.Row.FindControl("txtIssuedQty")).ClientID + "'", true);
+                ((TextBox) e.Row.FindControl("txtIssuedQty")).Attributes.Add("onblur","javascript:ValidateIssueQty('" + ((TextBox) e.Row.FindControl("txtIssuedQty")).ClientID + "','" + e.Row.Cells[1].Text + "')");
+                ScriptManager.RegisterClientScriptBlock(this,GetType(),"dsad","var IssuedQuantity = '" + ((TextBox) e.Row.FindControl("txtIssuedQty")).ClientID + "'",true);
                 break;
         }
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void btCancel_Click(object sender, EventArgs e)
+    protected void btCancel_Click(object sender,EventArgs e)
     {
         Reset();
     }
@@ -150,7 +149,7 @@ public partial class SparePartIssue : Page
         txtRemarks.Text = "";
     }
 
-    protected void gvApprovedRequisition_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvApprovedRequisition_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {

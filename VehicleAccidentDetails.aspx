@@ -15,7 +15,6 @@
     };
 
     function validation(obj, id) {
-
         var now = new Date();
         id = document.getElementById('<%= ddlistVehicleNumber.ClientID %>');
         var incidentTitle = document.getElementById('<%= txtIncidentTitle.ClientID %>');
@@ -29,8 +28,6 @@
         var pilotName = document.getElementById('<%= txtPilotName.ClientID %>');
         var drivingLicenseNumber = document.getElementById('<%= txtDrivingLicenseNumber.ClientID %>');
         var expiryDate = document.getElementById('<%= txtExpiryDate.ClientID %>');
-
-
         var inputs = id.getElementsByTagName('input');
         var i;
         for (i = 0; i < inputs.length; i++) {
@@ -43,42 +40,36 @@
                 break;
             }
         }
-
         switch (trim(incidentTitle.value)) {
         case '':
             alert("Incident Title Cannot be Blank");
             incidentTitle.focus();
             return false;
         }
-
         switch (trim(kilometerRun.value)) {
         case '':
             alert("Kilometer Run Cannot be Blank");
             kilometerRun.focus();
             return false;
         }
-
         switch (trim(pilotName.value)) {
         case '':
             alert("Pilot Name Cannot be Blank");
             pilotName.focus();
             return false;
         }
-
         switch (trim(drivingLicenseNumber.value)) {
         case '':
             alert("Driving LicenseNumber Cannot be Blank");
             drivingLicenseNumber.focus();
             return false;
         }
-
         switch (trim(expiryDate.value)) {
         case '':
             alert("ExpiryDate cannot be Blank");
             expiryDate.focus();
             return false;
         }
-
         if (trim(expiryDate.value) !== "") {
             if (!isValidDate(expiryDate.value)) {
                 alert("Enter the Valid Date");
@@ -86,13 +77,11 @@
                 return false;
             }
         }
-
         if (Date.parse(expiryDate.value) < Date.parse(now)) {
             alert("Expiry Date should not be less than Current Date");
             expiryDate.focus();
             return false;
         }
-
         if (trim(accidentDateTime.value) !== "") {
             if (!isValidDate(accidentDateTime.value)) {
                 alert("Enter the Valid Date");
@@ -100,14 +89,11 @@
                 return false;
             }
         }
-
         if (Date.parse(accidentDateTime.value) > Date.parse(now)) {
             alert("Accident Date should not be greater than Current Date");
             accidentDateTime.focus();
             return false;
         }
-
-
         //txtInitiatedTime
         if (trim(initiatedTime.value) !== "") {
             if (!isValidDate(initiatedTime.value)) {
@@ -116,7 +102,6 @@
                 return false;
             }
         }
-
         if (Date.parse(initiatedTime.value) > Date.parse(now)) {
             alert("Initiated Date should not be greater than Current Date");
             initiatedTime.focus();
@@ -127,31 +112,26 @@
             initiatedTime.focus();
             return false;
         }
-
         if (hour.selectedIndex === 0) {
             alert("Please select hour");
             hour.focus();
             return false;
         }
-
         if (minute.selectedIndex === 0) {
             alert("Please select minute");
             minute.focus();
             return false;
         }
-
         if (hour1.selectedIndex === 0) {
             alert("Please select hour");
             hour1.focus();
             return false;
         }
-
         if (minute1.selectedIndex === 0) {
             alert("Please select minute");
             minute1.focus();
             return false;
         }
-
         if (parseInt(hour.value) > parseInt(hour1.value)) {
             alert("End Time should be greater than the Start Time value");
             hour1.focus();
@@ -200,7 +180,6 @@
                       AutoPostBack="True"
                       OnSelectedIndexChanged="ddlistVehicleNumber_SelectedIndexChanged" DropDownStyle="DropDownList">
         </cc1:ComboBox>
-
 
     </td>
     <td>
@@ -566,14 +545,14 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBtnEdit" runat="server" CommandArgument='<% DataBinder.Eval(Container.Dataitem, "") %>'
+                            <asp:LinkButton ID="lnkBtnEdit" runat="server" CommandArgument='<% DataBinder.Eval(Container.Dataitem,"") %>'
                                             CommandName="vehicleAccidentedit" Text="Edit">
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBtnDelete" runat="server" CommandArgument='<% DataBinder.Eval(Container.Dataitem, "") %>'
+                            <asp:LinkButton ID="lnkBtnDelete" runat="server" CommandArgument='<% DataBinder.Eval(Container.Dataitem,"") %>'
                                             CommandName="vehicleAccidentDelete" Text="Delete">
                             </asp:LinkButton>
                         </ItemTemplate>

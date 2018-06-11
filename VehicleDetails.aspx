@@ -6,23 +6,18 @@
             var engineNo = document.getElementById('<%= txtEngineNumber.ClientID %>');
             var chassisNo = document.getElementById('<%= txtChassisNumber.ClientID %>');
             var vehicleNo = document.getElementById('<%= txtVehicleNumber.ClientID %>');
-
             if (!RequiredValidation(engineNo, "Engine Number Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(chassisNo, "Chassis Number Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(vehicleNo, "Vehicle Number Cannot be Blank"))
                 return false;
-
             if (vehicleNo.value !== "" && !isValidVehicleNumber(vehicleNo.value)) {
                 vehicleNo.value = "";
                 vehicleNo.focus();
                 return false;
             }
             return true;
-
         }
     </script>
     <asp:UpdatePanel runat="server">

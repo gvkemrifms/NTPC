@@ -16,7 +16,6 @@
                 }
 
                 function ClearItems() {
-
                     $('#<%= ddlistVehicleNumber.ClientID %>').empty();
                     $('#<%= ddlistAttachmentPurpose.ClientID %>').empty();
                     $('#<%= txtRemarks.ClientID %>').val('');

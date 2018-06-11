@@ -65,7 +65,7 @@
                                                     <asp:TemplateField HeaderText="Remarks">
                                                         <ItemTemplate>
                                                             <asp:TextBox ID="txtRemarks" runat="server" MaxLength="30" onkeypress="return remark(event);"></asp:TextBox>
-                                                            <asp:Label ID="lblId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FuelEntryID") %>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="lblId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FuelEntryID") %>' Visible="false"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
@@ -99,7 +99,7 @@
                                                     <asp:BoundField DataField="Quantity" HeaderText="Quantity"/>
                                                     <asp:TemplateField Visible="false">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="Rblid" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TransactionID") %>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="Rblid" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"TransactionID") %>' Visible="false"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>

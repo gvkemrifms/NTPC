@@ -4,7 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validation() {
         var vehicleReceived = document.getElementById('<%= ddlVehicleReceived.ClientID %>');
         var receivedDate = document.getElementById('<%= txtReceivedDate.ClientID %>');
@@ -26,7 +25,6 @@
                 break;
             }
         }
-
         switch (vehicleReceived.selectedIndex) {
         case 0:
             alert("Please select Vehicle Received From");
@@ -35,19 +33,16 @@
         }
         if (!RequiredValidation(receivedDate, "Received Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(receivedDate.value)) {
             alert("Enter Valid Date");
             receivedDate.focus();
             return false;
         }
-
         if (Date.parse(receivedDate.value) > Date.parse(now)) {
             alert("Received Date should not be greater than Current Date");
             receivedDate.focus();
             return false;
         }
-
         if (Date.parse(receivedDate.value) < Date.parse(vehicleFabInspDate.value)) {
             alert("Received Date should be greater than Fabrication Inspection Date.(Fabrication Inspection Date-" +
                 vehicleFabInspDate.value +
@@ -55,28 +50,22 @@
             receivedDate.focus();
             return false;
         }
-
         if (!RequiredValidation(odometer, "Odometer Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(pdiBy, "PDIBy Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(pdiDate, "PDIDate Cannot be Blank"))
             return false;
-
         if (!isValidDate(pdiDate.value)) {
             alert("Enter Valid Date");
             pdiDate.focus();
             return false;
         }
-
         if (Date.parse(pdiDate.value) > Date.parse(now)) {
             alert("PDI Date should not be greater than Current Date");
             pdiDate.focus();
             return false;
         }
-
         if (Date.parse(receivedDate.value) > Date.parse(pdiDate.value)) {
             alert("PDI Date should be greater than Received Date");
             receivedDate.focus();
@@ -253,39 +242,39 @@
                         <Columns>
                             <asp:TemplateField HeaderText="T/R No">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TRNo") %>'></asp:Label>
+                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"TRNo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Vehicle Received From">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblVehicleReceived" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FleetFabricator_Name") %>'></asp:Label>
+                                    <asp:Label ID="lblVehicleReceived" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FleetFabricator_Name") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Received Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblReceivedDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ReceivedDate") %>'></asp:Label>
+                                    <asp:Label ID="lblReceivedDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ReceivedDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="PDI By">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPDIBy" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PDIBy") %>'></asp:Label>
+                                    <asp:Label ID="lblPDIBy" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PDIBy") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="PDI Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPDIDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PDIDate") %>'></asp:Label>
+                                    <asp:Label ID="lblPDIDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PDIDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="pdiEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PreDeliveryInspectionID") %>'
+                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="pdiEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"PreDeliveryInspectionID") %>'
                                                     Text="Edit">
                                     </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Delete">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandName="pdiDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PreDeliveryInspectionID") %>'
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandName="pdiDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"PreDeliveryInspectionID") %>'
                                                     Text="Delete">
                                     </asp:LinkButton>
                                     <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" TargetControlID="lnkDelete"

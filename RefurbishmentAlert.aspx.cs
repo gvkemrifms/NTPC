@@ -5,13 +5,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.Alert;
-
 public partial class RefurbishmentAlert : Page
 {
     private readonly Alert _fmsAlert = new Alert();
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) FillGrid();
@@ -59,19 +58,19 @@ public partial class RefurbishmentAlert : Page
         return htmlText;
     }
 
-    protected void grdRefAlert_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdRefAlert_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdRefAlert.PageIndex = e.NewPageIndex;
         FillGrid();
     }
 
-    protected void btnSendMail_Click(object sender, EventArgs e)
+    protected void btnSendMail_Click(object sender,EventArgs e)
     {
         try
         {
             var subject = "Vehicle Refurbishment Alert";
             var mailBody = CreateHtml((DataSet) ViewState["ds"]);
-            MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MasterMailid"], ConfigurationManager.AppSettings["AdminMailid"], "", "", subject, mailBody);
+            MailHelper.SendMailMessage(ConfigurationManager.AppSettings["MasterMailid"],ConfigurationManager.AppSettings["AdminMailid"],"","",subject,mailBody);
         }
         catch (Exception ex)
         {

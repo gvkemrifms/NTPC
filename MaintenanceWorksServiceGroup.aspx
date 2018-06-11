@@ -4,13 +4,11 @@
         function validationMaintenanceWorksServiceGroup() {
             switch (document.getElementById("<%= txtServiceGroupName.ClientID %>").value) {
             case "":
-
                 document.getElementById("<%= txtServiceGroupName.ClientID %>").focus();
                 return alert("Please Enter Service Group Name");
             }
             switch (document.getElementById("<%= ddlManufacturerName.ClientID %>").selectedIndex) {
             case 0:
-
                 document.getElementById("<%= ddlManufacturerName.ClientID %>").focus();
                 return alert("Please Select Manufacturer Name");
             }
@@ -23,7 +21,6 @@
             else return true;
             return (keycode >= 65 && keycode <= 90) || (keycode >= 97 && keycode <= 122) || (keycode === 32);
         }
-
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -111,7 +108,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Creation Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date", "{0:d}") %>'/>
+                                                <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date","{0:d}") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Edit">

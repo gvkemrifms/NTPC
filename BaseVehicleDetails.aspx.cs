@@ -11,7 +11,7 @@ public partial class BaseVehicleDetails : Page
     private readonly GvkFMSAPP.BLL.BaseVehicleDetails _basevehdet = new GvkFMSAPP.BLL.BaseVehicleDetails();
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; private set; }
+    public string UserId{ get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {

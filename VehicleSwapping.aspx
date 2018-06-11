@@ -2,43 +2,35 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-
         function validation() {
             var district = document.getElementById('<%= ddlDistrict.ClientID %>');
             var srcVehicle = document.getElementById('<%= ddlSrcVehicle.ClientID %>');
             var destVehicle = document.getElementById('<%= ddlDestVehicle.ClientID %>');
             var srcContactNo = document.getElementById('<%= txtSrcContactNo.ClientID %>');
             var destContactNo = document.getElementById('<%= txtDestContactNo.ClientID %>');
-
             if (district && district.selectedIndex === 0) {
                 alert("Please Select District");
                 district.focus();
                 return false;
             }
-
             if (srcVehicle && srcVehicle.selectedIndex === 0) {
                 alert("Please select Source Vehicle");
                 srcVehicle.focus();
                 return false;
             }
-
             if (destVehicle && destVehicle.selectedIndex === 0) {
                 alert("Please select Destination Vehicle");
                 destVehicle.focus();
                 return false;
             }
-
             if (!RequiredValidation(srcContactNo, "Source Contact Number Cannot be Blank"))
                 return false;
-
             if (!RequiredValidation(destContactNo, "Destination Contact Number Cannot be Blank"))
                 return false;
-
             document.getElementById("loaderButton").style.display = '';
             document.all('<%= pnlButton.ClientID %>').style.display = "none";
             return true;
         }
-
     </script>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>

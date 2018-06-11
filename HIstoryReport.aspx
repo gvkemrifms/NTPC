@@ -10,7 +10,6 @@
                 minimumResultsForSearch: 20,
                 placeholder: "Select an option"
             });
-
         });
 
         function Validations() {

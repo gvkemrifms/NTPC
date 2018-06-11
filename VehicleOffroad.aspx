@@ -25,7 +25,6 @@
     }
 
     function validation() {
-
         var fldDistrict = document.getElementById('<%= ddlDistrict.ClientID %>');
         var id = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
         var fldReason = document.getElementById('<%= ddlreasons.ClientID %>');
@@ -58,7 +57,6 @@
             fldDistrict.focus();
             return false;
         }
-
         var inputs = id.getElementsByTagName('input');
         var i;
         for (i = 0; i < inputs.length; i++) {
@@ -68,54 +66,41 @@
                         alert('Select the Vehicle');
                         return false;
                     }
-
                 break;
             }
         }
-
         if (fldReason)
             if (fldReason.selectedIndex === 0) {
                 alert("Please select Reason");
                 fldReason.focus();
                 return false;
             }
-
         if (!RequiredValidation(fldContactNumber, "Contact number cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldOdo, "Odometer cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldEstCost, "Estimated Cost cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldComments, "Comments cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldEmeId, "EMEID cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldPilotId, "PilotId cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldPilotName, "PilotName cannot be left blank"))
             return false;
-
         if (!RequiredValidation(fldOfftime, "Uptime cannot be blank"))
             return false;
-
         if (fldHrs && fldHrs.selectedIndex === 0) {
             alert("Please select Hrs for Offtime Date");
             fldHrs.focus();
             return false;
         }
-
         if (fldMins && fldMins.selectedIndex === 0) {
             alert("Please select Mins for Offtime Date");
             fldMins.focus();
             return false;
         }
-
         today = new Date();
         dd = addZero(today.getDate());
         mm = addZero(today.getMonth() + 1); //January is 0!
@@ -126,26 +111,22 @@
         now = dd + '/' + mm + '/' + yyyy + " " + h + ":" + m + ":" + s;
         if (!RequiredValidation(fldExpDateOfRecovery, "Expected Date of Recovery cannot be blank"))
             return false;
-
         if (fldHrsEdr && fldHrsEdr.selectedIndex === 0) {
             alert("Please select Hrs for Expected Date of Recovery");
             fldHrsEdr.focus();
             return false;
         }
-
         if (fldMinsEdr && fldMinsEdr.selectedIndex === 0) {
             alert("Please select Mins for Expected Date of Recovery");
             fldMinsEdr.focus();
             return false;
         }
-
         if (Date.parse(fldOfftime.value + " " + fldHrs.value + ":" + fldMins.value) >=
             Date.parse(fldExpDateOfRecovery.value + " " + fldHrsEdr.value + ":" + fldMinsEdr.value)) {
             alert("Expected Date of Recovery should be greater than Offtime Date");
             fldExpDateOfRecovery.focus();
             return false;
         }
-
         document.getElementById("loaderButton").style.display = '';
         document.all('<%= pnlButton.ClientID %>').style.display = "none";
         return true;
@@ -367,8 +348,6 @@
     </td>
 </tr>
 
-
-</tr>
 <tr>
     <td class="rowseparator"></td>
 </tr>

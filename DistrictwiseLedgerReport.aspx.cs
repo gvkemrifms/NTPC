@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
-
 public partial class DistrictwiseLedgerReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    public string UserId { get; set; }
+    public string UserId{ get;set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -23,7 +22,7 @@ public partial class DistrictwiseLedgerReport : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddldistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddldistrict);
         }
         catch (Exception ex)
         {
@@ -31,11 +30,11 @@ public partial class DistrictwiseLedgerReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -47,7 +46,7 @@ public partial class DistrictwiseLedgerReport : Page
     {
     }
 
-    protected void ddldistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddldistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddldistrict.SelectedIndex <= 0)
         {
@@ -58,7 +57,7 @@ public partial class DistrictwiseLedgerReport : Page
             ddlvendor.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_Get_Agency", "AgencyName", "AgencyID", ddldistrict, ddlvendor, null, null, "@DistrictID");
+                _helper.FillDropDownHelperMethodWithSp("P_Get_Agency","AgencyName","AgencyID",ddldistrict,ddlvendor,null,null,"@DistrictID");
             }
             catch (Exception ex)
             {
@@ -67,7 +66,7 @@ public partial class DistrictwiseLedgerReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -76,7 +75,7 @@ public partial class DistrictwiseLedgerReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_ReportsVendorDistrictWise", null, null, ddldistrict, ddlvendor, txtfrmDate, txttodate, "@districtID", "@VendorID", "@From", "@To", null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_ReportsVendorDistrictWise",null,null,ddldistrict,ddlvendor,txtfrmDate,txttodate,"@districtID","@VendorID","@From","@To",null,Grddetails);
         }
         catch (Exception ex)
         {

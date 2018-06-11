@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -309,7 +310,7 @@ public partial class TemporaryVehicleDetails : Page
 
     protected void ddlPolicyValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlPolicyValidityPeriod.SelectedIndex != 0) txtValEDate.Text = Convert.ToDateTime(txtValiSDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString();
+        if (ddlPolicyValidityPeriod.SelectedIndex != 0) txtValEDate.Text = Convert.ToDateTime(txtValiSDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
     }
 
     public void ClearControls()

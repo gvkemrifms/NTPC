@@ -3,7 +3,6 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class ServiceStation : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
@@ -11,9 +10,9 @@ public partial class ServiceStation : Page
     private readonly Helper _helper = new Helper();
     private DataSet _ds = new DataSet();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -26,7 +25,7 @@ public partial class ServiceStation : Page
             FillVehicles();
             BindData();
             btnUpdate.Visible = false;
-            txtServiceSrationName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets(this,event)");
+            txtServiceSrationName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
         }
     }
 
@@ -36,7 +35,7 @@ public partial class ServiceStation : Page
         {
             _ds = null;
             _ds = _fmsg.GetVehicleNumber();
-            _helper.FillDropDownHelperMethodWithDataSet(_ds, "VehicleNumber", "VehicleID", null, ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(_ds,"VehicleNumber","VehicleID",null,ddlVehicleNumber);
             ViewState["dsVehicles"] = _ds;
         }
         catch (Exception ex)
@@ -53,7 +52,7 @@ public partial class ServiceStation : Page
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
             var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
-            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
+            _helper.FillDropDownHelperMethod(query,"ds_lname","ds_dsid",ddlDistricts);
             ViewState["dsDistricts"] = dsStates;
         }
         catch (Exception ex)
@@ -74,7 +73,7 @@ public partial class ServiceStation : Page
         ViewState["dsGrid"] = ds;
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         _fmsobj.VehicleId = Convert.ToInt16(ddlVehicleNumber.SelectedValue);
         _fmsobj.ServiceName = txtServiceSrationName.Text;
@@ -101,10 +100,10 @@ public partial class ServiceStation : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvServiceStationDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvServiceStationDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         switch (e.CommandName)
@@ -159,7 +158,7 @@ public partial class ServiceStation : Page
         }
     }
 
-    protected void btnUpdate_Click(object sender, EventArgs e)
+    protected void btnUpdate_Click(object sender,EventArgs e)
     {
         var id = Session["Id"] == null ? 0 : Convert.ToInt16(Session["Id"]);
         _fmsobj.ServiceName = txtServiceSrationName.Text;
@@ -191,7 +190,7 @@ public partial class ServiceStation : Page
         }
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         FillDistrict();
         FillBunks();
@@ -216,7 +215,7 @@ public partial class ServiceStation : Page
         txtServiceSrationName.Text = dsServiceNames.Tables[0].Rows.Count > 0 ? dsServiceNames.Tables[0].Rows[0]["ServiceStnName"].ToString() : "";
     }
 
-    protected void gvServiceStationDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvServiceStationDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvServiceStationDetails.PageIndex = e.NewPageIndex;
         Bindgrid();

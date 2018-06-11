@@ -7,13 +7,12 @@ using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.Others;
 using GvkFMSAPP.DLL;
 using GvkFMSAPP.PL;
-
 public partial class VehicleDecommissionProposal : Page
 {
     private readonly VehicleDecommissionApprovalBLL _vehicleApprovalBol = new VehicleDecommissionApprovalBLL();
     private readonly VehicleDecommissionProposalBLL _vehicleProposalBol = new VehicleDecommissionProposalBLL();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -21,8 +20,8 @@ public partial class VehicleDecommissionProposal : Page
             var dsPerms = (DataSet) Session["PermissionsDS"];
             if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btnSave.Attributes.Add("onclick", "return validation(this,'" + btnSave.ID + "')");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btnSave.Attributes.Add("onclick","return validation(this,'" + btnSave.ID + "')");
             FillVehicleDecommisionproposalDetails();
             FillVehicleDecommissionApproval();
             pnlgrdViewVehicleDecommisionProposal.Visible = false;
@@ -44,7 +43,7 @@ public partial class VehicleDecommissionProposal : Page
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         try
         {
@@ -52,10 +51,10 @@ public partial class VehicleDecommissionProposal : Page
             _vehicleProposalBol.VehicleID = Convert.ToInt32(ViewState["VehicleId"]);
             _vehicleApprovalBol.OffRoadDateTime = DateTime.Now;
             _vehicleProposalBol.TotalKmCovered = txtTotalKmCovered.Text;
-            _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(txtDateOfPurchase.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            _vehicleProposalBol.SurveyDate = DateTime.ParseExact(txtSurveyDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(txtDateOfPurchase.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+            _vehicleProposalBol.SurveyDate = DateTime.ParseExact(txtSurveyDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyBy = txtSurveyBy.Text;
             _vehicleProposalBol.SurveyorRemarks = txtSurveyRemarks.Text;
             _vehicleProposalBol.ProposedRemarks = txtProposedRemarks.Text;
@@ -71,7 +70,7 @@ public partial class VehicleDecommissionProposal : Page
         }
         catch (Exception ex)
         {
-            ErrorHandler.ErrorsEntry(ex.GetBaseException().ToString(), "class: AttachDocuments;Method: btnAttachFiles_Click()-InsertFillAttachmentToVehicle", 0);
+            ErrorHandler.ErrorsEntry(ex.GetBaseException().ToString(),"class: AttachDocuments;Method: btnAttachFiles_Click()-InsertFillAttachmentToVehicle",0);
         }
     }
 
@@ -87,7 +86,7 @@ public partial class VehicleDecommissionProposal : Page
         grdViewVehicleDecomissionApproval.DataBind();
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearTextBox();
     }
@@ -108,7 +107,7 @@ public partial class VehicleDecommissionProposal : Page
         txtNumberofAccidents.Text = "";
     }
 
-    protected void grdViewVehicleDecommisionProposal_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void grdViewVehicleDecommisionProposal_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -126,7 +125,7 @@ public partial class VehicleDecommissionProposal : Page
         }
     }
 
-    protected void grdViewVehicleDecommisionProposal_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grdViewVehicleDecommisionProposal_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grdViewVehicleDecommisionProposal.PageIndex = e.NewPageIndex;
         FillVehicleDecommisionproposalDetails();

@@ -10,7 +10,6 @@
         });
 
         function Validations() {
-
             var ddlDistrict = $('#<%= ddldistrict.ClientID %> option:selected').text().toLowerCase();
             if (ddlDistrict === '--select--') {
                 return alert("Please select Select");
@@ -42,7 +41,6 @@
                 <asp:Button runat="server" Text="Excel" CssClass="form-reset-button" onclick="btntoExcel_Click"></asp:Button>
             </td>
         </tr>
-
 
     </table>
     <br/>

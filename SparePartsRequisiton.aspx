@@ -5,7 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 <script type="text/javascript">
-
     function validation() {
         var id = document.getElementById('<%= ddlVehicles.ClientID %>');
         var inputs = id.getElementsByTagName('input');
@@ -30,7 +29,6 @@
         else
             return true;
     }
-
 </script>
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
@@ -141,7 +139,7 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnViewDetails" runat="server" Text="View" ToolTip="Click here to Approve/Reject the details"
                                                 CssClass="button2" OnClick="btnViewDetails_Click" RowIndex="<%# Container.DisplayIndex %>"
-                                                CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FleetInventoryReqID") %>'/>
+                                                CommandName="Show" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FleetInventoryReqID") %>'/>
                             </ItemTemplate>
                             <ControlStyle Width="50px"/>
                             <HeaderStyle Width="60px"/>
@@ -222,7 +220,6 @@
                                 <asp:TextBox ID="txtVehicleNumber" runat="server" ReadOnly="true"></asp:TextBox>
                             </td>
                         </tr>
-
 
                         <tr>
                             <td>

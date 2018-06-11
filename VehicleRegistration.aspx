@@ -5,8 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script src="../JavaValidations/RequiredFieldValidations.js" type="text/javascript"></script>
 <script type="text/javascript">
-
-
     function validation() {
         var sittingCapacity = document.getElementById('<%= txtSittingCapacity.ClientID %>');
         var prNo = document.getElementById('<%= txtPRNo.ClientID %>');
@@ -31,7 +29,6 @@
         }
         if (!RequiredValidation(sittingCapacity, "Sitting Capacity Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(prNo, "P/R No Cannot be Blank"))
             return false;
         if (prNo.value !== "") {
@@ -41,16 +38,13 @@
                 return false;
             }
         }
-
         if (!RequiredValidation(registrationDate, "Registration Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(registrationDate.value)) {
             alert("Enter Valid Date");
             registrationDate.focus();
             return false;
         }
-
         if (Date.parse(registrationDate.value) < Date.parse(vehiclePdiDate.value)) {
             alert(
                 "Registration Date should be greater than Pre-Delivery Inspection Date.(Pre-Delivery Inspection Date-" +
@@ -59,17 +53,13 @@
             registrationDate.focus();
             return false;
         }
-
         if (Date.parse(registrationDate.value) > Date.parse(now)) {
             alert("Registration Date should not be greater than Current Date");
             registrationDate.focus();
             return false;
         }
-
-
         if (!RequiredValidation(rtaCircle, "RTA Circle Cannot be Blank"))
             return false;
-
         switch (district.selectedIndex) {
         case 0:
             alert("Please Select District");
@@ -80,9 +70,7 @@
             return false;
         return true;
     }
-
 </script>
-
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
@@ -305,32 +293,32 @@
                         <Columns>
                             <asp:TemplateField HeaderText="T/R No">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "TRNo") %>'></asp:Label>
+                                    <asp:Label ID="lblTRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"TRNo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="P/R No">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "PRNo") %>'></asp:Label>
+                                    <asp:Label ID="lblPRNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"PRNo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Registration Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblRegDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "RegDate") %>'></asp:Label>
+                                    <asp:Label ID="lblRegDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"RegDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="RTA Circle">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleRTACircle") %>'></asp:Label>
+                                    <asp:Label ID="lblRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleRTACircle") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="District">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "district_name") %>'></asp:Label>
+                                    <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"district_name") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="VehRegEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleRegID") %>'
+                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="VehRegEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"VehicleRegID") %>'
                                                     Text="Edit">
                                     </asp:LinkButton>
                                 </ItemTemplate>

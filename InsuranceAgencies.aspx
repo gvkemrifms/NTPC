@@ -4,7 +4,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
-
         function validationInsuranceDetails() {
             switch (document.getElementById("<%= txtInsuranceAgency.ClientID %>").value) {
             case '':
@@ -30,7 +29,6 @@
                 document.getElementById("<%= txtContactNo.ClientID %>").focus();
                 return false;
             }
-
             var phone = document.getElementById("<%= txtContactNo.ClientID %>").value;
             if (isNaN(parseInt(phone))) {
                 alert("The phone number contains illegal characters");
@@ -42,8 +40,6 @@
             }
             return true;
         }
-
-
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

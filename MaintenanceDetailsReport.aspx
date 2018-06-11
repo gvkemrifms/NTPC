@@ -4,7 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script type="text/javascript">
-
         function pageLoad() {
             $('#<%= txtfrmDate.ClientID %>,#<%= txttodate.ClientID %>').datepicker({
                 dateFormat: 'mm/dd/yy',

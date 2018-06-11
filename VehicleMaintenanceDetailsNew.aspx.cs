@@ -8,7 +8,6 @@ using AjaxControlToolkit;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.VAS_BLL;
 using GvkFMSAPP.BLL.VehicleMaintenance;
-
 public partial class VehicleMaintenanceDetailsNew : Page
 {
     private readonly BaseVehicleDetails _fmsobj = new BaseVehicleDetails();
@@ -22,10 +21,10 @@ public partial class VehicleMaintenanceDetailsNew : Page
 
     private bool _isedit;
 
-    public bool Checkboxcount { get; private set; }
-    public string UserId { get; private set; }
+    public bool Checkboxcount{ get;private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_PreInit(object sender, EventArgs e)
+    protected void Page_PreInit(object sender,EventArgs e)
     {
         if (Session["Role_Id"] != null)
             switch (Session["Role_Id"].ToString())
@@ -38,7 +37,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
             Response.Redirect("Login.aspx");
     }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -46,7 +45,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
             UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
-            btnSave.Attributes.Add("onclick", "return validation()");
+            btnSave.Attributes.Add("onclick","return validation()");
             GetDistrict();
             FillHoursandMins();
             GetTime();
@@ -84,7 +83,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
             _fmsVas.District = ddlDistrict.SelectedItem.Text;
             var ds = _fmsVas.GetOffRoadVehicles(); // .GetVehicleNumber();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "ORV_VehicleNumber", "ORV_VehOffRoadId", ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"ORV_VehicleNumber","ORV_VehOffRoadId",ddlVehicleNumber);
         }
         catch (Exception ex)
         {
@@ -97,7 +96,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         try
         {
             var sqlQuery = ConfigurationManager.AppSettings["Query"] + " " + "where u.UserId ='" + UserId + "'";
-            _helper.FillDropDownHelperMethod(sqlQuery, "district_name", "district_id", ddlDistrict);
+            _helper.FillDropDownHelperMethod(sqlQuery,"district_name","district_id",ddlDistrict);
         }
         catch (Exception ex)
         {
@@ -108,11 +107,11 @@ public partial class VehicleMaintenanceDetailsNew : Page
     private void FillHoursandMins()
     {
         int i;
-        for (i = 0; i < 24; i++) ddlUpHour.Items.Add(i < 10 ? new ListItem("0" + i, "0" + i) : new ListItem(i.ToString(), i.ToString()));
-        for (i = 0; i < 60; i++) ddlUpMin.Items.Add(i < 10 ? new ListItem("0" + i, "0" + i) : new ListItem(i.ToString(), i.ToString()));
+        for (i = 0; i < 24; i++) ddlUpHour.Items.Add(i < 10 ? new ListItem("0" + i,"0" + i) : new ListItem(i.ToString(),i.ToString()));
+        for (i = 0; i < 60; i++) ddlUpMin.Items.Add(i < 10 ? new ListItem("0" + i,"0" + i) : new ListItem(i.ToString(),i.ToString()));
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
@@ -134,7 +133,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void ddlSpareItemDesc_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlSpareItemDesc_SelectedIndexChanged(object sender,EventArgs e)
     {
         var ddl = (DropDownList) sender;
         var row = (GridViewRow) ddl.NamingContainer;
@@ -150,12 +149,12 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         btnSave.Enabled = false;
-        string spbillno = "", spbilldate = "", spbillamt = "", spvendorname = "", spemripartcode = "", sppartcode = "", spitemdesc = "", spqty = "";
-        string lubribillno = "", lubribilldate = "", lubribillamt = "", lubrivendorname = "", lubriemripartcode = "", lubripartcode = "", lubriitemdesc = "", lubriqty = "";
-        string labourbillno = "", labourbilldate = "", labourbillamt = "", labAggre = "", labCate = "", labsubCat = "", labItemDesc = "", labqty = "", labVendorname = "";
+        string spbillno = "",spbilldate = "",spbillamt = "",spvendorname = "",spemripartcode = "",sppartcode = "",spitemdesc = "",spqty = "";
+        string lubribillno = "",lubribilldate = "",lubribillamt = "",lubrivendorname = "",lubriemripartcode = "",lubripartcode = "",lubriitemdesc = "",lubriqty = "";
+        string labourbillno = "",labourbilldate = "",labourbillamt = "",labAggre = "",labCate = "",labsubCat = "",labItemDesc = "",labqty = "",labVendorname = "";
         _fmsVas.District = ddlDistrict.SelectedItem.Text; //txtDistrict.Text;
         _fmsVas.MaintenanaceType = txtMaintenanceType.Text;
         _fmsVas.MaintenanceDate = DateTime.Parse(txtMaintenanceDate.Text);
@@ -228,7 +227,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         _fmsVas.LabourSubCategories = labsubCat;
         _fmsVas.LabourItemDesc = labItemDesc;
         _fmsVas.LabourQty = labqty;
-        var maintenanceDate = DateTime.ParseExact(txtMaintenanceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        var maintenanceDate = DateTime.ParseExact(txtMaintenanceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         //CultureInfo culture = new CultureInfo("en-US");
         //string format = "MM/dd/yyyy hh:mm:ss tt";
         var downDate = DateTime.Parse(txtDownTime.Text);
@@ -278,10 +277,10 @@ public partial class VehicleMaintenanceDetailsNew : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ClearAll();
     }
@@ -324,13 +323,13 @@ public partial class VehicleMaintenanceDetailsNew : Page
         gvVehicleMaintenanceDetails.DataBind();
     }
 
-    protected void gvVehicleMaintenanceDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehicleMaintenanceDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehicleMaintenanceDetails.PageIndex = e.NewPageIndex;
         GetVehicleMainDet();
     }
 
-    protected void gvVehicleMaintenanceDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehicleMaintenanceDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         switch (e.CommandName)
         {
@@ -429,7 +428,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistrict_SelectedIndexChanged(object sender,EventArgs e)
     {
         GetVehicleNumber();
     }
@@ -438,15 +437,15 @@ public partial class VehicleMaintenanceDetailsNew : Page
     {
         var dt = new DataTable();
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpVendorName", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpEMRIPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpQuantity", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumber",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpVendorName",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpEMRIPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpQuantity",typeof(string)));
+        dt.Columns.Add(new DataColumn("Column3",typeof(string)));
         //Add a Dummy Data on Initial Load
         var dr = dt.NewRow();
         dr["RowNumber"] = 1;
@@ -492,7 +491,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 {
                     //extract the DropDownList Selected Items
                     var ddl1 = (DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName");
-                    if (((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == "" || ((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    if (((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == "" || ((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var txt2 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[2].FindControl("txtSpareBillNo");
                     var txt3 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[3].FindControl("txtSpareBillDate");
                     var txt4 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[4].FindControl("txtSpareEMRIpc");
@@ -512,7 +511,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                     if (i == dtCurrentTable.Rows.Count - 2)
                     {
                         var ddl2 = (DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName");
-                        if (((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == "" || ((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl2);
+                        if (((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == "" || ((DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl2);
                         dtCurrentTable.Rows[i + 1]["ColSpBillNo"] = txt2.Text;
                         dtCurrentTable.Rows[i + 1]["ColSpBillDate"] = txt3.Text;
                     }
@@ -541,15 +540,15 @@ public partial class VehicleMaintenanceDetailsNew : Page
         var dtspbilldet = (DataTable) ViewState["SPBillDetails"];
         var dt = new DataTable();
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpVendorName", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpEMRIPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColSpQuantity", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumber",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpVendorName",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpEMRIPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColSpQuantity",typeof(string)));
+        dt.Columns.Add(new DataColumn("Column3",typeof(string)));
         //Add Data on Load
         for (var i = 0; i < dtspbilldet.Rows.Count; i++)
         {
@@ -587,9 +586,9 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 {
                     //Set the Previous Selected Items on Each DropDownList on Postbacks
                     var ddl1 = (DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareVendorName");
-                    _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var ddl2 = (DropDownList) grdvwSPBillDetails.Rows[i].Cells[1].FindControl("ddlSpareItemDesc");
-                    _helper.FillDropDownHelperMethodWithDataSet(ds2, "SparePart_Name", "ManufacturerSpare_Id", ddl2);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds2,"SparePart_Name","ManufacturerSpare_Id",ddl2);
                     var txt2 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[2].FindControl("txtSpareBillNo");
                     var txt3 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[3].FindControl("txtSpareBillDate");
                     var txt4 = (TextBox) grdvwSPBillDetails.Rows[i].Cells[4].FindControl("txtSpareEMRIpc");
@@ -614,12 +613,12 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void btnAddNewSPRow_Click(object sender, EventArgs e)
+    protected void btnAddNewSPRow_Click(object sender,EventArgs e)
     {
         AddNewRowToGridSp();
     }
 
-    protected void btnSPReset_Click(object sender, EventArgs e)
+    protected void btnSPReset_Click(object sender,EventArgs e)
     {
         SetInitialRowSp();
     }
@@ -628,15 +627,15 @@ public partial class VehicleMaintenanceDetailsNew : Page
     {
         var dt = new DataTable();
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumberLubri", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriVendorName", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriEMRIPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabQuantity", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillAmount", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumberLubri",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriVendorName",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriEMRIPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabQuantity",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillAmount",typeof(string)));
 
         //Add a Dummy Data on Initial Load
         var dr = dt.NewRow();
@@ -684,7 +683,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 {
                     //extract the DropDownList Selected Items
                     var ddl1 = (DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName");
-                    if (((DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName")).Text == "" || ((DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    if (((DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName")).Text == "" || ((DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var txt2 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[2].FindControl("txtLubricantBillNo");
                     var txt3 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[3].FindControl("txtLubricantBillDate");
                     var txt4 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[4].FindControl("txtLubricantEMRIpc");
@@ -730,15 +729,15 @@ public partial class VehicleMaintenanceDetailsNew : Page
         var dt = new DataTable();
 
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumberLubri", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriBillAmount", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriVendorName", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriEMRIPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriPartCode", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLubriItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabQuantity", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumberLubri",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriBillAmount",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriVendorName",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriEMRIPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriPartCode",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLubriItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabQuantity",typeof(string)));
         //Add Data on Load
         for (var i = 0; i < dtlubribilldet.Rows.Count; i++)
         {
@@ -775,7 +774,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 {
                     //Set the Previous Selected Items on Each DropDownList on Postbacks
                     var ddl1 = (DropDownList) grdvwLubricantBillDetails.Rows[i].Cells[1].FindControl("ddlLubricantVendorName");
-                    _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var txt2 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[2].FindControl("txtLubricantBillNo");
                     var txt3 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[3].FindControl("txtLubricantBillDate");
                     var txt4 = (TextBox) grdvwLubricantBillDetails.Rows[i].Cells[4].FindControl("txtLubricantEMRIpc");
@@ -799,12 +798,12 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void btnAddNewLubriRow_Click(object sender, EventArgs e)
+    protected void btnAddNewLubriRow_Click(object sender,EventArgs e)
     {
         AddNewRowToGridLubricant();
     }
 
-    protected void btnLubriReset_Click(object sender, EventArgs e)
+    protected void btnLubriReset_Click(object sender,EventArgs e)
     {
         SetInitialRowLubricant();
     }
@@ -815,16 +814,16 @@ public partial class VehicleMaintenanceDetailsNew : Page
         {
             var dt = new DataTable();
             DataRow dr;
-            dt.Columns.Add(new DataColumn("RowNumberLabour", typeof(string)));
-            dt.Columns.Add(new DataColumn("ColLabVendorName", typeof(string)));
-            dt.Columns.Add(new DataColumn("ColLabBillNo", typeof(string)));
-            dt.Columns.Add(new DataColumn("ColLabBillDate", typeof(string)));
-            dt.Columns.Add(new DataColumn("Aggregates", typeof(string)));
-            dt.Columns.Add(new DataColumn("Categories", typeof(string)));
-            dt.Columns.Add(new DataColumn("Sub_Categories", typeof(string)));
-            dt.Columns.Add(new DataColumn("ColLabItemDescription", typeof(string)));
-            dt.Columns.Add(new DataColumn("ColLabQuantity", typeof(string)));
-            dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+            dt.Columns.Add(new DataColumn("RowNumberLabour",typeof(string)));
+            dt.Columns.Add(new DataColumn("ColLabVendorName",typeof(string)));
+            dt.Columns.Add(new DataColumn("ColLabBillNo",typeof(string)));
+            dt.Columns.Add(new DataColumn("ColLabBillDate",typeof(string)));
+            dt.Columns.Add(new DataColumn("Aggregates",typeof(string)));
+            dt.Columns.Add(new DataColumn("Categories",typeof(string)));
+            dt.Columns.Add(new DataColumn("Sub_Categories",typeof(string)));
+            dt.Columns.Add(new DataColumn("ColLabItemDescription",typeof(string)));
+            dt.Columns.Add(new DataColumn("ColLabQuantity",typeof(string)));
+            dt.Columns.Add(new DataColumn("Column3",typeof(string)));
             var dslabourFromDb = (DataSet) ViewState["Categories"];
             if (dslabourFromDb != null)
             {
@@ -854,7 +853,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                                 var ddl4 = grdvwLabourBillDetails.Rows[i].FindControl("ddlLabourAggregates") as ComboBox;
                                 if (ddl4 != null)
                                 {
-                                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew, "Aggregates", "Aggregate_Id", null, ddl4);
+                                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew,"Aggregates","Aggregate_Id",null,ddl4);
                                     var dvagg = new DataView(dslabourAggregatesnew.Tables[0]) {RowFilter = "Aggregates = '" + dt.Rows[i][4] + "'"};
                                     var aggid = dvagg.ToTable().Rows[0]["Aggregate_Id"].ToString();
                                     ddl4.SelectedValue = aggid;
@@ -863,7 +862,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                                 var ddl5 = grdvwLabourBillDetails.Rows[i].FindControl("ddlLabourCategories") as ComboBox;
                                 if (ddl5 != null)
                                 {
-                                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew, "Categories", "Category_Id", null, ddl5);
+                                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew,"Categories","Category_Id",null,ddl5);
                                     var dvcat = new DataView(dsLabourCategoriesnew.Tables[0]) {RowFilter = "Categories = '" + dt.Rows[i][5] + "'"};
                                     var catid = dvcat.ToTable().Rows[0]["Category_Id"].ToString();
                                     ddl5.SelectedValue = catid;
@@ -872,7 +871,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                                 var ddl6 = grdvwLabourBillDetails.Rows[i].FindControl("ddlLabourSubCategories") as ComboBox;
                                 if (ddl6 != null)
                                 {
-                                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddl6);
+                                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories,"SubCategories","SubCategory_Id",null,ddl6);
                                     var dvSub = new DataView(dsLabourSubCategories.Tables[0]) {RowFilter = "SubCategories = '" + dt.Rows[i][6] + "'"};
                                     var subid = dvSub.ToTable().Rows[0]["SubCategory_Id"].ToString();
                                     ddl6.SelectedValue = subid;
@@ -1002,13 +1001,13 @@ public partial class VehicleMaintenanceDetailsNew : Page
 
                     //extract the DropDownList Selected Items
                     var ddl1 = (DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName");
-                    if (((DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName")).Text == "" || ((DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    if (((DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName")).Text == "" || ((DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName")).Text == string.Empty) _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var ddlLabourAggregates = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourAggregates");
-                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates);
+                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew,"Aggregates","Aggregate_Id",null,ddlLabourAggregates);
                     var ddlLabourCategories = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourCategories");
-                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew, "Categories", "Category_Id", null, ddlLabourCategories);
+                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew,"Categories","Category_Id",null,ddlLabourCategories);
                     var ddlLabourSubCategories = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourSubCategories");
-                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories);
+                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories,"SubCategories","SubCategory_Id",null,ddlLabourSubCategories);
                 }
 
                 //Rebind the Grid with the current data
@@ -1041,16 +1040,16 @@ public partial class VehicleMaintenanceDetailsNew : Page
         var dtlabourbilldet = (DataTable) ViewState["LabourBillDetails"];
         var dt = new DataTable();
         //Define the Columns
-        dt.Columns.Add(new DataColumn("RowNumberLabour", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabVendorName", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabBillNo", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabBillDate", typeof(string)));
-        dt.Columns.Add(new DataColumn("Aggregates", typeof(string)));
-        dt.Columns.Add(new DataColumn("Categories", typeof(string)));
-        dt.Columns.Add(new DataColumn("Sub_Categories", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabItemDescription", typeof(string)));
-        dt.Columns.Add(new DataColumn("ColLabQuantity", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumberLabour",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabVendorName",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabBillNo",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabBillDate",typeof(string)));
+        dt.Columns.Add(new DataColumn("Aggregates",typeof(string)));
+        dt.Columns.Add(new DataColumn("Categories",typeof(string)));
+        dt.Columns.Add(new DataColumn("Sub_Categories",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabItemDescription",typeof(string)));
+        dt.Columns.Add(new DataColumn("ColLabQuantity",typeof(string)));
+        dt.Columns.Add(new DataColumn("Column3",typeof(string)));
 
         //Add Data on Load
         for (var i = 0; i < dtlabourbilldet.Rows.Count; i++)
@@ -1093,13 +1092,13 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 {
                     //Set the Previous Selected Items on Each DropDownList on Postbacks
                     var ddl1 = (DropDownList) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourVendorName");
-                    _helper.FillDropDownHelperMethodWithDataSet(ds1, "AgencyName", "AgencyId", ddl1);
+                    _helper.FillDropDownHelperMethodWithDataSet(ds1,"AgencyName","AgencyId",ddl1);
                     var ddlLabourAggregates = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourAggregates");
-                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates);
+                    _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew,"Aggregates","Aggregate_Id",null,ddlLabourAggregates);
                     var ddlLabourCategories = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourCategories");
-                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew, "Categories", "Category_Id", null, ddlLabourCategories);
+                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourCategoriesnew,"Categories","Category_Id",null,ddlLabourCategories);
                     var ddlLabourSubCategories = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[1].FindControl("ddlLabourSubCategories");
-                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories);
+                    _helper.FillDropDownHelperMethodWithDataSet(dsLabourSubCategories,"SubCategories","SubCategory_Id",null,ddlLabourSubCategories);
                     var txt2 = (TextBox) grdvwLabourBillDetails.Rows[i].Cells[2].FindControl("txtLabourBillNo");
                     var txt3 = (TextBox) grdvwLabourBillDetails.Rows[i].Cells[3].FindControl("txtLabourBillDate");
                     var ddl4 = (ComboBox) grdvwLabourBillDetails.Rows[i].Cells[4].FindControl("ddlLabourAggregates");
@@ -1122,7 +1121,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                         var dt1 = dslabourAggregatesnew.Tables[0];
                         var dvAggregateName = new DataView(dt1) {RowFilter = "Aggregates = '" + dt.Rows[i][4] + "'"};
                         var aggregateId = dvAggregateName.ToTable().Rows[0]["Aggregate_Id"].ToString();
-                        _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew, "Aggregates", "Aggregate_Id", null, ddl4);
+                        _helper.FillDropDownHelperMethodWithDataSet(dslabourAggregatesnew,"Aggregates","Aggregate_Id",null,ddl4);
                         foreach (ListItem ltItem in ddl4.Items)
                             if (ltItem.Text == dvAggregateName.ToTable().Rows[0]["Aggregates"].ToString())
                             {
@@ -1145,12 +1144,12 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void btnAddNewLabourRow_Click(object sender, EventArgs e)
+    protected void btnAddNewLabourRow_Click(object sender,EventArgs e)
     {
         AddNewRowToGridLabour();
     }
 
-    protected void btnLabourReset_Click(object sender, EventArgs e)
+    protected void btnLabourReset_Click(object sender,EventArgs e)
     {
         SetInitialRowLabour();
     }
@@ -1159,9 +1158,9 @@ public partial class VehicleMaintenanceDetailsNew : Page
     {
         var dt = new DataTable();
         //Define the Columns
-        dt.Columns.Add(new DataColumn("TypeBillDetails", typeof(string)));
-        dt.Columns.Add(new DataColumn("TotalBillNumbers", typeof(string)));
-        dt.Columns.Add(new DataColumn("TotalBillAmount", typeof(string)));
+        dt.Columns.Add(new DataColumn("TypeBillDetails",typeof(string)));
+        dt.Columns.Add(new DataColumn("TotalBillNumbers",typeof(string)));
+        dt.Columns.Add(new DataColumn("TotalBillAmount",typeof(string)));
         //Add a Dummy Data on Initial Load
         var dr = dt.NewRow();
         dr["TypeBillDetails"] = "Spare Parts";
@@ -1209,7 +1208,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         txtTotalBillAmt.Text = (totalamtsp + totalamtlubri + totalamtlabour).ToString(CultureInfo.CurrentCulture);
     }
 
-    protected void btnBillDetailsSummary_Click(object sender, EventArgs e)
+    protected void btnBillDetailsSummary_Click(object sender,EventArgs e)
     {
         if (chkbxlistBillType.Items[0].Selected)
         {
@@ -1258,7 +1257,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void chkbxlistBillType_SelectedIndexChanged(object sender, EventArgs e)
+    protected void chkbxlistBillType_SelectedIndexChanged(object sender,EventArgs e)
     {
         _isedit = false;
         pnlSPBillDetails.Visible = false;
@@ -1274,7 +1273,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
             {
                 var vehicleNumber = ddlVehicleNumber.SelectedItem.ToString();
                 var ds2 = _vehMain.GetSpareParts(vehicleNumber);
-                if (ds2 != null) _helper.FillDropDownHelperMethodWithDataSet(ds2, "SparePart_Name", "ManufacturerSpare_Id", ddlSpareItemDesc);
+                if (ds2 != null) _helper.FillDropDownHelperMethodWithDataSet(ds2,"SparePart_Name","ManufacturerSpare_Id",ddlSpareItemDesc);
             }
 
             //SetInitialRowSP();
@@ -1316,7 +1315,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
     {
     }
 
-    protected void chkAmount_CheckedChanged(object sender, EventArgs e)
+    protected void chkAmount_CheckedChanged(object sender,EventArgs e)
     {
         SetInitialRowSp();
         SetInitialRowLubricant();
@@ -1540,7 +1539,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         return true;
     }
 
-    protected void grdvwSPBillDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvwSPBillDetails_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
@@ -1551,20 +1550,20 @@ public partial class VehicleMaintenanceDetailsNew : Page
             var ds2 = _vehMain.GetSpareParts(vehicleNumber);
             if (ds != null)
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlSpareVendorName, null, null, null, "1");
+                _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlSpareVendorName,null,null,null,"1");
                 ViewState["Vendor"] = ds;
             }
 
             if (ds2 != null)
             {
-                _helper.FillDropDownHelperMethodWithDataSet(ds2, "SparePart_Name", "ManufacturerSpare_Id", ddlSpareItemDesc, null, null, null, "1");
+                _helper.FillDropDownHelperMethodWithDataSet(ds2,"SparePart_Name","ManufacturerSpare_Id",ddlSpareItemDesc,null,null,null,"1");
                 ViewState["SpareItemDesc"] = ds2;
             }
 
             if (_isedit)
             {
                 var dsVehNo = _vehMain.GetSpareParts(txtVehicleNumber.Text);
-                if (dsVehNo != null) _helper.FillDropDownHelperMethodWithDataSet(dsVehNo, "SparePart_Name", "ManufacturerSpare_Id", ddlSpareItemDesc);
+                if (dsVehNo != null) _helper.FillDropDownHelperMethodWithDataSet(dsVehNo,"SparePart_Name","ManufacturerSpare_Id",ddlSpareItemDesc);
                 if (ds != null)
                 {
                     var dv = ds.Tables[0].DefaultView;
@@ -1584,7 +1583,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void grdvwLubricantBillDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvwLubricantBillDetails_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         try
         {
@@ -1595,7 +1594,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                     var ds = _vehMain.IFillVendorsMaintenance();
                     if (ds != null && ddlLubricantVendorName != null)
                     {
-                        _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLubricantVendorName, null, null, null, "1");
+                        _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlLubricantVendorName,null,null,null,"1");
                         ViewState["Vendor"] = ds;
                     }
 
@@ -1616,7 +1615,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void grdvwLabourBillDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdvwLabourBillDetails_RowDataBound(object sender,GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
@@ -1626,7 +1625,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ds = _vehMain.IFillVendorsMaintenance();
                 if (ds != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLabourVendorName, null, null, null, "1");
+                    _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlLabourVendorName,null,null,null,"1");
                     ViewState["Vendor"] = ds;
                 }
 
@@ -1635,7 +1634,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourAggregates = e.Row.FindControl("ddlLabourAggregates") as ComboBox;
                 if (_dslabourAggregates != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates, null, null, "1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates,"Aggregates","Aggregate_Id",null,ddlLabourAggregates,null,null,"1");
                     ViewState["LabourAggregates"] = _dslabourAggregates;
                 }
 
@@ -1644,7 +1643,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourCategories = e.Row.FindControl("ddlLabourCategories") as ComboBox;
                 if (_dsLabourCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories, null, null, "1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories,"Categories","Category_Id",null,ddlLabourCategories,null,null,"1");
                     ViewState["LabourCategories"] = _dsLabourCategories;
                 }
 
@@ -1653,7 +1652,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourSubCategories = e.Row.FindControl("ddlLabourSubCategories") as ComboBox;
                 if (_dsLabourSubCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories, null, null, "1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories,"SubCategories","SubCategory_Id",null,ddlLabourSubCategories,null,null,"1");
                     ViewState["LabourSubCategories"] = _dsLabourSubCategories;
                 }
             }
@@ -1662,7 +1661,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
             {
                 var ddlLabourVendorName = e.Row.FindControl("ddlLabourVendorName") as DropDownList;
                 var ds = _vehMain.IFillVendorsMaintenance();
-                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "AgencyName", "AgencyId", ddlLabourVendorName);
+                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"AgencyName","AgencyId",ddlLabourVendorName);
                 if (ds != null)
                 {
                     var dv = new DataView(ds.Tables[0]) {RowFilter = "AgencyName='" + Convert.ToString(((DataRowView) e.Row.DataItem).Row.ItemArray[1]) + "'"};
@@ -1680,7 +1679,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 _dslabourAggregates = new DataSet();
                 _dslabourAggregates = _vehallobj.GetAggregates();
                 var ddlLabourAggregates = e.Row.FindControl("ddlLabourAggregates") as ComboBox;
-                if (_dslabourAggregates != null) _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates, "Aggregates", "Aggregate_Id", null, ddlLabourAggregates, null, null, "1");
+                if (_dslabourAggregates != null) _helper.FillDropDownHelperMethodWithDataSet(_dslabourAggregates,"Aggregates","Aggregate_Id",null,ddlLabourAggregates,null,null,"1");
                 if (_dslabourAggregates != null)
                 {
                     var dv1 = new DataView(_dslabourAggregates.Tables[0]) {RowFilter = "Aggregates='" + Convert.ToString(((DataRowView) e.Row.DataItem).Row.ItemArray[4]) + "'"};
@@ -1698,7 +1697,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 _dsLabourCategories = new DataSet();
                 _dsLabourCategories = _vehallobj.GetCategoriesMaintenance();
                 var ddlLabourCategories = e.Row.FindControl("ddlLabourCategories") as ComboBox;
-                if (_dsLabourCategories != null) _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories, "Categories", "Category_Id", null, ddlLabourCategories, null, null, "1");
+                if (_dsLabourCategories != null) _helper.FillDropDownHelperMethodWithDataSet(_dsLabourCategories,"Categories","Category_Id",null,ddlLabourCategories,null,null,"1");
                 if (_dsLabourCategories != null)
                 {
                     var dv2 = new DataView(_dsLabourCategories.Tables[0]) {RowFilter = "Categories='" + Convert.ToString(((DataRowView) e.Row.DataItem).Row.ItemArray[5]) + "'"};
@@ -1718,7 +1717,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                 var ddlLabourSubCategories = e.Row.FindControl("ddlLabourSubCategories") as ComboBox;
                 if (_dsLabourSubCategories != null)
                 {
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories, "SubCategories", "SubCategory_Id", null, ddlLabourSubCategories, null, null, "1");
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsLabourSubCategories,"SubCategories","SubCategory_Id",null,ddlLabourSubCategories,null,null,"1");
                     ViewState["LabourSubCategories"] = _dsLabourSubCategories;
                 }
 
@@ -1736,7 +1735,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         }
     }
 
-    protected void gvVehicleMaintenanceDetails_SelectedIndexChanged(object sender, EventArgs e)
+    protected void gvVehicleMaintenanceDetails_SelectedIndexChanged(object sender,EventArgs e)
     {
     }
 }

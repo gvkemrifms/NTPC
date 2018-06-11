@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Web.UI;
-
 public partial class VehicleSummaryAll : Page
 {
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -16,7 +15,7 @@ public partial class VehicleSummaryAll : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("vas_allvehicleregin", null, null, null, null, null, null, null, null, null, null, null, GrdtotalData);
+            _helper.FillDropDownHelperMethodWithSp("vas_allvehicleregin",null,null,null,null,null,null,null,null,null,null,null,GrdtotalData);
         }
         catch (Exception ex)
         {
@@ -28,12 +27,12 @@ public partial class VehicleSummaryAll : Page
     {
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
             if (GrdtotalData.Rows.Count > 0)
-                _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryAll.xls");
+                _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryAll.xls");
         }
         catch (Exception ex)
         {

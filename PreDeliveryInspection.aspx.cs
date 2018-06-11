@@ -5,7 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.PL;
-
 public partial class PreDeliveryInspection : Page
 {
     private readonly FMSGeneral _fmsGeneral = new FMSGeneral();
@@ -13,15 +12,15 @@ public partial class PreDeliveryInspection : Page
     private readonly GvkFMSAPP.BLL.PreDeliveryInspection _predelinsp = new GvkFMSAPP.BLL.PreDeliveryInspection();
     private int _ret;
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("login.aspx");
         if (!IsPostBack)
         {
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
-            btSave.Attributes.Add("onclick", "return validation()");
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            btSave.Attributes.Add("onclick","return validation()");
             GetPreDeliveryInspection();
             GetTrNo();
             GetVehicleRecievedFrom();
@@ -64,7 +63,7 @@ public partial class PreDeliveryInspection : Page
         try
         {
             var ds = _predelinsp.GetTRNo(); //FMS.BLL.PreDeliveryInspection.GetTRNo();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "TRNo", "VehicleID", null, ddlTRNo);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"TRNo","VehicleID",null,ddlTRNo);
         }
         catch (Exception ex)
         {
@@ -77,7 +76,7 @@ public partial class PreDeliveryInspection : Page
         try
         {
             var ds = _predelinsp.GetVehicleRecievedFrom();
-            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "FleetFabricator_Name", "FleetFabricator_Id", ddlVehicleReceived);
+            if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"FleetFabricator_Name","FleetFabricator_Id",ddlVehicleReceived);
         }
         catch (Exception ex)
         {
@@ -85,15 +84,15 @@ public partial class PreDeliveryInspection : Page
         }
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         Show("Record Inserted Successfully on" + " " + DateTime.Now.ToString(CultureInfo.InvariantCulture));
         if (ViewState["PreDeliveryInspectionID"] != null) _predelinsp.PreDeliveryInspectionID = int.Parse(ViewState["PreDeliveryInspectionID"].ToString());
         _predelinsp.VehicleReceivedFrom = ddlVehicleReceived.SelectedItem.Value;
-        _predelinsp.ReceivedDate = DateTime.ParseExact(txtReceivedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _predelinsp.ReceivedDate = DateTime.ParseExact(txtReceivedDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _predelinsp.Odometer = int.Parse(txtOdometer.Text);
         _predelinsp.PDIBy = txtPDIBy.Text;
-        _predelinsp.PDIDate = DateTime.ParseExact(txtPDIDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _predelinsp.PDIDate = DateTime.ParseExact(txtPDIDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         switch (btSave.Text)
         {
             case "Save":
@@ -132,7 +131,7 @@ public partial class PreDeliveryInspection : Page
         GetTrNo();
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearControls();
         btSave.Text = "Save";
@@ -151,7 +150,7 @@ public partial class PreDeliveryInspection : Page
         txtPDIDate.Text = "";
     }
 
-    protected void gvPreDeliveryInspection_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvPreDeliveryInspection_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         switch (e.CommandName)
@@ -201,16 +200,16 @@ public partial class PreDeliveryInspection : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvPreDeliveryInspection_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvPreDeliveryInspection_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvPreDeliveryInspection.PageIndex = e.NewPageIndex;
         GetPreDeliveryInspection();
     }
 
-    protected void ddlTRNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlTRNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {

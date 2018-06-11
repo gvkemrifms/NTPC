@@ -3,16 +3,13 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <script language="javascript" type="text/javascript">
-
+    <script type="text/javascript">
         function validation(obj, id) {
-
             var txtVehicleNumber = obj.id.replace(id, "txtVehicleNumber");
             var txtHandOverTo = obj.id.replace(id, "txtHandOverTo");
             var txtHandOverDate = obj.id.replace(id, "txtHandOverDate");
             var txtHandOverBy = obj.id.replace(id, "txtHandOverBy");
             var txtOdoreading = obj.id.replace(id, "txtOdoreading");
-
             var vehicleNumber = document.getElementById(txtVehicleNumber);
             var handOverTo = document.getElementById(txtHandOverTo);
             var handOverDate = document.getElementById(txtHandOverDate);
@@ -30,67 +27,54 @@
                 handOverTo.focus();
                 return false;
             }
-
             switch (trim(handOverDate.value)) {
             case '':
                 alert("Hand Over Date Cannot be Blank");
                 handOverDate.focus();
                 return false;
             }
-
             if (handOverDate.value !== "" && !isValidDate(handOverDate.value)) {
                 alert("Enter the Valid Date");
                 handOverDate.focus();
                 return false;
             }
-
             var now = new Date();
-
             if (Date.parse(handOverDate.value) > Date.parse(now)) {
                 alert("HandOver Date should not be greater than Current Date");
                 handOverDate.focus();
                 return false;
             }
-
             switch (trim(handOverBy.value)) {
             case '':
                 alert("Hand Over By Cannot be Blank");
                 handOverBy.focus();
                 return false;
             }
-
             switch (trim(odoReading.value)) {
             case '':
                 alert("Odo Reading Cannot be Blank");
                 odoReading.focus();
                 return false;
             }
-
             return true;
         }
 
         function checkEnter(e) {
-
             var characterCode;
-
             if (e && e.which) {
                 characterCode = e.which;
             } else {
                 e = event;
                 characterCode = e.keyCode;
             }
-
             switch (characterCode) {
             case 13:
                 document.getElementById('btnget').click();
                 return false;
-
             default:
                 return true;
-
             }
         }
-
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -117,9 +101,9 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Vehicle Number">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleID") %>'
+                                                <asp:LinkButton ID="lnkBtnVehicleNumber" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"VehicleID") %>'
                                                                 CommandName="vehicleAccidentedit">
-                                                    <%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>
+                                                    <%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>
                                                 </asp:LinkButton>
                                                 <asp:LinkButton ID="hdnLnkShowModal" runat="server" Style="display: none;"></asp:LinkButton>
                                                 <cc1:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="hdnLnkShowModal"
@@ -253,23 +237,23 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Vehicle Number">
                                         <ItemTemplate>
-                                            <%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>
+                                            <%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Recieved From">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRecievedFrom" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "HandOverBy") %>'></asp:Label>
+                                            <asp:Label ID="lblRecievedFrom" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"HandOverBy") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Recieved Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRecievedDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ReceivedDate") %>'></asp:Label>
+                                            <asp:Label ID="lblRecievedDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ReceivedDate") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Recieved Odo Reading">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRecievedOdoReading" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OdoReading") %>'></asp:Label>
+                                            <asp:Label ID="lblRecievedOdoReading" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"OdoReading") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

@@ -3,7 +3,6 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class NonOffRoadPhysicalBills : Page
 {
     private readonly Helper _helper = new Helper();
@@ -11,9 +10,9 @@ public partial class NonOffRoadPhysicalBills : Page
     private DataSet _dsBillNo;
     private DataSet _dsVehicle;
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -36,7 +35,7 @@ public partial class NonOffRoadPhysicalBills : Page
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
             var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
-            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
+            _helper.FillDropDownHelperMethod(query,"ds_lname","ds_dsid",ddlDistricts);
             ViewState["dsDistricts"] = dt;
         }
         catch (Exception ex)
@@ -45,7 +44,7 @@ public partial class NonOffRoadPhysicalBills : Page
         }
     }
 
-    protected void ddlDistricts_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistricts_SelectedIndexChanged(object sender,EventArgs e)
     {
         try
         {
@@ -63,7 +62,7 @@ public partial class NonOffRoadPhysicalBills : Page
                     ddlVehicleno.Enabled = true;
                     _obj.DistrictId = Convert.ToInt16(ddlDistricts.SelectedValue);
                     _dsVehicle = _obj.GetNonOffVehFoBilling();
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsVehicle, "Vehicleno", "", ddlVehicleno);
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsVehicle,"Vehicleno","",ddlVehicleno);
                     ViewState["dsVehicle"] = _dsVehicle;
                     break;
             }
@@ -74,7 +73,7 @@ public partial class NonOffRoadPhysicalBills : Page
         }
     }
 
-    protected void ddlVehicleno_SelectedIndexChanged1(object sender, EventArgs e)
+    protected void ddlVehicleno_SelectedIndexChanged1(object sender,EventArgs e)
     {
         try
         {
@@ -90,7 +89,7 @@ public partial class NonOffRoadPhysicalBills : Page
                     ddlBillNo.Enabled = true;
                     _obj.SrcVehNo = ddlVehicleno.SelectedItem.ToString();
                     _dsBillNo = _obj.GetBillNo();
-                    _helper.FillDropDownHelperMethodWithDataSet(_dsBillNo, "Billno", "", ddlBillNo);
+                    _helper.FillDropDownHelperMethodWithDataSet(_dsBillNo,"Billno","",ddlBillNo);
                     ViewState["dsBillNo"] = _dsBillNo;
                     break;
             }
@@ -101,7 +100,7 @@ public partial class NonOffRoadPhysicalBills : Page
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         try
         {
@@ -161,16 +160,16 @@ public partial class NonOffRoadPhysicalBills : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvVehiclePhysicalBillDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehiclePhysicalBillDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehiclePhysicalBillDetails.PageIndex = e.NewPageIndex;
         BindGridView();
     }
 
-    protected void gvVehiclePhysicalBillDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehiclePhysicalBillDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName.ToUpper() == "VEHMAINEDIT")
         {
@@ -187,19 +186,19 @@ public partial class NonOffRoadPhysicalBills : Page
             dvDistrict.RowFilter = "ds_lname='" + ((Label) row.FindControl("lblDistrict")).Text + "'";
             ddlDistricts.SelectedValue = Convert.ToString(dvDistrict.ToTable().Rows[0]["ds_dsid"]);
             ddlDistricts.Enabled = false;
-            ddlDistricts_SelectedIndexChanged(this, null);
-            ddlVehicleno.Items.Insert(1, new ListItem(((Label) row.FindControl("lblVehicle_No")).Text, "1"));
+            ddlDistricts_SelectedIndexChanged(this,null);
+            ddlVehicleno.Items.Insert(1,new ListItem(((Label) row.FindControl("lblVehicle_No")).Text,"1"));
             ddlVehicleno.SelectedIndex = 1;
             ddlVehicleno.Enabled = false;
-            ddlVehicleno_SelectedIndexChanged1(this, null);
-            ddlBillNo.Items.Insert(1, new ListItem(((Label) row.FindControl("lblBillNo")).Text, "1"));
+            ddlVehicleno_SelectedIndexChanged1(this,null);
+            ddlBillNo.Items.Insert(1,new ListItem(((Label) row.FindControl("lblBillNo")).Text,"1"));
             ddlBillNo.SelectedIndex = 1;
             ddlBillNo.Enabled = false;
             txtBillAmount.Text = ((Label) row.FindControl("lblBillAmount")).Text;
         }
     }
 
-    protected void btnUpdate_Click(object sender, EventArgs e)
+    protected void btnUpdate_Click(object sender,EventArgs e)
     {
         _obj.District = ddlDistricts.SelectedItem.ToString();
         _obj.SrcVehNo = ddlVehicleno.SelectedItem.ToString();
@@ -233,7 +232,7 @@ public partial class NonOffRoadPhysicalBills : Page
         }
     }
 
-    protected void ddlBillNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlBillNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlBillNo.SelectedIndex != 0)
         {
@@ -256,10 +255,10 @@ public partial class NonOffRoadPhysicalBills : Page
         }
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ddlDistricts.SelectedIndex = 0;
-        ddlDistricts_SelectedIndexChanged(this, null);
+        ddlDistricts_SelectedIndexChanged(this,null);
         ddlVehicleno.Items.Clear();
         ddlVehicleno.Enabled = true;
         ddlBillNo.Items.Clear();

@@ -37,33 +37,26 @@
                         document.getElementById("<%= txtBatteryCapacity.ClientID %>").focus();
                         return false;
                     }
-
                     switch (document.getElementById("<%= txtBatteryExpiryDate.ClientID %>").value) {
                     case '':
                         alert("Please Enter Battery Expiry Date");
                         document.getElementById("<%= txtBatteryExpiryDate.ClientID %>").focus();
                         return false;
                     }
-
                     var dcDate = document.getElementById('<%= txtBatteryExpiryDate.ClientID %>');
-
                     if (trim(dcDate.value) !== "" && !isValidDate(dcDate.value)) {
                         alert("Enter the Valid Date(MM/dd/yyyy)");
                         dcDate.focus();
                         return false;
                     }
-
                     var now = new Date();
                     if (Date.parse(dcDate.value) <= Date.parse(now)) {
                         alert("Expiry Date should be greater than Current Date");
                         dcDate.focus();
                         return false;
                     }
-
                     return true;
                 }
-
-
             </script>
 
             <table align="center" id="table1">

@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="VehicleAllocation.aspx.cs" Inherits="VehicleAllocation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript" type="text/javascript">
-
+    <script type="text/javascript">
         function validation() {
             var fldDistrict = document.getElementById('<%= ddlDistrict.ClientID %>');
             var fldVehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
@@ -15,74 +14,59 @@
                 fldDistrict.focus();
                 return false;
             }
-
             if (fldVehicleNumber && fldVehicleNumber.selectedIndex === 0) {
                 alert("Please select Vehicle Number");
                 fldVehicleNumber.focus();
                 return false;
             }
-
             if (!RequiredValidation(fldOdo, "Odometer cannot be blank"))
                 return false;
-
             if (!RequiredValidation(fldUptime, "Uptime cannot be blank"))
                 return false;
-
             if (fldHrs && fldHrs.selectedIndex === 0) {
                 alert("Please select Hrs");
                 fldHrs.focus();
                 return false;
             }
-
             if (fldMins && fldMins.selectedIndex === 0) {
                 alert("Please select Mins");
                 fldMins.focus();
                 return false;
             }
-
             if (window.fld_Segment && window.fld_Segment.selectedIndex === 0) {
                 alert("Please select Segment");
                 window.fld_Segment.focus();
                 return false;
             }
-
             if (window.fld_SegmentName)
                 if (!RequiredValidation(window.fld_SegmentName, "Segment cannot be blank"))
                     return false;
-
             switch (window.fld_Mandals.selectedIndex) {
             case 0:
                 alert("Please select Mandal");
                 window.fld_Mandals.focus();
                 return false;
             }
-
             switch (window.fld_City.selectedIndex) {
             case 0:
                 alert("Please select City");
                 window.fld_City.focus();
                 return false;
             }
-
             if (window.fld_BaseLocation && window.fld_BaseLocation.selectedIndex === 0) {
                 alert("Please select Base Location");
                 window.fld_BaseLocation.focus();
                 return false;
             }
-
             if (window.fld_TxtBaseLoc)
                 if (!RequiredValidation(window.fld_TxtBaseLoc, "Base Location cannot be blank"))
                     return false;
-
             if (!RequiredValidation(fldContactNumber, "Contact Number cannot be blank"))
                 return false;
-
-
             document.getElementById("loaderButton").style.display = '';
             document.all('<%= pnlButton.ClientID %>').style.display = "none";
             return true;
         }
-
 
         function ChkDistrict() {
             var fldDistrict = document.getElementById('<%= ddlDistrict.ClientID %>');
@@ -91,7 +75,6 @@
                 fldDistrict.focus();
                 return false;
             }
-
             return true;
         }
 

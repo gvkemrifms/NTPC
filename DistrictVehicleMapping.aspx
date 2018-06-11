@@ -39,7 +39,6 @@
     }
 </style>
 
-
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <script type="text/javascript">
@@ -55,9 +54,7 @@
             }
         </script>
         <script type="text/javascript">
-
             function validation() {
-
                 var fldDistrict = document.getElementById('<%= ddlDistrict.ClientID %>');
                 var fldVehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
                 var fldMandals = document.getElementById('<%= ddlMandal.ClientID %>');
@@ -100,7 +97,6 @@
                     fldCity.focus();
                     return false;
                 }
-
                 if (!RequiredValidation(fldContactNumber, "Please select Contact Number"))
                     return false;
                 if (vehicleType.selectedIndex === 0) {
@@ -129,7 +125,6 @@
                     }
                 };
             }
-
         </script>
         <div align="center">
             <legend align="center" style="color: brown">State Vehicle Mapping</legend>
@@ -234,12 +229,9 @@
                                                                 radius,
                                                                 isMarkerDropped) {
                                                                 $('#us2lon').val(currentLocation.longitude);
-
                                                             }
                                                         });
                                                     }
-
-
                                                 </script>
                                                 <asp:LinkButton ID="lnkbtnExtngBaseLoc" runat="server" Visible="false" OnClick="lnkbtnExtngBaseLoc_Click">Existing Base Location</asp:LinkButton>
                                                 <asp:LinkButton ID="lnkbtnNewBaseLoc" runat="server" OnClick="lnkbtnNewBaseLoc_Click">New Base Location</asp:LinkButton>

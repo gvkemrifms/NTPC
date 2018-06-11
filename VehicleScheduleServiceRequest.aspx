@@ -195,7 +195,6 @@
                     var spDate = document.getElementById('<%= txtSchedulePlanDate.ClientID %>');
                     if (!window.requiredValidation(spDate, "Scheduled Plan date cannot be Blank"))
                         return false;
-
                     if (trim(spDate.value) !== "" && !isValidDate(spDate.value)) {
                         alert("Enter the correct format (mm/dd/yyyy)");
                         spDate.focus();

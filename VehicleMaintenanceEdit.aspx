@@ -4,9 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validation() {
-
         var vehicleNumber = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
         var district = document.getElementById('<%= ddlDistrict.ClientID %>');
         if (district && district.selectedIndex === 0) {
@@ -14,7 +12,6 @@
             district.focus();
             return false;
         }
-
         if (vehicleNumber && vehicleNumber.selectedIndex === 0) {
             alert("Please select Vehicle Number");
             vehicleNumber.focus();
@@ -22,10 +19,7 @@
         }
         return true;
     }
-
-
 </script>
-
 
 <asp:UpdatePanel runat="server">
 <ContentTemplate>
@@ -601,99 +595,99 @@
                 <Columns>
                     <asp:TemplateField HeaderText="VehicleNo">
                         <ItemTemplate>
-                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OffRoadVehicle_No") %>'></asp:Label>
+                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"OffRoadVehicle_No") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="District">
                         <ItemTemplate>
-                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "District") %>'></asp:Label>
+                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Maintenanace Type">
                         <ItemTemplate>
-                            <asp:Label ID="lblMaintenanaceType" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "MaintenanaceType") %>'></asp:Label>
+                            <asp:Label ID="lblMaintenanaceType" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"MaintenanaceType") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="MaintenanceDate" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblMaintenanceDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "MaintenanceDate") %>'></asp:Label>
+                            <asp:Label ID="lblMaintenanceDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"MaintenanceDate") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="DownOdo" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblDownOdo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DownTimeOdoReading") %>'></asp:Label>
+                            <asp:Label ID="lblDownOdo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DownTimeOdoReading") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="DownTime">
                         <ItemTemplate>
-                            <asp:Label ID="lblDowntime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Downtime") %>'></asp:Label>
+                            <asp:Label ID="lblDowntime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Downtime") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="UpOdo" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblUpOdo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "UptimeOdoReading") %>'></asp:Label>
+                            <asp:Label ID="lblUpOdo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"UptimeOdoReading") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="UpTime">
                         <ItemTemplate>
-                            <asp:Label ID="lblUptime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Uptime") %>'></asp:Label>
+                            <asp:Label ID="lblUptime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Uptime") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="SpareBillNo" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblSpareBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SpareBillNo") %>'></asp:Label>
+                            <asp:Label ID="lblSpareBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SpareBillNo") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="SpareBillDate" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblSpareBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SpareBillDate") %>'></asp:Label>
+                            <asp:Label ID="lblSpareBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SpareBillDate") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="SpareBillAmount" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblSpareBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "SpareBillAmount") %>'></asp:Label>
+                            <asp:Label ID="lblSpareBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"SpareBillAmount") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LubricantBillNo" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLubricantBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LubricantBillNo") %>'></asp:Label>
+                            <asp:Label ID="lblLubricantBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LubricantBillNo") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LubricantBillDate" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLubricantBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LubricantBillDate") %>'></asp:Label>
+                            <asp:Label ID="lblLubricantBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LubricantBillDate") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LubricantBillAmount" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLubricantBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LubricantBillAmount") %>'></asp:Label>
+                            <asp:Label ID="lblLubricantBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LubricantBillAmount") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LabourBillNo" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLabourBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LabourBillNo") %>'></asp:Label>
+                            <asp:Label ID="lblLabourBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LabourBillNo") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LabourBillDate" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLabourBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LabourBillDate") %>'></asp:Label>
+                            <asp:Label ID="lblLabourBillDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LabourBillDate") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="LabourBillAmount" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblLabourBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "LabourBillAmount") %>'></asp:Label>
+                            <asp:Label ID="lblLabourBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"LabourBillAmount") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="VehMainEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "OffRoad_Id") %>'
+                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="VehMainEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"OffRoad_Id") %>'
                                             Text="Edit">
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Delete">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="VehMainDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "OffRoad_Id") %>'
+                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="VehMainDelete" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"OffRoad_Id") %>'
                                             Text="Delete">
                             </asp:LinkButton>
                             <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" TargetControlID="lnkDelete"

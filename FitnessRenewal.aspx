@@ -27,19 +27,16 @@
         }
         if (!RequiredValidation(fitnessValidityStartDate, "Fitness Validity Start Date Cannot be Blank"))
             return false;
-
         if (!isValidDate(fitnessValidityStartDate.value)) {
             alert("Enter Valid Date");
             fitnessValidityStartDate.focus();
             return false;
         }
-
         if (Date.parse(fitnessValidityStartDate.value) > Date.parse(now)) {
             alert("Fitness Validity Start Date should not be greater than Current Date");
             fitnessValidityStartDate.focus();
             return false;
         }
-
         if (Date.parse(fitnessValidityStartDate.value) < Date.parse(vehiclePurchaseDate.value)) {
             alert("Fitness Validity Start Date should be greater than Purchase Date.(PurchaseDate-" +
                 vehiclePurchaseDate.value +
@@ -47,7 +44,6 @@
             fitnessValidityStartDate.focus();
             return false;
         }
-
         switch (fitnessValidityPeriod.selectedIndex) {
         case 0:
             alert("Please select Fitness Validity Period");
@@ -56,13 +52,10 @@
         }
         if (!RequiredValidation(vehicleRtaCircle, "Vehicle RTA Circle Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(fitnessReceiptNo, "Fitness Receipt No Cannot be Blank"))
             return false;
-
         if (!RequiredValidation(fitnessFee, "Fitness Fee Cannot be Blank"))
             return false;
-
         return true;
     }
 </script>
@@ -246,50 +239,50 @@
             <Columns>
                 <asp:TemplateField HeaderText="Vehicle Number">
                     <ItemTemplate>
-                        <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                        <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="FRValidity StartDate">
                     <ItemTemplate>
-                        <asp:Label ID="lblFRValidityStartDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FRValidityStartDate") %>'>
+                        <asp:Label ID="lblFRValidityStartDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FRValidityStartDate") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="FRValidity Period">
                     <ItemTemplate>
-                        <asp:Label ID="lblFRValidityPeriod" Visible="false" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FRValidityPeriod") %>'>
+                        <asp:Label ID="lblFRValidityPeriod" Visible="false" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FRValidityPeriod") %>'>
                         </asp:Label>
                         <asp:Label ID="lblFRValidityPeriodText" runat="server"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="FRValidity EndDate">
                     <ItemTemplate>
-                        <asp:Label ID="lblFRValidityEndDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FRValidityEndDate") %>'>
+                        <asp:Label ID="lblFRValidityEndDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FRValidityEndDate") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Vehicle RTACircle">
                     <ItemTemplate>
-                        <asp:Label ID="lblVehicleRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleRTACircle") %>'>
+                        <asp:Label ID="lblVehicleRTACircle" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleRTACircle") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="FRReceipt No">
                     <ItemTemplate>
-                        <asp:Label ID="lblFRReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FRReceiptNo") %>'>
+                        <asp:Label ID="lblFRReceiptNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FRReceiptNo") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="FRFee">
                     <ItemTemplate>
-                        <asp:Label ID="lblFRFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "FRFee") %>'>
+                        <asp:Label ID="lblFRFee" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"FRFee") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Edit">
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEdit" runat="server" CommandName="fitnessRenewalEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "FitnessRenewalID") %>'
+                        <asp:LinkButton ID="lnkEdit" runat="server" CommandName="fitnessRenewalEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"FitnessRenewalID") %>'
                                         Text="Edit">
                         </asp:LinkButton>
                     </ItemTemplate>

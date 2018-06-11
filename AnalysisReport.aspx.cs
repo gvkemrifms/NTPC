@@ -5,15 +5,12 @@ using System.Web.UI;
 public partial class AnalysisReport : Page
 {
     private readonly Helper _helper = new Helper();
-
-    public string UserId { get; private set; }
+    public string UserId{ get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["User_Id"] == null)
-            Response.Redirect("Login.aspx");
-        else
-            UserId = (string) Session["User_Id"];
+        if (Session["User_Id"] == null) Response.Redirect("Login.aspx");
+        else UserId = (string) Session["User_Id"];
         if (!IsPostBack)
         {
             ddlvehicle.Enabled = false;
@@ -45,8 +42,7 @@ public partial class AnalysisReport : Page
             ddlvehicle.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict,
-                    ddlvehicle, null, null, "@districtID");
+                _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddldistrict, ddlvehicle, null, null, "@districtID");
             }
             catch (Exception ex)
             {
@@ -76,8 +72,7 @@ public partial class AnalysisReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisReport", null, null, ddldistrict,
-                ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisReport", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
         }
         catch (Exception ex)
         {

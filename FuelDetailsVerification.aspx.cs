@@ -3,14 +3,13 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
-
 public partial class FuelDetailsVerification : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     public IFuelManagement Objfuelver = new FuelManagement();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -29,7 +28,7 @@ public partial class FuelDetailsVerification : Page
         if (ds == null) return;
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlVehicleNumber);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlVehicleNumber);
             ddlVehicleNumber.Enabled = true;
         }
         catch (Exception ex)
@@ -44,7 +43,7 @@ public partial class FuelDetailsVerification : Page
         var vehicleId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
         if (ddlVehicleNumber.SelectedValue != null) vehicleId = Convert.ToInt32(ddlVehicleNumber.SelectedValue);
-        var ds = Objfuelver.IFillGridVerification(districtId, vehicleId);
+        var ds = Objfuelver.IFillGridVerification(districtId,vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         switch (ds.Tables[0].Rows.Count)
         {
@@ -59,11 +58,11 @@ public partial class FuelDetailsVerification : Page
         }
     }
 
-    protected void btnApprove_Click(object sender, EventArgs e)
+    protected void btnApprove_Click(object sender,EventArgs e)
     {
     }
 
-    protected void Approve_Click(object sender, EventArgs e)
+    protected void Approve_Click(object sender,EventArgs e)
     {
         var i1 = 0;
         var i2 = 0;
@@ -93,7 +92,7 @@ public partial class FuelDetailsVerification : Page
         if (i1 <= 0 || i2 <= 0 || i1 != i2)
             Show("Please Select Reconciliation Details and Approve");
         else
-            ScriptManager.RegisterStartupScript(this, GetType(), "msg1", "ConfirmApprove('" + btnHdnApprove.ClientID + "','" + emptyRemarkId + "');", true);
+            ScriptManager.RegisterStartupScript(this,GetType(),"msg1","ConfirmApprove('" + btnHdnApprove.ClientID + "','" + emptyRemarkId + "');",true);
     }
 
     private void ClearControls()
@@ -116,11 +115,11 @@ public partial class FuelDetailsVerification : Page
         return fuelIDs;
     }
 
-    protected void gvVerification_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void gvVerification_RowEditing(object sender,GridViewEditEventArgs e)
     {
     }
 
-    protected void Reject_Click(object sender, EventArgs e)
+    protected void Reject_Click(object sender,EventArgs e)
     {
         var i1 = 0;
         var fuelEntryId = string.Empty;
@@ -140,15 +139,15 @@ public partial class FuelDetailsVerification : Page
         if (i1 <= 0)
             Show("Please Select and Reject");
         else
-            ScriptManager.RegisterStartupScript(this, GetType(), "msg1", "ConfirmReject('" + btnHdnReject.ClientID + "','" + emptyRemarkId + "');", true);
+            ScriptManager.RegisterStartupScript(this,GetType(),"msg1","ConfirmReject('" + btnHdnReject.ClientID + "','" + emptyRemarkId + "');",true);
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void btnHdnApprove_Click(object sender, EventArgs e)
+    protected void btnHdnApprove_Click(object sender,EventArgs e)
     {
         var i1 = 0;
         var i2 = 0;
@@ -187,8 +186,8 @@ public partial class FuelDetailsVerification : Page
                     if (chk.Checked)
                         if (remarks != string.Empty)
                         {
-                            btnApprove_Click(sender, e);
-                            success[i] = Objfuelver.IApproveStatus(fuelIDs[i], remarks);
+                            btnApprove_Click(sender,e);
+                            success[i] = Objfuelver.IApproveStatus(fuelIDs[i],remarks);
                         }
                         else
                         {
@@ -204,7 +203,7 @@ public partial class FuelDetailsVerification : Page
                     var chk = (CheckBox) item.FindControl("checkSelect");
                     if (chk.Checked)
                     {
-                        btnApprove_Click(sender, e);
+                        btnApprove_Click(sender,e);
                         success1[i] = Objfuelver.IApproveReconcilation(reconcilationIDs[i]);
                     }
                 }
@@ -237,7 +236,7 @@ public partial class FuelDetailsVerification : Page
         }
     }
 
-    protected void btnHdnReject_Click(object sender, EventArgs e)
+    protected void btnHdnReject_Click(object sender,EventArgs e)
     {
         var i1 = 0;
         var fuelEntryId = string.Empty;
@@ -261,8 +260,8 @@ public partial class FuelDetailsVerification : Page
                     if (chk.Checked)
                         if (remarks != string.Empty)
                         {
-                            btnApprove_Click(sender, e);
-                            success[i] = Objfuelver.IRejectStatus(fuelIDs[i], remarks);
+                            btnApprove_Click(sender,e);
+                            success[i] = Objfuelver.IRejectStatus(fuelIDs[i],remarks);
                         }
                         else
                         {
@@ -301,20 +300,20 @@ public partial class FuelDetailsVerification : Page
         ClearControls();
     }
 
-    protected void gvVerification_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+    protected void gvVerification_PageIndexChanging1(object sender,GridViewPageEventArgs e)
     {
         gvVerification.PageIndex = e.NewPageIndex;
         var districtId = -1;
         var vehicleId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
         if (ddlVehicleNumber.SelectedValue != null) vehicleId = Convert.ToInt32(ddlVehicleNumber.SelectedValue);
-        var ds = Objfuelver.IFillGridVerification(districtId, vehicleId);
+        var ds = Objfuelver.IFillGridVerification(districtId,vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         gvVerification.DataSource = ds;
         gvVerification.DataBind();
     }
 
-    protected void ddlVehicleNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         FillGridVerification();
         FillGridReconcilation();
@@ -326,7 +325,7 @@ public partial class FuelDetailsVerification : Page
         var vehicleId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
         if (ddlVehicleNumber.SelectedValue != null) vehicleId = Convert.ToInt32(ddlVehicleNumber.SelectedValue);
-        var ds = Objfuelver.IFillGridReconcilation(districtId, vehicleId);
+        var ds = Objfuelver.IFillGridReconcilation(districtId,vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         switch (ds.Tables[0].Rows.Count)
         {
@@ -341,18 +340,18 @@ public partial class FuelDetailsVerification : Page
         }
     }
 
-    protected void gvReconcilation_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void gvReconcilation_RowEditing(object sender,GridViewEditEventArgs e)
     {
     }
 
-    protected void gvReconcilation_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+    protected void gvReconcilation_PageIndexChanging1(object sender,GridViewPageEventArgs e)
     {
         gvReconcilation.PageIndex = e.NewPageIndex;
         var districtId = -1;
         var vehicleId = -1;
         if (Session["UserdistrictId"] != null) districtId = Convert.ToInt32(Session["UserdistrictId"].ToString());
         if (ddlVehicleNumber.SelectedValue != null) vehicleId = Convert.ToInt32(ddlVehicleNumber.SelectedValue);
-        var ds = Objfuelver.IFillGridReconcilation(districtId, vehicleId);
+        var ds = Objfuelver.IFillGridReconcilation(districtId,vehicleId);
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         gvReconcilation.DataSource = ds;
         gvReconcilation.DataBind();

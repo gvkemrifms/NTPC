@@ -49,7 +49,6 @@
         <asp:Button runat="server" Text="Excel" OnClick="btntoExcel_Click" CssClass="form-reset-button"></asp:Button>
     </div>
 
-
     <div align="center">
         <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Center">
             <asp:GridView ID="Grdtyre" runat="server" BorderWidth="1px" BorderColor="#CCCCCC" style="margin-top: 20px" BackColor="White" EmptyDataText="No Records Found" BorderStyle="None" CellPadding="3">

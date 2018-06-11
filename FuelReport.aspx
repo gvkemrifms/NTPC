@@ -4,22 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
         $(function() {
-            $('#<%=txtfromdate.ClientID%>,#<%=txttodate.ClientID%>').datepicker({
+            $('#<%= txtfromdate.ClientID %>,#<%= txttodate.ClientID %>').datepicker({
                 dateFormat: 'yy/mm/dd',
                 changeMonth: true,
                 changeYear: true
-            });           
+            });
         });
+
         function Validations() {
             var txtFirstDate = $('#<%= txtfromdate.ClientID %>').val();
             var txtToDate = $('#<%= txttodate.ClientID %>').val();
             if (txtFirstDate === "") {
                 return alert('From Date is Mandatory');
-
             }
             if (txtToDate === "") {
                 return alert("End Date is Mandatory");
-
             }
             var fromDate = (txtFirstDate).replace(/\D/g, '/');
             var toDate = (txtToDate).replace(/\D/g, '/');
@@ -28,7 +27,6 @@
             var currentDate = new Date();
             if (ordFromDate > currentDate) {
                 return alert("From date should not be greater than today's date");
-
             }
             if (ordToDate < ordFromDate) {
                 return alert("Please select valid date range");
@@ -93,7 +91,7 @@
             <div class="row" style="margin-top: 30px">
                 <div class="col-sm-12" style="">
                     <asp:Button runat="server" class="btn btn-primary"
-                                Text="Show" Style="border-radius: 3px; height: 33px; width: 55px;" OnClick="btnShow_Click" CssClass="form-submit-button" OnClientClick="if(!Validations()) return false;">
+                                Text="Show" Style="border-radius: 3px; height: 33px; width: 55px;" OnClick="btnShow_Click" CssClass="form-submit-button" OnClientClick="if (!Validations()) return false;">
                     </asp:Button>
                 </div>
             </div>
@@ -110,7 +108,7 @@
         <div align="center">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Style="margin-top: 2%;"
                           EmptyDataText="No Data Found" EmptyDataRowStyle-ForeColor="Red"
-                          HeaderStyle-ForeColor="#337ab7"  class="gridview" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+                          HeaderStyle-ForeColor="#337ab7" class="gridview" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
                 <Columns>
                     <asp:TemplateField HeaderText="S&nbsp;No">
                         <ItemTemplate>
@@ -132,18 +130,18 @@
 
                 </Columns>
 
-<EmptyDataRowStyle ForeColor="Red"></EmptyDataRowStyle>
+                <EmptyDataRowStyle ForeColor="Red"></EmptyDataRowStyle>
 
-                <FooterStyle BackColor="White" ForeColor="#000066" />
+                <FooterStyle BackColor="White" ForeColor="#000066"/>
 
-<HeaderStyle ForeColor="White" BackColor="#006699" Font-Bold="True"></HeaderStyle>
-                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                <RowStyle ForeColor="#000066" />
-                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#00547E" />
+                <HeaderStyle ForeColor="White" BackColor="#006699" Font-Bold="True"></HeaderStyle>
+                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left"/>
+                <RowStyle ForeColor="#000066"/>
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White"/>
+                <SortedAscendingCellStyle BackColor="#F1F1F1"/>
+                <SortedAscendingHeaderStyle BackColor="#007DBB"/>
+                <SortedDescendingCellStyle BackColor="#CAC9C9"/>
+                <SortedDescendingHeaderStyle BackColor="#00547E"/>
             </asp:GridView>
         </div>
     </div>

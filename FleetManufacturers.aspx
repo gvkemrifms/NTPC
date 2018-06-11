@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/temp.master" AutoEventWireup="true" CodeFile="FleetManufacturers.aspx.cs" Inherits="FleetManufacturers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script type="text/javascript">
-
     function validationFleetManufacturers() {
         switch (document.getElementById("<%= txtManufacturerName.ClientID %>").value) {
         case '':
@@ -9,7 +8,6 @@
             document.getElementById("<%= txtManufacturerName.ClientID %>").focus();
             return false;
         }
-
         switch (document.getElementById("<%= ddlManufacturerType.ClientID %>").selectedIndex) {
         case 0:
             alert("Please Select Manufacturer Type");
@@ -39,9 +37,7 @@
             alert("Please Enter Manufacturer Contact Number");
             document.getElementById("<%= txtManufacturerContactNumber.ClientID %>").focus();
             return false;
-
         }
-
         var phone = document.getElementById("<%= txtManufacturerContactNumber.ClientID %>");
         if (isNaN(parseInt(phone.value))) {
             alert("The phone number contains illegal characters");
@@ -53,7 +49,6 @@
             phone.focus();
             return false;
         }
-
         switch (document.getElementById("<%= txtManufacturerContactPerson.ClientID %>").value) {
         case '':
             alert("Please Enter Manufacturer Contact Person");
@@ -66,7 +61,6 @@
             document.getElementById("<%= txtManufacturerEmailId.ClientID %>").focus();
             return false;
         }
-
         var emailPat = /^(?:\w+\.?)*\w+@(?:\w+\.)+\w+$/;
         var emailid = document.getElementById("<%= txtManufacturerEmailId.ClientID %>").value;
         var matchArray = emailid.match(emailPat);
@@ -75,7 +69,6 @@
             document.getElementById("<%= txtManufacturerEmailId.ClientID %>").focus();
             return false;
         }
-
         switch (document.getElementById("<%= txtManufacturerTin.ClientID %>").value) {
         case '':
             alert("Please Enter Manufacturer Tin");
@@ -96,7 +89,6 @@
 <ContentTemplate>
 <script type="text/javascript">
     function pageLoad() {
-
         $('#<%= ddlFleetManufacturerDistrict.ClientID %>').select2({
             disable_search_threshold: 5,
             search_contains: true,
@@ -314,7 +306,7 @@
 
                     <asp:TemplateField HeaderText="Creation Date">
                         <ItemTemplate>
-                            <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date", "{0:d}") %>'/>
+                            <asp:Label ID="lblCreateDate" runat="server" Text='<%#Eval("Created_Date","{0:d}") %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
 

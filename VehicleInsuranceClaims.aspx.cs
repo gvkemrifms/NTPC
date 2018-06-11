@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 public partial class VehicleInsuranceClaims : Page
 {
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.InsuranceClaims.VehicleInsuranceClaims _insClaims = new GvkFMSAPP.BLL.StatutoryCompliance.InsuranceClaims.VehicleInsuranceClaims();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) GetInsuranceClaims();
@@ -18,7 +17,7 @@ public partial class VehicleInsuranceClaims : Page
         gvInsuranceClaim.DataBind();
     }
 
-    protected void gvInsuranceClaim_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvInsuranceClaim_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         switch (e.CommandName)
@@ -31,7 +30,7 @@ public partial class VehicleInsuranceClaims : Page
                 Session["VehicleID"] = Convert.ToInt32(drinsurance[0][0].ToString());
                 Session["VehicleNumber"] = drinsurance[0][1].ToString();
                 Session["VehicleStatus"] = vehicleStatus.Text;
-                Response.Redirect("~/InsuranceClaimsPaymentStatus.aspx", false);
+                Response.Redirect("~/InsuranceClaimsPaymentStatus.aspx",false);
                 break;
         }
     }

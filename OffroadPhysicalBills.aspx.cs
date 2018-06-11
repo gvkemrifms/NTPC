@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class OffroadPhysicalBills : Page
 {
     private readonly Helper _helper = new Helper();
@@ -12,9 +11,9 @@ public partial class OffroadPhysicalBills : Page
     private DataSet _dsBillNo = new DataSet();
     private DataSet _dsVehNo = new DataSet();
 
-    public string UserId { get; private set; }
+    public string UserId{ get;private set; }
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Id"] == null)
             Response.Redirect("Login.aspx");
@@ -38,7 +37,7 @@ public partial class OffroadPhysicalBills : Page
             var query = "SELECT d.district_id as ds_dsid,d.district_name as ds_lname from [m_district] d join m_users u on d.district_id=u.stateId where u.UserId='" + UserId + "' order by d.district_name";
             var dt = _helper.ExecuteSelectStmt(query);
             dsStates.Tables.Add(dt);
-            _helper.FillDropDownHelperMethod(query, "ds_lname", "ds_dsid", ddlDistricts);
+            _helper.FillDropDownHelperMethod(query,"ds_lname","ds_dsid",ddlDistricts);
             ViewState["dsDistricts"] = dsStates;
         }
         catch (Exception ex)
@@ -47,7 +46,7 @@ public partial class OffroadPhysicalBills : Page
         }
     }
 
-    protected void ddlDistricts_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlDistricts_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlDistricts.SelectedIndex)
         {
@@ -64,12 +63,12 @@ public partial class OffroadPhysicalBills : Page
                 ddlVehicleNo.DataSource = _dsVehNo.Tables[0];
                 ddlVehicleNo.DataTextField = "OffRoadVehicle_No";
                 ddlVehicleNo.DataBind();
-                ddlVehicleNo.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlVehicleNo.Items.Insert(0,new ListItem("--Select--","0"));
                 break;
         }
     }
 
-    protected void ddlBillNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlBillNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlBillNo.SelectedIndex)
         {
@@ -97,10 +96,10 @@ public partial class OffroadPhysicalBills : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void ddlVehicleNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         lblBreakdwn.Text = "";
         txtBillAmount.Text = "";
@@ -116,12 +115,12 @@ public partial class OffroadPhysicalBills : Page
             ddlBillNo.DataTextField = "BillNumber";
             ddlBillNo.DataValueField = "BillDetailsId";
             ddlBillNo.DataBind();
-            ddlBillNo.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlBillNo.Items.Insert(0,new ListItem("--Select--","0"));
             ViewState["dsBillNo"] = _dsBillNo;
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender,EventArgs e)
     {
         _obj.District = ddlDistricts.SelectedItem.ToString();
         _obj.VehNumforNonOff = ddlVehicleNo.SelectedItem.ToString();
@@ -150,7 +149,7 @@ public partial class OffroadPhysicalBills : Page
                 default:
                     Show("Physical Bills successfully saved");
                     ddlDistricts.SelectedIndex = 0;
-                    ddlDistricts_SelectedIndexChanged(this, null);
+                    ddlDistricts_SelectedIndexChanged(this,null);
                     ddlVehicleNo.SelectedIndex = 0;
                     ddlVehicleNo.Enabled = false;
                     lblBreakdwn.Text = "";
@@ -179,7 +178,7 @@ public partial class OffroadPhysicalBills : Page
         gvVehiclePhysicalBillDetails.DataBind();
     }
 
-    protected void gvVehiclePhysicalBillDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVehiclePhysicalBillDetails_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         switch (e.CommandName.ToUpper())
@@ -195,12 +194,12 @@ public partial class OffroadPhysicalBills : Page
                 dvDistrict.RowFilter = "ds_lname='" + districttext + "'";
                 ddlDistricts.SelectedValue = Convert.ToString(dvDistrict.ToTable().Rows[0]["ds_dsid"]);
                 ddlDistricts.Enabled = false;
-                ddlDistricts_SelectedIndexChanged(this, null);
-                ddlVehicleNo.Items.Insert(1, new ListItem(((Label) row.FindControl("lblVehicle_No")).Text, "1"));
+                ddlDistricts_SelectedIndexChanged(this,null);
+                ddlVehicleNo.Items.Insert(1,new ListItem(((Label) row.FindControl("lblVehicle_No")).Text,"1"));
                 ddlVehicleNo.SelectedIndex = 1;
                 ddlVehicleNo.Enabled = false;
-                ddlVehicleNo_SelectedIndexChanged(this, null);
-                ddlBillNo.Items.Insert(0, new ListItem(((Label) row.FindControl("lblBillNo")).Text, "0"));
+                ddlVehicleNo_SelectedIndexChanged(this,null);
+                ddlBillNo.Items.Insert(0,new ListItem(((Label) row.FindControl("lblBillNo")).Text,"0"));
                 ddlBillNo.SelectedIndex = 0;
                 ddlBillNo.Enabled = false;
                 txtBillAmount.Text = ((Label) row.FindControl("lblBillAmount")).Text;
@@ -217,7 +216,7 @@ public partial class OffroadPhysicalBills : Page
         }
     }
 
-    protected void btnUpdate_Click(object sender, EventArgs e)
+    protected void btnUpdate_Click(object sender,EventArgs e)
     {
         _obj.District = ddlDistricts.SelectedItem.ToString();
         _obj.VehNumforNonOff = ddlVehicleNo.SelectedItem.ToString();
@@ -263,16 +262,16 @@ public partial class OffroadPhysicalBills : Page
         }
     }
 
-    protected void gvVehiclePhysicalBillDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVehiclePhysicalBillDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVehiclePhysicalBillDetails.PageIndex = e.NewPageIndex;
         BindGrid();
     }
 
-    protected void btnReset_Click(object sender, EventArgs e)
+    protected void btnReset_Click(object sender,EventArgs e)
     {
         ddlDistricts.SelectedIndex = 0;
-        ddlDistricts_SelectedIndexChanged(this, null);
+        ddlDistricts_SelectedIndexChanged(this,null);
         ddlVehicleNo.SelectedIndex = 0;
         ddlVehicleNo.Enabled = false;
         lblBreakdwn.Text = "";

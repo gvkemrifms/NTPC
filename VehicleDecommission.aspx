@@ -13,7 +13,6 @@
         }
 
         function validation() {
-
             var district = document.getElementById('<%= ddlDistrict.ClientID %>');
             var vehicleId = document.getElementById('<%= ddlVehicleNumber.ClientID %>');
             var txtVehicleId = document.getElementById('<%= txtVehicleNumber.ClientID %>');
@@ -25,7 +24,6 @@
                 district.focus();
                 return false;
             }
-
             if (vehicleId) {
                 var inputs = vehicleId.getElementsByTagName('input');
                 var i;
@@ -40,25 +38,19 @@
                     }
                 }
             }
-
             if (txtVehicleId)
                 if (!RequiredValidation(txtVehicleId, "Vehicle Number cannot be blank"))
                     return false;
-
-
             if (!RequiredValidation(decommReason, "Decommission Reason cannot be blank"))
                 return false;
-
             if (!RequiredValidation(decommDate, "Decommission Date cannot be blank"))
                 return false;
-
             var now = new Date();
             if (Date.parse(decommDate.value) > Date.parse(now)) {
                 alert("Decommission Date should not be greater than Current Date");
                 decommDate.focus();
                 return false;
             }
-
             if (!RequiredValidation(decommRemark, "Decommission Remark cannot be blank"))
                 return false;
             return true;
@@ -150,38 +142,38 @@
                 <Columns>
                     <asp:TemplateField HeaderText="District">
                         <ItemTemplate>
-                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "District") %>'>
+                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Vehicle Number">
                         <ItemTemplate>
-                            <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "VehicleNumber") %>'>
+                            <asp:Label ID="lblVehicleNumber" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"VehicleNumber") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Decommission Reason">
                         <ItemTemplate>
-                            <asp:Label ID="lblDecommReason" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DecommReason") %>'>
+                            <asp:Label ID="lblDecommReason" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DecommReason") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Decommission Date">
                         <ItemTemplate>
-                            <asp:Label ID="lblDecommDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DecommDate") %>'>
+                            <asp:Label ID="lblDecommDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DecommDate") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEdit" CssClass="form-submit-button" runat="server" CommandName="DecommVehEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleDecommId") %>'
+                            <asp:LinkButton ID="lnkEdit" CssClass="form-submit-button" runat="server" CommandName="DecommVehEdit" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"VehicleDecommId") %>'
                                             Text="Edit">
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Revert">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkRevert" CssClass="form-submit-button" runat="server" CommandName="DecommVehRevert" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "VehicleDecommId") %>'
+                            <asp:LinkButton ID="lnkRevert" CssClass="form-submit-button" runat="server" CommandName="DecommVehRevert" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"VehicleDecommId") %>'
                                             Text="Revert">
                             </asp:LinkButton>
                             <cc1:ConfirmButtonExtender ID="confrmbtnextndrRevert" runat="server" TargetControlID="lnkRevert"

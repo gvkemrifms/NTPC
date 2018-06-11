@@ -3,23 +3,22 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
-
 public partial class VehicleTypes : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Error.aspx");
         grvVehicleTypes.Columns[0].Visible = false;
         FillGrid_VehicleTypes();
-        txtVehicleType.Attributes.Add("onkeypress", "javascript:return alpha_only_withspace(this,event)");
-        txtVehicleDescription.Attributes.Add("onkeypress", "javascript:return remark(this,event)");
+        txtVehicleType.Attributes.Add("onkeypress","javascript:return alpha_only_withspace(this,event)");
+        txtVehicleDescription.Attributes.Add("onkeypress","javascript:return remark(this,event)");
         //Permissions
         var dsPerms = (DataSet) Session["PermissionsDS"];
         if (dsPerms == null) throw new ArgumentNullException(nameof(dsPerms));
         dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-        var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+        var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
         pnlvehicletypes.Visible = false;
         grvVehicleTypes.Visible = p.View;
         switch (p.Add)
@@ -45,12 +44,12 @@ public partial class VehicleTypes : Page
         btnvehicleTypeSave.Text = "Save";
     }
 
-    protected void vehicleTypeReset_Click(object sender, EventArgs e)
+    protected void vehicleTypeReset_Click(object sender,EventArgs e)
     {
         VehicleTypesReset();
     }
 
-    protected void vehicleTypeSave_Click(object sender, EventArgs e)
+    protected void vehicleTypeSave_Click(object sender,EventArgs e)
     {
         switch (btnvehicleTypeSave.Text)
         {
@@ -66,7 +65,7 @@ public partial class VehicleTypes : Page
                 {
                     var vehicleType = txtVehicleType.Text;
                     var vehicleTypeDescription = txtVehicleDescription.Text;
-                    ds = _fleetMaster.InsertVehicleTypes(vehicleType, vehicleTypeDescription);
+                    ds = _fleetMaster.InsertVehicleTypes(vehicleType,vehicleTypeDescription);
                     switch (ds.Tables.Count)
                     {
                         case 0:
@@ -94,7 +93,7 @@ public partial class VehicleTypes : Page
                     int vehicleId = Convert.ToInt16(hidVehicleType.Value);
                     var vehicleType = txtVehicleType.Text;
                     var vehicleDescription = txtVehicleDescription.Text;
-                    ds = _fleetMaster.UpdateVehicleTypes(vehicleId, vehicleType, vehicleDescription);
+                    ds = _fleetMaster.UpdateVehicleTypes(vehicleId,vehicleType,vehicleDescription);
                     switch (ds.Tables.Count)
                     {
                         case 0:
@@ -129,13 +128,13 @@ public partial class VehicleTypes : Page
         }
     }
 
-    protected void grvVehicleTypes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvVehicleTypes_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvVehicleTypes.PageIndex = e.NewPageIndex;
         FillGrid_VehicleTypes();
     }
 
-    protected void grvVehicleTypes_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvVehicleTypes_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btnvehicleTypeSave.Text = "Update";
         var index = e.NewEditIndex;
@@ -149,6 +148,6 @@ public partial class VehicleTypes : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 }

@@ -7,7 +7,6 @@
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <script type="text/javascript">
-
             function pageLoad() {
                 $('#<%= txtReceiptDate.ClientID %>').datepicker({
                     dateFormat: 'mm/dd/yy',
@@ -27,15 +26,12 @@
                     return false;
                 if (!RequiredValidation(fldCourierName, "Courier Name cannot be left blank"))
                     return false;
-
                 if (!RequiredValidation(fldDocketNo, "Docket Number cannot be left blank"))
                     return false;
                 return true;
             }
 
-
             function validation() {
-
                 var fldDistrict = document.getElementById('<%= ddlDistricts.ClientID %>');
                 var fldDocketNo = document.getElementById('<%= txtDocketNo.ClientID %>');
                 var fldVehicleno = document.getElementById('<%= ddlVehicleNo.ClientID %>').control._textBoxControl
@@ -44,7 +40,6 @@
                 var fldReceiptDate = document.getElementById('<%= txtReceiptDate.ClientID %>');
                 var fldCourierName = document.getElementById('<%= txtCourierName.ClientID %>');
                 var now = new Date();
-
                 if (fldDistrict.selectedIndex === 0) {
                     alert("Please Select State");
                     return false;
@@ -57,10 +52,8 @@
                     return false;
                 if (!RequiredValidation(fldCourierName, "Courier Name cannot be left blank"))
                     return false;
-
                 if (!RequiredValidation(fldDocketNo, "Docket Number cannot be left blank"))
                     return false;
-
                 if (fldBillNo.selectedIndex === 0) {
                     alert("Please select BillNo");
                     return false;
@@ -70,11 +63,8 @@
                     fldReceiptDate.focus();
                     return false;
                 }
-
                 return true;
             }
-
-
         </script>
         <legend style="color: brown">
             Off Road Physical Bills<br/>
@@ -199,57 +189,57 @@
                 <Columns>
                     <asp:TemplateField HeaderText="District">
                         <ItemTemplate>
-                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "District") %>'></asp:Label>
+                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Break Down">
                         <ItemTemplate>
-                            <asp:Label ID="lblBrkdwn" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ID") %>'></asp:Label>
+                            <asp:Label ID="lblBrkdwn" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ID") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Vehicle No">
                         <ItemTemplate>
-                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Vechicleno") %>'></asp:Label>
+                            <asp:Label ID="lblVehicle_No" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Vechicleno") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Bill No">
                         <ItemTemplate>
-                            <asp:Label ID="lblBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "BillNo") %>'></asp:Label>
+                            <asp:Label ID="lblBillNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"BillNo") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Bill Amount">
                         <ItemTemplate>
-                            <asp:Label ID="lblBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Amount") %>'></asp:Label>
+                            <asp:Label ID="lblBillAmount" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Amount") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Down Time">
                         <ItemTemplate>
-                            <asp:Label ID="lblDownTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "downtime") %>'></asp:Label>
+                            <asp:Label ID="lblDownTime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"downtime") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Up Time">
                         <ItemTemplate>
-                            <asp:Label ID="lblUptime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Uptime") %>'></asp:Label>
+                            <asp:Label ID="lblUptime" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Uptime") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Receipt Date">
                         <ItemTemplate>
-                            <asp:Label ID="lblReceiptDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ReceiptDate") %>'></asp:Label>
+                            <asp:Label ID="lblReceiptDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ReceiptDate") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Courier Name">
                         <ItemTemplate>
-                            <asp:Label ID="lblCourier_Name" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Courier_Name") %>'></asp:Label>
+                            <asp:Label ID="lblCourier_Name" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Courier_Name") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Rejection Reason">
                         <ItemTemplate>
-                            <asp:Label ID="lblReject" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "ReasonforReject") %>'></asp:Label>
+                            <asp:Label ID="lblReject" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"ReasonforReject") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Docket No">
                         <ItemTemplate>
-                            <asp:Label ID="lblDocketNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "DocketNo") %>'></asp:Label>
+                            <asp:Label ID="lblDocketNo" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DocketNo") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Edit">

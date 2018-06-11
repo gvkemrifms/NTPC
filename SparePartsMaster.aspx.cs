@@ -4,24 +4,23 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
 using GvkFMSAPP.PL;
-
 public partial class SparePartsMaster : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _obj = new VASGeneral();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             gvSpareParts.Columns[0].Visible = false;
-            btSave.Attributes.Add("onclick", "return validation()");
+            btSave.Attributes.Add("onclick","return validation()");
             FillGridSpareParts();
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             BindManufacturerName();
             if (p.Modify)
             {
@@ -37,7 +36,7 @@ public partial class SparePartsMaster : Page
         {
             var ds = _obj.GetManufacturerName();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "FleetManufacturer_Name", "FleetManufacturer_Id", ddlManufacturerID, null, null, null, "1");
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"FleetManufacturer_Name","FleetManufacturer_Id",ddlManufacturerID,null,null,null,"1");
         }
         catch (Exception ex)
         {
@@ -53,7 +52,7 @@ public partial class SparePartsMaster : Page
         gvSpareParts.DataBind();
     }
 
-    protected void gvSpareParts_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void gvSpareParts_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btSave.Text = "Update";
         var index = e.NewEditIndex;
@@ -68,10 +67,10 @@ public partial class SparePartsMaster : Page
         txtSparePartGroupID.Text = ds.Tables[0].Rows[0]["SparePart_Group_Id"].ToString();
         txtGroupName.Text = ds.Tables[0].Rows[0]["Group_Name"].ToString();
         var cGrade = Convert.ToString(ds.Tables[0].Rows[0]["Cost"].ToString()).Split('.');
-        txtCost.Text = cGrade[0] + '.' + cGrade[1].Substring(0, 2);
+        txtCost.Text = cGrade[0] + '.' + cGrade[1].Substring(0,2);
     }
 
-    protected void gvSpareParts_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void gvSpareParts_RowDeleting(object sender,GridViewDeleteEventArgs e)
     {
         ClearFields();
         var index = e.RowIndex;
@@ -83,7 +82,7 @@ public partial class SparePartsMaster : Page
         FillGridSpareParts();
     }
 
-    protected void gvSpareParts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvSpareParts_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvSpareParts.PageIndex = e.NewPageIndex;
         var ds = _fleetMaster.FillGridSpareParts();
@@ -92,7 +91,7 @@ public partial class SparePartsMaster : Page
         gvSpareParts.DataBind();
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         switch (btSave.Text)
         {
@@ -103,7 +102,7 @@ public partial class SparePartsMaster : Page
                 if (ds.Tables[0].Select("ManufacturerSpare_Id='" + txtManufacturerSpareID.Text + "'").Length > 0)
                     Show("Manufacturer Spare Id already exists");
                 else
-                    InsertSparePart(Convert.ToString(txtSparePartName.Text), Convert.ToInt32(txtManufacturerSpareID.Text), Convert.ToInt32(ddlManufacturerID.SelectedValue), Convert.ToInt32(txtSparePartGroupID.Text), Convert.ToString(txtGroupName.Text), Convert.ToDecimal(txtCost.Text));
+                    InsertSparePart(Convert.ToString(txtSparePartName.Text),Convert.ToInt32(txtManufacturerSpareID.Text),Convert.ToInt32(ddlManufacturerID.SelectedValue),Convert.ToInt32(txtSparePartGroupID.Text),Convert.ToString(txtGroupName.Text),Convert.ToDecimal(txtCost.Text));
                 break;
             }
             default:
@@ -113,7 +112,7 @@ public partial class SparePartsMaster : Page
                 if (ds.Tables[0].Select("SparePart_Name='" + txtSparePartName.Text + "' And SparePart_Id<>'" + txtSparePartID.Text + "'").Length > 0)
                     Show("Spare Part Name already exists");
                 else
-                    UpdateSparePart(Convert.ToInt32(txtSparePartID.Text), Convert.ToString(txtSparePartName.Text), Convert.ToInt32(txtManufacturerSpareID.Text), Convert.ToInt32(ddlManufacturerID.SelectedValue), Convert.ToInt32(txtSparePartGroupID.Text), Convert.ToString(txtGroupName.Text), Convert.ToDecimal(txtCost.Text));
+                    UpdateSparePart(Convert.ToInt32(txtSparePartID.Text),Convert.ToString(txtSparePartName.Text),Convert.ToInt32(txtManufacturerSpareID.Text),Convert.ToInt32(ddlManufacturerID.SelectedValue),Convert.ToInt32(txtSparePartGroupID.Text),Convert.ToString(txtGroupName.Text),Convert.ToDecimal(txtCost.Text));
                 break;
             }
         }
@@ -121,9 +120,9 @@ public partial class SparePartsMaster : Page
         FillGridSpareParts();
     }
 
-    private void UpdateSparePart(int sparePartId, string spareName, int manufacturerSpareId, int manufacturerId, int sparePartGroupId, string groupName, decimal cost)
+    private void UpdateSparePart(int sparePartId,string spareName,int manufacturerSpareId,int manufacturerId,int sparePartGroupId,string groupName,decimal cost)
     {
-        var res = _fleetMaster.UpdateSpareParts(sparePartId, spareName, manufacturerSpareId, manufacturerId, sparePartGroupId, groupName, cost);
+        var res = _fleetMaster.UpdateSpareParts(sparePartId,spareName,manufacturerSpareId,manufacturerId,sparePartGroupId,groupName,cost);
         switch (res)
         {
             case 1:
@@ -136,9 +135,9 @@ public partial class SparePartsMaster : Page
         }
     }
 
-    private void InsertSparePart(string spareName, int manufacturerSpareId, int manufacturerId, int sparePartGroupId, string groupName, decimal cost)
+    private void InsertSparePart(string spareName,int manufacturerSpareId,int manufacturerId,int sparePartGroupId,string groupName,decimal cost)
     {
-        var res = _fleetMaster.InsertSpareParts(spareName, manufacturerSpareId, manufacturerId, sparePartGroupId, groupName, cost);
+        var res = _fleetMaster.InsertSpareParts(spareName,manufacturerSpareId,manufacturerId,sparePartGroupId,groupName,cost);
         switch (res)
         {
             case 1:
@@ -151,7 +150,7 @@ public partial class SparePartsMaster : Page
         }
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         ClearFields();
     }
@@ -170,6 +169,6 @@ public partial class SparePartsMaster : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 }

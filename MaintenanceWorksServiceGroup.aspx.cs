@@ -3,7 +3,6 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
-
 public partial class MaintenanceWorksServiceGroup : Page
 {
     private readonly FleetMaster _fleetMaster = new FleetMaster();
@@ -11,7 +10,7 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     #region Page Load
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -22,11 +21,11 @@ public partial class MaintenanceWorksServiceGroup : Page
             FillGrid_MaintenanceWorksServiceGroup();
             pnlmaintenanceworksServiceGrp.Visible = false;
             grvMaintenanceWorksServiceGroupDetails.Visible = false;
-            txtServiceGroupName.Attributes.Add("onkeypress", "javascript:return OnlyAlphabets()");
-            btnSaveMaintenanceWorksServiceGroup.Attributes.Add("onclick", "javascript:return validationMaintenanceWorksServiceGroup(this,event)");
+            txtServiceGroupName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets()");
+            btnSaveMaintenanceWorksServiceGroup.Attributes.Add("onclick","javascript:return validationMaintenanceWorksServiceGroup(this,event)");
             var dsPerms = (DataSet) Session["PermissionsDS"];
             dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            var p = new PagePermissions(dsPerms,dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             if (p.View)
             {
                 grvMaintenanceWorksServiceGroupDetails.Visible = true;
@@ -69,7 +68,7 @@ public partial class MaintenanceWorksServiceGroup : Page
         if (ds == null) throw new ArgumentNullException(nameof(ds));
         try
         {
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "FleetManufacturer_Name", "FleetManufacturer_Id", ddlManufacturerName);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"FleetManufacturer_Name","FleetManufacturer_Id",ddlManufacturerName);
         }
         catch (Exception ex)
         {
@@ -93,7 +92,7 @@ public partial class MaintenanceWorksServiceGroup : Page
             else
             {
                 var strScript1 = "<script language=JavaScript>alert('" + "No record found" + "')</script>";
-                ClientScript.RegisterStartupScript(GetType(), "Success", strScript1);
+                ClientScript.RegisterStartupScript(GetType(),"Success",strScript1);
             }
         }
     }
@@ -102,7 +101,7 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     #region Save and Update button
 
-    protected void btnSaveMaintenanceWorksServiceGroup_Click(object sender, EventArgs e)
+    protected void btnSaveMaintenanceWorksServiceGroup_Click(object sender,EventArgs e)
     {
         try
         {
@@ -118,7 +117,7 @@ public partial class MaintenanceWorksServiceGroup : Page
                         var manufacturerId = Convert.ToInt32(ddlManufacturerName.SelectedValue);
                         var createdDate = DateTime.Today;
                         var createdBy = Convert.ToInt32(Session["User_Id"]);
-                        ds = _fleetMaster.InsertMaintenanceWorksServiceGroupDetails(serviceGroupName, manufacturerId, createdDate, createdBy);
+                        ds = _fleetMaster.InsertMaintenanceWorksServiceGroupDetails(serviceGroupName,manufacturerId,createdDate,createdBy);
                         switch (ds.Tables.Count)
                         {
                             case 0:
@@ -146,7 +145,7 @@ public partial class MaintenanceWorksServiceGroup : Page
                         int serviceGroupId = Convert.ToInt16(hidSerGrpId.Value);
                         var serviceGroupName = txtServiceGroupName.Text;
                         var manufacturerId = Convert.ToInt32(ddlManufacturerName.SelectedValue);
-                        ds = _fleetMaster.UpdateMaintenanceWorksServiceGroupDetails(serviceGroupId, serviceGroupName, manufacturerId);
+                        ds = _fleetMaster.UpdateMaintenanceWorksServiceGroupDetails(serviceGroupId,serviceGroupName,manufacturerId);
                         switch (ds.Tables.Count)
                         {
                             case 0:
@@ -179,7 +178,7 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     #region Reset Button
 
-    protected void btnResetMaintenanceWorksServiceGroup_Click(object sender, EventArgs e)
+    protected void btnResetMaintenanceWorksServiceGroup_Click(object sender,EventArgs e)
     {
         MaintenanceWorksServiceGroupReset();
     }
@@ -188,7 +187,7 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     #region Page Index Changing for Service Group Details
 
-    protected void grvMaintenanceWorksServiceGroupDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvMaintenanceWorksServiceGroupDetails_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvMaintenanceWorksServiceGroupDetails.PageIndex = e.NewPageIndex;
         FillGrid_MaintenanceWorksServiceGroup();
@@ -198,7 +197,7 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     #region Row Editing of Maintenance Works Service Group Details
 
-    protected void grvMaintenanceWorksServiceGroupDetails_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvMaintenanceWorksServiceGroupDetails_RowEditing(object sender,GridViewEditEventArgs e)
     {
         btnSaveMaintenanceWorksServiceGroup.Text = "Update";
         var index = e.NewEditIndex;
@@ -217,6 +216,6 @@ public partial class MaintenanceWorksServiceGroup : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 }

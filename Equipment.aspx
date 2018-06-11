@@ -60,8 +60,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Medical Equipment">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblMedicalEquipmentName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblMedicalEquipmentId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblMedicalEquipmentName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblMedicalEquipmentId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -86,8 +86,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Medical Disposables">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblDisposableName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblDisposableId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblDisposableName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblDisposableId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -118,8 +118,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Extrication Tools">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblExtricationName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblExtricationId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblExtricationName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblExtricationId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -144,8 +144,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Communication & Technology Equipment">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblCommunicationName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblCommunicationId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblCommunicationName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblCommunicationId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -176,8 +176,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Medicines">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblMedicineName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblMedicineId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblMedicineName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblMedicineId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -202,8 +202,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Non Medical Supplies">
                                     <ItemTemplate>
-                                        <asp:Label ID="LblNoMedicalName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "EquipmentName") %>'></asp:Label>
-                                        <asp:Label ID="LblNoMedicalId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "Id") %>'></asp:Label>
+                                        <asp:Label ID="LblNoMedicalName" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"EquipmentName") %>'></asp:Label>
+                                        <asp:Label ID="LblNoMedicalId" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

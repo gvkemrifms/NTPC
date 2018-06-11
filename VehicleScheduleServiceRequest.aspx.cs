@@ -3,21 +3,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
 using GvkFMSAPP.BLL.VehicleMaintenance;
-
 public partial class VehicleScheduleServiceRequest : Page
 {
     private readonly FMSGeneral _fmsg = new FMSGeneral();
     private readonly Helper _helper = new Helper();
     private readonly VehicleMaintenance _vehMain = new VehicleMaintenance();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (!Page.IsPostBack)
             switch (Request.QueryString["VehID"])
             {
                 case null:
                     if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
-                    txtSchedulePlanDate.Attributes.Add("onkeypress", "return false");
+                    txtSchedulePlanDate.Attributes.Add("onkeypress","return false");
                     FillVehicles();
                     FillDropDownList();
                     break;
@@ -42,7 +41,7 @@ public partial class VehicleScheduleServiceRequest : Page
             if (o != null)
             {
                 var ds = _vehMain.GetVehicleNumber(Convert.ToInt32(o.ToString()));
-                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds, "VehicleNumber", "VehicleID", ddlVehicleNo);
+                if (ds != null) _helper.FillDropDownHelperMethodWithDataSet(ds,"VehicleNumber","VehicleID",ddlVehicleNo);
             }
         }
         catch (Exception ex)
@@ -57,7 +56,7 @@ public partial class VehicleScheduleServiceRequest : Page
         {
             var ds = _fmsg.GetMaintenanceType();
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            _helper.FillDropDownHelperMethodWithDataSet(ds, "Maint_Desc", "Maint_Type_ID", ddlScheduleCat);
+            _helper.FillDropDownHelperMethodWithDataSet(ds,"Maint_Desc","Maint_Type_ID",ddlScheduleCat);
         }
         catch (Exception ex)
         {
@@ -65,7 +64,7 @@ public partial class VehicleScheduleServiceRequest : Page
         }
     }
 
-    protected void btnSubmit_Click(object sender, EventArgs e)
+    protected void btnSubmit_Click(object sender,EventArgs e)
     {
         int vehicleId;
         int scheduledCat;
@@ -85,7 +84,7 @@ public partial class VehicleScheduleServiceRequest : Page
                     status = "Pending";
                     var createdBy = "user";
                     var creationdate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                    res = _vehMain.InsServiceRequestDetails(vehicleId, scheduledCat, scheduledCatName, scheduledPlanDate, status, creationdate, createdBy);
+                    res = _vehMain.InsServiceRequestDetails(vehicleId,scheduledCat,scheduledCatName,scheduledPlanDate,status,creationdate,createdBy);
                     switch (res)
                     {
                         case 1:
@@ -114,7 +113,7 @@ public partial class VehicleScheduleServiceRequest : Page
                 var updatedBy = "user";
                 var updateddate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 var slno = Convert.ToInt32(Session["SlNo"].ToString());
-                res = _vehMain.UpdateServiceRequestDetails(vehicleId, slno, scheduledCat, scheduledCatName, scheduledPlanDate1, status, updateddate, updatedBy);
+                res = _vehMain.UpdateServiceRequestDetails(vehicleId,slno,scheduledCat,scheduledCatName,scheduledPlanDate1,status,updateddate,updatedBy);
                 switch (res)
                 {
                     case 1:
@@ -162,14 +161,14 @@ public partial class VehicleScheduleServiceRequest : Page
         }
     }
 
-    protected void ddlVehicleNo_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlVehicleNo_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlVehicleNo.SelectedValue == null) return;
         // SetInitialRow();
         FillScheduleServiceRequestGrid(Convert.ToInt32(ddlVehicleNo.SelectedValue));
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender,EventArgs e)
     {
         ddlVehicleNo.SelectedIndex = 0;
         ddlScheduleCat.SelectedIndex = 0;
@@ -178,7 +177,7 @@ public partial class VehicleScheduleServiceRequest : Page
         btnSubmit.Text = "Submit";
     }
 
-    protected void grvScheduleServiceRequest_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void grvScheduleServiceRequest_RowEditing(object sender,GridViewEditEventArgs e)
     {
         var index = e.NewEditIndex;
         var lblId = (Label) grvScheduleServiceRequest.Rows[index].Cells[1].FindControl("lblVehicleID");
@@ -186,7 +185,7 @@ public partial class VehicleScheduleServiceRequest : Page
         var id = Convert.ToInt32(lblId.Text);
         var slNo = Convert.ToInt32(lblSlNo.Text);
         Session["SlNo"] = slNo.ToString();
-        var ds = _vehMain.IGetServiceRequestDetailsToUpdate(id, slNo);
+        var ds = _vehMain.IGetServiceRequestDetailsToUpdate(id,slNo);
         if (ds != null)
         {
             ddlVehicleNo.SelectedValue = ds.Tables[0].Rows[0][1].ToString();
@@ -197,7 +196,7 @@ public partial class VehicleScheduleServiceRequest : Page
         btnSubmit.Text = "Update";
     }
 
-    protected void lnkDelete_Click(object sender, CommandEventArgs e)
+    protected void lnkDelete_Click(object sender,CommandEventArgs e)
     {
         var args = e.CommandArgument.ToString().Split(',');
         var vehicleId = Convert.ToInt32(args[1]);
@@ -209,16 +208,16 @@ public partial class VehicleScheduleServiceRequest : Page
         btnSubmit.Text = "Submit";
     }
 
-    protected void grvScheduleServiceRequest_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void grvScheduleServiceRequest_RowDeleting(object sender,GridViewDeleteEventArgs e)
     {
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void grvScheduleServiceRequest_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void grvScheduleServiceRequest_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         grvScheduleServiceRequest.PageIndex = e.NewPageIndex;
         FillScheduleServiceRequestGrid(Convert.ToInt32(ddlVehicleNo.SelectedValue));

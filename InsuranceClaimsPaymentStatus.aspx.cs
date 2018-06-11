@@ -2,18 +2,17 @@
 using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
-
 public partial class InsuranceClaimsPaymentStatus : Page
 {
     private readonly GvkFMSAPP.BLL.StatutoryCompliance.InsuranceClaims.InsuranceClaimsPaymentStatus _vehinsclaimpend = new GvkFMSAPP.BLL.StatutoryCompliance.InsuranceClaims.InsuranceClaimsPaymentStatus();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
         {
             var vehsts = Session["VehicleStatus"].ToString();
-            btSave.Attributes.Add("onclick", "return validation()");
+            btSave.Attributes.Add("onclick","return validation()");
             _vehinsclaimpend.VehicleID = Convert.ToInt32(Session["VehicleID"].ToString());
             _vehinsclaimpend.VehicleNumber = Session["VehicleNumber"].ToString();
             switch (vehsts)
@@ -128,7 +127,7 @@ public partial class InsuranceClaimsPaymentStatus : Page
         txtRemarks.Text = ds.Tables[0].Rows[0]["Remarks"].ToString();
     }
 
-    protected void btSave_Click(object sender, EventArgs e)
+    protected void btSave_Click(object sender,EventArgs e)
     {
         _vehinsclaimpend.VehicleNumber = txtVehicleNumber.Text;
         _vehinsclaimpend.AccidentDateTime = DateTime.Parse(txtAccidentDateTime.Text);
@@ -156,7 +155,7 @@ public partial class InsuranceClaimsPaymentStatus : Page
         Show(ret == 1 ? "Record Inserted Successfully" : "Error");
     }
 
-    protected void ddlPaymentStatus_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlPaymentStatus_SelectedIndexChanged(object sender,EventArgs e)
     {
         switch (ddlPaymentStatus.SelectedItem.Value)
         {
@@ -209,7 +208,7 @@ public partial class InsuranceClaimsPaymentStatus : Page
         }
     }
 
-    protected void txtAmountReceivedFromInsurance_TextChanged(object sender, EventArgs e)
+    protected void txtAmountReceivedFromInsurance_TextChanged(object sender,EventArgs e)
     {
         switch (ddlPaymentStatus.SelectedItem.Value)
         {
@@ -219,13 +218,13 @@ public partial class InsuranceClaimsPaymentStatus : Page
         }
     }
 
-    protected void btReset_Click(object sender, EventArgs e)
+    protected void btReset_Click(object sender,EventArgs e)
     {
         // ClearControls();
     }
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 }

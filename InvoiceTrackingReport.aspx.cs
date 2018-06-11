@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Web.UI;
-
 public partial class InvoiceTrackingReport : Page
 {
     private readonly Helper _helper = new Helper();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack)
@@ -19,7 +18,7 @@ public partial class InvoiceTrackingReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber", "VehicleNumber", "VehicleID", ddlvehicle);
+            _helper.FillDropDownHelperMethodWithSp("P_GetVehicleNumber","VehicleNumber","VehicleID",ddlvehicle);
         }
         catch (Exception ex)
         {
@@ -27,7 +26,7 @@ public partial class InvoiceTrackingReport : Page
         }
     }
 
-    protected void ddlvehicle_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlvehicle_SelectedIndexChanged(object sender,EventArgs e)
     {
         if (ddlvehicle.SelectedIndex <= 0)
         {
@@ -38,7 +37,7 @@ public partial class InvoiceTrackingReport : Page
             ddlbillno.Enabled = true;
             try
             {
-                _helper.FillDropDownHelperMethodWithSp("P_GetBillNo", "Billno", "", ddlvehicle, ddlbillno, null, null, "@vehNo", null, null, null, null, null, null, null, null, 1);
+                _helper.FillDropDownHelperMethodWithSp("P_GetBillNo","Billno","",ddlvehicle,ddlbillno,null,null,"@vehNo",null,null,null,null,null,null,null,null,1);
             }
             catch (Exception ex)
             {
@@ -47,11 +46,11 @@ public partial class InvoiceTrackingReport : Page
         }
     }
 
-    protected void btntoExcel_Click(object sender, EventArgs e)
+    protected void btntoExcel_Click(object sender,EventArgs e)
     {
         try
         {
-            _helper.LoadExcelSpreadSheet(this, Panel2, "VehicleSummaryDistrictwise.xls");
+            _helper.LoadExcelSpreadSheet(this,Panel2,"VehicleSummaryDistrictwise.xls");
         }
         catch (Exception ex)
         {
@@ -59,7 +58,7 @@ public partial class InvoiceTrackingReport : Page
         }
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+    protected void btnsubmit_Click(object sender,EventArgs e)
     {
         Loaddata();
     }
@@ -68,7 +67,7 @@ public partial class InvoiceTrackingReport : Page
     {
         try
         {
-            _helper.FillDropDownHelperMethodWithSp("P_Reports_VenwiseInvoiceTracking", "", "", ddlvehicle, ddlbillno, null, null, "@VehicleNo", "@BillNo", null, null, null, Grddetails);
+            _helper.FillDropDownHelperMethodWithSp("P_Reports_VenwiseInvoiceTracking","","",ddlvehicle,ddlbillno,null,null,"@VehicleNo","@BillNo",null,null,null,Grddetails);
         }
         catch (Exception ex)
         {

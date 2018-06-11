@@ -2,13 +2,12 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
-
 public partial class VasOffroadCoo : Page
 {
     private readonly Helper _helper = new Helper();
     private readonly VASGeneral _obj = new VASGeneral();
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender,EventArgs e)
     {
         if (Session["User_Name"] == null) Response.Redirect("Login.aspx");
         if (!IsPostBack) BindGridView();
@@ -28,7 +27,7 @@ public partial class VasOffroadCoo : Page
         }
     }
 
-    protected void gvVasOffroad_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvVasOffroad_PageIndexChanging(object sender,GridViewPageEventArgs e)
     {
         gvVasOffroad.PageIndex = e.NewPageIndex;
         BindGridView();
@@ -36,10 +35,10 @@ public partial class VasOffroadCoo : Page
 
     public void Show(string message)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('" + message + "');", true);
+        ScriptManager.RegisterStartupScript(this,GetType(),"msg","alert('" + message + "');",true);
     }
 
-    protected void gvVasOffroad_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gvVasOffroad_RowCommand(object sender,GridViewCommandEventArgs e)
     {
         if (e.CommandName == null) return;
         try
@@ -94,7 +93,7 @@ public partial class VasOffroadCoo : Page
         }
     }
 
-    protected void btnReason_Click(object sender, EventArgs e)
+    protected void btnReason_Click(object sender,EventArgs e)
     {
         _obj.OFFid = (int) ViewState["OFFid"];
         _obj.VehicleNumber = (string) ViewState["VehicleNumber"];
@@ -118,7 +117,7 @@ public partial class VasOffroadCoo : Page
         }
     }
 
-    protected void btnDoWork_Click(object sender, EventArgs e)
+    protected void btnDoWork_Click(object sender,EventArgs e)
     {
         txtrejectReason.Text = "";
     }

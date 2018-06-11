@@ -34,7 +34,6 @@
             var currentDate = new Date();
             if (ordFromDate > currentDate)
                 return alert("From date should not be greater than today's date");
-
             if (ordToDate < ordFromDate)
                 alert("Please select valid date range");
             return true;

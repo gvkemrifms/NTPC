@@ -7,7 +7,6 @@
         .WrapStyle TD { word-break: break-all; }
     </style>
     <script type="text/javascript">
-
         function Validation() {
             var vehiclenoddl = document.getElementById('<%= ddlVehicles.ClientID %>');
             if (vehiclenoddl && vehiclenoddl.selectedIndex === 0) {
@@ -49,7 +48,6 @@
             }
             return true;
         }
-
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -96,7 +94,6 @@
                             <asp:TextBox runat="server" ID="txtLocation" Enabled="False"/>
                         </td>
                     </tr>
-
 
                 </table>
                 <asp:Panel runat="server" style="margin-top: 50px" HorizontalAlign="Center">

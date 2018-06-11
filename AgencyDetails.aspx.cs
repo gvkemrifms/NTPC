@@ -29,10 +29,8 @@ public partial class AgencyDetails : Page
             txtTin.Attributes.Add("onkeypress", "javascript:return  numeric_only(this,event)");
             //Permissions
             var dsPerms = (DataSet) Session["PermissionsDS"];
-            dsPerms.Tables[0].DefaultView.RowFilter =
-                "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
-            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(),
-                dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
+            dsPerms.Tables[0].DefaultView.RowFilter = "Url='" + Page.Request.Url.Segments[Page.Request.Url.Segments.Length - 1] + "'";
+            var p = new PagePermissions(dsPerms, dsPerms.Tables[0].DefaultView[0]["Url"].ToString(), dsPerms.Tables[0].DefaultView[0]["Title"].ToString());
             if (p.Modify != true) return;
             grvAgencyDetails.Visible = true;
             grvAgencyDetails.Columns[5].Visible = true;
@@ -113,10 +111,7 @@ public partial class AgencyDetails : Page
                     var ds = _fleetMaster.FillGridAgencyDetails();
                     if (ds == null) throw new ArgumentNullException(nameof(ds));
                     if (ds.Tables[0].Select("AgencyName='" + txtAgencyName.Text + "'").Length <= 0)
-                        InsertAgencyDetails(Convert.ToString(txtAgencyName.Text),
-                            Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(0), Convert.ToInt32(0),
-                            Convert.ToInt64(txtContactNo.Text), Convert.ToString(txtPanNo.Text),
-                            Convert.ToInt64(txtTin.Text), Convert.ToString(txtAddress.Text));
+                        InsertAgencyDetails(Convert.ToString(txtAgencyName.Text), Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(0), Convert.ToInt32(0), Convert.ToInt64(txtContactNo.Text), Convert.ToString(txtPanNo.Text), Convert.ToInt64(txtTin.Text), Convert.ToString(txtAddress.Text));
                     else
                         Show("Agency Name already exists");
                     break;
@@ -125,13 +120,8 @@ public partial class AgencyDetails : Page
                 {
                     var ds = _fleetMaster.FillGridAgencyDetails();
                     if (ds == null) throw new ArgumentNullException(nameof(ds));
-                    if (ds.Tables[0]
-                            .Select("AgencyName='" + txtAgencyName.Text + "' And AgencyID<>'" + txtEdit.Text + "'")
-                            .Length <= 0)
-                        UpdateAgencyDetails(Convert.ToInt32(txtEdit.Text), Convert.ToString(txtAgencyName.Text),
-                            Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(0), Convert.ToInt32(0),
-                            Convert.ToInt64(txtContactNo.Text), Convert.ToString(txtPanNo.Text),
-                            Convert.ToInt64(txtTin.Text), Convert.ToString(txtAddress.Text));
+                    if (ds.Tables[0].Select("AgencyName='" + txtAgencyName.Text + "' And AgencyID<>'" + txtEdit.Text + "'").Length <= 0)
+                        UpdateAgencyDetails(Convert.ToInt32(txtEdit.Text), Convert.ToString(txtAgencyName.Text), Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(0), Convert.ToInt32(0), Convert.ToInt64(txtContactNo.Text), Convert.ToString(txtPanNo.Text), Convert.ToInt64(txtTin.Text), Convert.ToString(txtAddress.Text));
                     else
                         Show("Agency Name already exists");
                     break;
@@ -146,12 +136,9 @@ public partial class AgencyDetails : Page
         FillGridAgencyDetails();
     }
 
-
-    private void UpdateAgencyDetails(int agencyId, string agencyName, int districtId, int mandalId, int cityId,
-        long contactNum, string panNum, long tin, string address)
+    private void UpdateAgencyDetails(int agencyId, string agencyName, int districtId, int mandalId, int cityId, long contactNum, string panNum, long tin, string address)
     {
-        var res = _fleetMaster.UpdateAgencyDetails(agencyId, agencyName, districtId, mandalId, cityId, contactNum,
-            panNum, tin, address);
+        var res = _fleetMaster.UpdateAgencyDetails(agencyId, agencyName, districtId, mandalId, cityId, contactNum, panNum, tin, address);
         switch (res)
         {
             case 1:
@@ -164,11 +151,9 @@ public partial class AgencyDetails : Page
         }
     }
 
-    private void InsertAgencyDetails(string agencyName, int districtId, int mandalId, int cityId, long contactNum,
-        string panNum, long tin, string address)
+    private void InsertAgencyDetails(string agencyName, int districtId, int mandalId, int cityId, long contactNum, string panNum, long tin, string address)
     {
-        var res = _fleetMaster.InsertAgencyDetails(agencyName, districtId, mandalId, cityId, contactNum, panNum, tin,
-            address);
+        var res = _fleetMaster.InsertAgencyDetails(agencyName, districtId, mandalId, cityId, contactNum, panNum, tin, address);
         switch (res)
         {
             case 1:
