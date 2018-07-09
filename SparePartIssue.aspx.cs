@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -91,9 +92,9 @@ public partial class SparePartIssue : Page
             var issuedQuantity = Convert.ToInt32(((TextBox) item.FindControl("txtIssuedQty")).Text);
             var ds = _fmsg.GetRegistrationDate(Convert.ToInt32(ddlVehicles.SelectedValue));
             if (ds == null) throw new ArgumentNullException(nameof(ds));
-            if (DateTime.Parse(ds.Tables[0].Rows[0]["RegDate"].ToString()) < DateTime.Parse(txtDCDate.Text))
+            if (DateTime.ParseExact(ds.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture) < DateTime.ParseExact(txtDCDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture))
             {
-                InsertIssueDetails(Convert.ToInt32(txtInvReqID.Text),Convert.ToInt32(txtDCNumber.Text),Convert.ToDateTime(txtDCDate.Text),Convert.ToString(txtCourierName.Text),Convert.ToString(txtRemarks.Text),issuedQuantity,Convert.ToInt32(txtVehicleID.Text));
+                InsertIssueDetails(Convert.ToInt32(txtInvReqID.Text),Convert.ToInt32(txtDCNumber.Text),DateTime.ParseExact(txtDCDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture),Convert.ToString(txtCourierName.Text),Convert.ToString(txtRemarks.Text),issuedQuantity,Convert.ToInt32(txtVehicleID.Text));
                 FillGridApprovedRequisitions(Convert.ToInt32(ddlVehicles.SelectedValue));
                 Reset();
             }

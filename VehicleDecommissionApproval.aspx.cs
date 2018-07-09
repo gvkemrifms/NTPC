@@ -100,7 +100,7 @@ public partial class VehicleDecommissionApproval : Page
             _vehicleProposalBol.TotalKmCovered = ViewState["TotalDistanceTravelled"].ToString();
             _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
-            _vehicleProposalBol.DateOfPurchase = DateTime.Parse(ViewState["DateOfPurchase"].ToString());
+            _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(ViewState["DateOfPurchase"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyDate = DateTime.ParseExact(txtSurveyDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyBy = txtSurveyBy.Text;
             _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(txtDateofPurchase.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
@@ -131,7 +131,7 @@ public partial class VehicleDecommissionApproval : Page
             _vehicleProposalBol.TotalKmCovered = ViewState["TotalDistanceTravelled"].ToString();
             _vehicleProposalBol.DateOfRegistration = DateTime.ParseExact(txtDateOfRegistration.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleProposalBol.DateofLaunching = DateTime.ParseExact(txtDateOfLaunching.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
-            _vehicleProposalBol.DateOfPurchase = DateTime.Parse(ViewState["DateOfPurchase"].ToString());
+            _vehicleProposalBol.DateOfPurchase = DateTime.ParseExact(ViewState["DateOfPurchase"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyDate = DateTime.ParseExact(txtSurveyDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
             _vehicleProposalBol.SurveyBy = txtSurveyBy.Text;
             _vehicleProposalBol.ProposedRemarks = txtProposedRemarks.Text;

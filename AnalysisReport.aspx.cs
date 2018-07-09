@@ -73,6 +73,7 @@ public partial class AnalysisReport : Page
         try
         {
             _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisReport", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
+            Grddetails.Columns[0].HeaderText = "State";
         }
         catch (Exception ex)
         {

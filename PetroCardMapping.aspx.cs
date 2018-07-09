@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -196,21 +197,21 @@ public partial class PetroCardMapping : Page
     {
         if (Save.Text == "Save")
         {
-            InsMapping(Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text),12,DateTime.Now,15,DateTime.Now);
+            InsMapping(Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),DateTime.ParseExact(txtIssDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture),12,DateTime.Now,15,DateTime.Now);
             FillGridformapping();
         }
         else
         {
             if (Save.Text == "Update" && ddlVehicleNumber.Enabled == false && Deactivate.Checked == false && TransfertoNewVehicle.Checked == false)
             {
-                UpdMapping(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text));
+                UpdMapping(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),DateTime.ParseExact(txtIssDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
                 FillGridformapping();
             }
             else if (Save.Text == "Update" && ddlVehicleNumber.Enabled == false && ddlNewVehicleNumber.Enabled && TransfertoNewVehicle.Checked && Deactivate.Checked == false)
             {
                 if (ddlNewVehicleNumber.SelectedIndex != 0)
                 {
-                    UpdMapping1(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlNewVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),Convert.ToDateTime(txtIssDate.Text));
+                    UpdMapping1(Convert.ToInt32(txtEdit.Text),Convert.ToInt32(ddlNewVehicleNumber.SelectedValue),Convert.ToInt32(ddlPetroCardNumber.SelectedValue),DateTime.ParseExact(txtIssDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture));
                 }
                 else
                 {

@@ -120,7 +120,9 @@ public partial class VehicleDecommissionProposal : Page
                 txtVehicleNumber.Text = ds.Tables[0].Rows[0]["VehicleNumber"].ToString();
                 txtTotalKmCovered.Text = ds.Tables[0].Rows[0]["TotalKmCovered"].ToString();
                 txtDateOfRegistration.Text = ds.Tables[0].Rows[0]["RegDate"].ToString();
+                txtDateOfRegistration.Text = DateTime.ParseExact(txtDateOfRegistration.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy",CultureInfo.CurrentCulture);
                 txtDateOfPurchase.Text = ds.Tables[0].Rows[0]["PurchaseDate"].ToString();
+                txtDateOfPurchase.Text = DateTime.ParseExact(txtDateOfPurchase.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 break;
         }
     }

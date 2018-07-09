@@ -71,9 +71,9 @@ public partial class VehicleInsurance : Page
     {
         _vehicleInsurance.VehicleID = Convert.ToInt32(ddlVehicleNo.SelectedItem.Value);
         _vehicleInsurance.District = Convert.ToInt32(ViewState["District"].ToString());
-        _vehicleInsurance.CurrentPolicyEndDate = Convert.ToDateTime(txtCurrentPolicyEndDate.Text);
+        _vehicleInsurance.CurrentPolicyEndDate = DateTime.ParseExact(txtCurrentPolicyEndDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _vehicleInsurance.InsuranceFeesPaid = float.Parse(txtFeesPaid.Text);
-        _vehicleInsurance.InsuranceFeesPaidDate = Convert.ToDateTime(txtFeesPaidDate.Text);
+        _vehicleInsurance.InsuranceFeesPaidDate = DateTime.ParseExact(txtFeesPaidDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehicleInsurance.InsurancePolicyNo = txtInsurancePolicyNo.Text;
         _vehicleInsurance.InsuranceReceiptNo = txtReceiptNumber.Text;
         if (chkBoxChangeInsuranceDetails.Checked)
@@ -87,8 +87,8 @@ public partial class VehicleInsurance : Page
             _vehicleInsurance.InsuranceAgency = Convert.ToInt32(ViewState["InsuranceAgency"].ToString());
         }
 
-        _vehicleInsurance.PolicyEndDate = Convert.ToDateTime(txtPolicyEndDate.Text);
-        _vehicleInsurance.PolicyStartDate = Convert.ToDateTime(txtPolicyStartDate.Text);
+        _vehicleInsurance.PolicyEndDate = DateTime.ParseExact(txtPolicyEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _vehicleInsurance.PolicyStartDate = DateTime.ParseExact(txtPolicyStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehicleInsurance.PolicyValidityPeriod = ddlPolicyValidityPeriod.SelectedItem.Text;
         var ret = _vehicleInsurance.InsertVehicleInsurance();
         Show(ret == 1 ? "Record Inserted Successfully" : "Error");
@@ -108,7 +108,7 @@ public partial class VehicleInsurance : Page
         }
 
         if (ddlPolicyValidityPeriod.SelectedIndex == 0) return;
-        txtPolicyEndDate.Text = Convert.ToDateTime(txtPolicyStartDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
+        txtPolicyEndDate.Text =DateTime.ParseExact(txtPolicyStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
     }
 
     public void Show(string message)

@@ -126,9 +126,9 @@ public partial class OffroadPhysicalBills : Page
         _obj.VehNumforNonOff = ddlVehicleNo.SelectedItem.ToString();
         _obj.NonOffBillNo = ddlBillNo.SelectedItem.ToString();
         _obj.NonOffAmount = txtBillAmount.Text;
-        _obj.OffRoadDate = Convert.ToDateTime(DateTime.Parse(txtDownTime.Text).ToShortDateString());
-        _obj.UpTime = Convert.ToDateTime(txtUpTime.Text);
-        _obj.ReceiptDate = Convert.ToDateTime(txtReceiptDate.Text);
+        _obj.OffRoadDate = DateTime.ParseExact(DateTime.Parse(txtDownTime.Text).ToShortDateString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _obj.UpTime = DateTime.ParseExact(txtUpTime.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
+        _obj.ReceiptDate = DateTime.ParseExact(txtReceiptDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _obj.CourierName = txtCourierName.Text;
         _obj.DocketNo = txtDocketNo.Text;
         _obj.MandalId = int.Parse(lblBreakdwn.Text);
@@ -203,9 +203,9 @@ public partial class OffroadPhysicalBills : Page
                 ddlBillNo.SelectedIndex = 0;
                 ddlBillNo.Enabled = false;
                 txtBillAmount.Text = ((Label) row.FindControl("lblBillAmount")).Text;
-                var dt2 = Convert.ToDateTime(((Label) row.FindControl("lblDownTime")).Text);
+                var dt2 = DateTime.ParseExact(((Label) row.FindControl("lblDownTime")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 txtDownTime.Text = dt2.ToString(CultureInfo.CurrentCulture);
-                var dt3 = Convert.ToDateTime(((Label) row.FindControl("lblUptime")).Text);
+                var dt3 = DateTime.ParseExact(((Label) row.FindControl("lblUptime")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 txtUpTime.Text = dt3.ToString(CultureInfo.CurrentCulture);
                 lblBreakdwn.Text = ((Label) row.FindControl("lblBrkdwn")).Text;
                 var dt = Convert.ToDateTime(((Label) row.FindControl("lblReceiptDate")).Text);
@@ -222,11 +222,11 @@ public partial class OffroadPhysicalBills : Page
         _obj.VehNumforNonOff = ddlVehicleNo.SelectedItem.ToString();
         _obj.NonOffBillNo = ddlBillNo.SelectedItem.ToString();
         _obj.NonOffAmount = txtBillAmount.Text;
-        _obj.ReceiptDate = Convert.ToDateTime(txtReceiptDate.Text);
+        _obj.ReceiptDate = DateTime.ParseExact(txtReceiptDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _obj.CourierName = txtCourierName.Text;
         _obj.DocketNo = txtDocketNo.Text;
         _obj.CityId = Convert.ToInt32(lblBreakdwn.Text);
-        var datedown = DateTime.Parse(txtDownTime.Text);
+        var datedown = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         if (_obj.ReceiptDate < datedown)
         {
             Show("Receipt date cannot be less than down time");

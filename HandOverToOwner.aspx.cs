@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
@@ -60,7 +61,7 @@ public partial class HandOverToOwner : Page
         {
             _handOvertoOwner.VehicleId = int.Parse(ViewState["vehicleID"].ToString());
             _handOvertoOwner.HandOverTo = txtHandOverTo.Text;
-            _handOvertoOwner.HandOverDate = DateTime.Parse(txtHandOverDate.Text);
+            _handOvertoOwner.HandOverDate = DateTime.ParseExact(txtHandOverDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _handOvertoOwner.HandOverBy = txtHandOverBy.Text;
             _handOvertoOwner.OdoReading = txtOdoreading.Text;
             _handOvertoOwner.UpdatedBy = "HO-FE/FM";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
@@ -48,7 +49,7 @@ public partial class VasOffroadFleetManager : Page
                         _obj.OFFid = int.Parse(((Label) row.FindControl("lblOffroadID")).Text);
                         _obj.VehicleNumber = ((Label) row.FindControl("lblVehicle_No")).Text;
                         _obj.District = ((Label) row.FindControl("lblDistrict")).Text;
-                        _obj.OffRoadDate = DateTime.Parse(((Label) row.FindControl("lblDoOffRoad")).Text);
+                        _obj.OffRoadDate = DateTime.ParseExact(((Label) row.FindControl("lblDoOffRoad")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                         _obj.ReasonForOffRoad = ((Label) row.FindControl("lblReason")).Text;
                         _obj.totEstimated = ((Label) row.FindControl("lblEstimatedCost")).Text;
                         _obj.CheqAmt = ((TextBox) row.FindControl("txtApprovedCost")).Text;
@@ -74,7 +75,7 @@ public partial class VasOffroadFleetManager : Page
                     ViewState["OFFid"] = int.Parse(((Label) row.FindControl("lblOffroadID")).Text);
                     ViewState["VehicleNumber"] = ((Label) row.FindControl("lblVehicle_No")).Text;
                     ViewState["District"] = ((Label) row.FindControl("lblDistrict")).Text;
-                    ViewState["OffRoadDate"] = DateTime.Parse(((Label) row.FindControl("lblDoOffRoad")).Text);
+                    ViewState["OffRoadDate"] = DateTime.ParseExact(((Label) row.FindControl("lblDoOffRoad")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                     ViewState["ReasonForOffRoad"] = ((Label) row.FindControl("lblReason")).Text;
                     ViewState["totEstimated"] = ((Label) row.FindControl("lblEstimatedCost")).Text;
                     break;

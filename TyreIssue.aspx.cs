@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -146,14 +147,14 @@ public partial class TyreIssue : Page
                 var tyreNumber = Session["tyreNumber"].ToString();
                 var tyrePosition = Convert.ToString(grvTyreIssueDetailsPopup.Rows[0].Cells[0].Text);
                 var ds = _fmsg.GetRegistrationDate(vehId);
-                if (DateTime.Parse(ds.Tables[0].Rows[0]["RegDate"].ToString()) >= DateTime.Parse(txtDcDate.Text))
+                if (DateTime.ParseExact(ds.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture) >= DateTime.ParseExact(txtDcDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture))
                 {
                     Show("DC date should be greater than Registration Date " + ds.Tables[0].Rows[0]["RegDate"]);
                     gv_ModalPopupExtenderTyreIssue.Show();
                 }
                 else
                 {
-                    InsertTyreIssueDetails(fleetReqId,Convert.ToInt32(txtDcNumberPopup.Text),Convert.ToDateTime(txtDcDate.Text),txtCourierName.Text,txtRemarks.Text,Convert.ToInt32(txtTyreCost.Text),make,model,vehId,tyreNumber,tyrePosition);
+                    InsertTyreIssueDetails(fleetReqId,Convert.ToInt32(txtDcNumberPopup.Text),DateTime.ParseExact(txtDcDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),txtCourierName.Text,txtRemarks.Text,Convert.ToInt32(txtTyreCost.Text),make,model,vehId,tyreNumber,tyrePosition);
                     FillGrid_TyreForIssue(1,Convert.ToInt32(ddlInventoryTyreIssueVehicles.SelectedValue));
                     ClearControls();
                     gv_ModalPopupExtenderTyreIssue.Hide();

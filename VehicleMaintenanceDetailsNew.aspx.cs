@@ -157,9 +157,9 @@ public partial class VehicleMaintenanceDetailsNew : Page
         string labourbillno = "",labourbilldate = "",labourbillamt = "",labAggre = "",labCate = "",labsubCat = "",labItemDesc = "",labqty = "",labVendorname = "";
         _fmsVas.District = ddlDistrict.SelectedItem.Text; //txtDistrict.Text;
         _fmsVas.MaintenanaceType = txtMaintenanceType.Text;
-        _fmsVas.MaintenanceDate = DateTime.Parse(txtMaintenanceDate.Text);
+        _fmsVas.MaintenanceDate = DateTime.ParseExact(txtMaintenanceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _fmsVas.DownTimeOdoReading = txtDownOdo.Text;
-        _fmsVas.Downtime = DateTime.Parse(txtDownTime.Text);
+        _fmsVas.Downtime = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _fmsVas.UptimeOdoReading = txtUpOdo.Text;
         _fmsVas.Uptime = DateTime.Parse(txtUptime.Text + " " + ddlUpHour.SelectedValue + ":" + ddlUpMin.SelectedValue + ":00");
         if (pnlSPBillDetails.Visible)
@@ -230,7 +230,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
         var maintenanceDate = DateTime.ParseExact(txtMaintenanceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         //CultureInfo culture = new CultureInfo("en-US");
         //string format = "MM/dd/yyyy hh:mm:ss tt";
-        var downDate = DateTime.Parse(txtDownTime.Text);
+        var downDate = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         if (downDate.Date <= maintenanceDate)
             switch (btnSave.Text)
             {
@@ -1430,7 +1430,7 @@ public partial class VehicleMaintenanceDetailsNew : Page
                     return false;
                 }
 
-                if (txtbxlubridate != null && Convert.ToDateTime(txtbxlubridate.Text) > DateTime.Now)
+                if (txtbxlubridate != null && DateTime.ParseExact(txtbxlubridate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture) > DateTime.Now)
                 {
                     Show("Lubricant Bill Date should be less than Current Date");
                     return false;

@@ -211,7 +211,7 @@
                 <td class="columnseparator">
                 </td>
                 <td align="left">
-                    <asp:TextBox ID="txtBatRecInvoiceNo" runat="server" MaxLength="5"></asp:TextBox>
+                    <asp:TextBox ID="txtBatRecInvoiceNo" onkeypress="return numeric_only(event)" runat="server" MaxLength="5"></asp:TextBox>
                 </td>
                 <td class="columnseparator">
                 </td>
@@ -223,7 +223,7 @@
                 <td align="left">
                     <asp:TextBox ID="txtBatRecInvoiceDate" runat="server" MaxLength="20" onkeypress="return false" oncut="return false;" onpaste="return false;" oncopy="return false;"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtBatRecInvoiceDate"
-                                                  Format="dd/MM/yyyy" PopupButtonID="ImageButton1">
+                                                  Format="MM/dd/yyyy" PopupButtonID="ImageButton1">
                     </ajaxToolkit:CalendarExtender><asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>
                 </td>
             </tr>
@@ -240,7 +240,7 @@
                 <td align="left" colspan="3">
                     <asp:TextBox ID="txtBatRecDate" runat="server" MaxLength="20" onkeypress="return false" oncut="return false;" onpaste="return false;" oncopy="return false;"></asp:TextBox>
                     <ajaxToolkit:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="txtBatRecDate"
-                                                  Format="dd/MM/yyyy" PopupButtonID="ImageButton2">
+                                                  Format="MM/dd/yyyy" PopupButtonID="ImageButton2">
                     </ajaxToolkit:CalendarExtender><asp:ImageButton ID="ImageButton2" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>
                 </td>
             </tr>

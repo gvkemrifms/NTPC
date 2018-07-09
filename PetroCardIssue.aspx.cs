@@ -108,7 +108,7 @@ public partial class PetroCardIssue : Page
         switch (btSave.Text)
         {
             case "Save":
-                InsPetroCardIssueDetails(Convert.ToInt32(Session["UserdistrictId"].ToString()),txtPetroCardNumber.Text,Convert.ToInt32(ddlAgency.SelectedValue),Convert.ToInt32(ddlCardType.SelectedValue),DateTime.ParseExact(txtValidityEndDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),Convert.ToInt32(dd_listFe.SelectedValue),DateTime.ParseExact(txtIssuedDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),0,25,Convert.ToDateTime("05/24/2011"),34,Convert.ToDateTime("05/25/2011"),Convert.ToInt32(ddlVehicles.SelectedValue),Convert.ToInt32(ddlFeuserDistrict.SelectedValue));
+                InsPetroCardIssueDetails(Convert.ToInt32(Session["UserdistrictId"].ToString()),txtPetroCardNumber.Text,Convert.ToInt32(ddlAgency.SelectedValue),Convert.ToInt32(ddlCardType.SelectedValue),DateTime.ParseExact(txtValidityEndDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),Convert.ToInt32(dd_listFe.SelectedValue),DateTime.ParseExact(txtIssuedDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),0,25,DateTime.ParseExact("05/24/2011","MM/dd/yyyy",CultureInfo.InvariantCulture),34, DateTime.ParseExact("05/25/2011", "MM/dd/yyyy", CultureInfo.InvariantCulture), Convert.ToInt32(ddlVehicles.SelectedValue),Convert.ToInt32(ddlFeuserDistrict.SelectedValue));
                 FillGridPetroCard();
                 break;
             default:

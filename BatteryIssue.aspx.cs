@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -17,7 +18,7 @@ public partial class BatteryIssue : Page
         {
             FillInventoryVehicles();
             btnOk.Attributes.Add("onclick","return validation()");
-            txtDcNumberPopup.Attributes.Add("onkeypress","javascript:return isNumberKey(this,event)");
+            txtDcNumberPopup.Attributes.Add("onkeypress","javascript:return numeric_only(event)");
             txtCourierName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
             txtRemarks.Attributes.Add("onkeypress","javascript:return remark(this,event)");
             var dsPerms = (DataSet) Session["PermissionsDS"];
@@ -96,9 +97,9 @@ public partial class BatteryIssue : Page
                 var issuedQuantity = Convert.ToInt32(((TextBox) item.FindControl("txtBatteryIssuedQty")).Text);
                 var ds = _fmsg.GetRegistrationDate(Convert.ToInt32(ddlInventoryBatteryIssueVehicles.SelectedValue));
                 if (ds == null) throw new ArgumentNullException(nameof(ds));
-                if (DateTime.Parse(ds.Tables[0].Rows[0]["RegDate"].ToString()) < DateTime.Parse(txtDcDate.Text))
+                if (DateTime.ParseExact(ds.Tables[0].Rows[0]["RegDate"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture) < DateTime.ParseExact(txtDcDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture))
                 {
-                    InsertBatteryIssueDetails(Convert.ToInt32(txtInvReqIdPopUp.Text),Convert.ToInt32(txtDcNumberPopup.Text),Convert.ToDateTime(txtDcDate.Text),Convert.ToString(txtCourierName.Text),Convert.ToString(txtRemarks.Text),issuedQuantity,Convert.ToInt32(txtBatIssVehicleID.Text),newBatteryNumber,batteryPosition);
+                    InsertBatteryIssueDetails(Convert.ToInt32(txtInvReqIdPopUp.Text),Convert.ToInt32(txtDcNumberPopup.Text), DateTime.ParseExact(txtDcDate.Text,"MM/dd/yyyy", CultureInfo.InvariantCulture),Convert.ToString(txtCourierName.Text),Convert.ToString(txtRemarks.Text),issuedQuantity,Convert.ToInt32(txtBatIssVehicleID.Text),newBatteryNumber,batteryPosition);
                 }
                 else
                 {

@@ -208,14 +208,14 @@
                                       AutoGenerateColumns="False" OnRowCommand="gvPetroCardIssue_RowCommand" EmptyDataText="No Records Found" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                             <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
                             <Columns>
-                                <asp:BoundField HeaderText="District" DataField="District"/>
+                                <asp:BoundField HeaderText="State" DataField="District"/>
                                 <asp:BoundField HeaderText="Card" DataField="CardNum"/>
                                 <asp:BoundField HeaderText="Vehicle" DataField="Vehicle"/>
                                 <asp:BoundField HeaderText="CardType" DataField="CardType"/>
                                 <asp:BoundField HeaderText="Validity" DataField="Validity"/>
                                 <asp:BoundField HeaderText="IssuedFE" DataField="IssueToFE"/>
                                 <asp:BoundField HeaderText="Date" DataField="IssuedDate"/>
-                                <asp:BoundField HeaderText="IssuedDistrict" DataField="IssuedToDistrict"/>
+                                <asp:BoundField HeaderText="IssuedState" DataField="IssuedToDistrict"/>
                                 <asp:BoundField HeaderText="IssuedVehicle" DataField="IssuedToVehicle"/>
                                 <asp:TemplateField HeaderText="Edit">
                                     <ItemTemplate>

@@ -78,7 +78,7 @@ public partial class RoadTax : Page
     {
         _roadtax.RTValidityStartDate = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _roadtax.RTValidityPeriod = ddlRoadTaxValidityPeriod.SelectedItem.Value;
-        _roadtax.RTValidityEndDate = DateTime.Parse(txtRoadTaxValidityEndDate.Text);
+        _roadtax.RTValidityEndDate = DateTime.ParseExact(txtRoadTaxValidityEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         if (!chkbxTaxExempted.Checked)
         {
             _roadtax.VehicleRTACircle = txtVehicleRTACircle.Text;
@@ -131,7 +131,7 @@ public partial class RoadTax : Page
         }
 
         if (ddlRoadTaxValidityPeriod.SelectedIndex == 0) return;
-        txtRoadTaxValidityEndDate.Text = Convert.ToDateTime(txtRoadTaxValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlRoadTaxValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1,0,0)).ToString(CultureInfo.InvariantCulture);
+        txtRoadTaxValidityEndDate.Text = DateTime.ParseExact(txtRoadTaxValidityStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(ddlRoadTaxValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1,0,0)).ToString(CultureInfo.InvariantCulture);
     }
 
     protected void chkbxTaxExempted_CheckedChanged(object sender,EventArgs e)
@@ -246,7 +246,7 @@ public partial class RoadTax : Page
     protected void ddlVehicleNumber_SelectedIndexChanged(object sender,EventArgs e)
     {
         var dates = _fmsGeneral.GetRegistrationDate(int.Parse(ddlVehicleNumber.SelectedItem.Value));
-        var dt = Convert.ToDateTime(dates.Tables[0].Rows[0]["RegDate"].ToString());
+        var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["RegDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
         vehicleRegistrationDate.Value = dt.ToString(CultureInfo.InvariantCulture);
     }
 }

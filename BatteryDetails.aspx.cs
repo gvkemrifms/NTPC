@@ -148,7 +148,7 @@ public partial class BatteryDetails : Page
         txtBatteryMake.Text = Convert.ToString(ds.Tables[0].Rows[0]["Make"].ToString());
         txtBatteryModel.Text = Convert.ToString(ds.Tables[0].Rows[0]["Model"].ToString());
         txtBatteryCapacity.Text = Convert.ToString(ds.Tables[0].Rows[0]["CapaCity"].ToString());
-        var shortDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["BatteryExpiryDate"]);
+        var shortDate = DateTime.Parse(ds.Tables[0].Rows[0]["BatteryExpiryDate"].ToString());
         txtBatteryExpiryDate.Text = shortDate.ToShortDateString();
     }
 

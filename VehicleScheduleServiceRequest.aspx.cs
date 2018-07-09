@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -77,13 +78,13 @@ public partial class VehicleScheduleServiceRequest : Page
                 vehicleId = Convert.ToInt32(ddlVehicleNo.SelectedValue);
                 scheduledCat = Convert.ToInt32(ddlScheduleCat.SelectedValue);
                 scheduledCatName = ddlScheduleCat.SelectedItem.Text;
-                var scheduledPlanDate = Convert.ToDateTime(txtSchedulePlanDate.Text);
+                var scheduledPlanDate = DateTime.ParseExact(txtSchedulePlanDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 var ds = _fmsg.GetRegistrationDate(vehicleId);
-                if (scheduledPlanDate > Convert.ToDateTime(ds.Tables[0].Rows[0][0].ToString()) && scheduledPlanDate >= DateTime.Now)
+                if (scheduledPlanDate > DateTime.ParseExact(ds.Tables[0].Rows[0][0].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture) && scheduledPlanDate >= DateTime.Now)
                 {
                     status = "Pending";
                     var createdBy = "user";
-                    var creationdate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    var creationdate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
                     res = _vehMain.InsServiceRequestDetails(vehicleId,scheduledCat,scheduledCatName,scheduledPlanDate,status,creationdate,createdBy);
                     switch (res)
                     {
@@ -111,7 +112,7 @@ public partial class VehicleScheduleServiceRequest : Page
                 scheduledCatName = ddlScheduleCat.SelectedItem.Text;
                 var scheduledPlanDate1 = Convert.ToDateTime(txtSchedulePlanDate.Text);
                 var updatedBy = "user";
-                var updateddate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                var updateddate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 var slno = Convert.ToInt32(Session["SlNo"].ToString());
                 res = _vehMain.UpdateServiceRequestDetails(vehicleId,slno,scheduledCat,scheduledCatName,scheduledPlanDate1,status,updateddate,updatedBy);
                 switch (res)

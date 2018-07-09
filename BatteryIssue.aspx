@@ -2,6 +2,13 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
+        function pageLoad() {
+            $('#<%= txtDcDate.ClientID %>').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        }
         function validation() {
             var dcNumberPopup = document.getElementById('<%= txtDcNumberPopup.ClientID %>');
             var dcDate = document.getElementById('<%= txtDcDate.ClientID %>');
@@ -119,9 +126,9 @@
                                                 <asp:TextBox ID="txtDcDate" runat="server" onkeypress="return false" MaxLength="20"
                                                              oncut="return false;" onpaste="return false;" oncopy="return false;">
                                                 </asp:TextBox>
-                                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDcDate"
-                                                                              Format="dd/MM/yyyy" PopupButtonID="ImageButton1">
-                                                </ajaxToolkit:CalendarExtender><asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>
+                                                <%--<ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDcDate"
+                                                                              Format="MM/dd/yyyy" PopupButtonID="ImageButton1">
+                                                </ajaxToolkit:CalendarExtender><asp:ImageButton ID="ImageButton1" runat="server" alt="" src="images/Calendar.gif" Style="vertical-align: top"/>--%>
                                             </td>
                                             <td align="left">
                                                 Courier Name
@@ -146,7 +153,7 @@
 
                                             <asp:TemplateField HeaderText="IssuedQty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtBatteryIssuedQty" runat="server" onkeypress="return isNumberKey(event);"
+                                                    <asp:TextBox ID="txtBatteryIssuedQty" runat="server" onkeypress="return numeric_only(event);"
                                                                  MaxLength="20">
                                                     </asp:TextBox>
                                                 </ItemTemplate>

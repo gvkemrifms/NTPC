@@ -187,7 +187,7 @@
                           onrowcommand="gvVehiclePhysicalBillDetails_RowCommand" onpageindexchanging="gvVehiclePhysicalBillDetails_PageIndexChanging" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                 <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
                 <Columns>
-                    <asp:TemplateField HeaderText="District">
+                    <asp:TemplateField HeaderText="State">
                         <ItemTemplate>
                             <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District") %>'></asp:Label>
                         </ItemTemplate>

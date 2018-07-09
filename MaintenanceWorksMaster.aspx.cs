@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.PL;
@@ -19,6 +20,7 @@ public partial class MaintenanceWorksMaster : Page
             FillGrid_MaintenanceWorksMaster();
             btnSaveMaintenanceWorksMaster.Attributes.Add("onclick","javascript:return validationMaintenanceWorksMaster()");
             txtServiceName.Attributes.Add("onkeypress","javascript:return OnlyAlphabets(this,event)");
+            txtCostGrade.Attributes.Add("onkeypress", "javaScript:return numeric_only(event)");
             ddlMaintenanceManufacturerName.Enabled = false;
             ddlServiceGroupName.SelectedIndex = 0;
             //Permissions

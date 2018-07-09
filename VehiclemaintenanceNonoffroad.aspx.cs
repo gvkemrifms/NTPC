@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
@@ -99,9 +100,9 @@ public partial class VehiclemaintenanceNonoffroad : Page
         _vehicleobj.VehNumforNonOff = ddlVehicles.SelectedItem.Text;
         _vehicleobj.NonOffVenName = ddlVendorName.Text;
         _vehicleobj.NonOffMainType = ddlMaintenanceType.SelectedItem.Text;
-        _vehicleobj.NonOffMainDate = Convert.ToDateTime(txtMaintenanceDate.Text);
+        _vehicleobj.NonOffMainDate = DateTime.ParseExact(txtMaintenanceDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehicleobj.NonOffBillNo = txtBillNo.Text;
-        _vehicleobj.NonOffBillDate = Convert.ToDateTime(txtBillDate.Text);
+        _vehicleobj.NonOffBillDate = DateTime.ParseExact(txtBillDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehicleobj.NonOffPartCode = txtPartCode.Text;
         _vehicleobj.NonOffItemDesc = txtItemDesc.Text;
         _vehicleobj.NonOffQuant = txtQuant.Text;

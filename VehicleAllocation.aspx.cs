@@ -130,10 +130,10 @@ public partial class VehicleAllocation : Page
             _vehallobj.District = ddlDistrict.SelectedItem.Text;
             _vehallobj.OffRoadVehicleNo = ddlVehicleNumber.SelectedItem.Text;
             _vehallobj.ReasonForOffRoad = txtReasonforDown.Text;
-            _vehallobj.OffRoadDate = Convert.ToDateTime(txtDownTime.Text);
+            _vehallobj.OffRoadDate = DateTime.ParseExact(txtDownTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             _vehallobj.Odometer = txtOdo.Text;
             _vehallobj.RequestedBy = txtReqBy.Text;
-            _vehallobj.UpTime = Convert.ToDateTime(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue);
+            _vehallobj.UpTime = DateTime.Parse(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue);
             _vehallobj.BaseLocation = "0";
             _vehallobj.NewSegFlag = "";
             _vehallobj.NewSegMandalIds = "";
@@ -148,7 +148,7 @@ public partial class VehicleAllocation : Page
             _vehallobj.SegFlag = "Active";
             _vehallobj.Segment = "";
             _vehallobj.ContactNumber = txtContactNumber.Text;
-            MakeVehicleonRoad(ddlVehicleNumber.SelectedItem.Text,Convert.ToDateTime(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue).ToString("yyyy-MM-dd HH:mm:ss"),Session["User_Name"].ToString(),txtOdo.Text,txtReqBy.Text,"NA","NA");
+            MakeVehicleonRoad(ddlVehicleNumber.SelectedItem.Text,DateTime.Parse(txtUptimeDate.Text + " " + ddlUPHour.SelectedValue + ":" + ddlUPMin.SelectedValue).ToString("yyyy-MM-dd HH:mm:ss"),Session["User_Name"].ToString(),txtOdo.Text,txtReqBy.Text,"NA","NA");
             var insres = _vehallobj.InsOffRoadVehAllocation();
             switch (insres)
             {

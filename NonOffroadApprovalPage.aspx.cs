@@ -39,13 +39,13 @@ public partial class NonOffroadApprovalPage : Page
                     _objBll.District = ((Label) row.FindControl("lblDistrict")).Text;
                     _objBll.SrcVehNo = ((Label) row.FindControl("lblVehicle_No")).Text;
                     _objBll.NonOffBillNo = ((Label) row.FindControl("lblBillNo")).Text;
-                    _objBll.NonOffBillDate = Convert.ToDateTime(((Label) row.FindControl("lblBillDate")).Text);
-                    if (((Label) row.FindControl("lblDownTime")).Text != "NA") _objBll.OffRoadDate = Convert.ToDateTime(((Label) row.FindControl("lblDownTime")).Text);
-                    if (((Label) row.FindControl("lblUpTime")).Text != "NA") _objBll.UpTime = Convert.ToDateTime(((Label) row.FindControl("lblUpTime")).Text);
+                    _objBll.NonOffBillDate = DateTime.ParseExact(((Label) row.FindControl("lblBillDate")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    if (((Label) row.FindControl("lblDownTime")).Text != "NA") _objBll.OffRoadDate = DateTime.ParseExact(((Label) row.FindControl("lblDownTime")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    if (((Label) row.FindControl("lblUpTime")).Text != "NA") _objBll.UpTime = DateTime.ParseExact(((Label) row.FindControl("lblUpTime")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                     _objBll.NonOffAmount = ((Label) row.FindControl("lblAmount")).Text;
                     _objBll.BaseLocId = Convert.ToInt64(((Label) row.FindControl("lblBrkDwn")).Text);
                     _objBll.VenName = ((Label) row.FindControl("lblVendorName")).Text;
-                    _objBll.UpdatedDate = Convert.ToDateTime(txtApprovalDate.Text);
+                    _objBll.UpdatedDate = DateTime.ParseExact(txtApprovalDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                     var x = _objBll.NonOffApproved();
                     switch (x)
                     {
@@ -118,12 +118,12 @@ public partial class NonOffroadApprovalPage : Page
         _objBll.District = (string) ViewState["District"];
         _objBll.SrcVehNo = (string) ViewState["VehNo"];
         _objBll.NonOffBillNo = (string) ViewState["BillNo"];
-        _objBll.NonOffBillDate = Convert.ToDateTime(ViewState["BillDate"]);
-        _objBll.OffRoadDate = Convert.ToDateTime(ViewState["downtime"]);
-        _objBll.UpTime = Convert.ToDateTime(ViewState["Uptime"]);
+        _objBll.NonOffBillDate = DateTime.ParseExact(ViewState["BillDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _objBll.OffRoadDate = DateTime.ParseExact(ViewState["downtime"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _objBll.UpTime = DateTime.ParseExact(ViewState["Uptime"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _objBll.NonOffAmount = (string) ViewState["Amount"];
         _objBll.CourierName = txtrejectReason.Text;
-        _objBll.UpdatedDate = Convert.ToDateTime(txtApprovalDate.Text);
+        _objBll.UpdatedDate = DateTime.ParseExact(txtApprovalDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _objBll.BaseLocationId = Convert.ToInt32(ViewState["brkdwn"]);
         var x = _objBll.NonOffandOffRejected();
         switch (x)

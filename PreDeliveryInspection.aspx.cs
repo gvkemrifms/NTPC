@@ -170,7 +170,7 @@ public partial class PreDeliveryInspection : Page
                 txtPDIBy.Text = drpdi[0][5].ToString();
                 txtPDIDate.Text = drpdi[0][6].ToString();
                 var datesUpdt = _fmsGeneral.GetFabInspDate(int.Parse(ViewState["VehId"].ToString()));
-                var dtUpdat = Convert.ToDateTime(datesUpdt.Tables[0].Rows[0]["FVDInspectedDate"].ToString());
+                var dtUpdat = DateTime.ParseExact(datesUpdt.Tables[0].Rows[0]["FVDInspectedDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 vehicleFabInspDate.Value = dtUpdat.ToString(CultureInfo.InvariantCulture);
                 pnlPreDeliveryInspection.Visible = true;
                 btSave.Text = "Update";
@@ -214,7 +214,7 @@ public partial class PreDeliveryInspection : Page
         try
         {
             var dates = _fmsGeneral.GetFabInspDate(int.Parse(ddlTRNo.SelectedItem.Value));
-            var dt = Convert.ToDateTime(dates.Tables[0].Rows[0]["FVDInspectedDate"].ToString());
+            var dt = DateTime.ParseExact(dates.Tables[0].Rows[0]["FVDInspectedDate"].ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
             vehicleFabInspDate.Value = dt.ToString(CultureInfo.InvariantCulture);
         }
         catch (Exception ex)

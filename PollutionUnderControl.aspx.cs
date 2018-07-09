@@ -74,7 +74,7 @@ public partial class PollutionUnderControl : Page
         if (ViewState["PollutionUnderControlID"] != null) _puc.PollutionUnderControlID = int.Parse(ViewState["PollutionUnderControlID"].ToString());
         _puc.PUCValidityStartDate = DateTime.ParseExact(txtPollutionValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _puc.PUCValidityPeriod = ddlPollutionValidityPeriod.SelectedItem.Value;
-        _puc.PUCValidityEndDate = DateTime.Parse(txtPollutionValidityEndDate.Text);
+        _puc.PUCValidityEndDate = DateTime.ParseExact(txtPollutionValidityEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _puc.PUCReceiptNo = txtPollutionReceiptNo.Text;
         _puc.PUCFee = float.Parse(txtPollutionFee.Text);
         switch (btSave.Text)
@@ -123,8 +123,8 @@ public partial class PollutionUnderControl : Page
         }
 
         if (ddlPollutionValidityPeriod.SelectedIndex == 0) return;
-        var test = Convert.ToDateTime(txtPollutionValidityStartDate.Text).AddMonths(Convert.ToInt16(ddlPollutionValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
-        txtPollutionValidityEndDate.Text = string.Format("{0:d}",test); //format test.ToString("0:d");
+        var test = DateTime.ParseExact(txtPollutionValidityStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(ddlPollutionValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
+        txtPollutionValidityEndDate.Text = $"{test}"; 
     }
 
     protected void gvPollutionUnderControl_RowCommand(object sender,GridViewCommandEventArgs e)

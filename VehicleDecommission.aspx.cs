@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -73,7 +74,7 @@ public partial class VehicleDecommission : Page
     protected void btnSubmit_Click(object sender,EventArgs e)
     {
         _fmsgenobj.DecommReason = txtDecommReason.Text;
-        _fmsgenobj.DecommDate = Convert.ToDateTime(txtDecommDate.Text);
+        _fmsgenobj.DecommDate = DateTime.ParseExact(txtDecommDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _fmsgenobj.DecommRemark = txtDecommRemark.Text;
         switch (btnSubmit.Text)
         {

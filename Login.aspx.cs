@@ -45,7 +45,7 @@ public partial class Login : Page
                 {
                     var dist = _fmsgen.GetUserDistrict(Convert.ToInt16(Session["User_Id"].ToString()));
                     if (dist == null) throw new ArgumentNullException(nameof(dist));
-                    Session["District_Name"] = dist.Tables[0].Rows[0]["district_name"].ToString();
+                    Session["District_Name"] = dist.Tables[1].Rows[0]["district_name"].ToString();
                 }
                 else
                 {

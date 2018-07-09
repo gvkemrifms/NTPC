@@ -12,18 +12,17 @@
     </td>
 </tr>
 <caption>
-<br/>
 <tr>
     <td style="width: 100px">
         <asp:Label ID="lblVehicleSelect" runat="server" Text="Select a Vehicle"></asp:Label>
     </td>
     <td class="columnseparator"></td>
     <td align="left" style="width: 400px">
-        <asp:DropDownList ID="ddlVehicleList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleList_SelectedIndexChanged">
+        <asp:DropDownList ID="ddlVehicleList" width="150px" CssClass="search_3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleList_SelectedIndexChanged">
         </asp:DropDownList>
         <asp:DropShadowExtender ID="DropShadowExtender1" runat="server" Enabled="True" TargetControlID="ddlVehicleList">
         </asp:DropShadowExtender>
-        <asp:DropDownExtender ID="UpdatePanel1_DropDownExtender" runat="server" DynamicServicePath="" Enabled="True" TargetControlID="ddlVehicleList">
+        <asp:DropDownExtender ID="UpdatePanel1_DropDownExtender" runat="server" Enabled="True" TargetControlID="ddlVehicleList">
         </asp:DropDownExtender>
     </td>
 </tr>

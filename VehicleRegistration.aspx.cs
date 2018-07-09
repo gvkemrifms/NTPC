@@ -165,7 +165,7 @@ public partial class VehicleRegistration : Page
         txtChassisNo.Text = "";
         GetChassisAndEngineNo();
         var dt = _fmsGeneral.GetPDIDate(int.Parse(ddlTRNo.SelectedItem.Value));
-        vehiclePDIDate.Value = dt.ToString(CultureInfo.InvariantCulture);
+        vehiclePDIDate.Value =dt.ToString(CultureInfo.CurrentCulture);
     }
 
     public void GetChassisAndEngineNo()

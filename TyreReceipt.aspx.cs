@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -99,7 +100,7 @@ public partial class TyreReceipt : Page
             var tyreNumber = ds.Tables[1].Rows[0][3].ToString();
             var make = ds.Tables[1].Rows[0][4].ToString();
             var model = ds.Tables[1].Rows[0][5].ToString();
-            InsertTyreReceiptDetails(invItemIssueId,Convert.ToString(txtTyreRecVehicleNo.Text),Convert.ToString(txtTyreRecDistrict.Text),Convert.ToInt32(txtTyreDCNumber.Text),Convert.ToDateTime(txtTyreDCDate.Text),Convert.ToString(txtTyreRecCourierName.Text),Convert.ToString(txtRemarks.Text),Convert.ToDateTime(txtTyreRecDate.Text),detId,make,model,tyreNumber);
+            InsertTyreReceiptDetails(invItemIssueId,Convert.ToString(txtTyreRecVehicleNo.Text),Convert.ToString(txtTyreRecDistrict.Text),Convert.ToInt32(txtTyreDCNumber.Text),DateTime.ParseExact(txtTyreDCDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),Convert.ToString(txtTyreRecCourierName.Text),Convert.ToString(txtRemarks.Text),DateTime.ParseExact(txtTyreRecDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture),detId,make,model,tyreNumber);
         }
 
         ClearControls();

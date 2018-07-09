@@ -325,7 +325,7 @@ public partial class FuelEntry : Page
                     var dtpreviousentryDate = GetpreviousOdo(int.Parse(ddlVehicleNumber.SelectedItem.Value));
                     if (dtpreviousentryDate.Rows.Count > 0 && dtpreviousentryDate.Rows[0]["maxentry"].ToString() != "")
                     {
-                        var dtprvrefill = Convert.ToDateTime(dtpreviousentryDate.Rows[0]["maxentry"].ToString());
+                        var dtprvrefill = DateTime.ParseExact(dtpreviousentryDate.Rows[0]["maxentry"].ToString(),"MM/dd/yyyy",CultureInfo.InvariantCulture);
                         if (dtprvrefill > DateTime.ParseExact(txtFuelEntryDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture))
                         {
                             Show("Fuel entry date must be greater than previous fuel entry date");

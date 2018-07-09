@@ -130,23 +130,23 @@ public partial class InsuranceClaimsPaymentStatus : Page
     protected void btSave_Click(object sender,EventArgs e)
     {
         _vehinsclaimpend.VehicleNumber = txtVehicleNumber.Text;
-        _vehinsclaimpend.AccidentDateTime = DateTime.Parse(txtAccidentDateTime.Text);
+        _vehinsclaimpend.AccidentDateTime = DateTime.ParseExact(txtAccidentDateTime.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehinsclaimpend.AccidentTitle = txtAccidentTitle.Text;
         _vehinsclaimpend.SpotSurveyor = txtSpotSurveyor.Text;
         _vehinsclaimpend.FinalSurveyor = txtFinalSurveyor.Text;
         _vehinsclaimpend.ReInspectionSurveyor = txtReinspectionSurveyor.Text;
         _vehinsclaimpend.InsurancePolicyNo = txtPolicyNumber.Text;
         _vehinsclaimpend.InsuranceAgency = txtAgency.Text;
-        _vehinsclaimpend.InsuranceStartDate = DateTime.Parse(txtInsuranceStartDate.Text);
-        _vehinsclaimpend.InsuranceEndDate = DateTime.Parse(txtInsuranceEndDate.Text);
+        _vehinsclaimpend.InsuranceStartDate = DateTime.ParseExact(txtInsuranceStartDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _vehinsclaimpend.InsuranceEndDate = DateTime.ParseExact(txtInsuranceEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehinsclaimpend.DateInsurance = txtDateInsurance.Text;
-        _vehinsclaimpend.ClaimFormSubmissionDate = DateTime.Parse(txtClaimFormSubmissionDate.Text);
+        _vehinsclaimpend.ClaimFormSubmissionDate = DateTime.ParseExact(txtClaimFormSubmissionDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehinsclaimpend.TotalCostOfRepairs = float.Parse(txtTotalCostOfRepairs.Text);
         _vehinsclaimpend.SurveyorAssessmentValue = float.Parse(txtSurveyorAssessmentValue.Text);
-        _vehinsclaimpend.BillSubmissionDate = DateTime.Parse(txtBillSubmissionDate.Text);
+        _vehinsclaimpend.BillSubmissionDate = DateTime.ParseExact(txtBillSubmissionDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         _vehinsclaimpend.PaymentStatus = ddlPaymentStatus.SelectedItem.Text;
         _vehinsclaimpend.Remarks = txtRemarks.Text;
-        _vehinsclaimpend.PaymentReceivedDate = DateTime.Parse(txtPaymentReceivedDate.Text);
+        _vehinsclaimpend.PaymentReceivedDate = DateTime.ParseExact(txtPaymentReceivedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _vehinsclaimpend.CheckNo = txtChequeNo.Text;
         _vehinsclaimpend.AmountReceivedFromInsurance = float.Parse(txtAmountReceivedFromInsurance.Text);
         _vehinsclaimpend.CostToCompany = float.Parse(txtCostToCompany.Text);

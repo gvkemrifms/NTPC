@@ -75,7 +75,9 @@ public partial class AnalysisHourwiseReport : Page
     {
         try
         {
+             // Grddetails.Columns[0].HeaderText = "State";
             _helper.FillDropDownHelperMethodWithSp("P_Report_AccidentAnalysisHourwise", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@To", null, Grddetails);
+            Grddetails.HeaderRow.Cells[0].Text = "State";
         }
         catch (Exception ex)
         {

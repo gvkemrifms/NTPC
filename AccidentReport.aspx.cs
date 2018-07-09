@@ -75,7 +75,9 @@ public partial class AccidentReport : Page
     {
         try
         {
+            
             _helper.FillDropDownHelperMethodWithSp("P_FMSReports_FuelReport", null, null, ddldistrict, ddlvehicle, txtfrmDate, txttodate, "@DistrictID", "@VehicleID", "@From", "@End", null, Grddetails);
+           // Grddetails.Columns[0].HeaderText = "State";
         }
         catch (Exception ex)
         {

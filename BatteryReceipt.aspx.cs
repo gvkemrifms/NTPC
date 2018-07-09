@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL;
@@ -112,7 +113,7 @@ public partial class BatteryReceipt : Page
             switch (receivedQuantity)
             {
                 case 1:
-                    InsertBatteryReceiptDetails(itemIssueId,Convert.ToString(txtBatRecVehicleNo.Text),1,Convert.ToInt32(txtBatRecPONumber.Text),Convert.ToDateTime(txtBatRecPODate.Text),Convert.ToString(txtBatRecCourierName.Text),Convert.ToString(txtRemarks.Text),Convert.ToInt32(txtBatRecInvoiceNo.Text),Convert.ToDateTime(txtBatRecInvoiceDate.Text),Convert.ToDateTime(txtBatRecDate.Text),batteryDetailsId,receivedQuantity);
+                    InsertBatteryReceiptDetails(itemIssueId,Convert.ToString(txtBatRecVehicleNo.Text),1,Convert.ToInt32(txtBatRecPONumber.Text),DateTime.ParseExact(txtBatRecPODate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),Convert.ToString(txtBatRecCourierName.Text),Convert.ToString(txtRemarks.Text),Convert.ToInt32(txtBatRecInvoiceNo.Text),DateTime.ParseExact(txtBatRecInvoiceDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture),DateTime.ParseExact(txtBatRecDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture),batteryDetailsId,receivedQuantity);
                     ClearControls();
                     FillGrid_BatteryDetailsForReceipt(3,Convert.ToInt32(ddlInventoryBatteryReceiptVehicles.SelectedValue));
                     Show("Battery Receipt Issued");

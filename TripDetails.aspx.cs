@@ -88,10 +88,10 @@ public partial class TripDetails : Page
         var trip = Convert.ToInt32(ddlTripType.SelectedValue);
         var destination = Convert.ToString(txtDestinationLocation.Text);
         var staTim = ddlHours.SelectedItem.Text + ":" + ddlMinutes.SelectedItem.Text;
-        var startTime = Convert.ToDateTime(staTim);
+        var startTime = DateTime.ParseExact(staTim, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         var startOdo = Convert.ToInt32(txtStartOdo.Text);
         var endTim = ddlHours1.SelectedItem.Text + ":" + ddlMinutes2.SelectedItem.Text;
-        var endTime = Convert.ToDateTime(endTim);
+        var endTime = DateTime.ParseExact(endTim,"MM/dd/yyyy",CultureInfo.InvariantCulture);
         var endOdo = Convert.ToInt32(txtEndOdo.Text);
         var remarks = Convert.ToString(txtRemarks.Text);
         var createdBy = Convert.ToInt32(Session["User_Id"].ToString());

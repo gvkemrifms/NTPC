@@ -204,31 +204,31 @@ public partial class TemporaryVehicleDetails : Page
         _tempvehdet.ChassisNo = txtChassisNo.Text;
         _tempvehdet.VehicleNo = txtVehicleNo.Text;
         _tempvehdet.InspectedBy = txtInspectedBy.Text;
-        _tempvehdet.InspectedDate = DateTime.Parse(txtInspectedDate.Text);
+        _tempvehdet.InspectedDate = DateTime.ParseExact(txtInspectedDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.VehicleTypeIBD = ""; // ddlVehicleTypeIBD.SelectedItem.Value.ToString();
         _tempvehdet.VehicleStatus = ddlVehicleStatus.SelectedItem.Text;
         _tempvehdet.VehicleModel = ddlVehicleModel.SelectedItem.Value;
         _tempvehdet.KMPL = float.Parse(txtKmpl.Text);
         _tempvehdet.VehicleType = ddlVehicleType.SelectedItem.Value;
         _tempvehdet.VehicleEmissionType = txtVehicleEmissionType.Text;
-        _tempvehdet.PurchaseDate = DateTime.Parse(txtPurchaseDate.Text);
+        _tempvehdet.PurchaseDate = DateTime.ParseExact(txtPurchaseDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.OwnerName = txtOwnerName.Text;
         _tempvehdet.ManufacturerName = ddlManufacturerName.SelectedItem.Value;
         _tempvehdet.VehicleCost = float.Parse(txtVehicleCost.Text);
-        _tempvehdet.ManufacturingDate = DateTime.Parse(txtManufacturingDate.Text);
+        _tempvehdet.ManufacturingDate = DateTime.ParseExact(txtManufacturingDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.EngineCapacity = txtEngineCapacity.Text;
         _tempvehdet.FuelType = ddlFuelType.SelectedItem.Value;
         _tempvehdet.District = Convert.ToInt32(ddlDistrict.SelectedItem.Value);
         _tempvehdet.InsuranceType = Convert.ToInt32(ddlInsType.SelectedItem.Value);
         _tempvehdet.InsuranceAgency = Convert.ToInt32(ddlAgency.SelectedItem.Value);
         _tempvehdet.InsurancePolicyNo = txtInPolicyNo.Text;
-        _tempvehdet.CurrentPolicyEndDate = DateTime.Parse(txtCurrentPolicyEndDate.Text);
+        _tempvehdet.CurrentPolicyEndDate = DateTime.ParseExact(txtCurrentPolicyEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.InsuranceReceiptNo = txtInsuranceReceiptNo.Text;
         _tempvehdet.InsuranceFeesPaid = float.Parse(txtInsFee.Text);
-        _tempvehdet.InsuranceFeesPaidDate = DateTime.Parse(txtInsuranceFeesPaidDate.Text);
-        _tempvehdet.PolicyStartDate = DateTime.Parse(txtValiSDate.Text);
+        _tempvehdet.InsuranceFeesPaidDate = DateTime.ParseExact(txtInsuranceFeesPaidDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+        _tempvehdet.PolicyStartDate = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.PolicyValidityPeriod = ddlPolicyValidityPeriod.SelectedItem.Value;
-        _tempvehdet.PolicyEndDate = DateTime.Parse(txtValEDate.Text);
+        _tempvehdet.PolicyEndDate = DateTime.ParseExact(txtValEDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _tempvehdet.FL = txtFL.Text;
         _tempvehdet.FR = txtFR.Text;
         _tempvehdet.RL = txtRL.Text;
@@ -310,7 +310,7 @@ public partial class TemporaryVehicleDetails : Page
 
     protected void ddlPolicyValidityPeriod_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlPolicyValidityPeriod.SelectedIndex != 0) txtValEDate.Text = Convert.ToDateTime(txtValiSDate.Text).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
+        if (ddlPolicyValidityPeriod.SelectedIndex != 0) txtValEDate.Text = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).ToString(CultureInfo.InvariantCulture);
     }
 
     public void ClearControls()

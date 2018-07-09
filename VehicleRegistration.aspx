@@ -5,6 +5,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 <script src="../JavaValidations/RequiredFieldValidations.js" type="text/javascript"></script>
 <script type="text/javascript">
+    function pageLoad() {
+        $('#<%= txtRegistrationDate.ClientID %>').datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+        $('#<%= ddlDistrict.ClientID %>').select2({
+            disable_search_threshold: 5,
+            search_contains: true,
+            minimumResultsForSearch: 20,
+            placeholder: "Select an option"
+        });
+    }
     function validation() {
         var sittingCapacity = document.getElementById('<%= txtSittingCapacity.ClientID %>');
         var prNo = document.getElementById('<%= txtPRNo.ClientID %>');
@@ -45,7 +58,8 @@
             registrationDate.focus();
             return false;
         }
-        if (Date.parse(registrationDate.value) < Date.parse(vehiclePdiDate.value)) {
+        debugger;
+        if (date.parse(registrationDate.value) < date.parse(vehiclePdiDate.value)) {
             alert(
                 "Registration Date should be greater than Pre-Delivery Inspection Date.(Pre-Delivery Inspection Date-" +
                 vehiclePdiDate.value +
@@ -74,21 +88,6 @@
 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
-<script type="text/javascript">
-    function pageLoad() {
-        $('#<%= txtRegistrationDate.ClientID %>').datepicker({
-            dateFormat: 'mm/dd/yy',
-            changeMonth: true,
-            changeYear: true
-        });
-        $('#<%= ddlDistrict.ClientID %>').select2({
-            disable_search_threshold: 5,
-            search_contains: true,
-            minimumResultsForSearch: 20,
-            placeholder: "Select an option"
-        });
-    }
-</script>
 
 <table class="table table-striped table-bordered table-hover">
 <tr>
@@ -184,8 +183,8 @@
                         Registration Date<span style="color: Red">*</span>
                     </td>
                     <td align="left" style="width: 400px">
-                        <asp:TextBox ID="txtRegistrationDate" CssClass="search_3" runat="server" oncut="_return false;"
-                                     onkeypress="_return false" Width="145px">
+                        <asp:TextBox ID="txtRegistrationDate" CssClass="search_3" runat="server"  oncut="return false;"
+                                     onkeypress="return false" Width="145px">
                         </asp:TextBox>
                     </td>
                     <td></td>

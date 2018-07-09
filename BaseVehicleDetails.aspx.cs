@@ -211,7 +211,7 @@ public partial class BaseVehicleDetails : Page
 
                         break;
                     default:
-                        var endTime = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                        var endTime = DateTime.ParseExact(txtValiSDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
 
                         txtValEDate.Text = endTime.AddMonths(Convert.ToInt16(ddlPolicyValidityPeriod.SelectedItem.Value)).Subtract(new TimeSpan(1, 0, 0)).ToShortDateString();
                         txtVehicleCost.Text = txtVehCost.Text;
@@ -272,7 +272,7 @@ public partial class BaseVehicleDetails : Page
                 _basevehdet.InsuranceFeesPaidDate = DateTime.ParseExact(txtInsuranceFeesPaidDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.PolicyStartDate = DateTime.ParseExact(txtValiSDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _basevehdet.PolicyValidityPeriod = ddlPolicyValidityPeriod.SelectedItem.Value;
-                _basevehdet.PolicyEndDate = Convert.ToDateTime(txtValEDate.Text);
+                _basevehdet.PolicyEndDate = DateTime.Parse(txtValEDate.Text);
                 _basevehdet.FL = txtFL.Text;
                 _basevehdet.FR = txtFR.Text;
                 _basevehdet.RL = txtRL.Text;

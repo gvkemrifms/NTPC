@@ -75,9 +75,9 @@ public partial class FitnessRenewal : Page
         if (_fitnessren != null)
             try
             {
-                _fitnessren.FRValidityStartDate = DateTime.Parse(txtFitnessValidityStartDate.Text);
+                _fitnessren.FRValidityStartDate = DateTime.ParseExact(txtFitnessValidityStartDate.Text,"MM/dd/yyyy",CultureInfo.InvariantCulture);
                 _fitnessren.FRValidityPeriod = ddlFitnessValidityPeriod.SelectedItem.Value;
-                _fitnessren.FRValidityEndDate = DateTime.Parse(txtFitnessValidityEndDate.Text);
+                _fitnessren.FRValidityEndDate = DateTime.ParseExact(txtFitnessValidityEndDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _fitnessren.VehicleRTACircle = txtVehicleRTACircle.Text;
                 _fitnessren.FRReceiptNo = txtFitnessReceiptNo.Text;
                 _fitnessren.FRFee = float.Parse(txtFitnessFee.Text);

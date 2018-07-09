@@ -140,9 +140,9 @@
                           OnRowCommand="grdvwDecommVehicles_RowCommand" BackColor="White" BorderStyle="None">
                 <RowStyle CssClass="rowStyleGrid" ForeColor="#000066"/>
                 <Columns>
-                    <asp:TemplateField HeaderText="District">
+                    <asp:TemplateField HeaderText="State">
                         <ItemTemplate>
-                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"District") %>'>
+                            <asp:Label ID="lblDistrict" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"DistrictId") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GvkFMSAPP.BLL.VAS_BLL;
@@ -109,7 +110,7 @@ public partial class NonOffRoadPhysicalBills : Page
                 _obj.District = ddlDistricts.SelectedItem.ToString();
                 _obj.SrcVehNo = ddlVehicleno.SelectedItem.ToString();
                 _obj.NonOffBillNo = ddlBillNo.SelectedItem.ToString();
-                _obj.ReceiptDate = Convert.ToDateTime(txtReceiptDate.Text);
+                _obj.ReceiptDate = DateTime.ParseExact(txtReceiptDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
                 _obj.CourierName = txtCourierName.Text;
                 _obj.DocketNo = txtDocketNo.Text;
                 _obj.NonOffAmount = txtBillAmount.Text;
@@ -176,8 +177,8 @@ public partial class NonOffRoadPhysicalBills : Page
             var row = (GridViewRow) ((WebControl) e.CommandSource).Parent.Parent;
             btnSave.Visible = false;
             btnUpdate.Visible = true;
-            var dt = Convert.ToDateTime(((Label) row.FindControl("lblReceiptDate")).Text);
-            txtReceiptDate.Text = dt.ToString("dd/MM/yyyy");
+            var dt = DateTime.ParseExact(((Label) row.FindControl("lblReceiptDate")).Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            txtReceiptDate.Text = dt.ToString("MM/dd/yyyy");
             txtCourierName.Text = ((Label) row.FindControl("lblCourier_Name")).Text;
             txtDocketNo.Text = ((Label) row.FindControl("lblDocketNo")).Text;
             lblBrkdwn.Text = ((Label) row.FindControl("lblBrkDwnID")).Text;
@@ -203,7 +204,7 @@ public partial class NonOffRoadPhysicalBills : Page
         _obj.District = ddlDistricts.SelectedItem.ToString();
         _obj.SrcVehNo = ddlVehicleno.SelectedItem.ToString();
         _obj.NonOffBillNo = ddlBillNo.SelectedItem.ToString();
-        _obj.ReceiptDate = Convert.ToDateTime(txtReceiptDate.Text);
+        _obj.ReceiptDate = DateTime.ParseExact(txtReceiptDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture);
         _obj.CourierName = txtCourierName.Text;
         _obj.DocketNo = txtDocketNo.Text;
         _obj.NonOffAmount = txtBillAmount.Text;
